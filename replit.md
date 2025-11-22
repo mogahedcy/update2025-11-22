@@ -70,6 +70,21 @@ Image storage: Cloudinary preferred over local storage for better performance, a
     - `src/app/api/ai-suggestions/route.ts`: API endpoint that passes through analysis metadata
     - `src/app/dashboard/projects/add/ProjectAddClient.tsx`: Enhanced UI with feature highlights and transparency information
 
+## Dynamic Routing & Caching Fix (November 22, 2025)
+- **Issue**: Newly created projects showed 404 error when accessed immediately after creation
+- **Root Cause**: Next.js 15 App Router caching behavior combined with `cache()` wrapper causing stale data
+- **Solution Applied**:
+  - Removed `cache()` wrapper from `getProject()` function in `/portfolio/[id]/page.tsx`
+  - Added `export const revalidate = 0` to completely disable caching for dynamic project pages
+  - Added `next: { revalidate: 0 }` to fetch options for fresh data on every request
+  - Configured `dynamicParams: true` to allow new dynamic routes without rebuild
+  - Added `revalidatePath()` calls in project creation API to clear Next.js cache immediately
+  - Enhanced logging to track project fetching for debugging
+- **Files Modified**:
+  - `src/app/portfolio/[id]/page.tsx`: Dynamic routing configuration and cache removal
+  - `src/app/api/projects/create/route.ts`: Added cache revalidation after project creation
+- **Result**: Projects are now immediately accessible after creation without 404 errors
+
 ## Security
 - **Authentication**: Secure admin login.
 - **Input Validation**: Zod schemas.

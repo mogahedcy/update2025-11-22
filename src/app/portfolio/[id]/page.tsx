@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { cache } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
@@ -16,33 +15,39 @@ import ProjectDetailsClient from './ProjectDetailsClient';
 
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
+export const revalidate = 0;
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-// دالة محسّنة مع cache لمنع duplicate calls في نفس الـ render
-// استخدام no-store للحفاظ على دقة إحصاءات المشاهدات
-const getProject = cache(async (id: string) => {
+// دالة جلب المشروع مع no-cache لضمان الحصول على أحدث البيانات
+async function getProject(id: string) {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL 
       ? (process.env.NEXT_PUBLIC_BASE_URL.startsWith('http') 
           ? process.env.NEXT_PUBLIC_BASE_URL 
           : `https://${process.env.NEXT_PUBLIC_BASE_URL}`)
       : 'http://localhost:5000';
+    
+    console.log(`🔍 جلب المشروع: ${id} من ${baseUrl}`);
+    
     const response = await fetch(`${baseUrl}/api/projects/${id}`, {
-      cache: 'no-store', // dynamic للحفاظ على دقة views و interactions
+      cache: 'no-store',
+      next: { revalidate: 0 }
     });
 
     if (!response.ok) {
+      console.log(`❌ فشل جلب المشروع: ${response.status}`);
       return null;
     }
 
     const project = await response.json();
-    return project; // إرجاع المشروع مباشرة
+    console.log(`✅ تم جلب المشروع بنجاح: ${project.title}`);
+    return project;
   } catch (err) {
     const error = err as { message?: string; status?: number };
-    console.error('خطأ في جلب المشروع:', error);
+    console.error('❌ خطأ في جلب المشروع:', error);
 
     // في حالة 404
     if (error?.message?.includes('404') || error?.status === 404) {
@@ -56,7 +61,7 @@ const getProject = cache(async (id: string) => {
 
     return null;
   }
-});
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
