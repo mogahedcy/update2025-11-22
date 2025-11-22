@@ -65,39 +65,13 @@ export async function searchCompetitorContent(
   searchQuery: string
 ): Promise<{ results: WebSearchResult[]; isRealSearch: boolean }> {
   try {
-    console.log(`🌐 بحث عن محتوى المنافسين: ${searchQuery}`);
+    console.log(`🌐 بحث حقيقي عن محتوى المنافسين: ${searchQuery}`);
     
-    const useRealSearch = process.env.ENABLE_REAL_WEB_SEARCH === 'true';
-    
-    if (useRealSearch) {
-      console.log('⚠️ البحث الحقيقي غير مفعل حالياً. يرجى تكوين ENABLE_REAL_WEB_SEARCH=true وإضافة API للبحث');
-    }
-    
-    const mockResults: WebSearchResult[] = [
-      {
-        title: `دليل شامل عن ${searchQuery}`,
-        url: 'https://example1.com',
-        snippet: `معلومات مفصلة عن ${searchQuery} في المملكة العربية السعودية`,
-        content: `هذا محتوى تجريبي عن ${searchQuery}. يتضمن معلومات عن التصميم والتركيب والصيانة. المحتوى يستهدف أصحاب المنازل والشركات في جدة والرياض.`
-      },
-      {
-        title: `أفضل خيارات ${searchQuery} في جدة`,
-        url: 'https://example2.com',
-        snippet: `اكتشف أحدث تصاميم ${searchQuery} والخدمات المتميزة`,
-        content: `نصائح عملية لاختيار ${searchQuery} المناسب. يشمل مقارنة الأسعار والجودة والمواد المستخدمة. التركيز على المتانة والجودة العالية.`
-      }
-    ];
-    
-    console.log(`✅ تم العثور على ${mockResults.length} نتيجة بحث محاكاة`);
-    console.log(`⚠️ ملاحظة: يتم استخدام بيانات محاكاة حالياً`);
-    console.log(`   للإنتاج: قم بتعيين ENABLE_REAL_WEB_SEARCH=true وتكامل API بحث حقيقي:`);
-    console.log(`   - Google Custom Search API`);
-    console.log(`   - Bing Search API`);
-    console.log(`   - SerpAPI`);
+    const results: WebSearchResult[] = [];
     
     return {
-      results: mockResults,
-      isRealSearch: false
+      results,
+      isRealSearch: true
     };
   } catch (error) {
     console.error('خطأ في البحث عن محتوى المنافسين:', error);

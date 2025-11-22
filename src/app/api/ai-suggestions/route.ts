@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SEOAgent } from '@/lib/seo-agent';
+import { analyzeCompetitors } from '@/lib/competitor-analyzer';
 
 const seoAgent = new SEOAgent();
 
@@ -22,28 +23,61 @@ export async function POST(request: NextRequest) {
       titleSuggestions: [],
       descriptionSuggestions: [],
       metaTags: null,
-      contentSuggestions: null
+      contentSuggestions: null,
+      competitorAnalysis: null
     };
 
     // تجهيز المحتوى للتحليل
     const content = `${title}. ${description || ''}. الفئة: ${category || 'غير محدد'}. الموقع: ${location || 'السعودية'}.`;
 
-    // 1. توليد الكلمات المفتاحية
+    // 1. تحليل المنافسين المتصدرين في محركات البحث 🔥
+    console.log('🔍 بدء تحليل المنافسين...');
+    let competitorKeywords: string[] = [];
+    let competitorTitles: string[] = [];
+    
+    try {
+      const searchQuery = `${title} ${category || ''} ${location || 'السعودية'}`.trim();
+      const competitorAnalysis = await analyzeCompetitors(searchQuery, true);
+      
+      suggestions.competitorAnalysis = {
+        topKeywords: competitorAnalysis.topKeywords || [],
+        titleSuggestions: competitorAnalysis.titleSuggestions || [],
+        contentStrategy: competitorAnalysis.contentStrategy,
+        targetAudience: competitorAnalysis.targetAudience,
+        contentGaps: competitorAnalysis.contentGaps || []
+      };
+      
+      competitorKeywords = competitorAnalysis.topKeywords?.slice(0, 10) || [];
+      competitorTitles = competitorAnalysis.titleSuggestions?.slice(0, 3) || [];
+      
+      console.log('✅ تم تحليل المنافسين:', {
+        keywords: competitorKeywords.length,
+        titles: competitorTitles.length
+      });
+    } catch (error) {
+      console.error('⚠️ تعذر تحليل المنافسين:', error);
+    }
+
+    // 2. توليد الكلمات المفتاحية مع دمج نتائج المنافسين
     const initialKeywords = [
       category || 'مشاريع',
       location || 'السعودية',
       'جدة',
-      'محترفين الديار'
+      'محترفين الديار',
+      ...competitorKeywords.slice(0, 5)
     ];
     
     try {
       const keywordAnalysis = await seoAgent.analyzeKeywords(content, initialKeywords);
       const allKeywords = [
         ...keywordAnalysis.primary_keywords,
-        ...keywordAnalysis.secondary_keywords.slice(0, 5)
+        ...keywordAnalysis.secondary_keywords.slice(0, 5),
+        ...competitorKeywords.slice(0, 5)
       ];
-      suggestions.keywords = allKeywords;
-      console.log('✅ تم توليد الكلمات المفتاحية:', allKeywords.length);
+      
+      // إزالة التكرارات
+      suggestions.keywords = [...new Set(allKeywords)];
+      console.log('✅ تم توليد الكلمات المفتاحية:', suggestions.keywords.length);
     } catch (error) {
       console.error('خطأ في توليد الكلمات المفتاحية:', error);
       suggestions.keywords = [
@@ -51,17 +85,25 @@ export async function POST(request: NextRequest) {
         location || 'السعودية',
         'جدة',
         'محترفين الديار',
-        title.split(' ').slice(0, 3).join(' ')
+        title.split(' ').slice(0, 3).join(' '),
+        ...competitorKeywords.slice(0, 5)
       ];
     }
 
-    // 2. توليد اقتراحات للعناوين
+    // 3. توليد اقتراحات للعناوين مع دمج اقتراحات المنافسين
     try {
-      suggestions.titleSuggestions = [
+      const baseTitle = [
         `${title} في ${location || 'السعودية'} - محترفين الديار`,
         `${category || 'مشروع'} احترافي: ${title} | ${location || 'جدة'}`,
         `تنفيذ ${category || 'مشروع'} ${title} بأعلى جودة في ${location || 'السعودية'}`
       ];
+      
+      // دمج عناوين المنافسين المحسّنة
+      suggestions.titleSuggestions = [
+        ...baseTitle,
+        ...competitorTitles
+      ].slice(0, 5);
+      
       console.log('✅ تم توليد اقتراحات العناوين:', suggestions.titleSuggestions.length);
     } catch (error) {
       console.error('خطأ في توليد العناوين:', error);
@@ -72,7 +114,7 @@ export async function POST(request: NextRequest) {
       ];
     }
 
-    // 3. توليد اقتراحات لتحسين الوصف
+    // 4. توليد اقتراحات لتحسين الوصف
     if (description) {
       try {
         const contentAnalysis = await seoAgent.analyzeContent(
@@ -101,7 +143,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 4. توليد Meta Tags
+    // 5. توليد Meta Tags
     try {
       const metaTags = await seoAgent.generateMetaTags(
         content,
