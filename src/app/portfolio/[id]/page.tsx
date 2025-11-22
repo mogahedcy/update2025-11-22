@@ -21,14 +21,14 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-// دالة جلب المشروع مباشرة من قاعدة البيانات
+// دالة جلب المشروع مباشرة من قاعدة البيانات - بدون تزامن مع API
 async function getProject(id: string) {
   try {
     // البحث باستخدام المعرف أو الـ slug
     const project = await prisma.projects.findFirst({
       where: {
         OR: [
-          { id: id },
+          { id },
           { slug: id }
         ]
       },
@@ -36,7 +36,10 @@ async function getProject(id: string) {
         media_items: { orderBy: { order: 'asc' } },
         project_tags: true,
         project_materials: true,
-        _count: { select: { comments: true, project_likes: true } }
+        comments: {
+          where: { rating: { gt: 0 } },
+          select: { id: true, name: true, message: true, rating: true, createdAt: true }
+        }
       }
     });
 
@@ -50,8 +53,8 @@ async function getProject(id: string) {
       mediaItems: project.media_items,
       tags: project.project_tags || [],
       materials: project.project_materials || [],
+      comments: project.comments || [],
       views: project.views || 0,
-      likes: project._count?.project_likes || 0,
       rating: project.rating || 0
     };
   } catch (err) {
