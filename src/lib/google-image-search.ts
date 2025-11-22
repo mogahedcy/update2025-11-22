@@ -29,11 +29,11 @@ export class GoogleImageSearch {
   private baseUrl = 'https://www.googleapis.com/customsearch/v1';
 
   constructor() {
-    this.apiKey = process.env.GOOGLE_API_KEY || '';
+    this.apiKey = process.env.GOOGLE_CUSTOM_SEARCH_API_KEY || process.env.GOOGLE_API_KEY || '';
     this.searchEngineId = process.env.GOOGLE_SEARCH_ENGINE_ID || '';
 
     if (!this.apiKey || !this.searchEngineId) {
-      console.warn('⚠️ Google Image Search: Missing API key or Search Engine ID');
+      console.warn('⚠️ Google Image Search: Not configured. Using fallback mode. To enable, set GOOGLE_CUSTOM_SEARCH_API_KEY and GOOGLE_SEARCH_ENGINE_ID');
     }
   }
 

@@ -66,13 +66,6 @@ export async function GET(request: NextRequest) {
             successCount: 0,
             failureCount: schedule.generateCount
           };
-        } else if (!process.env.GOOGLE_API_KEY) {
-          generateResult = {
-            success: false,
-            error: 'GOOGLE_API_KEY غير محدد - يرجى إضافة المفتاح في متغيرات البيئة',
-            successCount: 0,
-            failureCount: schedule.generateCount
-          };
         } else {
           generateResult = await runSmartGeneration(
             schedule.generateNiche,
