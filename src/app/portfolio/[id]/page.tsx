@@ -14,6 +14,9 @@ import {
 } from '@/lib/seo-utils';
 import ProjectDetailsClient from './ProjectDetailsClient';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 interface Props {
   params: Promise<{ id: string }>;
 }

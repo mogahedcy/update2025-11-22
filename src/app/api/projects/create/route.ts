@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
 import { generateSlug } from '@/lib/utils';
 import { randomUUID } from 'crypto';
@@ -127,6 +128,15 @@ export async function POST(request: NextRequest) {
         project_materials: true
       }
     });
+
+    // تحديث الـ cache للصفحات الديناميكية
+    try {
+      revalidatePath('/portfolio');
+      revalidatePath(`/portfolio/${slug}`);
+      console.log('✅ تم تحديث cache الصفحات');
+    } catch (cacheError) {
+      console.error('⚠️ خطأ في تحديث الـ cache:', cacheError);
+    }
 
     // تحديث خريطة الموقع تلقائياً
     try {
