@@ -25,7 +25,8 @@ import {
   Sparkles,
   Loader2,
   CheckCircle2,
-  Lightbulb
+  Lightbulb,
+  TrendingUp
 } from 'lucide-react';
 import { PROJECT_CATEGORIES } from '@/constants/projectCategories';
 
@@ -552,12 +553,66 @@ export default function ProjectAddClient() {
               </div>
 
               <div className="space-y-6">
+                {/* تحليل المنافسين */}
+                {aiSuggestions.competitorAnalysis && (
+                  <div className="bg-white rounded-lg p-4 shadow-sm border-2 border-green-200">
+                    <div className="flex items-center gap-2 mb-3">
+                      <TrendingUp className="h-5 w-5 text-green-600" />
+                      <h3 className="font-semibold text-gray-900">تحليل المنافسين المتصدرين 🔥</h3>
+                    </div>
+                    <div className="space-y-3">
+                      {aiSuggestions.competitorAnalysis.topKeywords && aiSuggestions.competitorAnalysis.topKeywords.length > 0 && (
+                        <div className="p-3 bg-green-50 rounded-lg">
+                          <p className="text-xs font-medium text-green-800 mb-2">🎯 كلمات المنافسين الأكثر استخداماً:</p>
+                          <div className="flex flex-wrap gap-1">
+                            {aiSuggestions.competitorAnalysis.topKeywords.slice(0, 8).map((keyword: string, index: number) => (
+                              <Badge key={index} variant="outline" className="text-xs border-green-300 text-green-700">
+                                {keyword}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {aiSuggestions.competitorAnalysis.contentStrategy && (
+                        <div className="p-3 bg-blue-50 rounded-lg">
+                          <p className="text-xs font-medium text-blue-800 mb-1">📊 استراتيجية المحتوى:</p>
+                          <p className="text-xs text-gray-700">{aiSuggestions.competitorAnalysis.contentStrategy}</p>
+                        </div>
+                      )}
+                      {aiSuggestions.competitorAnalysis.targetAudience && (
+                        <div className="p-3 bg-purple-50 rounded-lg">
+                          <p className="text-xs font-medium text-purple-800 mb-1">👥 الجمهور المستهدف:</p>
+                          <p className="text-xs text-gray-700">{aiSuggestions.competitorAnalysis.targetAudience}</p>
+                        </div>
+                      )}
+                      {aiSuggestions.competitorAnalysis.contentGaps && aiSuggestions.competitorAnalysis.contentGaps.length > 0 && (
+                        <div className="p-3 bg-yellow-50 rounded-lg">
+                          <p className="text-xs font-medium text-yellow-800 mb-2">💡 فرص التميز (الثغرات في محتوى المنافسين):</p>
+                          <ul className="space-y-1">
+                            {aiSuggestions.competitorAnalysis.contentGaps.slice(0, 3).map((gap: string, index: number) => (
+                              <li key={index} className="text-xs text-gray-700 flex items-start gap-1">
+                                <span className="text-yellow-600">•</span>
+                                <span>{gap}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 {/* الكلمات المفتاحية */}
                 {aiSuggestions.keywords && aiSuggestions.keywords.length > 0 && (
                   <div className="bg-white rounded-lg p-4 shadow-sm">
                     <div className="flex items-center gap-2 mb-3">
                       <Tag className="h-5 w-5 text-purple-600" />
                       <h3 className="font-semibold text-gray-900">الكلمات المفتاحية المقترحة</h3>
+                      {aiSuggestions.competitorAnalysis && (
+                        <Badge variant="outline" className="text-xs border-green-500 text-green-700">
+                          مُحسّنة من المنافسين
+                        </Badge>
+                      )}
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {aiSuggestions.keywords.map((keyword: string, index: number) => (
