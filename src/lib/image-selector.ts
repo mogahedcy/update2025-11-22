@@ -1,5 +1,5 @@
 import ai, { GROQ_MODEL } from './groq-client';
-import { googleImageSearch } from './google-image-search';
+import { unsplashSearch } from './unsplash-search';
 
 export interface ImageSuggestion {
   query: string;
@@ -76,65 +76,41 @@ export class ImageSelector {
     const images: Array<{ src: string; alt: string; description: string; type: 'IMAGE' | 'VIDEO' }> = [];
     
     for (const suggestion of suggestions) {
-      let imageFound = false;
+      try {
+        console.log(`🔍 البحث عن صورة في Unsplash: ${suggestion.query}`);
 
-      console.log(`🔍 البحث عن صورة: ${suggestion.query}`);
+        const searchResults = await unsplashSearch.searchImages(suggestion.query, {
+          count: 1,
+          orientation: 'landscape'
+        });
 
-      const rightsOptions: Array<string | null> = [
-        'cc_publicdomain,cc_attribute,cc_sharealike,cc_noncommercial',
-        'cc_publicdomain,cc_attribute',
-        null,
-      ];
+        if (searchResults.length > 0) {
+          const result = searchResults[0];
+          try {
+            const uploadedUrl = await unsplashSearch.downloadAndUploadImage(
+              result.url,
+              suggestion.alt_text
+            );
 
-      for (let attemptIndex = 0; attemptIndex < rightsOptions.length && !imageFound; attemptIndex++) {
-        try {
-          const rights = rightsOptions[attemptIndex];
-          const rightsLabel = rights === null ? 'جميع الصور' : rights;
-          
-          console.log(`  🔄 المحاولة ${attemptIndex + 1}: البحث في (${rightsLabel})`);
-
-          const searchResults = await googleImageSearch.searchImages(suggestion.query, {
-            num: 3,
-            imageSize: 'large',
-            imageType: 'photo',
-            safe: 'active',
-            rights: rights,
-          });
-
-          if (searchResults.length > 0) {
-            for (const result of searchResults) {
-              try {
-                const uploadedUrl = await googleImageSearch.downloadAndUploadImage(
-                  result.url,
-                  suggestion.alt_text
-                );
-
-                if (uploadedUrl) {
-                  images.push({
-                    src: uploadedUrl,
-                    alt: suggestion.alt_text,
-                    description: suggestion.description,
-                    type: 'IMAGE' as const
-                  });
-                  console.log(`  ✅ تمت إضافة الصورة من (${rightsLabel}): ${suggestion.alt_text}`);
-                  imageFound = true;
-                  break;
-                }
-              } catch (uploadError) {
-                console.warn(`  ⚠️ فشل رفع صورة، جرب التالية...`);
-                continue;
-              }
+            if (uploadedUrl) {
+              images.push({
+                src: uploadedUrl,
+                alt: suggestion.alt_text,
+                description: suggestion.description,
+                type: 'IMAGE' as const
+              });
+              console.log(`  ✅ تمت إضافة الصورة من Unsplash: ${suggestion.alt_text}`);
+            } else {
+              console.warn(`  ⚠️ فشل رفع صورة من Unsplash`);
             }
-          } else {
-            console.log(`  ⚠️ لم يتم العثور على نتائج في هذه الفئة`);
+          } catch (uploadError) {
+            console.warn(`  ⚠️ خطأ في رفع الصورة:`, uploadError);
           }
-        } catch (error) {
-          console.error(`  ❌ خطأ في المحاولة ${attemptIndex + 1}:`, error);
+        } else {
+          console.log(`  ⚠️ لم يتم العثور على نتائج في Unsplash للاستعلام: ${suggestion.query}`);
         }
-      }
-
-      if (!imageFound) {
-        console.warn(`❌ فشل الحصول على صورة لـ: ${suggestion.query} بعد كل المحاولات`);
+      } catch (error) {
+        console.error(`  ❌ خطأ في البحث عن الصورة:`, error);
       }
     }
 
