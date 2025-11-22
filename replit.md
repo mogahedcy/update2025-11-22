@@ -39,6 +39,12 @@ Image storage: Cloudinary preferred over local storage for better performance, a
 - **AI Article Agent**: Generates SEO-optimized articles with automated image selection (Google Custom Search API) and AI-generated alt text.
 - **Smart Content Generation System**: Infrastructure for web search-based competitor analysis to generate intelligent content.
 - **Automated Indexing System**: Notifies search engines (IndexNow, Bing Webmaster API) about content changes.
+- **Enhanced Portfolio Rich Media SEO** (November 2025):
+  - **Multi-Image OpenGraph**: All project images included in OpenGraph/Twitter metadata (not just first image) with absolute URLs and proper MIME types for better social sharing and indexing.
+  - **Advanced VideoObject Schema**: Complete video structured data with `embedUrl` (page URL), `contentUrl` (direct video file), `thumbnailUrl`, `publisher`, `inLanguage`, and `regionsAllowed` for Google/Bing video indexing.
+  - **Rich ImageObject Schema**: Enhanced with `license`, `copyright`, `creator`, `creditText` fields for better image attribution and copyright protection.
+  - **Review Schema Integration**: Individual review schemas extracted from project comments with `author`, `rating`, `reviewBody`, `datePublished`, plus `AggregateRating` for rich snippet eligibility.
+  - **Centralized SEO Utilities**: `getAbsoluteUrl()` and `getMediaType()` helpers in `seo-utils.ts` ensure consistent absolute URLs and MIME types across all metadata and structured data.
 - **Performance Optimizations**: CSS (cssnano, critical CSS inlining), JavaScript (modern-only browserslist, ES2022), build (SWC minification), image (responsive `sizes`, lazy loading, AVIF/WebP), Core Web Vitals (LCP, FID, CLS), mobile responsiveness fixes, PWA capabilities, and resource hints.
 - **AI-Assisted Content Creation**: Real-time AI suggestions during project submission using Groq AI (Llama 3.3 70B) for keywords, titles, descriptions, and meta tags with ultra-low latency.
 

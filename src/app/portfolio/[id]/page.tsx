@@ -164,6 +164,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
   // إعداد structured data
   const images = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
   const videos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
+  const fullUrl = getAbsoluteUrl(`/portfolio/${project.slug || id}`);
 
   const breadcrumbItems = [
     { label: 'المشاريع', href: '/portfolio' },
