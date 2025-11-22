@@ -13,17 +13,10 @@ export default function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    return (
-      <button
-        className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
-        aria-label="تبديل الثيم"
-      >
-        <Sun className="w-5 h-5" />
-      </button>
-    );
+    return null;
   }
 
-  const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const isDark = theme === 'dark';
 
   return (
     <button

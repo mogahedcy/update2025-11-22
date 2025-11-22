@@ -24,15 +24,13 @@ const ThemeProviderContext = React.createContext<ThemeProviderState>(initialStat
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'system',
+  defaultTheme = 'light',
   storageKey = 'aldeyar-theme',
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = React.useState<Theme>(defaultTheme);
-  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    setMounted(true);
     const storedTheme = localStorage.getItem(storageKey) as Theme;
     if (storedTheme) {
       setTheme(storedTheme);
@@ -40,8 +38,6 @@ export function ThemeProvider({
   }, [storageKey]);
 
   React.useEffect(() => {
-    if (!mounted) return;
-
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
 
@@ -54,7 +50,7 @@ export function ThemeProvider({
     }
 
     root.classList.add(theme);
-  }, [theme, mounted]);
+  }, [theme]);
 
   const value = {
     theme,

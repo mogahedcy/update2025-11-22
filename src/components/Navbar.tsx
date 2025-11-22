@@ -206,8 +206,8 @@ export default function Navbar() {
       {/* Main Navigation الشريط الرئيسي */}
       <nav className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-lg shadow-xl border-b border-gray-100'
-          : 'bg-white shadow-lg'
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-xl border-b border-gray-100 dark:border-gray-800'
+          : 'bg-white dark:bg-gray-900 shadow-lg'
       }`}>
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
           <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
@@ -223,10 +223,10 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="flex flex-col">
-                <div className="text-sm sm:text-lg lg:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+                <div className="text-sm sm:text-lg lg:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent dark:from-amber-400 dark:to-green-400 leading-tight">
                   محترفين الديار العالمية
                 </div>
-                <div className="text-xs lg:text-sm text-muted-foreground hidden sm:block">
+                <div className="text-xs lg:text-sm text-muted-foreground dark:text-gray-400 hidden sm:block">
                   خبرة +15 عاماً في جدة والمملكة
                 </div>
               </div>
@@ -278,7 +278,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="px-4 py-2 rounded-lg text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 font-medium flex items-center space-x-2 space-x-reverse group"
+                  className="px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-accent hover:bg-primary/5 dark:hover:bg-gray-800 transition-all duration-200 font-medium flex items-center space-x-2 space-x-reverse group"
                 >
                   <item.icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>{item.label}</span>
@@ -306,7 +306,7 @@ export default function Navbar() {
                       setIsServicesOpen(false);
                     }
                   }}
-                  className="px-4 py-2 rounded-lg text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 font-medium flex items-center space-x-2 space-x-reverse group"
+                  className="px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-accent hover:bg-primary/5 dark:hover:bg-gray-800 transition-all duration-200 font-medium flex items-center space-x-2 space-x-reverse group"
                   aria-expanded={isServicesOpen}
                   aria-haspopup="true"
                   aria-controls="services-menu"
@@ -320,13 +320,13 @@ export default function Navbar() {
                 {isServicesOpen && (
                   <div 
                     id="services-menu"
-                    className="mega-menu absolute top-full right-0 w-[min(900px,calc(100vw-2rem))] bg-white border border-gray-100 rounded-2xl shadow-2xl p-6 md:p-8 transform translate-y-2 z-50 max-h-[calc(100vh-200px)] overflow-y-auto"
+                    className="mega-menu absolute top-full right-0 w-[min(900px,calc(100vw-2rem))] bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-2xl p-6 md:p-8 transform translate-y-2 z-50 max-h-[calc(100vh-200px)] overflow-y-auto"
                     role="menu"
                     aria-label="قائمة الخدمات"
                   >
                     <div className="mb-6">
-                      <h3 className="text-xl font-bold text-primary mb-2">خدماتنا المتخصصة</h3>
-                      <p className="text-gray-600">نقدم أفضل الحلول في مجال المظلات والسواتر والتصميم مع ضمان الجودة</p>
+                      <h3 className="text-xl font-bold text-primary dark:text-accent mb-2">خدماتنا المتخصصة</h3>
+                      <p className="text-gray-600 dark:text-gray-400">نقدم أفضل الحلول في مجال المظلات والسواتر والتصميم مع ضمان الجودة</p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
@@ -334,17 +334,17 @@ export default function Navbar() {
                         <Link
                           key={service.href}
                           href={service.href}
-                          className="flex items-start space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 group border border-transparent hover:border-gray-200"
+                          className="flex items-start space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 group border border-transparent hover:border-gray-200 dark:hover:border-gray-700"
                           role="menuitem"
                         >
-                          <div className={`p-3 rounded-lg ${service.bgColor} group-hover:scale-105 transition-transform`}>
+                          <div className={`p-3 rounded-lg ${service.bgColor} dark:bg-opacity-20 group-hover:scale-105 transition-transform`}>
                             <service.icon className={`w-6 h-6 ${service.color}`} />
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-primary transition-colors mb-1">
+                            <h4 className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-accent transition-colors mb-1">
                               {service.label}
                             </h4>
-                            <p className="text-sm text-gray-600 leading-relaxed">
+                            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                               {service.description}
                             </p>
                           </div>
@@ -376,7 +376,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="px-4 py-2 rounded-lg text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 font-medium flex items-center space-x-2 space-x-reverse group"
+                  className="px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-accent hover:bg-primary/5 dark:hover:bg-gray-800 transition-all duration-200 font-medium flex items-center space-x-2 space-x-reverse group"
                 >
                   <item.icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>{item.label}</span>
