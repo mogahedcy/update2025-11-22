@@ -44,7 +44,9 @@ export async function POST(request: NextRequest) {
         titleSuggestions: competitorAnalysis.titleSuggestions || [],
         contentStrategy: competitorAnalysis.contentStrategy,
         targetAudience: competitorAnalysis.targetAudience,
-        contentGaps: competitorAnalysis.contentGaps || []
+        contentGaps: competitorAnalysis.contentGaps || [],
+        aiBasedAnalysis: competitorAnalysis.aiBasedAnalysis,
+        analysisMethod: competitorAnalysis.analysisMethod
       };
       
       competitorKeywords = competitorAnalysis.topKeywords?.slice(0, 10) || [];

@@ -556,9 +556,14 @@ export default function ProjectAddClient() {
                 {/* تحليل المنافسين */}
                 {aiSuggestions.competitorAnalysis && (
                   <div className="bg-white rounded-lg p-4 shadow-sm border-2 border-green-200">
-                    <div className="flex items-center gap-2 mb-3">
-                      <TrendingUp className="h-5 w-5 text-green-600" />
-                      <h3 className="font-semibold text-gray-900">تحليل المنافسين المتصدرين 🔥</h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2">
+                        <TrendingUp className="h-5 w-5 text-green-600" />
+                        <h3 className="font-semibold text-gray-900">تحليل المنافسين المتصدرين 🔥</h3>
+                      </div>
+                      <Badge variant="outline" className="text-xs border-purple-400 text-purple-700 bg-purple-50">
+                        ⚡ تحليل GROQ AI
+                      </Badge>
                     </div>
                     <div className="space-y-3">
                       {aiSuggestions.competitorAnalysis.topKeywords && aiSuggestions.competitorAnalysis.topKeywords.length > 0 && (

@@ -37,7 +37,8 @@ export interface CompetitorAnalysis {
   commonTopics: string[];
   contentGaps: string[];
   competitorUrls?: string[];
-  realContentAnalyzed?: boolean;
+  aiBasedAnalysis?: boolean;
+  analysisMethod?: 'groq_ai' | 'serp_search';
 }
 
 export interface SmartArticleRequest {
@@ -132,11 +133,12 @@ export async function analyzeCompetitors(
       prompt
     );
     
-    // وضع علامة أن التحليل يعتمد على المعرفة المتقدمة لـ GROQ AI
+    // التحليل الذكي باستخدام GROQ AI بناءً على معرفته بالسوق السعودي
     analysis.competitorUrls = [];
-    analysis.realContentAnalyzed = true; // التحليل حقيقي بناءً على معرفة GROQ AI بالسوق
+    analysis.aiBasedAnalysis = true;
+    analysis.analysisMethod = 'groq_ai';
     
-    console.log('✅ تم تحليل المنافسين بنجاح باستخدام GROQ AI');
+    console.log('✅ تم تحليل المنافسين بنجاح باستخدام GROQ AI الذكي');
     
     return analysis;
   } catch (error) {

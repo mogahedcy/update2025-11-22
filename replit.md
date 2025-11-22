@@ -47,6 +47,16 @@ Image storage: Cloudinary preferred over local storage for better performance, a
   - **Centralized SEO Utilities**: `getAbsoluteUrl()` and `getMediaType()` helpers in `seo-utils.ts` ensure consistent absolute URLs and MIME types across all metadata and structured data.
 - **Performance Optimizations**: CSS (cssnano, critical CSS inlining), JavaScript (modern-only browserslist, ES2022), build (SWC minification), image (responsive `sizes`, lazy loading, AVIF/WebP), Core Web Vitals (LCP, FID, CLS), mobile responsiveness fixes, PWA capabilities, and resource hints.
 - **AI-Assisted Content Creation**: Real-time AI suggestions during project submission using Groq AI (Llama 3.3 70B) for keywords, titles, descriptions, and meta tags with ultra-low latency.
+- **Intelligent Competitor Analysis System** (November 2025): Automated competitor analysis at project creation using GROQ AI (Llama 3.3 70B) that provides:
+  - **Smart Market Analysis**: Deep analysis based on GROQ AI's knowledge of the Saudi Arabian market and competitors in construction, shade, and landscaping sectors.
+  - **Top Competitor Keywords**: Extracts 10-15 most effective keywords used by top-ranking competitors.
+  - **Optimized Title Suggestions**: AI-generated titles that mimic successful competitor strategies.
+  - **Content Strategy Insights**: Analysis of how competitors present their content (educational, marketing, testimonials, etc.).
+  - **Target Audience Analysis**: Identifies the specific audience segments competitors are targeting.
+  - **Content Gap Opportunities**: Highlights areas where competitors are weak, providing opportunities to stand out.
+  - **UI Integration**: Results displayed in project creation interface with clear "⚡ GROQ AI Analysis" badge.
+  - **Method**: Uses GROQ AI intelligent analysis (not live SERP search) to avoid additional API costs while providing fast, accurate, market-specific insights.
+  - **Implementation**: `src/lib/competitor-analyzer.ts` with transparent `aiBasedAnalysis` and `analysisMethod` flags in responses.
 
 ## Security
 - **Authentication**: Secure admin login.
