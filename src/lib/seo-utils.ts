@@ -3,6 +3,32 @@ import { Metadata } from 'next';
 const BASE_URL = 'https://www.aldeyarksa.tech';
 const SITE_NAME = 'محترفين الديار العالمية';
 
+// دوال مساعدة للحصول على URL مطلق ونوع الملف
+export function getAbsoluteUrl(url: string): string {
+  if (!url) return `${BASE_URL}/favicon.svg`;
+  if (url.startsWith('http')) return url;
+  return `${BASE_URL}${url.startsWith('/') ? url : `/${url}`}`;
+}
+
+export function getMediaType(url: string): string {
+  if (!url) return 'image/jpeg';
+  const ext = url.split('.').pop()?.toLowerCase() || '';
+  const imageTypes: Record<string, string> = {
+    'jpg': 'image/jpeg',
+    'jpeg': 'image/jpeg',
+    'png': 'image/png',
+    'webp': 'image/webp',
+    'gif': 'image/gif'
+  };
+  const videoTypes: Record<string, string> = {
+    'mp4': 'video/mp4',
+    'webm': 'video/webm',
+    'ogg': 'video/ogg',
+    'mov': 'video/quicktime'
+  };
+  return imageTypes[ext] || videoTypes[ext] || 'image/jpeg';
+}
+
 interface SEOConfig {
   title: string;
   description: string;
@@ -257,15 +283,29 @@ export function generateVideoObjectSchema(videos: Array<{
   thumbnailUrl?: string;
   uploadDate?: string;
   duration?: string;
+  embedUrl?: string;
 }>) {
+  const BASE_URL = 'https://www.aldeyarksa.tech';
+  
   return videos.map((video) => ({
     "@type": "VideoObject",
     "name": video.name,
     "description": video.description,
     "contentUrl": video.contentUrl,
-    "thumbnailUrl": video.thumbnailUrl,
-    "uploadDate": video.uploadDate,
-    ...(video.duration && { "duration": video.duration })
+    "embedUrl": video.embedUrl || video.contentUrl,
+    "thumbnailUrl": video.thumbnailUrl || `${BASE_URL}/favicon.svg`,
+    "uploadDate": video.uploadDate || new Date().toISOString(),
+    "publisher": {
+      "@type": "Organization",
+      "name": "محترفين الديار العالمية",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/favicon.svg`
+      }
+    },
+    ...(video.duration && { "duration": video.duration }),
+    "inLanguage": "ar",
+    "regionsAllowed": "SA"
   }));
 }
 
@@ -277,12 +317,26 @@ export function generateCreativeWorkSchema(data: {
   location?: string;
   dateCreated?: string;
   dateModified?: string;
-  images?: Array<{ url: string; caption?: string }>;
-  videos?: Array<{ name: string; description: string; contentUrl: string; uploadDate?: string }>;
+  images?: Array<{ url: string; caption?: string; alt?: string }>;
+  videos?: Array<{ 
+    name: string; 
+    description: string; 
+    contentUrl: string; 
+    embedUrl?: string;
+    uploadDate?: string; 
+    thumbnailUrl?: string;
+    duration?: string;
+  }>;
   aggregateRating?: {
     ratingValue: number;
     reviewCount: number;
   };
+  reviews?: Array<{
+    author: string;
+    rating: number;
+    reviewBody: string;
+    datePublished: string;
+  }>;
 }) {
   return {
     "@context": "https://schema.org",
@@ -290,6 +344,7 @@ export function generateCreativeWorkSchema(data: {
     "name": data.name,
     "description": data.description,
     "url": generateCanonicalUrl(data.url),
+    "inLanguage": "ar",
     "creator": {
       "@type": "Organization",
       "name": SITE_NAME,
@@ -301,12 +356,25 @@ export function generateCreativeWorkSchema(data: {
         "addressCountry": "SA"
       }
     },
+    "publisher": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/favicon.svg`
+      }
+    },
     ...(data.dateCreated && { "dateCreated": data.dateCreated }),
     ...(data.dateModified && { "dateModified": data.dateModified }),
     ...(data.location && {
       "locationCreated": {
         "@type": "Place",
-        "name": data.location
+        "name": data.location,
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": data.location,
+          "addressCountry": "SA"
+        }
       }
     }),
     ...(data.category && { "category": data.category }),
@@ -314,7 +382,18 @@ export function generateCreativeWorkSchema(data: {
       "image": data.images.map((img) => ({
         "@type": "ImageObject",
         "url": img.url,
-        "caption": img.caption || data.name
+        "caption": img.caption || data.name,
+        "name": img.caption || data.name,
+        "description": img.alt || img.caption || data.name,
+        "contentUrl": img.url,
+        "license": `${BASE_URL}/terms`,
+        "acquireLicensePage": `${BASE_URL}/contact`,
+        "creditText": "محترفين الديار العالمية - جدة، السعودية",
+        "creator": {
+          "@type": "Organization",
+          "name": SITE_NAME
+        },
+        "copyrightNotice": "© محترفين الديار العالمية - جميع الحقوق محفوظة"
       }))
     }),
     ...(data.videos && data.videos.length > 0 && {
@@ -323,7 +402,20 @@ export function generateCreativeWorkSchema(data: {
         "name": video.name,
         "description": video.description,
         "contentUrl": video.contentUrl,
-        "uploadDate": video.uploadDate || data.dateCreated
+        "embedUrl": video.embedUrl || video.contentUrl,
+        "thumbnailUrl": video.thumbnailUrl || data.images?.[0]?.url || `${BASE_URL}/favicon.svg`,
+        "uploadDate": video.uploadDate || data.dateCreated || new Date().toISOString(),
+        "publisher": {
+          "@type": "Organization",
+          "name": SITE_NAME,
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${BASE_URL}/favicon.svg`
+          }
+        },
+        "inLanguage": "ar",
+        "regionsAllowed": "SA",
+        ...(video.duration && { "duration": video.duration })
       }))
     }),
     ...(data.aggregateRating && {
@@ -334,6 +426,24 @@ export function generateCreativeWorkSchema(data: {
         "bestRating": "5",
         "worstRating": "1"
       }
+    }),
+    ...(data.reviews && data.reviews.length > 0 && {
+      "review": data.reviews.map((review) => ({
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": review.author
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": review.rating,
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "reviewBody": review.reviewBody,
+        "datePublished": review.datePublished,
+        "inLanguage": "ar"
+      }))
     })
   };
 }

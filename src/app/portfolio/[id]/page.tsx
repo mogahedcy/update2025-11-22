@@ -8,7 +8,9 @@ import {
   generateCreativeWorkSchema,
   generateOpenGraphMetadata,
   generateTwitterMetadata,
-  generateRobotsMetadata 
+  generateRobotsMetadata,
+  getAbsoluteUrl,
+  getMediaType
 } from '@/lib/seo-utils';
 import ProjectDetailsClient from './ProjectDetailsClient';
 
@@ -66,8 +68,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
   }
 
-  const mainImage = project.mediaItems?.find((item: any) => item.type === 'IMAGE');
-  const imageUrl = mainImage?.src || 'https://www.aldeyarksa.tech/favicon.svg';
+  // استخراج جميع الصور والفيديوهات للمشروع
+  const allImages = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
+  const allVideos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
+  const mainImage = allImages[0]?.src || 'https://www.aldeyarksa.tech/favicon.svg';
+  
   const seoTitle = `${project.title} في ${project.location} | محترفين الديار العالمية جدة`;
   const seoDescription = `${project.description.substring(0, 150)}... مشروع ${project.category} في ${project.location} من محترفين الديار العالمية - أفضل شركة مظلات وسواتر في جدة`;
   const pageUrl = `/portfolio/${project.slug || id}`;
@@ -89,26 +94,47 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       project.title
     ].join(', '),
     openGraph: {
-      ...generateOpenGraphMetadata({
-        title: seoTitle,
-        description: seoDescription,
-        url: pageUrl,
-        type: 'article',
-        image: imageUrl,
-        imageAlt: `${project.title} - محترفين الديار العالمية جدة`,
-        publishedTime: project.createdAt,
-        modifiedTime: project.updatedAt
-      }),
+      title: seoTitle,
+      description: seoDescription,
+      url: fullUrl,
+      siteName: 'محترفين الديار العالمية',
+      locale: 'ar_SA',
       type: 'article',
       publishedTime: project.createdAt,
       modifiedTime: project.updatedAt || project.createdAt,
-      authors: ['محترفين الديار العالمية']
+      authors: ['محترفين الديار العالمية'],
+      images: allImages.length > 0 
+        ? allImages.map((img: any, index: number) => ({
+            url: getAbsoluteUrl(img.src),
+            width: 1200,
+            height: 630,
+            alt: img.alt || img.title || `${project.title} - صورة ${index + 1}`,
+            type: getMediaType(img.src),
+          }))
+        : [{
+            url: getAbsoluteUrl(mainImage),
+            width: 1200,
+            height: 630,
+            alt: `${project.title} - محترفين الديار العالمية جدة`,
+            type: 'image/jpeg',
+          }],
+      videos: allVideos.length > 0
+        ? allVideos.map((video: any) => ({
+            url: getAbsoluteUrl(video.src),
+            width: 1280,
+            height: 720,
+            type: getMediaType(video.src),
+          }))
+        : undefined,
     },
-    twitter: generateTwitterMetadata({
+    twitter: {
+      card: 'summary_large_image' as const,
       title: seoTitle,
       description: seoDescription.substring(0, 200),
-      image: imageUrl
-    }),
+      images: allImages.length > 0 
+        ? allImages.slice(0, 4).map((img: any) => getAbsoluteUrl(img.src))
+        : [getAbsoluteUrl(mainImage)],
+    },
     alternates: {
       canonical: fullUrl,
       languages: {
@@ -144,6 +170,12 @@ export default async function ProjectDetailsPage({ params }: Props) {
     { label: project.title, href: `/portfolio/${project.slug || id}`, current: true }
   ];
 
+  // جلب التعليقات للمشروع لإضافتها كـ Reviews في الـ schema
+  // استخدام الخصائص الصحيحة: name, rating, message, createdAt
+  const projectReviews = project.comments?.filter((comment: any) => 
+    comment.rating && comment.rating > 0 && comment.name && comment.message
+  ) || [];
+  
   const structuredData = generateCreativeWorkSchema({
     name: project.title,
     description: project.description,
@@ -152,20 +184,30 @@ export default async function ProjectDetailsPage({ params }: Props) {
     location: project.location,
     dateCreated: project.createdAt,
     dateModified: project.updatedAt,
-    images: images.map((item: any) => ({
-      url: item.src,
-      caption: item.title || project.title
+    images: images.map((item: any, index: number) => ({
+      url: getAbsoluteUrl(item.src),
+      caption: item.title || item.description || `${project.title} - صورة ${index + 1}`,
+      alt: item.alt || item.title || `${project.category} في ${project.location} - صورة ${index + 1}`
     })),
     videos: videos.map((item: any) => ({
-      name: item.title || project.title,
-      description: item.description || project.description,
-      contentUrl: item.src,
-      uploadDate: project.createdAt
+      name: item.title || `${project.title} - فيديو`,
+      description: item.description || `فيديو يوضح تفاصيل مشروع ${project.title} في ${project.location}`,
+      contentUrl: getAbsoluteUrl(item.src),
+      embedUrl: fullUrl,
+      thumbnailUrl: item.thumbnail ? getAbsoluteUrl(item.thumbnail) : (images[0]?.src ? getAbsoluteUrl(images[0].src) : undefined),
+      uploadDate: project.createdAt,
+      duration: item.duration
     })),
     aggregateRating: project._count?.comments > 0 && project.rating > 0 ? {
       ratingValue: project.rating,
       reviewCount: project._count.comments
-    } : undefined
+    } : undefined,
+    reviews: projectReviews.length > 0 ? projectReviews.map((comment: any) => ({
+      author: comment.name || 'عميل محترفين الديار',
+      rating: comment.rating,
+      reviewBody: comment.message,
+      datePublished: comment.createdAt || new Date().toISOString()
+    })) : undefined
   });
 
   return (
