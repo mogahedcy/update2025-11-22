@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from '@/components/ThemeToggle';
 import {
   Phone,
   Mail,
@@ -236,7 +237,7 @@ export default function Navbar() {
               {/* اتصال سريع */}
               <Link
                 href="tel:+966553719009"
-                className="p-2 sm:p-2.5 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors"
+                className="p-2 sm:p-2.5 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
                 aria-label="اتصال"
               >
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -245,7 +246,7 @@ export default function Navbar() {
               {/* واتساب */}
               <Link
                 href="https://wa.me/966553719009"
-                className="p-2 sm:p-2.5 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 transition-colors"
+                className="p-2 sm:p-2.5 rounded-lg bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="واتساب"
@@ -253,13 +254,16 @@ export default function Navbar() {
                 <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
 
+              {/* تبديل الثيم */}
+              <ThemeToggle />
+
               {/* زر القائمة */}
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="القائمة"
-                className="w-10 h-10 sm:w-11 sm:h-11 p-0 hover:bg-gray-100"
+                className="w-10 h-10 sm:w-11 sm:h-11 p-0 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 {isMenuOpen ? 
                   <X className="w-5 h-5 sm:w-6 sm:h-6" /> : 
@@ -382,12 +386,14 @@ export default function Navbar() {
 
             {/* CTA Buttons - Desktop */}
             <div className="hidden lg:flex items-center space-x-3 space-x-reverse">
-              <Button asChild variant="outline" size="sm" className="border-primary/20 text-primary hover:bg-primary hover:text-white">
+              <Button asChild variant="outline" size="sm" className="border-primary/20 text-primary hover:bg-primary hover:text-white dark:border-primary/30 dark:text-primary-foreground dark:hover:bg-primary">
                 <Link href="/search" className="flex items-center space-x-2 space-x-reverse">
                   <Search className="w-4 h-4" />
                   <span>البحث</span>
                 </Link>
               </Button>
+
+              <ThemeToggle />
 
               <Button asChild size="sm" className="bg-gradient-to-r from-primary to-accent hover:shadow-lg transition-all duration-300 px-6">
                 <Link href="tel:+966553719009" className="flex items-center space-x-2 space-x-reverse">
