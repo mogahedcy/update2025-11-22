@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import { prisma } from '@/lib/prisma';
 import { 
   generateCreativeWorkSchema,
   generateOpenGraphMetadata,
@@ -13,52 +14,48 @@ import {
 } from '@/lib/seo-utils';
 import ProjectDetailsClient from './ProjectDetailsClient';
 
-export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
-export const revalidate = 0;
+export const revalidate = 3600; // Revalidate every hour
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-// دالة جلب المشروع مع no-cache لضمان الحصول على أحدث البيانات
+// دالة جلب المشروع مباشرة من قاعدة البيانات
 async function getProject(id: string) {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL 
-      ? (process.env.NEXT_PUBLIC_BASE_URL.startsWith('http') 
-          ? process.env.NEXT_PUBLIC_BASE_URL 
-          : `https://${process.env.NEXT_PUBLIC_BASE_URL}`)
-      : 'http://localhost:5000';
-    
-    console.log(`🔍 جلب المشروع: ${id} من ${baseUrl}`);
-    
-    const response = await fetch(`${baseUrl}/api/projects/${id}`, {
-      cache: 'no-store',
-      next: { revalidate: 0 }
+    // البحث باستخدام المعرف أو الـ slug
+    const project = await prisma.projects.findFirst({
+      where: {
+        OR: [
+          { id: id },
+          { slug: id }
+        ]
+      },
+      include: {
+        media_items: { orderBy: { order: 'asc' } },
+        project_tags: true,
+        project_materials: true,
+        _count: { select: { comments: true, project_likes: true } }
+      }
     });
 
-    if (!response.ok) {
-      console.log(`❌ فشل جلب المشروع: ${response.status}`);
+    if (!project) {
       return null;
     }
 
-    const project = await response.json();
-    console.log(`✅ تم جلب المشروع بنجاح: ${project.title}`);
-    return project;
+    // تنسيق البيانات بنفس طريقة API
+    return {
+      ...project,
+      mediaItems: project.media_items,
+      tags: project.project_tags || [],
+      materials: project.project_materials || [],
+      views: project.views || 0,
+      likes: project._count?.project_likes || 0,
+      rating: project.rating || 0
+    };
   } catch (err) {
-    const error = err as { message?: string; status?: number };
-    console.error('❌ خطأ في جلب المشروع:', error);
-
-    // في حالة 404
-    if (error?.message?.includes('404') || error?.status === 404) {
-      notFound();
-    }
-
-    // في حالة خطأ آخر
-    if (error?.message?.includes('500') || error?.status >= 500) {
-      return null;
-    }
-
+    console.error('❌ خطأ في جلب المشروع:', err);
     return null;
   }
 }
