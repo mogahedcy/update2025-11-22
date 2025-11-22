@@ -510,26 +510,84 @@ export default function ProjectAddClient() {
               />
             </div>
 
-            {/* زر AI */}
-            <div className="mt-6 flex justify-center">
-              <Button
-                type="button"
-                onClick={getAISuggestions}
-                disabled={loadingAI || !formData.title}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3"
-              >
-                {loadingAI ? (
-                  <>
-                    <Loader2 className="h-5 w-5 ml-2 animate-spin" />
-                    جاري التحليل...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="h-5 w-5 ml-2" />
-                    احصل على اقتراحات ذكية بالـ AI
-                  </>
-                )}
-              </Button>
+            {/* قسم AI مع معلومات توضيحية */}
+            <div className="mt-6 space-y-4">
+              {/* معلومات توضيحية عن ميزات AI */}
+              <div className="bg-gradient-to-r from-purple-50 via-blue-50 to-purple-50 border-2 border-purple-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles className="h-5 w-5 text-purple-600" />
+                  <h3 className="font-semibold text-purple-900">تحليل ذكي بتقنية GROQ AI</h3>
+                  <Badge variant="outline" className="text-xs border-purple-400 text-purple-700 bg-purple-50">
+                    ⚡ تحليل GROQ AI
+                  </Badge>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                  <div className="flex items-start gap-2 bg-white/60 p-2 rounded">
+                    <span className="text-purple-600">⚡</span>
+                    <div>
+                      <p className="font-medium text-gray-900">سرعة فائقة</p>
+                      <p className="text-gray-600">10x أسرع من النماذج الأخرى</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2 bg-white/60 p-2 rounded">
+                    <span className="text-green-600">💰</span>
+                    <div>
+                      <p className="font-medium text-gray-900">بدون تكاليف إضافية</p>
+                      <p className="text-gray-600">لا يحتاج لـ API keys خارجية</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2 bg-white/60 p-2 rounded">
+                    <span className="text-blue-600">🇸🇦</span>
+                    <div>
+                      <p className="font-medium text-gray-900">متخصص في السوق السعودي</p>
+                      <p className="text-gray-600">تحليل دقيق لمجال البناء والمظلات</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2 bg-white/60 p-2 rounded">
+                    <span className="text-orange-600">🔄</span>
+                    <div>
+                      <p className="font-medium text-gray-900">تلقائي تماماً</p>
+                      <p className="text-gray-600">يعمل مباشرة عند كتابة العنوان</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-3 p-2 bg-blue-50 rounded text-xs text-blue-800">
+                  <p className="flex items-start gap-1">
+                    <span>ℹ️</span>
+                    <span>
+                      <strong>طريقة العمل:</strong> يستخدم النظام التحليل الذكي بواسطة GROQ AI بناءً على معرفته العميقة بالسوق السعودي والمنافسين، 
+                      دون الحاجة لبحث SERP المباشر، مما يوفر تحليلاً سريعاً ودقيقاً ومتخصصاً.
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              {/* زر AI */}
+              <div className="flex justify-center">
+                <Button
+                  type="button"
+                  onClick={getAISuggestions}
+                  disabled={loadingAI || !formData.title}
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3"
+                >
+                  {loadingAI ? (
+                    <>
+                      <Loader2 className="h-5 w-5 ml-2 animate-spin" />
+                      جاري التحليل الذكي...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="h-5 w-5 ml-2" />
+                      احصل على تحليل ذكي بالـ AI
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           </Card>
 
