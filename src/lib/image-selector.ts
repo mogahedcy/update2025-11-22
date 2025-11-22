@@ -51,8 +51,8 @@ export class ImageSelector {
         response_format: { type: 'json_object' }
       });
 
-      const content = response.choices[0]?.message?.content || '{"images": []}';
-      const result = JSON.parse(content);
+      const responseContent = response.choices[0]?.message?.content || '{"images": []}';
+      const result = JSON.parse(responseContent);
       return result.images || [];
     } catch (error) {
       console.error('Error suggesting images:', error);

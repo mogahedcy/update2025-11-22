@@ -29,18 +29,18 @@ Image storage: Cloudinary preferred over local storage for better performance, a
 
 ## Content Management System (CMS)
 - **Features**: Advanced project showcase, blog/articles, dynamic sitemap, media management, admin dashboard.
-- **Advanced Portfolio Exhibition System**: Supports 10 unified categories with automatic watermarking (+966553719009) on all media via Cloudinary transformations, automatic media optimization (image compression to 1920px/85 quality, video to 1280px/2000k bitrate), and AI-powered competitor analysis at `/dashboard/projects/analyze` using Gemini 2.0 Flash. Tracks media processing metrics.
+- **Advanced Portfolio Exhibition System**: Supports 10 unified categories with automatic watermarking (+966553719009) on all media via Cloudinary transformations, automatic media optimization (image compression to 1920px/85 quality, video to 1280px/2000k bitrate), and AI-powered competitor analysis at `/dashboard/projects/analyze` using Groq AI (Llama 3.3 70B). Tracks media processing metrics.
 - **FAQ Management System**: Admin CRUD interface at `/dashboard/faqs` with enhanced SEO fields, AI-powered duplicate detection, analytics, dynamic sitemap (`/sitemap-faqs.xml`), rich FAQ schema, and categorization by service.
 - **Category Unification System**: Standardized 10 main categories across all content types with automatic normalization of legacy category names via `src/lib/categoryNormalizer.ts` and a database migration script.
 
 ## SEO & Performance
 - **SEO**: Automated sitemap/robots.txt, structured data, canonical URLs, hreflang, Google Business Profile integration, IndexNow API.
-- **AI-Powered SEO Agent**: Google Gemini 2.5 for content analysis, keyword intelligence, article writing, project descriptions, meta tag generation, and competitor analysis within the admin dashboard. Includes SEO diagnostics and auto-fix capabilities.
+- **AI-Powered SEO Agent**: Groq AI (Llama 3.3 70B) for ultra-fast content analysis, keyword intelligence, article writing, project descriptions, meta tag generation, and competitor analysis within the admin dashboard. Includes SEO diagnostics and auto-fix capabilities.
 - **AI Article Agent**: Generates SEO-optimized articles with automated image selection (Google Custom Search API) and AI-generated alt text.
 - **Smart Content Generation System**: Infrastructure for web search-based competitor analysis to generate intelligent content.
 - **Automated Indexing System**: Notifies search engines (IndexNow, Bing Webmaster API) about content changes.
 - **Performance Optimizations**: CSS (cssnano, critical CSS inlining), JavaScript (modern-only browserslist, ES2022), build (SWC minification), image (responsive `sizes`, lazy loading, AVIF/WebP), Core Web Vitals (LCP, FID, CLS), mobile responsiveness fixes, PWA capabilities, and resource hints.
-- **AI-Assisted Content Creation**: Real-time AI suggestions during project submission using Google Gemini 2.0 Flash for keywords, titles, descriptions, and meta tags.
+- **AI-Assisted Content Creation**: Real-time AI suggestions during project submission using Groq AI (Llama 3.3 70B) for keywords, titles, descriptions, and meta tags with ultra-low latency.
 
 ## Security
 - **Authentication**: Secure admin login.
@@ -74,5 +74,5 @@ Image storage: Cloudinary preferred over local storage for better performance, a
 
 ## Analytics & AI
 - **Google Analytics 4**: Site analytics and Web Vitals tracking.
-- **Google Gemini AI**: Gemini 2.0 Flash Exp model for SEO analysis, content generation, AI competitor analysis, project descriptions, and meta tag generation.
+- **Groq AI**: Llama 3.3 70B Versatile model for ultra-fast SEO analysis, content generation, AI competitor analysis, project descriptions, and meta tag generation. Provides 10x faster response times compared to previous AI models.
 - **Google Custom Search API**: Image search for automated article image selection.
