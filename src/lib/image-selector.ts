@@ -1,4 +1,4 @@
-import ai, { GEMINI_MODEL } from './gemini-client';
+import ai, { GROQ_MODEL } from './groq-client';
 import { googleImageSearch } from './google-image-search';
 
 export interface ImageSuggestion {
@@ -41,16 +41,18 @@ export class ImageSelector {
   ]
 }`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت خبير في اختيار الصور المناسبة للمحتوى التسويقي والتعليمي.",
-          responseMimeType: "application/json",
-        },
-        contents: prompt,
+      const response = await ai.chat.completions.create({
+        model: GROQ_MODEL,
+        messages: [
+          { role: 'system', content: "أنت خبير في اختيار الصور المناسبة للمحتوى التسويقي والتعليمي." },
+          { role: 'user', content: prompt }
+        ],
+        temperature: 0.7,
+        response_format: { type: 'json_object' }
       });
 
-      const result = JSON.parse(response.text || '{"images": []}');
+      const content = response.choices[0]?.message?.content || '{"images": []}';
+      const result = JSON.parse(content);
       return result.images || [];
     } catch (error) {
       console.error('Error suggesting images:', error);

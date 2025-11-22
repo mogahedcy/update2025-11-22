@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyToken } from '@/lib/jwt';
 import { cookies } from 'next/headers';
-import ai, { GEMINI_MODEL } from '@/lib/gemini-client';
+import ai, { GROQ_MODEL } from '@/lib/groq-client';
 
 async function checkAuth() {
   try {
@@ -50,16 +50,18 @@ ${faqList}
 
 ملاحظة: قم فقط بإرجاع مجموعات الأسئلة المتشابهة (لا تدرج الأسئلة الفريدة).`;
 
-    const response = await ai.models.generateContent({
-      model: GEMINI_MODEL,
-      config: {
-        systemInstruction: "أنت خبير في تحليل النصوص العربية والكشف عن التشابه الدلالي. قدم استجابة JSON دقيقة ومفصلة.",
-        responseMimeType: "application/json",
-      },
-      contents: prompt,
+    const response = await ai.chat.completions.create({
+      model: GROQ_MODEL,
+      messages: [
+        { role: 'system', content: "أنت خبير في تحليل النصوص العربية والكشف عن التشابه الدلالي. قدم استجابة JSON دقيقة ومفصلة." },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.7,
+      response_format: { type: 'json_object' }
     });
 
-    const result = JSON.parse(response.text || '{"duplicateGroups":[]}');
+    const content = response.choices[0]?.message?.content || '{"duplicateGroups":[]}';
+    const result = JSON.parse(content);
     return result.duplicateGroups || [];
   } catch (error) {
     console.error('Error analyzing with AI:', error);
@@ -128,7 +130,7 @@ export async function POST(request: NextRequest) {
       message: enrichedGroups.length > 0 
         ? `تم العثور على ${enrichedGroups.length} مجموعة من الأسئلة المتشابهة بواسطة الذكاء الاصطناعي`
         : 'لا توجد أسئلة متشابهة',
-      analyzedWith: 'Google Gemini AI'
+      analyzedWith: 'Groq AI (Llama 3.3 70B)'
     });
   } catch (error: any) {
     console.error('Error analyzing duplicates with AI:', error);

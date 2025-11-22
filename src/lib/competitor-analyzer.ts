@@ -1,4 +1,32 @@
-import ai, { GEMINI_MODEL } from './gemini-client';
+import ai, { GROQ_MODEL } from './groq-client';
+
+async function callGroqWithJSON(systemPrompt: string, userPrompt: string): Promise<any> {
+  const response = await ai.chat.completions.create({
+    model: GROQ_MODEL,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.7,
+    response_format: { type: 'json_object' }
+  });
+
+  const content = response.choices[0]?.message?.content || '{}';
+  return JSON.parse(content);
+}
+
+async function callGroq(systemPrompt: string, userPrompt: string): Promise<string> {
+  const response = await ai.chat.completions.create({
+    model: GROQ_MODEL,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.7
+  });
+
+  return response.choices[0]?.message?.content || '';
+}
 
 export interface CompetitorAnalysis {
   topKeywords: string[];
@@ -176,23 +204,10 @@ ${competitorContent}
   "contentGaps": ["ثغرة1", "ثغرة2", ...]
 }`;
 
-    const result = await ai.models.generateContent({
-      model: GEMINI_MODEL,
-      config: {
-        systemInstruction: "أنت خبير تحليل SEO ومنافسين في السوق السعودي. قدم استجابة JSON دقيقة ومفصلة.",
-        responseMimeType: "application/json",
-      },
-      contents: prompt,
-    });
-    
-    const text = result.text || '{}';
-    
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      throw new Error('Failed to parse competitor analysis');
-    }
-    
-    const analysis: CompetitorAnalysis = JSON.parse(jsonMatch[0]);
+    const analysis: CompetitorAnalysis = await callGroqWithJSON(
+      "أنت خبير تحليل SEO ومنافسين في السوق السعودي. قدم استجابة JSON دقيقة ومفصلة.",
+      prompt
+    );
     analysis.competitorUrls = isRealSearch ? competitorUrls : [];
     analysis.realContentAnalyzed = isRealSearch && competitorUrls.length > 0;
     
@@ -247,23 +262,12 @@ export async function generateSmartArticleIdeas(
   }
 ]`;
 
-    const result = await ai.models.generateContent({
-      model: GEMINI_MODEL,
-      config: {
-        systemInstruction: "أنت خبير تحليل SEO ومنافسين في السوق السعودي. قدم استجابة JSON دقيقة ومفصلة.",
-        responseMimeType: "application/json",
-      },
-      contents: prompt,
-    });
+    const result = await callGroqWithJSON(
+      "أنت خبير تحليل SEO ومنافسين في السوق السعودي. قدم استجابة JSON دقيقة ومفصلة.",
+      prompt
+    );
     
-    const text = result.text || '{}';
-    
-    const jsonMatch = text.match(/\[[\s\S]*\]/);
-    if (!jsonMatch) {
-      throw new Error('Failed to parse article ideas');
-    }
-    
-    const ideas: GeneratedArticleIdea[] = JSON.parse(jsonMatch[0]);
+    const ideas: GeneratedArticleIdea[] = Array.isArray(result) ? result : (result.ideas || []);
     return ideas.slice(0, count);
   } catch (error) {
     console.error('Error generating article ideas:', error);
@@ -336,15 +340,10 @@ export async function generateHumanLikeContent(
 
 ابدأ مباشرة بالمحتوى بدون أي نص تمهيدي:`;
 
-    const result = await ai.models.generateContent({
-      model: GEMINI_MODEL,
-      config: {
-        systemInstruction: "أنت كاتب محتوى محترف ومتخصص في كتابة مقالات SEO بأسلوب بشري طبيعي وجذاب.",
-      },
-      contents: prompt,
-    });
-    
-    const content = result.text || '';
+    const content = await callGroq(
+      "أنت كاتب محتوى محترف ومتخصص في كتابة مقالات SEO بأسلوب بشري طبيعي وجذاب.",
+      prompt
+    );
     
     return content.trim();
   } catch (error) {
@@ -387,23 +386,12 @@ export async function generateOptimizedMetaTags(
   "metaDescription": "الوصف المحسن"
 }`;
 
-    const result = await ai.models.generateContent({
-      model: GEMINI_MODEL,
-      config: {
-        systemInstruction: "أنت خبير تحليل SEO ومنافسين في السوق السعودي. قدم استجابة JSON دقيقة ومفصلة.",
-        responseMimeType: "application/json",
-      },
-      contents: prompt,
-    });
+    const result = await callGroqWithJSON(
+      "أنت خبير تحليل SEO ومنافسين في السوق السعودي. قدم استجابة JSON دقيقة ومفصلة.",
+      prompt
+    );
     
-    const text = result.text || '{}';
-    
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      throw new Error('Failed to parse meta tags');
-    }
-    
-    return JSON.parse(jsonMatch[0]);
+    return result;
   } catch (error) {
     console.error('Error generating meta tags:', error);
     throw error;

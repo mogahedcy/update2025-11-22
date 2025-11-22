@@ -1,4 +1,32 @@
-import ai, { GEMINI_MODEL } from './gemini-client';
+import ai, { GROQ_MODEL } from './groq-client';
+
+async function callGroqWithJSON(systemPrompt: string, userPrompt: string): Promise<any> {
+  const response = await ai.chat.completions.create({
+    model: GROQ_MODEL,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.7,
+    response_format: { type: 'json_object' }
+  });
+
+  const content = response.choices[0]?.message?.content || '{}';
+  return JSON.parse(content);
+}
+
+async function callGroq(systemPrompt: string, userPrompt: string): Promise<string> {
+  const response = await ai.chat.completions.create({
+    model: GROQ_MODEL,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    temperature: 0.7
+  });
+
+  return response.choices[0]?.message?.content || '';
+}
 
 export interface KeywordAnalysis {
   primary_keywords: string[];
@@ -50,16 +78,10 @@ export class SEOAgent {
 
 تأكد من أن الكلمات المفتاحية متوافقة مع السوق السعودي واللهجة المحلية.`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت خبير SEO محترف متخصص في تحسين محركات البحث للسوق السعودي. قدم استجابة JSON دقيقة ومفصلة.",
-          responseMimeType: "application/json",
-        },
-        contents: prompt,
-      });
-
-      const result = JSON.parse(response.text || '{}');
+      const result = await callGroqWithJSON(
+        "أنت خبير SEO محترف متخصص في تحسين محركات البحث للسوق السعودي. قدم استجابة JSON دقيقة ومفصلة.",
+        prompt
+      );
       return result as KeywordAnalysis;
     } catch (error) {
       console.error('Error analyzing keywords:', error);
@@ -89,16 +111,10 @@ ${url ? `الرابط: ${url}` : ''}
 
 ركز على تقنيات SEO القوية والفعالة.`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت خبير SEO استراتيجي متخصص في تحليل وتحسين المحتوى لمحركات البحث.",
-          responseMimeType: "application/json",
-        },
-        contents: prompt,
-      });
-
-      const result = JSON.parse(response.text || '{}');
+      const result = await callGroqWithJSON(
+        "أنت خبير SEO استراتيجي متخصص في تحليل وتحسين المحتوى لمحركات البحث.",
+        prompt
+      );
       return result as ContentAnalysis;
     } catch (error) {
       console.error('Error analyzing content:', error);
@@ -141,16 +157,10 @@ ${url ? `الرابط: ${url}` : ''}
 - meta_description: وصف meta محسّن (150-160 حرف)
 - tags: 5-8 وسوم ذات صلة`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت كاتب محتوى SEO خبير تنشئ محتوى عالي الجودة محسّن لمحركات البحث.",
-          responseMimeType: "application/json",
-        },
-        contents: prompt,
-      });
-
-      const result = JSON.parse(response.text || '{}');
+      const result = await callGroqWithJSON(
+        "أنت كاتب محتوى SEO خبير تنشئ محتوى عالي الجودة محسّن لمحركات البحث.",
+        prompt
+      );
       return result;
     } catch (error) {
       console.error('Error generating content:', error);
@@ -174,16 +184,10 @@ ${url ? `الرابط: ${url}` : ''}
 
 ركز على الاستراتيجيات القوية والفعالة للتفوق على المنافسين.`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت خبير تحليل تنافسي في SEO متخصص في إيجاد الفرص الاستراتيجية.",
-          responseMimeType: "application/json",
-        },
-        contents: prompt,
-      });
-
-      const result = JSON.parse(response.text || '{}');
+      const result = await callGroqWithJSON(
+        "أنت خبير تحليل تنافسي في SEO متخصص في إيجاد الفرص الاستراتيجية.",
+        prompt
+      );
       return result as CompetitorInsight;
     } catch (error) {
       console.error('Error analyzing competitor:', error);
@@ -209,16 +213,10 @@ ${availablePages.map(p => `- ${p.title} (${p.url}): ${p.keywords.join(', ')}`).j
 
 اختر 3-5 روابط داخلية ذات صلة قوية فقط. تأكد من أن نص الرابط (anchor text) طبيعي ومناسب.`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت خبير في استراتيجيات الربط الداخلي لتحسين SEO.",
-          responseMimeType: "application/json",
-        },
-        contents: prompt,
-      });
-
-      const result = JSON.parse(response.text || '{}');
+      const result = await callGroqWithJSON(
+        "أنت خبير في استراتيجيات الربط الداخلي لتحسين SEO.",
+        prompt
+      );
       return result;
     } catch (error) {
       console.error('Error suggesting internal links:', error);
@@ -254,16 +252,10 @@ ${availablePages.map(p => `- ${p.title} (${p.url}): ${p.keywords.join(', ')}`).j
 2. جعل الأوصاف جذابة لزيادة نسبة النقر (CTR)
 3. استخدام أفعال دعوة للعمل حيثما أمكن`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت خبير في كتابة meta tags محسّنة تزيد من نسبة النقر والظهور في محركات البحث.",
-          responseMimeType: "application/json",
-        },
-        contents: prompt,
-      });
-
-      const result = JSON.parse(response.text || '{}');
+      const result = await callGroqWithJSON(
+        "أنت خبير في كتابة meta tags محسّنة تزيد من نسبة النقر والظهور في محركات البحث.",
+        prompt
+      );
       return result;
     } catch (error) {
       console.error('Error generating meta tags:', error);
@@ -295,16 +287,10 @@ ${availablePages.map(p => `- ${p.title} (${p.url}): ${p.keywords.join(', ')}`).j
 
 جمّع الكلمات المتشابهة في المعنى والنية معاً.`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت خبير في تجميع وتنظيم الكلمات المفتاحية لإنشاء استراتيجية محتوى فعالة.",
-          responseMimeType: "application/json",
-        },
-        contents: prompt,
-      });
-
-      const result = JSON.parse(response.text || '{}');
+      const result = await callGroqWithJSON(
+        "أنت خبير في تجميع وتنظيم الكلمات المفتاحية لإنشاء استراتيجية محتوى فعالة.",
+        prompt
+      );
       return result;
     } catch (error) {
       console.error('Error clustering keywords:', error);
@@ -328,16 +314,12 @@ ${availablePages.map(p => `- ${p.title} (${p.url}): ${p.keywords.join(', ')}`).j
 
 قدم فقط نص الـ Alt Text بدون أي شرح إضافي.`;
 
-      const response = await ai.models.generateContent({
-        model: GEMINI_MODEL,
-        config: {
-          systemInstruction: "أنت خبير في كتابة نصوص بديلة للصور محسّنة لمحركات البحث وإمكانية الوصول.",
-        },
-        contents: prompt,
-      });
+      const altText = await callGroq(
+        "أنت خبير في كتابة نصوص بديلة للصور محسّنة لمحركات البحث وإمكانية الوصول.",
+        prompt
+      );
 
-      const altText = response.text?.trim() || `صورة ${title}`;
-      return altText.replace(/^["']|["']$/g, '');
+      return altText.trim().replace(/^["']|["']$/g, '') || `صورة ${title}`;
     } catch (error) {
       console.error('Error generating image alt text:', error);
       return `صورة ${title}`;
