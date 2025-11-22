@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { GoogleGenAI } from '@google/genai';
+import ai, { GROQ_MODEL } from '@/lib/groq-client';
 
 /**
  * API لتحليل المنافسين باستخدام Gemini AI
@@ -42,20 +42,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // التحقق من توفر مفتاح Gemini API
-    const apiKey = process.env.GOOGLE_API_KEY;
-    console.log('🔑 GOOGLE_API_KEY exists:', !!apiKey);
-    console.log('🔑 GOOGLE_API_KEY length:', apiKey?.length || 0);
+    // التحقق من توفر مفتاح Groq API
+    const apiKey = process.env.GROQ_API_KEY;
+    console.log('🔑 GROQ_API_KEY exists:', !!apiKey);
+    console.log('🔑 GROQ_API_KEY length:', apiKey?.length || 0);
     
     if (!apiKey) {
       return NextResponse.json(
-        { success: false, error: 'مفتاح Gemini API غير متوفر' },
+        { success: false, error: 'مفتاح Groq API غير متوفر' },
         { status: 500 }
       );
     }
-
-    // تهيئة Gemini AI - يتم إنشاء instance جديد في كل طلب لضمان قراءة المفتاح الصحيح
-    const genAI = new GoogleGenAI({ apiKey });
 
     // بناء prompt متقدم لتحليل المنافسين
     const prompt = `أنت خبير SEO ومحلل منافسين متخصص في مجال ${category} في السعودية، وخاصةً في ${location || 'جدة'}.
@@ -115,24 +112,19 @@ export async function POST(request: NextRequest) {
 - كن محدداً وعملياً في التوصيات
 - ركز على السوق السعودي وخاصة جدة`;
 
-    console.log('🤖 بدء تحليل المنافسين باستخدام Gemini AI...');
+    console.log('🤖 بدء تحليل المنافسين باستخدام Groq AI...');
 
-    // استدعاء Gemini AI بالطريقة الصحيحة مع timeout أطول
-    const result = await genAI.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: [
-        {
-          role: 'user',
-          parts: [{ text: prompt }]
-        }
+    // استدعاء Groq AI
+    const result = await ai.chat.completions.create({
+      model: GROQ_MODEL,
+      messages: [
+        { role: 'user', content: prompt }
       ],
-      config: {
-        temperature: 0.7,
-        maxOutputTokens: 8192,
-      }
+      temperature: 0.7,
+      response_format: { type: 'json_object' }
     });
     
-    const analysisText = result.text;
+    const analysisText = result.choices[0]?.message?.content || '';
 
     if (!analysisText) {
       return NextResponse.json(
@@ -141,7 +133,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('✅ تم الحصول على التحليل من Gemini AI');
+    console.log('✅ تم الحصول على التحليل من Groq AI');
 
     // تنظيف النص وإزالة markdown code blocks إذا وجدت
     let cleanedText = analysisText.trim();
