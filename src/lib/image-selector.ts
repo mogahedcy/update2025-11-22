@@ -1,5 +1,6 @@
 import ai, { GROQ_MODEL } from './groq-client';
 import { unsplashSearch } from './unsplash-search';
+import { projectImageSelector } from './project-image-selector';
 
 export interface ImageSuggestion {
   query: string;
@@ -64,8 +65,33 @@ export class ImageSelector {
     title: string,
     content: string,
     keywords: string[],
-    imageCount: number = 3
+    imageCount: number = 3,
+    useProjectImages: boolean = true
   ): Promise<Array<{ src: string; alt: string; description: string; type: 'IMAGE' | 'VIDEO' }>> {
+    
+    // أولاً: محاولة استخدام الصور من معرض الأعمال (الخيار المفضل)
+    if (useProjectImages) {
+      try {
+        console.log('🖼️ المحاولة 1: اختيار الصور من معرض الأعمال...');
+        const projectImages = await projectImageSelector.selectImagesFromProjects(
+          title,
+          content,
+          keywords,
+          imageCount
+        );
+
+        if (projectImages && projectImages.length > 0) {
+          console.log(`✅ تم اختيار ${projectImages.length} صورة من معرض الأعمال`);
+          return projectImages;
+        }
+        console.log('⚠️ لم يتم العثور على صور مناسبة في معرض الأعمال، المحاولة من Unsplash...');
+      } catch (error) {
+        console.error('❌ خطأ في اختيار الصور من معرض الأعمال:', error);
+        console.log('⚠️ المحاولة من Unsplash...');
+      }
+    }
+
+    // ثانياً: استخدام Unsplash كبديل
     const suggestions = await this.suggestImages(title, content, keywords, imageCount);
     
     if (suggestions.length === 0) {
