@@ -119,3 +119,30 @@ Image storage: Cloudinary preferred over local storage for better performance, a
 - **Google Analytics 4**: Site analytics and Web Vitals tracking.
 - **Groq AI**: Llama 3.3 70B Versatile model for ultra-fast SEO analysis, content generation, AI competitor analysis, project descriptions, and meta tag generation. Provides 10x faster response times compared to previous AI models.
 - **Google Custom Search API**: Image search for automated article image selection.
+
+## Automation System (November 23, 2025)
+- **Intelligent Content Automation**: Complete automation system for generating SEO-optimized articles and fixing content automatically using Groq AI.
+- **Features**:
+  - **Scheduled Article Generation**: Automatic daily/weekly/monthly article generation based on specific niches.
+  - **Smart SEO Fixing**: Automated detection and fixing of SEO issues across all content.
+  - **Dashboard Control**: Full control panel at `/dashboard/automation` for managing automation schedules.
+  - **Comprehensive Logging**: Detailed logs of all automation tasks with success/failure tracking.
+  - **Cron Integration**: External cron job support via secure API endpoint (`/api/cron/scheduled-tasks`).
+- **Components**:
+  - `automation_schedules` table: Stores automation configuration.
+  - `automation_logs` table: Tracks execution history.
+  - `/api/automation/schedule`: Schedule management API.
+  - `/api/automation/logs`: Logs retrieval API.
+  - `/api/cron/scheduled-tasks`: Secure cron execution endpoint (requires `CRON_SECRET`).
+- **Workflow**:
+  1. Admin configures schedule in Dashboard (niche, frequency, count, auto-publish).
+  2. External cron job triggers endpoint at scheduled time.
+  3. System generates articles using Groq AI with competitor analysis, images from Unsplash, and SEO optimization.
+  4. Articles are auto-published (if enabled) and logged.
+- **Documentation**:
+  - `docs/AUTOMATION-GROQ-GUIDE.md`: Comprehensive technical guide.
+  - `docs/AUTOMATION-QUICK-START-AR.md`: Quick start guide in Arabic.
+- **Setup Required**:
+  - Set `CRON_SECRET` environment variable.
+  - Configure external cron job (cron-job.org or similar).
+  - Activate automation in Dashboard.
