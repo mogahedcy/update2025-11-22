@@ -24,12 +24,15 @@ interface Props {
 // دالة جلب المشروع مباشرة من قاعدة البيانات - بدون تزامن مع API
 async function getProject(id: string) {
   try {
+    // فك ترميز URL للتعامل مع الأحرف العربية
+    const decodedId = decodeURIComponent(id);
+    
     // البحث باستخدام المعرف أو الـ slug
     const project = await prisma.projects.findFirst({
       where: {
         OR: [
-          { id },
-          { slug: id }
+          { id: decodedId },
+          { slug: decodedId }
         ]
       },
       include: {
