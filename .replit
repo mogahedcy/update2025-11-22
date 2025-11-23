@@ -233,3 +233,8 @@ outputType = "webview"
 [agent]
 expertMode = true
 integrations = ["javascript_openai:1.0.0"]
+
+[userenv]
+
+[userenv.shared]
+NEXT_PUBLIC_BASE_URL = "https://www.aldeyarksa.tech"
