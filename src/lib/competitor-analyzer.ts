@@ -39,6 +39,7 @@ export interface CompetitorAnalysis {
   competitorUrls?: string[];
   aiBasedAnalysis?: boolean;
   analysisMethod?: 'groq_ai' | 'serp_search';
+  realContentAnalyzed?: boolean;
 }
 
 export interface SmartArticleRequest {
