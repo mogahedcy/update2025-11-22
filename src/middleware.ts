@@ -2,17 +2,16 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  try {
-    const response = NextResponse.next()
+  const response = NextResponse.next({
+    request: {
+      headers: request.headers,
+    },
+  })
 
-    response.headers.set('X-Content-Type-Options', 'nosniff')
-    response.headers.set('Referrer-Policy', 'origin-when-cross-origin')
+  response.headers.set('X-Content-Type-Options', 'nosniff')
+  response.headers.set('Referrer-Policy', 'origin-when-cross-origin')
 
-    return response
-  } catch (error) {
-    console.error('Middleware error:', error)
-    return NextResponse.next()
-  }
+  return response
 }
 
 export const config = {
