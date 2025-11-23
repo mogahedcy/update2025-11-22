@@ -143,6 +143,6 @@ Image storage: Cloudinary preferred over local storage for better performance, a
   - `docs/AUTOMATION-GROQ-GUIDE.md`: Comprehensive technical guide.
   - `docs/AUTOMATION-QUICK-START-AR.md`: Quick start guide in Arabic.
 - **Setup Required**:
-  - Set `CRON_SECRET` environment variable.
-  - Configure external cron job (cron-job.org or similar).
+  - Configure external cron job (cron-job.org or similar) - No authentication required.
   - Activate automation in Dashboard.
+  - **Note**: System relies entirely on Groq AI - no additional API keys or secrets needed.
