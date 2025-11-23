@@ -11,28 +11,9 @@ import {
 import { imageSelector } from '@/lib/image-selector';
 import { seoAgent } from '@/lib/seo-agent';
 
-const CRON_SECRET = process.env.CRON_SECRET;
-
 export async function GET(request: NextRequest) {
-  if (!CRON_SECRET) {
-    console.error('❌ CRON_SECRET غير محدد! يرجى تعيين CRON_SECRET في متغيرات البيئة');
-    return NextResponse.json(
-      { error: 'خطأ في الإعداد: CRON_SECRET مفقود' },
-      { status: 500 }
-    );
-  }
-
-  const authHeader = request.headers.get('authorization');
-  
-  if (authHeader !== `Bearer ${CRON_SECRET}`) {
-    return NextResponse.json(
-      { error: 'غير مصرح' },
-      { status: 401 }
-    );
-  }
-
   try {
-    console.log('🕒 بدء تنفيذ المهام المجدولة...');
+    console.log('🤖 بدء تنفيذ المهام المجدولة بواسطة Groq AI...');
     
     const schedule = await prisma.automation_schedules.findFirst({
       orderBy: { createdAt: 'desc' }
