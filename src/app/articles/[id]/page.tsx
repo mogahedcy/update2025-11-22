@@ -11,6 +11,9 @@ interface Props {
 
 async function getArticle(id: string) {
   try {
+    // فك ترميز URL للتعامل مع الأحرف العربية
+    const decodedId = decodeURIComponent(id);
+    
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL 
       ? (process.env.NEXT_PUBLIC_BASE_URL.startsWith('http') 
           ? process.env.NEXT_PUBLIC_BASE_URL 
@@ -18,7 +21,7 @@ async function getArticle(id: string) {
       : (process.env.VERCEL_URL 
           ? `https://${process.env.VERCEL_URL}` 
           : 'http://localhost:5000');
-    const response = await fetch(`${baseUrl}/api/articles/${id}`, {
+    const response = await fetch(`${baseUrl}/api/articles/${encodeURIComponent(decodedId)}`, {
       cache: 'no-store',
     });
 

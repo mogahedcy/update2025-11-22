@@ -10,7 +10,8 @@ export async function GET(
 ) {
   try {
     const resolvedParams = await params;
-    const param = resolvedParams.id;
+    // فك ترميز URL للتعامل مع الأحرف العربية
+    const param = decodeURIComponent(resolvedParams.id);
 
     // السماح باستخدام المعرف أو الslug
     let article = await prisma.articles.findUnique({
