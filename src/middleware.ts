@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
   // هذا يمنع تكرار المحتوى ويوحد الفهرسة في محركات البحث
   if (hostname === 'aldeyarksa.tech' && process.env.NODE_ENV === 'production') {
     url.host = 'www.aldeyarksa.tech'
-    return NextResponse.redirect(url, 301) // 301 = Permanent Redirect
+    return NextResponse.redirect(url, 301)
   }
 
   const response = NextResponse.next({

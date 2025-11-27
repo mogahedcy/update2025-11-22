@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
@@ -13,6 +13,8 @@ import {
   getMediaType
 } from '@/lib/seo-utils';
 import ProjectDetailsClient from './ProjectDetailsClient';
+
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export const dynamicParams = true;
 export const revalidate = 3600; // Revalidate every hour
@@ -84,8 +86,18 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const allVideos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
   const mainImage = allImages[0]?.src || 'https://www.aldeyarksa.tech/favicon.svg';
   
-  const seoTitle = `${project.title} في ${project.location} | محترفين الديار العالمية جدة`;
-  const seoDescription = `${project.description.substring(0, 150)}... مشروع ${project.category} في ${project.location} من محترفين الديار العالمية - أفضل شركة مظلات وسواتر في جدة`;
+  // تحسين العنوان ليكون أقل من 60 حرف
+  const shortTitle = project.title.length > 40 
+    ? project.title.substring(0, 37) + '...' 
+    : project.title;
+  const seoTitle = `${shortTitle} | محترفين الديار`;
+  
+  // تحسين الوصف ليكون واضح ومباشر بدون قطع في المنتصف (150-160 حرف)
+  const cleanDescription = project.description.replace(/\s+/g, ' ').trim();
+  const seoDescription = cleanDescription.length > 140 
+    ? cleanDescription.substring(0, 140).trim() + ' - محترفين الديار جدة'
+    : `${cleanDescription} - ${project.category} في ${project.location} | محترفين الديار`;
+  
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
 
@@ -166,10 +178,16 @@ export function generateViewport() {
 
 export default async function ProjectDetailsPage({ params }: Props) {
   const { id } = await params;
-  const project = await getProject(id);
+  const decodedId = decodeURIComponent(id);
+  const project = await getProject(decodedId);
 
   if (!project) {
     notFound();
+  }
+
+  // 301 Redirect من UUID إلى Slug لتحسين SEO وتوحيد الفهرسة
+  if (UUID_REGEX.test(decodedId) && project.slug && project.slug !== decodedId) {
+    permanentRedirect(`/portfolio/${project.slug}`);
   }
 
   // إعداد structured data
