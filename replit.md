@@ -71,20 +71,32 @@ Image storage: Cloudinary preferred over local storage for better performance, a
     - `src/app/dashboard/projects/add/ProjectAddClient.tsx`: Enhanced UI with feature highlights and transparency information
 
 ## SEO Optimization for Project Pages (November 27, 2025)
-- **Issue**: Project pages had three SEO problems:
+- **Issue**: Project pages had multiple SEO problems:
   1. Canonical URL mismatch (UUID vs Slug URLs)
   2. Title too long (168 characters instead of 50-60)
   3. Description cut off in the middle with "..."
+  4. Duplicate images/videos in search indexing (no unique identifiers)
+  5. Video thumbnails showing wrong images from project instead of video frame
+  6. Review/AggregateRating schema errors in Google Search Console
 - **Solution Applied**:
   - Added 301 permanent redirect from UUID URLs to Slug URLs using `permanentRedirect()` in project page
   - Shortened Title to max 55 characters with company branding
   - Fixed Description to be clean and complete (140-160 chars) without mid-sentence cuts
+  - Added unique `@id` for each ImageObject, VideoObject, and Review in structured data
+  - Implemented Cloudinary video thumbnail generation from actual video frame (so_0 transformation)
+  - Fixed AggregateRating to only appear when valid reviews exist (1-5 rating scale)
+  - Added `itemReviewed` reference in each Review schema pointing to the CreativeWork
+  - Properly fetched `_count` for comments from database
 - **Files Modified**:
-  - `src/app/portfolio/[id]/page.tsx`: Added UUID-to-Slug redirect and optimized metadata generation
+  - `src/app/portfolio/[id]/page.tsx`: Added UUID-to-Slug redirect, video thumbnail generation, fixed review schema
+  - `src/lib/seo-utils.ts`: Added @id for all schema entities, improved validation
 - **Result**: 
   - All project pages now have unified canonical URLs (Slug-based)
   - Titles are SEO-optimized and display fully in search results
   - Descriptions are clear and complete
+  - Each image/video/review has unique @id preventing duplicate indexing
+  - Video thumbnails now show actual video frames
+  - Review snippets comply with Google requirements
 
 ## Dynamic Routing & Caching Fix (November 22, 2025)
 - **Issue**: Newly created projects showed 404 error when accessed immediately after creation
