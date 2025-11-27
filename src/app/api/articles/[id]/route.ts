@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { randomUUID } from 'crypto';
 import { normalizeArticleCategoryName } from '@/lib/categoryNormalizer';
+import { checkAdminAuth } from '@/lib/auth';
 
 // GET - جلب مقالة واحدة
 export async function GET(
@@ -72,6 +73,14 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const admin = await checkAdminAuth();
+    if (!admin) {
+      return NextResponse.json(
+        { error: 'غير مصرح - يرجى تسجيل الدخول' },
+        { status: 401 }
+      );
+    }
+
     const resolvedParams = await params;
     const articleId = resolvedParams.id;
     const data = await request.json();
@@ -224,6 +233,14 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const admin = await checkAdminAuth();
+    if (!admin) {
+      return NextResponse.json(
+        { error: 'غير مصرح - يرجى تسجيل الدخول' },
+        { status: 401 }
+      );
+    }
+
     const resolvedParams = await params;
     const articleId = resolvedParams.id;
 

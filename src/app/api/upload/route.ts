@@ -3,6 +3,7 @@ import { uploadToCloudinary } from '@/lib/cloudinary';
 import { writeFile, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
+import { checkAdminAuth } from '@/lib/auth';
 
 // التحقق من توفر إعدادات Cloudinary
 const isCloudinaryAvailable = Boolean(
@@ -45,6 +46,14 @@ const UPLOAD_CONFIG = {
 
 export async function POST(request: NextRequest) {
   try {
+    const admin = await checkAdminAuth();
+    if (!admin) {
+      return NextResponse.json(
+        { error: 'غير مصرح - يرجى تسجيل الدخول' },
+        { status: 401 }
+      );
+    }
+
     const formData = await request.formData();
 
     // دعم رفع ملف واحد أو عدة ملفات

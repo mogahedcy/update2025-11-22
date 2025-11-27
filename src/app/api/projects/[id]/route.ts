@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { normalizeCategoryName } from '@/lib/categoryNormalizer';
+import { checkAdminAuth } from '@/lib/auth';
 
 // GET - جلب مشروع واحد
 export async function GET(
@@ -64,6 +65,14 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const admin = await checkAdminAuth();
+    if (!admin) {
+      return NextResponse.json(
+        { error: 'غير مصرح - يرجى تسجيل الدخول' },
+        { status: 401 }
+      );
+    }
+
     const resolvedParams = await params;
     const projectId = resolvedParams.id;
     const data = await request.json();
@@ -229,6 +238,14 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const admin = await checkAdminAuth();
+    if (!admin) {
+      return NextResponse.json(
+        { error: 'غير مصرح - يرجى تسجيل الدخول' },
+        { status: 401 }
+      );
+    }
+
     const resolvedParams = await params;
     const projectId = resolvedParams.id;
 

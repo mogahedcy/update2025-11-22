@@ -4,9 +4,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  env: {
-    DATABASE_URL: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_Cdt08PknDiKz@ep-withered-bread-a48nkvax-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require",
-  },
   // Disable ESLint and TypeScript during builds to fix Vercel deployment
   eslint: {
     ignoreDuringBuilds: true,

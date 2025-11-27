@@ -4,9 +4,18 @@ import { prisma } from '@/lib/prisma';
 import { generateSlug } from '@/lib/utils';
 import { randomUUID } from 'crypto';
 import { normalizeCategoryName } from '@/lib/categoryNormalizer';
+import { checkAdminAuth } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
   try {
+    const admin = await checkAdminAuth();
+    if (!admin) {
+      return NextResponse.json(
+        { success: false, message: 'غير مصرح - يرجى تسجيل الدخول' },
+        { status: 401 }
+      );
+    }
+
     const data = await request.json();
     
     // التحقق من صحة البيانات

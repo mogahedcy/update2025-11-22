@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { headers } from 'next/headers';
 import { randomUUID } from 'crypto';
 import { normalizeArticleCategoryName } from '@/lib/categoryNormalizer';
+import { checkAdminAuth } from '@/lib/auth';
 
 // GET - جلب المقالات مع إحصائيات التفاعل
 export async function GET(request: NextRequest) {
@@ -171,6 +172,14 @@ export async function GET(request: NextRequest) {
 // POST - إضافة مقالة جديدة
 export async function POST(request: NextRequest) {
   try {
+    const admin = await checkAdminAuth();
+    if (!admin) {
+      return NextResponse.json(
+        { error: 'غير مصرح - يرجى تسجيل الدخول' },
+        { status: 401 }
+      );
+    }
+
     const data = await request.json();
     const headersList = await headers();
     const ip = headersList.get('x-forwarded-for') || 'unknown';
