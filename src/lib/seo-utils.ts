@@ -317,7 +317,7 @@ export function generateCreativeWorkSchema(data: {
   location?: string;
   dateCreated?: string;
   dateModified?: string;
-  images?: Array<{ url: string; caption?: string; alt?: string }>;
+  images?: Array<{ url: string; caption?: string; alt?: string; id?: string }>;
   videos?: Array<{ 
     name: string; 
     description: string; 
@@ -326,6 +326,7 @@ export function generateCreativeWorkSchema(data: {
     uploadDate?: string; 
     thumbnailUrl?: string;
     duration?: string;
+    id?: string;
   }>;
   aggregateRating?: {
     ratingValue: number;
@@ -338,12 +339,15 @@ export function generateCreativeWorkSchema(data: {
     datePublished: string;
   }>;
 }) {
+  const pageUrl = generateCanonicalUrl(data.url);
+  
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
+    "@id": pageUrl,
     "name": data.name,
     "description": data.description,
-    "url": generateCanonicalUrl(data.url),
+    "url": pageUrl,
     "inLanguage": "ar",
     "creator": {
       "@type": "Organization",
@@ -379,11 +383,12 @@ export function generateCreativeWorkSchema(data: {
     }),
     ...(data.category && { "category": data.category }),
     ...(data.images && data.images.length > 0 && {
-      "image": data.images.map((img) => ({
+      "image": data.images.map((img, index) => ({
         "@type": "ImageObject",
+        "@id": `${pageUrl}#image-${img.id || index + 1}`,
         "url": img.url,
         "caption": img.caption || data.name,
-        "name": img.caption || data.name,
+        "name": img.caption || `${data.name} - صورة ${index + 1}`,
         "description": img.alt || img.caption || data.name,
         "contentUrl": img.url,
         "license": `${BASE_URL}/terms`,
@@ -397,13 +402,14 @@ export function generateCreativeWorkSchema(data: {
       }))
     }),
     ...(data.videos && data.videos.length > 0 && {
-      "video": data.videos.map((video) => ({
+      "video": data.videos.map((video, index) => ({
         "@type": "VideoObject",
+        "@id": `${pageUrl}#video-${video.id || index + 1}`,
         "name": video.name,
         "description": video.description,
         "contentUrl": video.contentUrl,
-        "embedUrl": video.embedUrl || video.contentUrl,
-        "thumbnailUrl": video.thumbnailUrl || data.images?.[0]?.url || `${BASE_URL}/favicon.svg`,
+        "embedUrl": video.embedUrl || pageUrl,
+        "thumbnailUrl": video.thumbnailUrl || `${BASE_URL}/favicon.svg`,
         "uploadDate": video.uploadDate || data.dateCreated || new Date().toISOString(),
         "publisher": {
           "@type": "Organization",
@@ -418,7 +424,7 @@ export function generateCreativeWorkSchema(data: {
         ...(video.duration && { "duration": video.duration })
       }))
     }),
-    ...(data.aggregateRating && {
+    ...(data.aggregateRating && data.aggregateRating.reviewCount > 0 && {
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": data.aggregateRating.ratingValue,
@@ -428,8 +434,9 @@ export function generateCreativeWorkSchema(data: {
       }
     }),
     ...(data.reviews && data.reviews.length > 0 && {
-      "review": data.reviews.map((review) => ({
+      "review": data.reviews.map((review, index) => ({
         "@type": "Review",
+        "@id": `${pageUrl}#review-${index + 1}`,
         "author": {
           "@type": "Person",
           "name": review.author
@@ -442,7 +449,12 @@ export function generateCreativeWorkSchema(data: {
         },
         "reviewBody": review.reviewBody,
         "datePublished": review.datePublished,
-        "inLanguage": "ar"
+        "inLanguage": "ar",
+        "itemReviewed": {
+          "@type": "CreativeWork",
+          "@id": pageUrl,
+          "name": data.name
+        }
       }))
     })
   };

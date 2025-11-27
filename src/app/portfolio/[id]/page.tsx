@@ -23,13 +23,33 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+// دالة لإنشاء thumbnail من فيديو Cloudinary
+function generateVideoThumbnail(videoUrl: string): string | null {
+  if (!videoUrl || !videoUrl.includes('cloudinary.com')) return null;
+  
+  // تحويل رابط الفيديو إلى رابط صورة مصغرة
+  // مثال: video/upload/v123/folder/video.mp4 → image/upload/so_0,w_1280,h_720,c_fill/v123/folder/video.jpg
+  try {
+    const urlParts = videoUrl.split('/upload/');
+    if (urlParts.length !== 2) return null;
+    
+    const baseUrl = urlParts[0].replace('/video/', '/image/');
+    const resourcePath = urlParts[1].replace(/\.[^.]+$/, '.jpg');
+    
+    // إضافة تحويلات للحصول على إطار من بداية الفيديو بجودة عالية
+    return `${baseUrl}/upload/so_0,w_1280,h_720,c_fill,q_auto,f_jpg/${resourcePath}`;
+  } catch {
+    return null;
+  }
+}
+
 // دالة جلب المشروع مباشرة من قاعدة البيانات - بدون تزامن مع API
 async function getProject(id: string) {
   try {
     // فك ترميز URL للتعامل مع الأحرف العربية
     const decodedId = decodeURIComponent(id);
     
-    // البحث باستخدام المعرف أو الـ slug
+    // البحث باستخدام المعرف أو الـ slug مع جلب _count للتعليقات
     const project = await prisma.projects.findFirst({
       where: {
         OR: [
@@ -44,6 +64,9 @@ async function getProject(id: string) {
         comments: {
           where: { rating: { gt: 0 } },
           select: { id: true, name: true, message: true, rating: true, createdAt: true }
+        },
+        _count: {
+          select: { comments: true }
         }
       }
     });
@@ -60,7 +83,8 @@ async function getProject(id: string) {
       materials: project.project_materials || [],
       comments: project.comments || [],
       views: project.views || 0,
-      rating: project.rating || 0
+      rating: project.rating || 0,
+      _count: project._count
     };
   } catch (err) {
     console.error('❌ خطأ في جلب المشروع:', err);
@@ -206,6 +230,12 @@ export default async function ProjectDetailsPage({ params }: Props) {
     comment.rating && comment.rating > 0 && comment.name && comment.message
   ) || [];
   
+  // حساب التقييم الفعلي من التعليقات
+  const validReviews = projectReviews.filter((c: any) => c.rating >= 1 && c.rating <= 5);
+  const averageRating = validReviews.length > 0 
+    ? Math.round((validReviews.reduce((sum: number, c: any) => sum + c.rating, 0) / validReviews.length) * 10) / 10
+    : 0;
+
   const structuredData = generateCreativeWorkSchema({
     name: project.title,
     description: project.description,
@@ -215,29 +245,39 @@ export default async function ProjectDetailsPage({ params }: Props) {
     dateCreated: project.createdAt,
     dateModified: project.updatedAt,
     images: images.map((item: any, index: number) => ({
+      id: item.id || `img-${index + 1}`,
       url: getAbsoluteUrl(item.src),
       caption: item.title || item.description || `${project.title} - صورة ${index + 1}`,
       alt: item.alt || item.title || `${project.category} في ${project.location} - صورة ${index + 1}`
     })),
-    videos: videos.map((item: any) => ({
-      name: item.title || `${project.title} - فيديو`,
-      description: item.description || `فيديو يوضح تفاصيل مشروع ${project.title} في ${project.location}`,
-      contentUrl: getAbsoluteUrl(item.src),
-      embedUrl: fullUrl,
-      thumbnailUrl: item.thumbnail ? getAbsoluteUrl(item.thumbnail) : (images[0]?.src ? getAbsoluteUrl(images[0].src) : undefined),
-      uploadDate: project.createdAt,
-      duration: item.duration
-    })),
-    aggregateRating: project._count?.comments > 0 && project.rating > 0 ? {
-      ratingValue: project.rating,
-      reviewCount: project._count.comments
+    videos: videos.map((item: any, index: number) => {
+      // إنشاء thumbnail من الفيديو نفسه باستخدام Cloudinary
+      const videoThumbnail = generateVideoThumbnail(item.src);
+      
+      return {
+        id: item.id || `vid-${index + 1}`,
+        name: item.title || `${project.title} - فيديو ${index + 1}`,
+        description: item.description || `فيديو يوضح تفاصيل مشروع ${project.title} في ${project.location}`,
+        contentUrl: getAbsoluteUrl(item.src),
+        embedUrl: fullUrl,
+        // استخدام thumbnail من الفيديو نفسه أو الـ thumbnail المخزن
+        thumbnailUrl: videoThumbnail || (item.thumbnail ? getAbsoluteUrl(item.thumbnail) : undefined),
+        uploadDate: project.createdAt,
+        duration: item.duration
+      };
+    }),
+    // إضافة aggregateRating فقط إذا كان هناك تقييمات صالحة
+    aggregateRating: validReviews.length > 0 && averageRating > 0 ? {
+      ratingValue: averageRating,
+      reviewCount: validReviews.length
     } : undefined,
-    reviews: projectReviews.length > 0 ? projectReviews.map((comment: any) => ({
-      author: comment.name || 'عميل محترفين الديار',
-      rating: comment.rating,
-      reviewBody: comment.message,
-      datePublished: comment.createdAt || new Date().toISOString()
-    })) : undefined
+    // إضافة reviews فقط إذا كانت البيانات كاملة وصالحة
+    reviews: validReviews.length > 0 ? validReviews.map((comment: any) => ({
+      author: comment.name?.trim() || 'عميل',
+      rating: Math.min(5, Math.max(1, Number(comment.rating))),
+      reviewBody: comment.message?.trim() || '',
+      datePublished: comment.createdAt ? new Date(comment.createdAt).toISOString() : new Date().toISOString()
+    })).filter((r: any) => r.reviewBody.length > 0) : undefined
   });
 
   return (
