@@ -20,6 +20,10 @@ export async function GET(
       include: {
         article_media_items: { orderBy: { order: 'asc' } },
         article_tags: true,
+        article_comments: {
+          where: { status: 'APPROVED' },
+          orderBy: { createdAt: 'desc' }
+        },
         _count: { select: { article_comments: true, article_likes: true } }
       }
     });
@@ -30,6 +34,10 @@ export async function GET(
         include: {
           article_media_items: { orderBy: { order: 'asc' } },
           article_tags: true,
+          article_comments: {
+            where: { status: 'APPROVED' },
+            orderBy: { createdAt: 'desc' }
+          },
           _count: { select: { article_comments: true, article_likes: true } }
         }
       });
@@ -51,6 +59,7 @@ export async function GET(
       ...article,
       mediaItems: (article as any).article_media_items,
       tags: (article as any).article_tags || [],
+      comments: (article as any).article_comments || [],
       views: (article.views || 0) + 1,
       likes: (article._count as any)?.article_likes || 0,
       commentsCount: (article._count as any)?.article_comments || 0,

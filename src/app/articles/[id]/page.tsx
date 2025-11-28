@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ArticleDetailsClient from './ArticleDetailsClient';
 import ArticleSchema from '@/components/ArticleSchema';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { generateCanonicalUrl, getAbsoluteUrl } from '@/lib/seo-utils';
 
 interface Props {
@@ -136,8 +137,51 @@ export default async function ArticlePage({ params }: Props) {
   
   const wordCount = plainTextContent.split(/\s+/).length;
 
+  const breadcrumbItems = [
+    { label: 'المدونة', href: '/articles' },
+    { label: article.category, href: `/articles?category=${encodeURIComponent(article.category)}` },
+    { label: article.title, href: `/articles/${article.slug || article.id}` }
+  ];
+
+  const validComments = (article.comments || []).filter(
+    (c: any) => c.rating && c.rating >= 1 && c.rating <= 5 && c.name && c.message
+  );
+  
+  const averageRating = validComments.length > 0 
+    ? Math.round((validComments.reduce((sum: number, c: any) => sum + c.rating, 0) / validComments.length) * 10) / 10
+    : 0;
+
+  const reviewsSchema = validComments.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "name": article.title,
+    "aggregateRating": averageRating > 0 ? {
+      "@type": "AggregateRating",
+      "ratingValue": averageRating,
+      "reviewCount": validComments.length,
+      "bestRating": 5,
+      "worstRating": 1
+    } : undefined,
+    "review": validComments.map((comment: any) => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": comment.name?.trim() || 'قارئ'
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": Math.min(5, Math.max(1, Number(comment.rating))),
+        "bestRating": 5,
+        "worstRating": 1
+      },
+      "reviewBody": comment.message?.trim() || '',
+      "datePublished": comment.createdAt ? new Date(comment.createdAt).toISOString() : new Date().toISOString()
+    })).filter((r: any) => r.reviewBody.length > 0)
+  } : null;
+
   return (
     <>
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ArticleSchema
         headline={article.title}
         description={article.excerpt || article.content?.substring(0, 160) || ''}
@@ -154,6 +198,12 @@ export default async function ArticlePage({ params }: Props) {
         articleSection={article.category}
         wordCount={wordCount}
       />
+      {reviewsSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsSchema) }}
+        />
+      )}
       <Navbar />
       <ArticleDetailsClient article={article} />
       <Footer />
