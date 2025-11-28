@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: 'محترفين الديار العالمية',
     images: [
       {
-        url: 'https://www.aldeyarksa.tech/favicon.svg',
+        url: 'https://www.aldeyarksa.tech/logo.png',
         width: 1200,
         height: 630,
         alt: 'الأسئلة الشائعة - محترفين الديار العالمية'
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'الأسئلة الشائعة | محترفين الديار العالمية',
     description: 'إجابات شاملة على الأسئلة الشائعة حول خدماتنا',
-    images: ['https://www.aldeyarksa.tech/favicon.svg']
+    images: ['https://www.aldeyarksa.tech/logo.png']
   },
   alternates: {
     canonical: '/faq'

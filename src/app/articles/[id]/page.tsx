@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ArticleDetailsClient from './ArticleDetailsClient';
 import ArticleSchema from '@/components/ArticleSchema';
+import { generateCanonicalUrl, getAbsoluteUrl } from '@/lib/seo-utils';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -72,11 +73,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       openGraph: {
         title: seoTitle,
         description: seoDescription,
-        url: `https://www.aldeyarksa.tech/articles/${article.slug || article.id}`,
+        url: generateCanonicalUrl(`/articles/${article.slug || article.id}`),
         siteName: 'محترفين الديار العالمية',
         images: mainImage ? [
           {
-            url: mainImage.src,
+            url: getAbsoluteUrl(mainImage.src),
             width: 1200,
             height: 630,
             alt: article.title
@@ -91,7 +92,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         card: 'summary_large_image',
         title: seoTitle,
         description: seoDescription,
-        images: mainImage ? [mainImage.src] : []
+        images: mainImage ? [getAbsoluteUrl(mainImage.src)] : []
+      },
+      alternates: {
+        canonical: generateCanonicalUrl(`/articles/${article.slug || article.id}`)
       }
     };
   } catch (error) {
@@ -116,7 +120,7 @@ export default async function ArticlePage({ params }: Props) {
     ?.filter((item: any) => item.type === 'IMAGE')
     .map((item: any) => item.src) || [];
   
-  const articleUrl = `https://www.aldeyarksa.tech/articles/${article.slug || article.id}`;
+  const articleUrl = generateCanonicalUrl(`/articles/${article.slug || article.id}`);
   const articleKeywords = [
     article.category,
     'محترفين الديار',

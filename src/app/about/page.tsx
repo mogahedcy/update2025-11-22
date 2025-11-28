@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     locale: 'ar_SA',
     images: [
       {
-        url: 'https://www.aldeyarksa.tech/favicon.svg',
+        url: 'https://www.aldeyarksa.tech/logo.png',
         width: 1200,
         height: 630,
         alt: 'عن محترفين الديار العالمية',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'عن محترفين الديار | محترفين الديار العالمية',
     description: 'تعرف على محترفين الديار العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً.',
-    images: ['https://www.aldeyarksa.tech/favicon.svg'],
+    images: ['https://www.aldeyarksa.tech/logo.png'],
   },
 }
 

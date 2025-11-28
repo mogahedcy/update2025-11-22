@@ -5,7 +5,7 @@ const SITE_NAME = 'محترفين الديار العالمية';
 
 // دوال مساعدة للحصول على URL مطلق ونوع الملف
 export function getAbsoluteUrl(url: string): string {
-  if (!url) return `${BASE_URL}/favicon.svg`;
+  if (!url) return `${BASE_URL}/logo.png`;
   if (url.startsWith('http')) return url;
   return `${BASE_URL}${url.startsWith('/') ? url : `/${url}`}`;
 }
@@ -52,7 +52,7 @@ export function generateMetadata(config: SEOConfig): Metadata {
     title,
     description,
     keywords,
-    image = `${BASE_URL}/favicon.svg`,
+    image = `${BASE_URL}/logo.png`,
     url,
     type = 'website',
     author,

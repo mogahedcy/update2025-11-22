@@ -406,7 +406,7 @@ export default async function MazallatPage() {
           "name": "محترفين الديار العالمية",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://www.aldeyarksa.tech/favicon.svg"
+            "url": "https://www.aldeyarksa.tech/logo.png"
           }
         },
         "copyrightHolder": {
@@ -444,7 +444,7 @@ export default async function MazallatPage() {
           "name": "محترفين الديار العالمية",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://www.aldeyarksa.tech/favicon.svg"
+            "url": "https://www.aldeyarksa.tech/logo.png"
           }
         },
         "datePublished": article.publishedAt || article.createdAt,

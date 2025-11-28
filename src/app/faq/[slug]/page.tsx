@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'article',
       images: [
         {
-          url: 'https://www.aldeyarksa.tech/favicon.svg',
+          url: 'https://www.aldeyarksa.tech/logo.png',
           width: 1200,
           height: 630,
           alt: faq.question
@@ -65,10 +65,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://www.aldeyarksa.tech/favicon.svg']
+      images: ['https://www.aldeyarksa.tech/logo.png']
     },
     alternates: {
-      canonical: `/faq/${slug}`
+      canonical: generateCanonicalUrl(`/faq/${slug}`)
     }
   };
 }

@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     locale: 'ar_SA',
     images: [
       {
-        url: 'https://www.aldeyarksa.tech/favicon.svg',
+        url: 'https://www.aldeyarksa.tech/logo.png',
         width: 1200,
         height: 630,
         alt: 'طلب عرض سعر - محترفين الديار العالمية',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'طلب عرض سعر | محترفين الديار العالمية',
     description: 'احصل على عرض سعر مجاني ومفصل - أسعار تنافسية وجودة عالية',
-    images: ['https://www.aldeyarksa.tech/favicon.svg'],
+    images: ['https://www.aldeyarksa.tech/logo.png'],
   }
 }
 

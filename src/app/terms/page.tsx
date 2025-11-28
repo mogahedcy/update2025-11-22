@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     locale: 'ar_SA',
     images: [
       {
-        url: 'https://www.aldeyarksa.tech/favicon.svg',
+        url: 'https://www.aldeyarksa.tech/logo.png',
         width: 1200,
         height: 630,
         alt: 'شروط الخدمة - محترفين الديار العالمية',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary',
     title: 'شروط الخدمة | محترفين الديار العالمية',
     description: 'الشروط والأحكام التي تحكم استخدام خدماتنا',
-    images: ['https://www.aldeyarksa.tech/favicon.svg'],
+    images: ['https://www.aldeyarksa.tech/logo.png'],
   }
 }
 

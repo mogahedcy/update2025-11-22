@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     locale: 'ar_SA',
     images: [
       {
-        url: 'https://www.aldeyarksa.tech/favicon.svg',
+        url: 'https://www.aldeyarksa.tech/logo.png',
         width: 1200,
         height: 630,
         alt: 'تواصل معنا - محترفين الديار العالمية',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'تواصل معنا | محترفين الديار العالمية',
     description: 'خدمة عملاء متميزة 24/7 واستشارة مجانية في جدة',
-    images: ['https://www.aldeyarksa.tech/favicon.svg'],
+    images: ['https://www.aldeyarksa.tech/logo.png'],
   }
 }
 

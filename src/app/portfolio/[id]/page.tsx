@@ -108,7 +108,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   // استخراج جميع الصور والفيديوهات للمشروع
   const allImages = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
   const allVideos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
-  const mainImage = allImages[0]?.src || 'https://www.aldeyarksa.tech/favicon.svg';
+  const mainImage = allImages[0]?.src || 'https://www.aldeyarksa.tech/logo.png';
   
   // تحسين العنوان ليكون أقل من 60 حرف
   const shortTitle = project.title.length > 40 
