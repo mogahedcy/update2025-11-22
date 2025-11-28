@@ -4,8 +4,9 @@ import { prisma } from '@/lib/prisma';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import { ArrowRight, Home, Share2, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { ArrowRight, Home } from 'lucide-react';
 import { generateCanonicalUrl } from '@/lib/seo-utils';
+import ShareButton from '@/components/ShareButton';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -196,29 +197,7 @@ export default async function FAQDetailPage({ params }: PageProps) {
 
                 <div className="flex items-center gap-3">
                   <span className="text-sm text-gray-600">شارك:</span>
-                  <button
-                    onClick={async () => {
-                      const url = window.location.href;
-                      if (navigator.share) {
-                        try {
-                          await navigator.share({
-                            title: faq.question,
-                            text: faq.answer,
-                            url
-                          });
-                        } catch (error) {
-                          await navigator.clipboard.writeText(url);
-                          alert('تم نسخ الرابط!');
-                        }
-                      } else {
-                        await navigator.clipboard.writeText(url);
-                        alert('تم نسخ الرابط!');
-                      }
-                    }}
-                    className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
-                  >
-                    <Share2 className="w-4 h-4" />
-                  </button>
+                  <ShareButton title={faq.question} text={faq.answer} />
                 </div>
               </div>
             </div>
