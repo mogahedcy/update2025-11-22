@@ -74,6 +74,15 @@ export default function DashboardLayoutClient({ admin, children }: DashboardLayo
       activeColor: 'bg-pink-50 text-pink-700'
     },
     {
+      href: '/dashboard/ai-agent',
+      icon: 'M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19 14.5M14.25 3.104c.251.023.501.05.75.082M19 14.5l-2.47-2.47a.75.75 0 00-1.06 0L12 15.5l-1.72-1.72a.75.75 0 00-1.06 0L5 14.5m14 0v4.25a2.25 2.25 0 01-2.25 2.25H7.25A2.25 2.25 0 015 18.75V14.5',
+      label: 'توليد مقالات AI',
+      hoverColor: 'hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 hover:text-emerald-700',
+      activeColor: 'bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-700',
+      badge: 'Groq',
+      badgeColor: 'bg-gradient-to-r from-emerald-500 to-teal-500'
+    },
+    {
       href: '/dashboard/faqs',
       icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
       label: 'الأسئلة الشائعة',
