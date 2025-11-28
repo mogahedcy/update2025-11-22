@@ -109,3 +109,22 @@ Image storage: Cloudinary preferred over local storage for better performance, a
   - `src/app/services/mazallat/page.tsx`: Schema logo → logo.png
   - `src/lib/seo-utils.ts`: Updated fallbacks from favicon.svg to logo.png
 - **Result**: All pages now have proper OpenGraph images for social media sharing and correct canonical URLs for search engines.
+
+## FAQ Schema Fix for Google Rich Results (November 28, 2025)
+- **Problem**: FAQ pages were not appearing as Rich Results in Google search.
+- **Root Causes Identified**:
+  1. FAQPage schema had extra unsupported properties (name, description, url, publisher, etc.)
+  2. Individual FAQ pages used `QAPage` instead of `FAQPage` (Google only shows Rich Results for FAQPage)
+  3. Answer text might contain HTML/special characters that Google rejects
+- **Fixes Applied**:
+  1. Simplified `EnhancedFAQSchema.tsx` to use only Google-required properties (`@context`, `@type`, `mainEntity`)
+  2. Changed individual FAQ pages (`/faq/[slug]`) from `QAPage` to `FAQPage` schema
+  3. Added `stripHtmlAndCleanText()` function to sanitize questions and answers
+  4. Added validation to skip FAQs with empty/short content
+- **Files Modified**:
+  - `src/components/EnhancedFAQSchema.tsx`: Simplified schema structure, added text sanitization
+  - `src/app/faq/[slug]/page.tsx`: Changed from QAPage to FAQPage schema
+- **Next Steps**: 
+  1. Test with Google Rich Results Test tool
+  2. Request re-crawl in Google Search Console
+  3. Wait 24-48 hours for Google to reprocess pages
