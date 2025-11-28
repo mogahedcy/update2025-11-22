@@ -13,50 +13,45 @@ interface EnhancedFAQSchemaProps {
   baseUrl?: string;
 }
 
+function stripHtmlAndCleanText(text: string): string {
+  if (!text) return '';
+  
+  let cleaned = text
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+  
+  return cleaned;
+}
+
 export default function EnhancedFAQSchema({ faqs, baseUrl = 'https://www.aldeyarksa.tech' }: EnhancedFAQSchemaProps) {
   if (!faqs || faqs.length === 0) return null;
+
+  const validFaqs = faqs.filter(faq => 
+    faq.question && 
+    faq.answer && 
+    stripHtmlAndCleanText(faq.question).length > 5 &&
+    stripHtmlAndCleanText(faq.answer).length > 20
+  );
+
+  if (validFaqs.length === 0) return null;
 
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    name: 'الأسئلة الشائعة - محترفين الديار العالمية',
-    description: 'إجابات شاملة على الأسئلة الشائعة حول خدمات المظلات والبرجولات والسواتر في جدة',
-    url: `${baseUrl}/faq`,
-    inLanguage: 'ar',
-    publisher: {
-      '@type': 'Organization',
-      name: 'محترفين الديار العالمية',
-      url: baseUrl,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/favicon.svg`
-      },
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'جدة',
-        addressRegion: 'منطقة مكة المكرمة',
-        addressCountry: 'SA'
-      }
-    },
-    mainEntity: faqs.map(faq => ({
+    mainEntity: validFaqs.map(faq => ({
       '@type': 'Question',
-      name: faq.question,
-      text: faq.question,
-      answerCount: 1,
+      name: stripHtmlAndCleanText(faq.question),
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer,
-        author: {
-          '@type': 'Organization',
-          name: 'محترفين الديار العالمية'
-        }
-      },
-      ...(faq.keywords && {
-        keywords: faq.keywords
-      }),
-      ...(faq.slug && {
-        url: `${baseUrl}/faq/${faq.slug}`
-      })
+        text: stripHtmlAndCleanText(faq.answer)
+      }
     }))
   };
 

@@ -82,27 +82,31 @@ export default async function FAQDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const cleanText = (text: string): string => {
+    if (!text) return '';
+    return text
+      .replace(/<[^>]*>/g, '')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
   const faqSchema = {
     '@context': 'https://schema.org',
-    '@type': 'QAPage',
-    mainEntity: {
+    '@type': 'FAQPage',
+    mainEntity: [{
       '@type': 'Question',
-      name: faq.question,
-      text: faq.question,
-      answerCount: 1,
-      dateCreated: faq.createdAt.toISOString(),
-      dateModified: faq.updatedAt.toISOString(),
+      name: cleanText(faq.question),
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer,
-        dateCreated: faq.createdAt.toISOString(),
-        author: {
-          '@type': 'Organization',
-          name: 'محترفين الديار العالمية',
-          url: 'https://www.aldeyarksa.tech'
-        }
+        text: cleanText(faq.answer)
       }
-    }
+    }]
   };
 
   const breadcrumbSchema = {
