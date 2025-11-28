@@ -11,19 +11,23 @@ interface ClientBodyProps {
 export default function ClientBody({ children }: ClientBodyProps) {
   const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
+  const isDashboard = pathname?.startsWith('/dashboard');
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // تحميل محسن الأداء بشكل ديناميكي
   const PerformanceOptimizer = dynamic(() => import('@/components/PerformanceOptimizer'), {
     ssr: false,
     loading: () => null
   });
 
+  const NewContentNotification = dynamic(() => import('@/components/NewContentNotification'), {
+    ssr: false,
+    loading: () => null
+  });
+
   if (!isMounted) {
-    // عرض المحتوى أثناء hydration مع إخفاء مؤقت لتجنب hydration mismatch
     return <div suppressHydrationWarning>{children}</div>;
   }
 
@@ -31,6 +35,7 @@ export default function ClientBody({ children }: ClientBodyProps) {
     <div suppressHydrationWarning>
       {children}
       <PerformanceOptimizer />
+      {!isDashboard && <NewContentNotification />}
     </div>
   );
 }
