@@ -68,6 +68,11 @@ export default function AutomationClient() {
     generateAutoPublish: false,
     fixEnabled: false,
     fixFrequency: 'weekly',
+    faqEnabled: false,
+    faqFrequency: 'weekly',
+    faqCount: 5,
+    faqNiche: '',
+    faqAutoPublish: false,
   });
 
   const [scheduleLoading, setScheduleLoading] = useState(false);
@@ -187,6 +192,11 @@ export default function AutomationClient() {
           generateAutoPublish: data.schedule.generateAutoPublish || false,
           fixEnabled: data.schedule.fixEnabled || false,
           fixFrequency: data.schedule.fixFrequency || 'weekly',
+          faqEnabled: data.schedule.faqEnabled || false,
+          faqFrequency: data.schedule.faqFrequency || 'weekly',
+          faqCount: data.schedule.faqCount || 5,
+          faqNiche: data.schedule.faqNiche || '',
+          faqAutoPublish: data.schedule.faqAutoPublish || false,
         });
       }
     } catch (error) {
@@ -212,7 +222,12 @@ export default function AutomationClient() {
 
   const saveScheduleSettings = async () => {
     if (scheduleSettings.generateEnabled && !scheduleSettings.generateNiche) {
-      alert('يرجى إدخال مجال للتوليد الذكي');
+      alert('يرجى إدخال مجال للتوليد الذكي للمقالات');
+      return;
+    }
+
+    if (scheduleSettings.faqEnabled && !scheduleSettings.faqNiche) {
+      alert('يرجى إدخال مجال للتوليد الذكي للأسئلة الشائعة');
       return;
     }
 
@@ -991,6 +1006,98 @@ export default function AutomationClient() {
                         <option value="weekly">أسبوعياً</option>
                         <option value="monthly">شهرياً</option>
                       </select>
+                    </div>
+                  </div>
+
+                  <div className="border border-violet-200 rounded-lg p-6 bg-violet-50">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-bold flex items-center gap-2">
+                        <Sparkles className="w-5 h-5 text-violet-600" />
+                        توليد الأسئلة الشائعة التلقائي
+                      </h3>
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={scheduleSettings.faqEnabled}
+                          onChange={(e) => setScheduleSettings({
+                            ...scheduleSettings,
+                            faqEnabled: e.target.checked
+                          })}
+                          className="w-4 h-4"
+                        />
+                        <span className="text-sm font-medium">مفعّل</span>
+                      </label>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          المجال أو الموضوع العام *
+                        </label>
+                        <input
+                          type="text"
+                          value={scheduleSettings.faqNiche}
+                          onChange={(e) => setScheduleSettings({
+                            ...scheduleSettings,
+                            faqNiche: e.target.value
+                          })}
+                          placeholder="مثال: مظلات سيارات، برجولات خشبية"
+                          className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-violet-500"
+                          disabled={!scheduleSettings.faqEnabled}
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2">التكرار</label>
+                        <select
+                          value={scheduleSettings.faqFrequency}
+                          onChange={(e) => setScheduleSettings({
+                            ...scheduleSettings,
+                            faqFrequency: e.target.value
+                          })}
+                          className="w-full p-2 border rounded-lg"
+                          disabled={!scheduleSettings.faqEnabled}
+                        >
+                          <option value="daily">يومياً</option>
+                          <option value="weekly">أسبوعياً</option>
+                          <option value="monthly">شهرياً</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2">
+                          عدد الأسئلة لكل دفعة: {scheduleSettings.faqCount}
+                        </label>
+                        <input
+                          type="range"
+                          min="3"
+                          max="15"
+                          value={scheduleSettings.faqCount}
+                          onChange={(e) => setScheduleSettings({
+                            ...scheduleSettings,
+                            faqCount: parseInt(e.target.value)
+                          })}
+                          className="w-full"
+                          disabled={!scheduleSettings.faqEnabled}
+                        />
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          id="schedule-faq-auto-publish"
+                          checked={scheduleSettings.faqAutoPublish}
+                          onChange={(e) => setScheduleSettings({
+                            ...scheduleSettings,
+                            faqAutoPublish: e.target.checked
+                          })}
+                          disabled={!scheduleSettings.faqEnabled}
+                          className="w-4 h-4 text-violet-600 rounded focus:ring-violet-500"
+                        />
+                        <label htmlFor="schedule-faq-auto-publish" className="text-sm font-medium">
+                          نشر الأسئلة تلقائياً
+                        </label>
+                      </div>
                     </div>
                   </div>
 

@@ -277,6 +277,13 @@ model automation_schedules {
   lastFixRun          DateTime?
   nextGenerateRun     DateTime?
   nextFixRun          DateTime?
+  faqEnabled          Boolean   @default(false)
+  faqFrequency        String    @default("weekly")
+  faqCount            Int       @default(5)
+  faqNiche            String?
+  faqAutoPublish      Boolean   @default(false)
+  lastFaqRun          DateTime?
+  nextFaqRun          DateTime?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
 }

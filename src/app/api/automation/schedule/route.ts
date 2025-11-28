@@ -21,6 +21,9 @@ export async function GET(request: NextRequest) {
           generateCount: 3,
           fixEnabled: false,
           fixFrequency: 'weekly',
+          faqEnabled: false,
+          faqFrequency: 'weekly',
+          faqCount: 5,
         }
       });
     }
@@ -39,6 +42,13 @@ export async function GET(request: NextRequest) {
         lastFixRun: schedule.lastFixRun,
         nextGenerateRun: schedule.nextGenerateRun,
         nextFixRun: schedule.nextFixRun,
+        faqEnabled: schedule.faqEnabled,
+        faqFrequency: schedule.faqFrequency,
+        faqCount: schedule.faqCount,
+        faqNiche: schedule.faqNiche,
+        faqAutoPublish: schedule.faqAutoPublish,
+        lastFaqRun: schedule.lastFaqRun,
+        nextFaqRun: schedule.nextFaqRun,
       }
     });
   } catch (error: any) {
@@ -66,11 +76,17 @@ export async function POST(request: NextRequest) {
       generateAutoPublish,
       fixEnabled,
       fixFrequency,
+      faqEnabled,
+      faqFrequency,
+      faqCount,
+      faqNiche,
+      faqAutoPublish,
     } = body;
 
     const now = new Date();
     const nextGenerateRun = generateEnabled ? calculateNextRun(now, generateFrequency) : null;
     const nextFixRun = fixEnabled ? calculateNextRun(now, fixFrequency) : null;
+    const nextFaqRun = faqEnabled ? calculateNextRun(now, faqFrequency) : null;
 
     let schedule = await prisma.automation_schedules.findFirst({
       orderBy: { createdAt: 'desc' }
@@ -89,6 +105,12 @@ export async function POST(request: NextRequest) {
           fixFrequency,
           nextGenerateRun,
           nextFixRun,
+          faqEnabled,
+          faqFrequency,
+          faqCount,
+          faqNiche,
+          faqAutoPublish,
+          nextFaqRun,
           updatedAt: now,
         }
       });
@@ -104,6 +126,12 @@ export async function POST(request: NextRequest) {
           fixFrequency,
           nextGenerateRun,
           nextFixRun,
+          faqEnabled,
+          faqFrequency,
+          faqCount,
+          faqNiche,
+          faqAutoPublish,
+          nextFaqRun,
         }
       });
     }
@@ -123,6 +151,12 @@ export async function POST(request: NextRequest) {
         fixFrequency: schedule.fixFrequency,
         nextGenerateRun: schedule.nextGenerateRun,
         nextFixRun: schedule.nextFixRun,
+        faqEnabled: schedule.faqEnabled,
+        faqFrequency: schedule.faqFrequency,
+        faqCount: schedule.faqCount,
+        faqNiche: schedule.faqNiche,
+        faqAutoPublish: schedule.faqAutoPublish,
+        nextFaqRun: schedule.nextFaqRun,
       }
     });
   } catch (error: any) {

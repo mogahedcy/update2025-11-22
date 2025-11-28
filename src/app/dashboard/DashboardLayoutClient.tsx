@@ -87,9 +87,16 @@ export default function DashboardLayoutClient({ admin, children }: DashboardLayo
       icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
       label: 'الأسئلة الشائعة',
       hoverColor: 'hover:bg-teal-50 hover:text-teal-700',
-      activeColor: 'bg-teal-50 text-teal-700',
-      badge: 'جديد',
-      badgeColor: 'bg-gradient-to-r from-teal-500 to-cyan-500'
+      activeColor: 'bg-teal-50 text-teal-700'
+    },
+    {
+      href: '/dashboard/ai-faq',
+      icon: 'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z',
+      label: 'توليد أسئلة AI',
+      hoverColor: 'hover:bg-gradient-to-r hover:from-violet-50 hover:to-purple-50 hover:text-violet-700',
+      activeColor: 'bg-gradient-to-r from-violet-50 to-purple-50 text-violet-700',
+      badge: 'Groq',
+      badgeColor: 'bg-gradient-to-r from-violet-500 to-purple-500'
     },
     {
       href: '/dashboard/comments',

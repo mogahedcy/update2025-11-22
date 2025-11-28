@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { aiArticleAgent } from '@/lib/ai-article-agent';
+import { aiFAQAgent } from '@/lib/ai-faq-agent';
 import { seoDiagnostics } from '@/lib/seo-diagnostics';
 import {
   analyzeCompetitors,
@@ -30,6 +31,7 @@ export async function GET(request: NextRequest) {
     const results = {
       generateTask: null as any,
       fixTask: null as any,
+      faqTask: null as any,
     };
 
     if (schedule.generateEnabled && schedule.nextGenerateRun && now >= schedule.nextGenerateRun) {
@@ -143,6 +145,78 @@ export async function GET(request: NextRequest) {
           data: {
             lastFixRun: now,
             nextFixRun: nextRun,
+          }
+        });
+      }
+    }
+
+    if (schedule.faqEnabled && schedule.nextFaqRun && now >= schedule.nextFaqRun) {
+      console.log('❓ تنفيذ مهمة توليد الأسئلة الشائعة المجدولة...');
+      
+      const nextRun = calculateNextRun(now, schedule.faqFrequency);
+      
+      try {
+        let faqResult;
+        
+        if (!schedule.faqNiche) {
+          faqResult = {
+            success: false,
+            error: 'لم يتم تحديد مجال للتوليد',
+            successCount: 0,
+            failureCount: schedule.faqCount
+          };
+        } else {
+          const generatedFAQs = await aiFAQAgent.generateSmartFAQs(
+            schedule.faqNiche,
+            schedule.faqCount,
+            schedule.faqAutoPublish || false
+          );
+          
+          faqResult = {
+            success: true,
+            message: `تم توليد ${generatedFAQs.stats.saved} من أصل ${generatedFAQs.stats.total} سؤال`,
+            successCount: generatedFAQs.stats.saved,
+            failureCount: generatedFAQs.stats.failed,
+            details: { faqs: generatedFAQs.faqs }
+          };
+        }
+
+        await prisma.automation_logs.create({
+          data: {
+            taskType: 'GENERATE_FAQS',
+            status: faqResult.success ? 'SUCCESS' : 'FAILED',
+            message: faqResult.message || faqResult.error || null,
+            successCount: faqResult.successCount || 0,
+            failureCount: faqResult.failureCount || 0,
+            details: JSON.stringify(faqResult.details || {}),
+          }
+        });
+
+        results.faqTask = faqResult;
+        console.log(`✅ مهمة توليد الأسئلة اكتملت${faqResult.success ? '' : ' (مع أخطاء)'}. التشغيل القادم: ${nextRun}`);
+        
+      } catch (error: any) {
+        console.error('❌ فشل في تنفيذ مهمة توليد الأسئلة:', error);
+        
+        await prisma.automation_logs.create({
+          data: {
+            taskType: 'GENERATE_FAQS',
+            status: 'FAILED',
+            message: error.message || 'خطأ غير متوقع',
+            failureCount: schedule.faqCount,
+          }
+        });
+        
+        results.faqTask = {
+          success: false,
+          error: error.message
+        };
+      } finally {
+        await prisma.automation_schedules.update({
+          where: { id: schedule.id },
+          data: {
+            lastFaqRun: now,
+            nextFaqRun: nextRun,
           }
         });
       }
