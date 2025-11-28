@@ -238,3 +238,13 @@ integrations = ["javascript_openai:1.0.0"]
 
 [userenv.shared]
 NEXT_PUBLIC_BASE_URL = "https://www.aldeyarksa.tech"
+
+[userenv.production]
+DATABASE_URL_UNPOOLED = "postgresql://neondb_owner:npg_Cdt08PknDiKz@ep-withered-bread-a48nkvax.us-east-1.aws.neon.tech/neondb?sslmode=require"
+PGHOST_UNPOOLED = "ep-withered-bread-a48nkvax.us-east-1.aws.neon.tech"
+POSTGRES_URL = "postgresql://neondb_owner:npg_Cdt08PknDiKz@ep-withered-bread-a48nkvax-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+POSTGRES_URL_NON_POOLING = "postgresql://neondb_owner:npg_Cdt08PknDiKz@ep-withered-bread-a48nkvax.us-east-1.aws.neon.tech/neondb?sslmode=require"
+POSTGRES_HOST = "ep-withered-bread-a48nkvax-pooler.us-east-1.aws.neon.tech"
+POSTGRES_DATABASE = "neondb"
+POSTGRES_URL_NO_SSL = "postgresql://neondb_owner:npg_Cdt08PknDiKz@ep-withered-bread-a48nkvax-pooler.us-east-1.aws.neon.tech/neondb"
+POSTGRES_PRISMA_URL = "postgresql://neondb_owner:npg_Cdt08PknDiKz@ep-withered-bread-a48nkvax-pooler.us-east-1.aws.neon.tech/neondb?connect_timeout=15&sslmode=require"

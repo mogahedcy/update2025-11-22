@@ -74,9 +74,24 @@ Image storage: Cloudinary preferred over local storage for better performance, a
 - **Google Custom Search API**: Image search for automated article image selection.
 
 ## Automation System
-- **Intelligent Content Automation**: An automation system for generating SEO-optimized articles and fixing content using Groq AI. Includes scheduled article generation, smart SEO fixing, a dashboard control panel, comprehensive logging, and external cron job support.
+- **Intelligent Content Automation**: Complete automation system for generating SEO-optimized articles AND FAQs using Groq AI. Includes scheduled generation with configurable frequency (daily/weekly/monthly), smart SEO fixing, dashboard control panel, comprehensive logging, and external cron job support via `/api/cron/scheduled-tasks`.
+- **Article Generation**: Manual (`/dashboard/ai-agent`) and automated scheduling with batch generation, auto-publish, and competitor analysis.
+- **FAQ Generation**: Manual (`/dashboard/ai-faq`) and automated scheduling with topic-based generation, batch processing, and auto-publish options.
+
+# Deployment Configuration
+
+## Production Database
+- **Host**: Neon PostgreSQL (ep-withered-bread-a48nkvax-pooler.us-east-1.aws.neon.tech)
+- **Database**: neondb
+- **Environment Variables**: Configured in production environment (DATABASE_URL, POSTGRES_URL, and related connection strings).
+- **Ready for**: Replit publishing/deployment with automatic database connection.
 
 # Recent Changes
+
+## AI FAQ Automation & Production Setup (November 28, 2025)
+- **FAQ Scheduling Integration**: Added FAQ scheduling to automation dashboard with topic/niche configuration, frequency selection (daily/weekly/monthly), and batch count control.
+- **Automated FAQ Generation**: Integrated FAQ generation into cron scheduled tasks (`/api/cron/scheduled-tasks`) for automated FAQ creation alongside articles.
+- **Production Database**: Set up Neon PostgreSQL production database with all connection credentials in production environment.
 
 ## SEO Site-Wide Audit & Fixes (November 28, 2025)
 - **Issues Found & Fixed**:
