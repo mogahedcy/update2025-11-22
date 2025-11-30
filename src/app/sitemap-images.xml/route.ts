@@ -1,75 +1,159 @@
-
 import { prisma } from '@/lib/prisma';
+
+interface ImageData {
+  url: string;
+  caption: string;
+  title: string;
+  alt: string;
+  location: string;
+}
+
+interface PageWithImages {
+  pageUrl: string;
+  images: ImageData[];
+  lastmod: string;
+  priority: string;
+  changefreq: string;
+}
 
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
   
-  // الصور الأساسية للموقع
-  const staticImages = [
+  const pagesWithImages: PageWithImages[] = [];
+
+  const staticPages: PageWithImages[] = [
     {
-      url: '/images/logo.png',
-      caption: 'شعار محترفين الديار العالمية - أفضل شركة مظلات وسواتر في جدة',
-      title: 'محترفين الديار العالمية',
-      location: 'جدة، السعودية'
+      pageUrl: `${baseUrl}`,
+      images: [
+        {
+          url: `${baseUrl}/images/logo.png`,
+          caption: 'شعار محترفين الديار العالمية - أفضل شركة مظلات وسواتر في جدة',
+          title: 'محترفين الديار العالمية',
+          alt: 'شعار محترفين الديار العالمية',
+          location: 'جدة، السعودية'
+        },
+        {
+          url: `${baseUrl}/images/hero-bg.webp`,
+          caption: 'الصفحة الرئيسية - مظلات وسواتر وبرجولات عالية الجودة في جدة',
+          title: 'خدمات المظلات والسواتر في جدة',
+          alt: 'مظلات وسواتر جدة - محترفين الديار العالمية',
+          location: 'جدة، السعودية'
+        }
+      ],
+      lastmod: new Date().toISOString(),
+      priority: '1.0',
+      changefreq: 'daily'
     },
     {
-      url: '/images/hero-bg.jpg',
-      caption: 'الصفحة الرئيسية - مظلات وسواتر وبرجولات عالية الجودة في جدة',
-      title: 'خدمات المظلات والسواتر في جدة',
-      location: 'جدة، السعودية'
+      pageUrl: `${baseUrl}/services/mazallat`,
+      images: [
+        {
+          url: `${baseUrl}/uploads/mazallat-1.webp`,
+          caption: 'مظلات سيارات عالية الجودة - تركيب احترافي في جدة مع ضمان 10 سنوات',
+          title: 'مظلات سيارات جدة - محترفين الديار',
+          alt: 'تركيب مظلات سيارات في جدة',
+          location: 'جدة، السعودية'
+        }
+      ],
+      lastmod: new Date().toISOString(),
+      priority: '0.9',
+      changefreq: 'weekly'
+    },
+    {
+      pageUrl: `${baseUrl}/services/pergolas`,
+      images: [
+        {
+          url: `${baseUrl}/uploads/pergola-1.jpg`,
+          caption: 'برجولات خشبية وحديدية للحدائق - تصميم وتنفيذ احترافي في جدة',
+          title: 'برجولات حدائق جدة - محترفين الديار',
+          alt: 'برجولات خشبية للحدائق في جدة',
+          location: 'جدة، السعودية'
+        }
+      ],
+      lastmod: new Date().toISOString(),
+      priority: '0.9',
+      changefreq: 'weekly'
+    },
+    {
+      pageUrl: `${baseUrl}/services/sawater`,
+      images: [
+        {
+          url: `${baseUrl}/uploads/sawater-1.webp`,
+          caption: 'سواتر خصوصية وحماية - أحدث التصاميم والخامات في جدة',
+          title: 'سواتر جدة - محترفين الديار',
+          alt: 'سواتر خصوصية في جدة',
+          location: 'جدة، السعودية'
+        }
+      ],
+      lastmod: new Date().toISOString(),
+      priority: '0.9',
+      changefreq: 'weekly'
+    },
+    {
+      pageUrl: `${baseUrl}/services/sandwich-panel`,
+      images: [
+        {
+          url: `${baseUrl}/uploads/sandwich-panel-1.jpg`,
+          caption: 'ساندوتش بانل للعزل الحراري - حلول متقدمة وعالية الجودة في جدة',
+          title: 'ساندوتش بانل جدة - محترفين الديار',
+          alt: 'ألواح ساندوتش بانل للعزل الحراري',
+          location: 'جدة، السعودية'
+        }
+      ],
+      lastmod: new Date().toISOString(),
+      priority: '0.9',
+      changefreq: 'weekly'
+    },
+    {
+      pageUrl: `${baseUrl}/services/landscaping`,
+      images: [
+        {
+          url: `${baseUrl}/uploads/landscaping-1.webp`,
+          caption: 'تنسيق وتصميم الحدائق - خدمات شاملة واحترافية في جدة',
+          title: 'تنسيق حدائق جدة - محترفين الديار',
+          alt: 'تنسيق حدائق منزلية في جدة',
+          location: 'جدة، السعودية'
+        }
+      ],
+      lastmod: new Date().toISOString(),
+      priority: '0.9',
+      changefreq: 'weekly'
+    },
+    {
+      pageUrl: `${baseUrl}/services/byoot-shaar`,
+      images: [
+        {
+          url: `${baseUrl}/uploads/byoot-shaar-1.webp`,
+          caption: 'بيوت شعر تراثية - أصالة وجودة عالية في جدة',
+          title: 'بيوت شعر جدة - محترفين الديار',
+          alt: 'بيوت شعر تراثية في جدة',
+          location: 'جدة، السعودية'
+        }
+      ],
+      lastmod: new Date().toISOString(),
+      priority: '0.9',
+      changefreq: 'weekly'
+    },
+    {
+      pageUrl: `${baseUrl}/services/khayyam`,
+      images: [
+        {
+          url: `${baseUrl}/uploads/khayyam-1.webp`,
+          caption: 'خيام ملكية فاخرة - للمناسبات الخاصة والاستراحات في جدة',
+          title: 'خيام ملكية جدة - محترفين الديار',
+          alt: 'خيام ملكية للمناسبات في جدة',
+          location: 'جدة، السعودية'
+        }
+      ],
+      lastmod: new Date().toISOString(),
+      priority: '0.9',
+      changefreq: 'weekly'
     }
   ];
 
-  // صور الخدمات
-  const serviceImages = [
-    {
-      url: '/uploads/mazallat-1.webp',
-      caption: 'مظلات سيارات عالية الجودة - تركيب احترافي في جدة',
-      title: 'مظلات سيارات جدة',
-      location: 'جدة، السعودية'
-    },
-    {
-      url: '/uploads/pergola-1.jpg',
-      caption: 'برجولات خشبية وحديدية للحدائق - تصميم وتنفيذ في جدة',
-      title: 'برجولات حدائق جدة',
-      location: 'جدة، السعودية'
-    },
-    {
-      url: '/uploads/sawater-1.webp',
-      caption: 'سواتر خصوصية وحماية - أحدث التصاميم في جدة',
-      title: 'سواتر جدة',
-      location: 'جدة، السعودية'
-    },
-    {
-      url: '/uploads/sandwich-panel-1.jpg',
-      caption: 'ساندوتش بانل للعزل الحراري - حلول متقدمة في جدة',
-      title: 'ساندوتش بانل جدة',
-      location: 'جدة، السعودية'
-    },
-    {
-      url: '/uploads/landscaping-1.webp',
-      caption: 'تنسيق وتصميم الحدائق - خدمات شاملة في جدة',
-      title: 'تنسيق حدائق جدة',
-      location: 'جدة، السعودية'
-    },
-    {
-      url: '/uploads/byoot-shaar-1.webp',
-      caption: 'بيوت شعر تراثية - أصالة وجودة في جدة',
-      title: 'بيوت شعر جدة',
-      location: 'جدة، السعودية'
-    },
-    {
-      url: '/uploads/khayyam-1.webp',
-      caption: 'خيام ملكية فاخرة - للمناسبات الخاصة في جدة',
-      title: 'خيام ملكية جدة',
-      location: 'جدة، السعودية'
-    }
-  ];
-
-  let projectImages: any[] = [];
+  pagesWithImages.push(...staticPages);
 
   try {
-    // جلب صور المشاريع من قاعدة البيانات
     const projects = await prisma.projects.findMany({
       where: {
         status: 'PUBLISHED'
@@ -82,6 +166,7 @@ export async function GET() {
         category: true,
         location: true,
         createdAt: true,
+        updatedAt: true,
         publishedAt: true,
         media_items: {
           where: {
@@ -100,73 +185,88 @@ export async function GET() {
       }
     });
 
-    projectImages = projects.flatMap(project => 
-      project.media_items.map((media, index) => {
-        // توليد alt text محسّن إذا لم يكن موجود
+    for (const project of projects) {
+      if (project.media_items.length === 0) continue;
+
+      const projectImages: ImageData[] = project.media_items.map((media, index) => {
+        const imageUrl = media.src.startsWith('http') 
+          ? media.src 
+          : `${baseUrl}${media.src.startsWith('/') ? '' : '/'}${media.src}`;
+        
         const optimizedAlt = media.alt || 
           `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | محترفين الديار العالمية`;
         
-        // توليد caption مفصل
         const caption = media.description || 
           `صورة توضيحية لمشروع ${project.title} من نوع ${project.category} في ${project.location}. تنفيذ محترفين الديار العالمية بجودة عالية وضمان 10 سنوات`;
         
-        // توليد title للصورة
         const imageTitle = media.title || 
-          `${project.category} - ${project.title} | محترفين الديار`;
+          `${project.category} - ${project.title} - صورة ${index + 1} | محترفين الديار`;
 
         return {
-          url: media.src.startsWith('http') ? media.src : `${baseUrl}${media.src}`,
+          url: imageUrl.replace(/\s+/g, '%20'),
           caption,
           title: imageTitle,
           alt: optimizedAlt,
-          location: `${project.location}, السعودية`,
-          project_url: `${baseUrl}/portfolio/${project.slug || project.id}`,
-          category: project.category,
-          uploadDate: project.publishedAt || project.createdAt
+          location: `${project.location || 'جدة'}، السعودية`
         };
-      })
-    );
+      });
+
+      const projectSlug = project.slug || project.id;
+      const lastmod = (project.updatedAt || project.publishedAt || project.createdAt);
+
+      pagesWithImages.push({
+        pageUrl: `${baseUrl}/portfolio/${projectSlug}`,
+        images: projectImages,
+        lastmod: lastmod ? new Date(lastmod).toISOString() : new Date().toISOString(),
+        priority: '0.8',
+        changefreq: 'weekly'
+      });
+    }
   } catch (error) {
     console.error('خطأ في جلب صور المشاريع:', error);
   }
 
-  // دمج جميع الصور
-  const allImages = [...staticImages, ...serviceImages, ...projectImages];
+  function escapeXml(str: string): string {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
+  }
 
-  const imagesSitemap = allImages
-    .map(image => {
-      const imageUrl = image.url.startsWith('http') ? image.url : `${baseUrl}${image.url}`;
-      const pageUrl = image.project_url || `${baseUrl}/portfolio`;
-      const uploadDate = image.uploadDate ? new Date(image.uploadDate).toISOString() : new Date().toISOString();
-      
-      // تنظيف URL من المسافات
-      const cleanImageUrl = imageUrl.replace(/\s+/g, '');
-      const cleanPageUrl = pageUrl.replace(/\s+/g, '');
-      
-      // إضافة معلومات محسّنة للصور (بدون image:description لأنه غير مدعوم)
-      const imageXml = `<url>
-    <loc>${cleanPageUrl}</loc>
-    <image:image>
-      <image:loc>${cleanImageUrl}</image:loc>
-      <image:caption><![CDATA[${image.caption}]]></image:caption>
-      <image:title><![CDATA[${image.title}]]></image:title>
-      <image:geo_location><![CDATA[${image.location}]]></image:geo_location>
-      <image:license><![CDATA[${baseUrl}/terms]]></image:license>
-    </image:image>
-    <lastmod>${uploadDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+  function generateImagesXml(images: ImageData[]): string {
+    return images.map(img => {
+      const cleanUrl = img.url.replace(/\s+/g, '%20');
+      return `    <image:image>
+      <image:loc>${escapeXml(cleanUrl)}</image:loc>
+      <image:caption><![CDATA[${img.caption}]]></image:caption>
+      <image:title><![CDATA[${img.title}]]></image:title>
+      <image:geo_location><![CDATA[${img.location}]]></image:geo_location>
+    </image:image>`;
+    }).join('\n');
+  }
+
+  const urlEntries = pagesWithImages.map(page => {
+    const cleanPageUrl = page.pageUrl.replace(/\s+/g, '%20');
+    const imagesXml = generateImagesXml(page.images);
+    
+    return `  <url>
+    <loc>${escapeXml(cleanPageUrl)}</loc>
+${imagesXml}
+    <lastmod>${page.lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
   </url>`;
-      
-      return imageXml;
-    })
-    .join('\n  ');
+  }).join('\n');
+
+  const totalImages = pagesWithImages.reduce((sum, page) => sum + page.images.length, 0);
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  ${imagesSitemap}
+${urlEntries}
 </urlset>`;
 
   return new Response(sitemap, {
@@ -177,7 +277,8 @@ export async function GET() {
       'CDN-Cache-Control': 'max-age=1800',
       'Vercel-CDN-Cache-Control': 'max-age=1800',
       'X-Robots-Tag': 'index, follow, all',
-      'X-Images-Count': allImages.length.toString(),
+      'X-Total-Pages': pagesWithImages.length.toString(),
+      'X-Total-Images': totalImages.toString(),
       'X-Last-Updated': new Date().toISOString(),
       'Vary': 'Accept-Encoding',
       'ETag': `"images-sitemap-${Date.now()}"`,

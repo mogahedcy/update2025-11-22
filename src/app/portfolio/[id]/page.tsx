@@ -6,6 +6,8 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { prisma } from '@/lib/prisma';
 import { 
   generateCreativeWorkSchema,
+  generateImageGallerySchema,
+  generateProjectSchema,
   generateOpenGraphMetadata,
   generateTwitterMetadata,
   generateRobotsMetadata,
@@ -251,7 +253,6 @@ export default async function ProjectDetailsPage({ params }: Props) {
       alt: item.alt || item.title || `${project.category} في ${project.location} - صورة ${index + 1}`
     })),
     videos: videos.map((item: any, index: number) => {
-      // إنشاء thumbnail من الفيديو نفسه باستخدام Cloudinary
       const videoThumbnail = generateVideoThumbnail(item.src);
       
       return {
@@ -260,18 +261,15 @@ export default async function ProjectDetailsPage({ params }: Props) {
         description: item.description || `فيديو يوضح تفاصيل مشروع ${project.title} في ${project.location}`,
         contentUrl: getAbsoluteUrl(item.src),
         embedUrl: fullUrl,
-        // استخدام thumbnail من الفيديو نفسه أو الـ thumbnail المخزن
         thumbnailUrl: videoThumbnail || (item.thumbnail ? getAbsoluteUrl(item.thumbnail) : undefined),
         uploadDate: project.createdAt,
         duration: item.duration
       };
     }),
-    // إضافة aggregateRating فقط إذا كان هناك تقييمات صالحة
     aggregateRating: validReviews.length > 0 && averageRating > 0 ? {
       ratingValue: averageRating,
       reviewCount: validReviews.length
     } : undefined,
-    // إضافة reviews فقط إذا كانت البيانات كاملة وصالحة
     reviews: validReviews.length > 0 ? validReviews.map((comment: any) => ({
       author: comment.name?.trim() || 'عميل',
       rating: Math.min(5, Math.max(1, Number(comment.rating))),
@@ -279,6 +277,48 @@ export default async function ProjectDetailsPage({ params }: Props) {
       datePublished: comment.createdAt ? new Date(comment.createdAt).toISOString() : new Date().toISOString()
     })).filter((r: any) => r.reviewBody.length > 0) : undefined
   });
+
+  const imageGallerySchema = images.length > 1 ? generateImageGallerySchema({
+    name: `معرض صور ${project.title}`,
+    description: `معرض صور مشروع ${project.title} - ${project.category} في ${project.location} | محترفين الديار العالمية`,
+    url: `/portfolio/${project.slug || id}`,
+    category: project.category,
+    location: project.location,
+    dateCreated: project.createdAt,
+    dateModified: project.updatedAt,
+    images: images.map((item: any, index: number) => ({
+      url: getAbsoluteUrl(item.src),
+      caption: item.title || `${project.title} - ${project.category} - صورة ${index + 1}`,
+      alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1}`,
+      width: 1200,
+      height: 800
+    }))
+  }) : null;
+
+  const projectSchema = images.length > 0 ? generateProjectSchema({
+    name: project.title,
+    description: project.description,
+    url: `/portfolio/${project.slug || id}`,
+    category: project.category,
+    location: project.location,
+    dateCreated: project.createdAt,
+    dateModified: project.updatedAt,
+    images: images.map((item: any, index: number) => ({
+      url: getAbsoluteUrl(item.src),
+      caption: item.title || `${project.title} - صورة ${index + 1}`,
+      alt: item.alt || `${project.category} في ${project.location}`
+    })),
+    videos: videos.length > 0 ? videos.map((item: any, index: number) => ({
+      url: getAbsoluteUrl(item.src),
+      name: item.title || `${project.title} - فيديو ${index + 1}`,
+      description: item.description || `فيديو مشروع ${project.title}`,
+      thumbnailUrl: generateVideoThumbnail(item.src) || undefined
+    })) : undefined,
+    aggregateRating: validReviews.length > 0 && averageRating > 0 ? {
+      ratingValue: averageRating,
+      reviewCount: validReviews.length
+    } : undefined
+  }) : null;
 
   return (
     <>
@@ -289,6 +329,22 @@ export default async function ProjectDetailsPage({ params }: Props) {
           __html: JSON.stringify(structuredData),
         }}
       />
+      {projectSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(projectSchema),
+          }}
+        />
+      )}
+      {imageGallerySchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(imageGallerySchema),
+          }}
+        />
+      )}
       <Navbar />
       <ProjectDetailsClient project={project} projectId={id} />
       <Footer />

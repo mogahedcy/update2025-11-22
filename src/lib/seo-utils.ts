@@ -475,6 +475,191 @@ export function generateAggregateRatingSchema(data: {
   };
 }
 
+export function generateImageGallerySchema(data: {
+  name: string;
+  description: string;
+  url: string;
+  images: Array<{
+    url: string;
+    caption?: string;
+    alt?: string;
+    width?: number;
+    height?: number;
+  }>;
+  category?: string;
+  location?: string;
+  dateCreated?: string;
+  dateModified?: string;
+}) {
+  const pageUrl = generateCanonicalUrl(data.url);
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${pageUrl}#gallery`,
+    "name": data.name,
+    "description": data.description,
+    "url": pageUrl,
+    "numberOfItems": data.images.length,
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "itemListElement": data.images.map((img, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "ImageObject",
+        "@id": `${pageUrl}#image-${index + 1}`,
+        "url": img.url,
+        "contentUrl": img.url,
+        "name": img.caption || `${data.name} - صورة ${index + 1}`,
+        "description": img.alt || img.caption || data.name,
+        "caption": img.caption || `${data.name} - صورة ${index + 1}`,
+        ...(img.width && { "width": { "@type": "QuantitativeValue", "value": img.width, "unitCode": "E37" } }),
+        ...(img.height && { "height": { "@type": "QuantitativeValue", "value": img.height, "unitCode": "E37" } }),
+        "license": `${BASE_URL}/terms`,
+        "acquireLicensePage": `${BASE_URL}/contact`,
+        "creditText": `محترفين الديار العالمية - ${data.location || 'جدة'}`,
+        "copyrightNotice": "© محترفين الديار العالمية",
+        "creator": {
+          "@type": "Organization",
+          "name": SITE_NAME,
+          "url": BASE_URL
+        },
+        "copyrightHolder": {
+          "@type": "Organization",
+          "name": SITE_NAME
+        }
+      }
+    })),
+    ...(data.location && {
+      "about": {
+        "@type": "Place",
+        "name": data.location,
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": data.location,
+          "addressCountry": "SA"
+        }
+      }
+    }),
+    "author": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "url": BASE_URL
+    }
+  };
+}
+
+export function generateProjectSchema(data: {
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+  location: string;
+  dateCreated?: string;
+  dateModified?: string;
+  images: Array<{
+    url: string;
+    caption?: string;
+    alt?: string;
+  }>;
+  videos?: Array<{
+    url: string;
+    name?: string;
+    description?: string;
+    thumbnailUrl?: string;
+  }>;
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+  };
+}) {
+  const pageUrl = generateCanonicalUrl(data.url);
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": ["CreativeWork", "VisualArtwork"],
+    "@id": pageUrl,
+    "name": data.name,
+    "headline": data.name,
+    "description": data.description,
+    "url": pageUrl,
+    "inLanguage": "ar",
+    "genre": data.category,
+    "artform": data.category,
+    "artworkSurface": data.category,
+    ...(data.dateCreated && { 
+      "dateCreated": data.dateCreated,
+      "datePublished": data.dateCreated
+    }),
+    ...(data.dateModified && { "dateModified": data.dateModified }),
+    "locationCreated": {
+      "@type": "Place",
+      "name": data.location,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": data.location,
+        "addressRegion": "منطقة مكة المكرمة",
+        "addressCountry": "SA"
+      }
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "url": BASE_URL,
+      "telephone": "+966553719009"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/favicon.svg`
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": pageUrl
+    },
+    "image": data.images.map((img, index) => ({
+      "@type": "ImageObject",
+      "@id": `${pageUrl}#image-${index + 1}`,
+      "url": img.url,
+      "contentUrl": img.url,
+      "name": img.caption || `${data.name} - صورة ${index + 1}`,
+      "description": img.alt || `${data.category} في ${data.location} - صورة ${index + 1}`,
+      "caption": img.caption || `مشروع ${data.name} - ${data.category}`,
+      "representativeOfPage": index === 0,
+      "license": `${BASE_URL}/terms`,
+      "creditText": "محترفين الديار العالمية"
+    })),
+    ...(data.videos && data.videos.length > 0 && {
+      "video": data.videos.map((video, index) => ({
+        "@type": "VideoObject",
+        "@id": `${pageUrl}#video-${index + 1}`,
+        "name": video.name || `${data.name} - فيديو ${index + 1}`,
+        "description": video.description || `فيديو مشروع ${data.name}`,
+        "contentUrl": video.url,
+        "thumbnailUrl": video.thumbnailUrl || `${BASE_URL}/favicon.svg`,
+        "uploadDate": data.dateCreated || new Date().toISOString()
+      }))
+    }),
+    ...(data.aggregateRating && data.aggregateRating.reviewCount > 0 && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": data.aggregateRating.ratingValue,
+        "reviewCount": data.aggregateRating.reviewCount,
+        "bestRating": 5,
+        "worstRating": 1
+      }
+    }),
+    "isAccessibleForFree": true,
+    "copyrightHolder": {
+      "@type": "Organization",
+      "name": SITE_NAME
+    }
+  };
+}
+
 export function generateOpenGraphMetadata(data: {
   title: string;
   description: string;
