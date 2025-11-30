@@ -80,7 +80,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   
   return (
     <>
-      <HomePageBreadcrumb />
+      <HomePageBreadcrumb locale={locale} />
       <ReviewSchema 
         serviceName={isArabic ? "مظلات وبرجولات وسواتر جدة - محترفين الديار العالمية" : "Shades, Pergolas and Fences Jeddah - Aldeyar Global"}
         itemType="LocalBusiness"

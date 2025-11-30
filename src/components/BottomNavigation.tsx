@@ -1,47 +1,69 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useParams } from 'next/navigation';
 import { Home, Briefcase, Phone, MessageCircle, FolderKanban } from 'lucide-react';
-
-const navItems = [
-  {
-    label: 'الرئيسية',
-    href: '/',
-    icon: Home,
-  },
-  {
-    label: 'خدماتنا',
-    href: '/#services',
-    icon: Briefcase,
-  },
-  {
-    label: 'واتساب',
-    href: 'https://wa.me/+966553719009',
-    icon: MessageCircle,
-    external: true,
-  },
-  {
-    label: 'معرض الأعمال',
-    href: '/portfolio',
-    icon: FolderKanban,
-  },
-  {
-    label: 'اتصل بنا',
-    href: '/contact',
-    icon: Phone,
-  },
-];
 
 export default function BottomNavigation() {
   const pathname = usePathname();
+  const params = useParams();
+  
+  const locale = (params?.locale as string) || (pathname.startsWith('/en') ? 'en' : 'ar');
+  const isRTL = locale === 'ar';
+  const localePath = isRTL ? '' : '/en';
+
+  const navItems = [
+    {
+      label: isRTL ? 'الرئيسية' : 'Home',
+      href: `${localePath}/`,
+      matchPaths: [`${localePath}/`, localePath || '/'],
+      icon: Home,
+    },
+    {
+      label: isRTL ? 'خدماتنا' : 'Services',
+      href: `${localePath}/#services`,
+      matchPaths: [`${localePath}/services`, `${localePath}/#services`],
+      icon: Briefcase,
+    },
+    {
+      label: 'WhatsApp',
+      href: 'https://wa.me/+966553719009',
+      matchPaths: [],
+      icon: MessageCircle,
+      external: true,
+    },
+    {
+      label: isRTL ? 'معرض الأعمال' : 'Portfolio',
+      href: `${localePath}/portfolio`,
+      matchPaths: [`${localePath}/portfolio`],
+      icon: FolderKanban,
+    },
+    {
+      label: isRTL ? 'اتصل بنا' : 'Contact',
+      href: `${localePath}/contact`,
+      matchPaths: [`${localePath}/contact`],
+      icon: Phone,
+    },
+  ];
+
+  const isItemActive = (matchPaths: string[]) => {
+    return matchPaths.some(path => {
+      if (path.endsWith('/')) {
+        return pathname === path || pathname === path.slice(0, -1);
+      }
+      return pathname === path || pathname.startsWith(path + '/');
+    });
+  };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t-2 border-gray-100 shadow-2xl z-50 lg:hidden">
+    <nav 
+      className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t-2 border-gray-100 shadow-2xl z-50 lg:hidden"
+      dir={isRTL ? 'rtl' : 'ltr'}
+    >
       <div className="flex items-center justify-around h-16">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href;
+          const isActive = isItemActive(item.matchPaths);
           
           if (item.external) {
             return (
@@ -50,14 +72,10 @@ export default function BottomNavigation() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex flex-col items-center justify-center w-full h-full space-y-1 touch-target transition-all duration-200 active:scale-95 ${
-                  isActive
-                    ? 'text-accent'
-                    : 'text-gray-600 hover:text-accent'
-                }`}
+                className="flex flex-col items-center justify-center w-full h-full space-y-1 touch-target transition-all duration-200 active:scale-95 text-gray-600 hover:text-accent"
               >
-                <div className={`relative ${isActive ? 'bg-accent/10' : ''} rounded-full p-1.5`}>
-                  <Icon className={`w-5 h-5 ${isActive ? 'text-accent' : ''}`} />
+                <div className="relative rounded-full p-1.5">
+                  <Icon className="w-5 h-5" />
                   {item.icon === MessageCircle && (
                     <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -65,7 +83,7 @@ export default function BottomNavigation() {
                     </span>
                   )}
                 </div>
-                <span className={`text-xs font-medium ${isActive ? 'text-accent' : ''}`}>
+                <span className="text-xs font-medium">
                   {item.label}
                 </span>
               </a>

@@ -3,9 +3,14 @@ import { BreadcrumbItem } from './Breadcrumb';
 interface BreadcrumbSchemaProps {
   items: BreadcrumbItem[];
   baseUrl?: string;
+  homeName?: string;
 }
 
-export default function BreadcrumbSchema({ items, baseUrl = 'https://www.aldeyarksa.tech' }: BreadcrumbSchemaProps) {
+export default function BreadcrumbSchema({ 
+  items, 
+  baseUrl = 'https://www.aldeyarksa.tech',
+  homeName = 'الرئيسية'
+}: BreadcrumbSchemaProps) {
   const breadcrumbList = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -13,7 +18,7 @@ export default function BreadcrumbSchema({ items, baseUrl = 'https://www.aldeyar
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "الرئيسية",
+        "name": homeName,
         "item": baseUrl
       },
       ...items.map((item, index) => ({
