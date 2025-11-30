@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "title": "Aldeyar Global Professionals | Best Shades & Pergolas in Jeddah - 15 Years Experience",
+    "description": "The leading company in Jeddah for installing shades, pergolas, and fences. 15 years of experience, 10-year warranty, professional installation, competitive prices."
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About Us",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "contact": "Contact Us",
+    "services": "Our Services",
+    "search": "Search",
+    "callNow": "Call Now",
+    "getQuote": "Get a Quote",
+    "freeQuote": "Get a Free Quote",
+    "location": "Jeddah, Saudi Arabia",
+    "specializedServices": "Our Specialized Services",
+    "servicesDescription": "We provide the best solutions in shades, fences, and design with quality assurance"
+  },
+  "features": {
+    "experience": "15+ Years Experience",
+    "warranty": "10-Year Warranty",
+    "service247": "24/7 Service",
+    "qualityGuaranteed": "Quality Guaranteed"
+  },
+  "services": {
+    "carShades": {
+      "title": "Car Shades",
+      "description": "Advanced shades to protect vehicles"
+    },
+    "tents": {
+      "title": "Tents & Traditional Houses",
+      "description": "Distinctive traditional and modern tents"
+    },
+    "hairHouses": {
+      "title": "Traditional Hair Houses",
+      "description": "Authentic and luxurious hair houses"
+    },
+    "fences": {
+      "title": "Fences",
+      "description": "Privacy and protection fences"
+    },
+    "landscaping": {
+      "title": "Landscaping",
+      "description": "Green space design and landscaping"
+    },
+    "pergolas": {
+      "title": "Pergolas",
+      "description": "Elegant wooden and iron pergolas"
+    },
+    "renovation": {
+      "title": "Finishing & Renovation",
+      "description": "Renovation and finishing services"
+    },
+    "sandwichPanel": {
+      "title": "Sandwich Panel",
+      "description": "Advanced insulating panels"
+    }
+  },
+  "hero": {
+    "companyName": "Aldeyar Professionals",
+    "tagline": "Shades, Fences, Pergolas & Sandwich Panels in Jeddah",
+    "description": "Car shades installation • Garden pergolas • Fences • Sandwich panels • Landscaping • Traditional houses • Royal tents • Renovation",
+    "projects": "5000+ Projects",
+    "warranty": "10-Year Warranty",
+    "experience": "15+ Years Experience",
+    "freeConsultation": "Free Consultation Now",
+    "needHelp": "Need help? Contact us!"
+  },
+  "footer": {
+    "aboutCompany": "About the Company",
+    "aboutDescription": "Aldeyar Global Professionals - The leading company in shades, fences, and pergolas in Jeddah for over 15 years.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "contactUs": "Contact Us",
+    "workHours": "Working Hours",
+    "everyday": "Every Day",
+    "allRightsReserved": "All Rights Reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "common": {
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try Again",
+    "noResults": "No results found",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "language": "Language",
+    "arabic": "العربية",
+    "english": "English"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help. Contact us anytime.",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "message": "Your Message",
+    "send": "Send Message",
+    "success": "Your message was sent successfully!",
+    "orCall": "Or call us directly"
+  },
+  "about": {
+    "title": "About Aldeyar Global Professionals",
+    "subtitle": "15 Years of Experience at Your Service",
+    "description": "Aldeyar Global Professionals was established to be the first choice in shades, fences, and pergolas in the Kingdom of Saudi Arabia.",
+    "mission": "Our Mission",
+    "missionText": "Providing the best integrated solutions in shades and fences with the highest quality standards.",
+    "vision": "Our Vision",
+    "visionText": "To be the leading company in the Kingdom of Saudi Arabia in shades and fences."
+  },
+  "portfolio": {
+    "title": "Our Portfolio",
+    "subtitle": "Discover our distinguished projects",
+    "allCategories": "All Categories",
+    "viewProject": "View Project",
+    "projectDetails": "Project Details"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most common questions"
+  },
+  "articles": {
+    "title": "Blog",
+    "subtitle": "Latest articles and tips",
+    "readTime": "minutes to read",
+    "relatedArticles": "Related Articles"
+  }
+}
