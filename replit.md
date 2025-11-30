@@ -128,3 +128,20 @@ Image storage: Cloudinary preferred over local storage for better performance, a
   1. Test with Google Rich Results Test tool
   2. Request re-crawl in Google Search Console
   3. Wait 24-48 hours for Google to reprocess pages
+
+## Multi-Language Support Implementation (November 30, 2025)
+- **Internationalization Setup**: Added next-intl for multi-language support with Arabic (default) and English locales.
+- **Routing Configuration**: 
+  - Uses `localePrefix: 'as-needed'` so Arabic content is at `/` and English at `/en`
+  - Middleware handles locale detection and routing
+- **Translated Components**:
+  - `HomePageBreadcrumb`: Displays "الرئيسية" for Arabic, "Home" for English
+  - `BottomNavigation`: Mobile navigation with localized labels
+  - `Navbar`: Includes language switcher with AR/EN flags
+  - `HeroSection`: Full content translation
+  - `BreadcrumbSchema`: Localized structured data
+- **Translation Files**: `messages/ar.json` and `messages/en.json` contain comprehensive translations
+- **Technical Notes**:
+  - `locale` prop not supported in next/link with App Router; use href with locale prefix instead
+  - Locale detection uses `useParams()` hook for reliability
+  - Pages outside `[locale]` folder retain original routing
