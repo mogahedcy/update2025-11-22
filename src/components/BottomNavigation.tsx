@@ -10,19 +10,18 @@ export default function BottomNavigation() {
   
   const locale = (params?.locale as string) || (pathname.startsWith('/en') ? 'en' : 'ar');
   const isRTL = locale === 'ar';
-  const localePath = isRTL ? '' : '/en';
 
   const navItems = [
     {
       label: isRTL ? 'الرئيسية' : 'Home',
-      href: `${localePath}/`,
-      matchPaths: [`${localePath}/`, localePath || '/'],
+      href: isRTL ? '/' : '/en',
+      matchPaths: ['/', '/ar', '/en'],
       icon: Home,
     },
     {
       label: isRTL ? 'خدماتنا' : 'Services',
-      href: `${localePath}/#services`,
-      matchPaths: [`${localePath}/services`, `${localePath}/#services`],
+      href: isRTL ? '/#services' : '/en#services',
+      matchPaths: ['/services', '/#services', '/en#services'],
       icon: Briefcase,
     },
     {
@@ -34,24 +33,28 @@ export default function BottomNavigation() {
     },
     {
       label: isRTL ? 'معرض الأعمال' : 'Portfolio',
-      href: `${localePath}/portfolio`,
-      matchPaths: [`${localePath}/portfolio`],
+      href: '/portfolio',
+      matchPaths: ['/portfolio'],
       icon: FolderKanban,
     },
     {
       label: isRTL ? 'اتصل بنا' : 'Contact',
-      href: `${localePath}/contact`,
-      matchPaths: [`${localePath}/contact`],
+      href: '/contact',
+      matchPaths: ['/contact'],
       icon: Phone,
     },
   ];
 
   const isItemActive = (matchPaths: string[]) => {
     return matchPaths.some(path => {
-      if (path.endsWith('/')) {
-        return pathname === path || pathname === path.slice(0, -1);
+      const cleanPathname = pathname.replace(/\/$/, '');
+      const cleanPath = path.replace(/\/$/, '');
+      
+      if (path === '/' || path === '/ar' || path === '/en') {
+        return cleanPathname === '' || cleanPathname === '/' || cleanPathname === '/ar' || cleanPathname === '/en';
       }
-      return pathname === path || pathname.startsWith(path + '/');
+      
+      return cleanPathname === cleanPath || cleanPathname.startsWith(cleanPath + '/');
     });
   };
 
