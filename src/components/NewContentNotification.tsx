@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { RefreshCw, X } from 'lucide-react';
 
 interface ContentVersion {
@@ -15,7 +15,8 @@ const CHECK_INTERVAL = 60000; // Check every minute
 
 export default function NewContentNotification() {
   const [showNotification, setShowNotification] = useState(false);
-  const [isChecking, setIsChecking] = useState(false);
+  const isCheckingRef = useRef(false);
+  const isMountedRef = useRef(true);
 
   const getStoredVersion = useCallback((): ContentVersion | null => {
     if (typeof window === 'undefined') return null;
@@ -37,23 +38,30 @@ export default function NewContentNotification() {
   }, []);
 
   const checkForUpdates = useCallback(async () => {
-    if (isChecking) return;
-    setIsChecking(true);
+    if (isCheckingRef.current) return;
+    isCheckingRef.current = true;
 
     try {
       const response = await fetch('/api/content-version', {
         cache: 'no-store',
         headers: {
-          'Cache-Control': 'no-cache'
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
         }
       });
 
       if (!response.ok) {
-        setIsChecking(false);
+        isCheckingRef.current = false;
         return;
       }
 
       const currentVersion = await response.json();
+      
+      if (!isMountedRef.current) {
+        isCheckingRef.current = false;
+        return;
+      }
+
       const storedVersion = getStoredVersion();
 
       if (!storedVersion) {
@@ -61,7 +69,7 @@ export default function NewContentNotification() {
           ...currentVersion,
           lastChecked: Date.now()
         });
-        setIsChecking(false);
+        isCheckingRef.current = false;
         return;
       }
 
@@ -70,19 +78,25 @@ export default function NewContentNotification() {
         currentVersion.articlesCount > storedVersion.articlesCount ||
         currentVersion.faqsCount > storedVersion.faqsCount;
 
-      if (hasNewContent) {
+      if (hasNewContent && isMountedRef.current) {
         setShowNotification(true);
       }
 
     } catch (error) {
       console.error('Error checking for updates:', error);
     } finally {
-      setIsChecking(false);
+      isCheckingRef.current = false;
     }
-  }, [isChecking, getStoredVersion, saveVersion]);
+  }, [getStoredVersion, saveVersion]);
 
-  const handleRefresh = () => {
-    fetch('/api/content-version', { cache: 'no-store' })
+  const handleRefresh = useCallback(() => {
+    fetch('/api/content-version', { 
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
       .then(res => res.json())
       .then(version => {
         saveVersion({
@@ -94,10 +108,16 @@ export default function NewContentNotification() {
     
     setShowNotification(false);
     window.location.reload();
-  };
+  }, [saveVersion]);
 
-  const handleDismiss = () => {
-    fetch('/api/content-version', { cache: 'no-store' })
+  const handleDismiss = useCallback(() => {
+    fetch('/api/content-version', { 
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    })
       .then(res => res.json())
       .then(version => {
         saveVersion({
@@ -108,15 +128,22 @@ export default function NewContentNotification() {
       .catch(() => {});
     
     setShowNotification(false);
-  };
+  }, [saveVersion]);
 
   useEffect(() => {
+    isMountedRef.current = true;
+
+    // Initial check after 3 seconds
     const timer = setTimeout(() => {
       checkForUpdates();
     }, 3000);
 
-    const interval = setInterval(checkForUpdates, CHECK_INTERVAL);
+    // Periodic check every minute
+    const interval = setInterval(() => {
+      checkForUpdates();
+    }, CHECK_INTERVAL);
 
+    // Check when tab becomes visible
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         checkForUpdates();
@@ -126,6 +153,7 @@ export default function NewContentNotification() {
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
+      isMountedRef.current = false;
       clearTimeout(timer);
       clearInterval(interval);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
