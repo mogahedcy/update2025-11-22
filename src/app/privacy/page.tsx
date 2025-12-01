@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Shield, Eye, Lock, FileText, Users, Globe, AlertCircle, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
+import NavbarArabic from '@/components/NavbarArabic'
 import Footer from '@/components/Footer'
 import { generateCanonicalUrl } from '@/lib/seo-utils'
 
@@ -68,7 +68,7 @@ const privacyPrinciples = [
 export default function PrivacyPage() {
   return (
     <>
-      <Navbar />
+      <NavbarArabic />
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}

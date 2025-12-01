@@ -1,6 +1,6 @@
 
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import ReviewsPageClient from './ReviewsPageClient';
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function ReviewsPage() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <NavbarArabic />
       <main className="flex-1">
         <ReviewsPageClient />
       </main>

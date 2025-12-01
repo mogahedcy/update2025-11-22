@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { prisma } from '@/lib/prisma';
@@ -345,7 +345,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
           }}
         />
       )}
-      <Navbar />
+      <NavbarArabic />
       <ProjectDetailsClient project={project} projectId={id} />
       <Footer />
     </>

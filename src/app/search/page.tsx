@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import SearchResults from '@/components/SearchResults';
 import AdvancedFilters from '@/components/AdvancedFilters';
@@ -192,7 +192,7 @@ function SearchContent() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
+      <NavbarArabic />
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-6">

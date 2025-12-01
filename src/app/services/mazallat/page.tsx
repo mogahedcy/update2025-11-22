@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
@@ -480,7 +480,7 @@ export default async function MazallatPage() {
 
       <div className="min-h-screen bg-background">
         {/* Navigation */}
-        <Navbar />
+        <NavbarArabic />
 
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/10 py-20 lg:py-32 overflow-hidden">

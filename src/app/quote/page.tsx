@@ -18,7 +18,7 @@ import {
   Award
 } from 'lucide-react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
+import NavbarArabic from '@/components/NavbarArabic'
 import Footer from '@/components/Footer'
 import { Button } from '@/components/ui/button'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
@@ -148,7 +148,7 @@ export default function QuotePage() {
       />
       <BreadcrumbSchema items={breadcrumbItems} />
 
-      <Navbar />
+      <NavbarArabic />
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}

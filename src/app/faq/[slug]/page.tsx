@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { ArrowRight, Home } from 'lucide-react';
@@ -145,7 +145,7 @@ export default async function FAQDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <Navbar />
+      <NavbarArabic />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import ArticleDetailsClient from './ArticleDetailsClient';
 import ArticleSchema from '@/components/ArticleSchema';
@@ -204,7 +204,7 @@ export default async function ArticlePage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsSchema) }}
         />
       )}
-      <Navbar />
+      <NavbarArabic />
       <ArticleDetailsClient article={article} />
       <Footer />
     </>

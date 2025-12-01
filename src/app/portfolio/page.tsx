@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import PortfolioPageClient from './PortfolioPageClient';
 import StructuredDataScript from '@/components/StructuredDataScript';
 import VideoObjectSchema from '@/components/VideoObjectSchema';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
@@ -90,7 +90,7 @@ export default function PortfolioPage() {
         uploadDate={new Date().toISOString()}
         duration="PT3M"
       />
-      <Navbar />
+      <NavbarArabic />
       <Suspense fallback={
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">

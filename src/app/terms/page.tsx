@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { FileText, Scale, Handshake, AlertTriangle, CheckCircle, Shield, Clock, DollarSign } from 'lucide-react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
+import NavbarArabic from '@/components/NavbarArabic'
 import Footer from '@/components/Footer'
 import { generateCanonicalUrl } from '@/lib/seo-utils'
 
@@ -68,7 +68,7 @@ const keyTerms = [
 export default function TermsPage() {
   return (
     <>
-      <Navbar />
+      <NavbarArabic />
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}

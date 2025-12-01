@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import FAQPageClient from './FAQPageClient';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import { Loader2 } from 'lucide-react';
 import { generateCanonicalUrl } from '@/lib/seo-utils';
@@ -92,7 +92,7 @@ export default async function FAQPage() {
   return (
     <>
       <EnhancedFAQSchema faqs={faqs} />
-      <Navbar />
+      <NavbarArabic />
       <Suspense fallback={<LoadingFallback />}>
         <FAQPageClient initialFAQs={faqs} />
       </Suspense>

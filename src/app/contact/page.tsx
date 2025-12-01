@@ -12,7 +12,7 @@ import {
   CheckCircle
 } from 'lucide-react'
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
+import NavbarArabic from '@/components/NavbarArabic'
 import Footer from '@/components/Footer'
 import { Button } from '@/components/ui/button'
 import StructuredDataScript from '@/components/StructuredDataScript'
@@ -143,7 +143,7 @@ export default function ContactPage() {
       />
       <BreadcrumbSchema items={breadcrumbItems} />
 
-      <Navbar />
+      <NavbarArabic />
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
