@@ -90,7 +90,8 @@ const formatDate = (date: string): string => {
   });
 };
 
-export default function ArticlesPageClient() {
+export default function ArticlesPageClient({ locale = 'ar' }: { locale?: string }) {
+  const isArabic = locale === 'ar';
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<Stats>({ total: 0, featured: 0, categories: [] });

@@ -1,0 +1,115 @@
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import ArticlesPageClient from './ArticlesPageClient';
+import StructuredDataScript from '@/components/StructuredDataScript';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { Loader2 } from 'lucide-react';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+
+  return {
+    title: isArabic 
+      ? 'أرشيف المقالات | محترفين الديار العالمية - مقالات ونصائح في المظلات والبرجولات'
+      : 'Articles Archive | Aldeyar Professionals - Tips on Shades and Pergolas',
+    description: isArabic
+      ? 'اكتشف أحدث المقالات والنصائح حول المظلات، البرجولات، السواتر، وتنسيق الحدائق من خبراء محترفين الديار العالمية في جدة.'
+      : 'Discover the latest articles and tips about shades, pergolas, fences, and landscaping from Aldeyar Global Professionals experts in Jeddah.',
+    keywords: isArabic
+      ? 'مقالات مظلات, نصائح برجولات, مقالات تنسيق حدائق, مظلات جدة, برجولات جدة, محترفين الديار العالمية'
+      : 'shades articles, pergolas tips, landscaping articles, Jeddah shades, Jeddah pergolas, Aldeyar Professionals',
+    authors: [{ name: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals' }],
+    creator: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+    publisher: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+    robots: 'index, follow',
+    openGraph: {
+      title: isArabic 
+        ? 'أرشيف المقالات | محترفين الديار العالمية'
+        : 'Articles Archive | Aldeyar Professionals',
+      description: isArabic
+        ? 'اكتشف مقالاتنا المتخصصة في المظلات والبرجولات والسواتر وتنسيق الحدائق'
+        : 'Discover our specialized articles on shades, pergolas, fences, and landscaping',
+      url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/articles`,
+      siteName: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      images: [
+        {
+          url: 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp',
+          width: 1200,
+          height: 630,
+          alt: isArabic ? 'أرشيف مقالات محترفين الديار العالمية' : 'Aldeyar Professionals Articles Archive'
+        }
+      ],
+      locale: isArabic ? 'ar_SA' : 'en_US',
+      type: 'website'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: isArabic 
+        ? 'أرشيف المقالات | محترفين الديار العالمية'
+        : 'Articles Archive | Aldeyar Professionals',
+      description: isArabic
+        ? 'اكتشف مقالاتنا المتخصصة في المظلات والبرجولات'
+        : 'Discover our specialized articles on shades and pergolas',
+      images: ['https://www.aldeyarksa.tech/uploads/mazallat-1.webp']
+    },
+    alternates: {
+      canonical: locale === 'ar' ? '/articles' : '/en/articles',
+      languages: {
+        'ar': '/articles',
+        'en': '/en/articles',
+        'x-default': '/articles',
+      },
+    }
+  };
+}
+
+export default async function ArticlesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+
+  const articlesStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: isArabic 
+      ? 'أرشيف المقالات - محترفين الديار العالمية'
+      : 'Articles Archive - Aldeyar Global Professionals',
+    description: isArabic
+      ? 'مقالات متخصصة في المظلات والبرجولات والسواتر وتنسيق الحدائق'
+      : 'Specialized articles on shades, pergolas, fences, and landscaping',
+    url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/articles`,
+    publisher: {
+      '@type': 'Organization',
+      name: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.aldeyarksa.tech/logo.svg'
+      }
+    }
+  };
+
+  return (
+    <>
+      <StructuredDataScript data={articlesStructuredData} />
+      <Navbar />
+      <Suspense fallback={<LoadingFallback isArabic={isArabic} />}>
+        <ArticlesPageClient locale={locale} />
+      </Suspense>
+      <Footer />
+    </>
+  );
+}
+
+function LoadingFallback({ isArabic }: { isArabic: boolean }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <Loader2 className="w-12 h-12 text-accent animate-spin mx-auto mb-4" />
+        <p className="text-gray-600">
+          {isArabic ? 'جاري تحميل المقالات...' : 'Loading articles...'}
+        </p>
+      </div>
+    </div>
+  );
+}
