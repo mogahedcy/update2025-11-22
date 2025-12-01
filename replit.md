@@ -145,3 +145,23 @@ Image storage: Cloudinary preferred over local storage for better performance, a
   - `locale` prop not supported in next/link with App Router; use href with locale prefix instead
   - Locale detection uses `useParams()` hook for reliability
   - Pages outside `[locale]` folder retain original routing
+
+## Contact Page Localization Fix (December 1, 2025)
+- **Problem**: Build was failing with prerender error on `/contact` page due to routing conflict between old static page and new [locale] folder structure.
+- **Root Cause**: Empty `src/app/[locale]/contact/` folder conflicting with existing `src/app/contact/page.tsx`.
+- **Fixes Applied**:
+  1. Created localized contact page at `src/app/[locale]/contact/page.tsx` with proper `generateStaticParams`
+  2. Created `ContactPageClient.tsx` with full translation support (Arabic/English)
+  3. Added comprehensive contact translations to `messages/ar.json` and `messages/en.json`
+  4. Updated `src/middleware.ts` to include `/contact` in localized pages array
+  5. Removed old `src/app/contact/page.tsx` that was causing the build conflict
+- **Files Added**:
+  - `src/app/[locale]/contact/page.tsx`: Server component with metadata generation
+  - `src/app/[locale]/contact/ContactPageClient.tsx`: Client component with full UI
+- **Files Modified**:
+  - `messages/ar.json`: Added contact page translations
+  - `messages/en.json`: Added contact page translations
+  - `src/middleware.ts`: Added /contact to localizedPages
+- **Files Removed**:
+  - `src/app/contact/page.tsx`: Old non-localized page
+- **Result**: Build now succeeds, contact page fully translated and accessible at `/contact` (Arabic) and `/en/contact` (English).
