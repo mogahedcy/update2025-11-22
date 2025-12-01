@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Search, ArrowLeft, Home } from 'lucide-react';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <NavbarArabic />
 
       <main className="flex-1 flex items-center justify-center bg-gray-50">
         <div className="max-w-lg mx-auto px-4 text-center">

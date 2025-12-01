@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import Navbar from '@/components/Navbar';
+import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 
 export default function Error({
@@ -18,7 +18,7 @@ export default function Error({
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <NavbarArabic />
       <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-blue-50 to-white px-4 py-16">
         <div className="max-w-md w-full text-center">
           <div className="mb-8">

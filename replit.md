@@ -165,3 +165,17 @@ Image storage: Cloudinary preferred over local storage for better performance, a
 - **Files Removed**:
   - `src/app/contact/page.tsx`: Old non-localized page
 - **Result**: Build now succeeds, contact page fully translated and accessible at `/contact` (Arabic) and `/en/contact` (English).
+
+## Services Pages Translation Fix (December 1, 2025)
+- **Problem**: Build was failing with prerender error on `/services/byoot-shaar` because services pages used `Navbar` component which requires translation context.
+- **Root Cause**: Services pages are outside the `[locale]` folder so they don't have `NextIntlClientProvider` wrapper from the locale layout.
+- **Fixes Applied**:
+  1. Created `src/app/services/layout.tsx` that provides `NextIntlClientProvider` with Arabic locale for all services pages
+  2. Updated error/not-found pages (`portfolio/[id]/error.tsx`, `portfolio/[id]/not-found.tsx`, `articles/[id]/error.tsx`) to use `NavbarArabic` instead of `Navbar`
+- **Files Added**:
+  - `src/app/services/layout.tsx`: Layout wrapper with translation context for services
+- **Files Modified**:
+  - `src/app/portfolio/[id]/error.tsx`: Changed to NavbarArabic
+  - `src/app/portfolio/[id]/not-found.tsx`: Changed to NavbarArabic
+  - `src/app/articles/[id]/error.tsx`: Changed to NavbarArabic
+- **Result**: All services pages now have translation context and build correctly.
