@@ -5,7 +5,7 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 
-const localizedPages = ['/', '/about', '/articles'];
+const localizedPages = ['/', '/about', '/articles', '/contact'];
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
