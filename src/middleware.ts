@@ -5,7 +5,7 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 
-const localizedPages = ['/', '/about', '/articles', '/contact'];
+const localizedPages = ['/', '/about', '/articles', '/contact', '/services/mazallat'];
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
@@ -19,8 +19,7 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/uploads') ||
     pathname.includes('.') ||
     pathname.startsWith('/dashboard') ||
-    pathname.startsWith('/login') ||
-    pathname.startsWith('/services')
+    pathname.startsWith('/login')
   ) {
     const response = NextResponse.next({
       request: {

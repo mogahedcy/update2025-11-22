@@ -493,5 +493,142 @@
     "homeTitle": "Shades and Fences Jeddah | Aldeyar Professionals - 10 Year Warranty",
     "homeDescription": "Aldeyar Global Professionals - Installing car shades, pergolas, fences, sandwich panels, landscaping, traditional houses in Jeddah. 15 years experience, 10 year warranty.",
     "keywords": "car shades jeddah, wooden pergolas jeddah, privacy fences jeddah, sandwich panel jeddah, landscaping jeddah, aldeyar global professionals, shades installation saudi arabia"
+  },
+  "mazallat": {
+    "pageTitle": "Car Shades Jeddah - 10 Year Warranty | Aldeyar Professionals",
+    "pageDescription": "Installation of car and garden shades in Jeddah with 10-year warranty. UV and rain resistant PVC shades. Prices starting from 2,500 SAR. Free consultation",
+    "keywords": "car shades jeddah, PVC shades, iron shades, shade installation, shade company, car shade prices",
+    "hero": {
+      "title": "Best Car Shades in",
+      "titleHighlight": "Jeddah",
+      "subtitle": "High Quality and Competitive Prices",
+      "description": "Aldeyar Professionals - 15 years of experience installing the best car, garden, and school shades in Jeddah. High-quality PVC shades, modern designs, and a comprehensive 10-year warranty",
+      "features": {
+        "allAreas": "We serve all Jeddah neighborhoods",
+        "warranty": "Comprehensive 10-year warranty",
+        "projects": "More than 5000 successful projects"
+      },
+      "callCta": "Call for Free Consultation",
+      "whatsappCta": "WhatsApp Now"
+    },
+    "servicesSection": {
+      "title": "Specialized Shade Types",
+      "subtitle": "We offer a comprehensive range of high-quality shades to suit all needs",
+      "moreInfo": "More Information"
+    },
+    "shadeTypes": {
+      "cars": {
+        "title": "Car Shades",
+        "description": "Parking lot shades in various sizes and shapes, providing complete protection for cars from sunlight and rain.",
+        "features": ["UV protection", "Rain resistant", "Various designs"],
+        "price": "Starting from 2,500 SAR"
+      },
+      "gardens": {
+        "title": "Garden Shades",
+        "description": "Shades for home and public gardens with modern designs and high-quality materials that add an aesthetic touch.",
+        "features": ["Aesthetic designs", "Weather resistant", "Various colors"],
+        "price": "Starting from 3,000 SAR"
+      },
+      "schools": {
+        "title": "School Shades",
+        "description": "Shades for schools and educational institutions, providing a safe environment for students and teachers.",
+        "features": ["Large spaces", "High safety", "Excellent durability"],
+        "price": "Starting from 5,000 SAR"
+      },
+      "pools": {
+        "title": "Pool Shades",
+        "description": "Pool shades that protect from sunlight and maintain pool cleanliness, with proper ventilation.",
+        "features": ["Pool protection", "Excellent ventilation", "Chlorine resistant"],
+        "price": "Starting from 4,000 SAR"
+      }
+    },
+    "whyChooseUs": {
+      "title": "Why Choose Aldeyar Professionals?",
+      "features": {
+        "experience": {
+          "title": "15 Years Experience",
+          "description": "We are pioneers in the shade industry with over 15 years of experience"
+        },
+        "warranty": {
+          "title": "Comprehensive 10-Year Warranty",
+          "description": "Long-term warranty on all our work and materials used"
+        },
+        "team": {
+          "title": "Specialized Team",
+          "description": "Engineers and technicians specialized and trained at the highest level"
+        },
+        "speed": {
+          "title": "Fast Execution",
+          "description": "Speed in execution while maintaining the highest quality standards"
+        },
+        "satisfaction": {
+          "title": "Customer Satisfaction",
+          "description": "Customer satisfaction rate up to 99% with excellent ratings"
+        },
+        "prices": {
+          "title": "Competitive Prices",
+          "description": "Best prices in the market with unmatched high quality"
+        }
+      }
+    },
+    "stats": {
+      "projects": "Completed Projects",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction",
+      "support": "Customer Service"
+    },
+    "projectsGallery": {
+      "title": "Our Portfolio in",
+      "viewAll": "View All Projects",
+      "viewProject": "View Project"
+    },
+    "articlesSection": {
+      "title": "Articles and Tips about",
+      "viewAll": "View All Articles",
+      "readMore": "Read More"
+    },
+    "faqSection": {
+      "title": "Frequently Asked Questions about",
+      "noFaqs": "No FAQs available at the moment"
+    },
+    "relatedServices": {
+      "title": "Related Services",
+      "subtitle": "Discover more of our distinguished services",
+      "sawater": {
+        "title": "Fences",
+        "description": "Installation of various types and materials of fences for privacy and protection.",
+        "features": ["Fabric fences", "Iron fences", "Wooden fences"]
+      },
+      "pergolas": {
+        "title": "Pergolas",
+        "description": "Design and execution of wooden and iron pergolas in modern styles.",
+        "features": ["Wooden pergolas", "Iron pergolas", "Mixed pergolas"]
+      },
+      "khayyam": {
+        "title": "Royal Tents",
+        "description": "Design and execution of luxurious royal tents for events and celebrations.",
+        "features": ["Wedding tents", "Rest house tents", "Event tents"]
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "subtitle": "Contact us now for a free consultation and a customized quote for your needs",
+      "callButton": "Call Now",
+      "whatsappButton": "Contact via WhatsApp"
+    },
+    "breadcrumb": {
+      "services": "Our Services",
+      "mazallat": "Car Shades"
+    },
+    "schema": {
+      "serviceName": "Car Shades Jeddah",
+      "serviceDescription": "Best car shades in Jeddah from Aldeyar Professionals. PVC shades, garden shades, school and pool shades. 10-year warranty and 15 years of experience.",
+      "productName": "PVC Car Shades - Jeddah",
+      "productDescription": "High-quality car shades made from heat and UV resistant PVC. 10-year warranty on materials and installation.",
+      "projectsListName": "Car Shade Projects in Jeddah - Aldeyar Professionals",
+      "projectsListDescription": "Our portfolio of car and garden shade installations in Jeddah",
+      "articlesListName": "Articles about Car Shades in Jeddah",
+      "articlesListDescription": "Comprehensive guide and educational articles about car and garden shades"
+    }
   }
 }
