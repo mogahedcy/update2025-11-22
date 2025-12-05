@@ -16,6 +16,8 @@ import {
   generateRobotsMetadata,
   generateCanonicalUrl
 } from '@/lib/seo-utils';
+
+export const dynamic = 'force-dynamic';
 import {
   TreePine,
   Home,

@@ -32,6 +32,8 @@ import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
+export const dynamic = 'force-dynamic';
+
 const pageTitle = 'بيوت شعر جدة | محترفين الديار العالمية';
 const pageDescription = 'بيوت شعر ملكية وعربية تراثية في جدة | تصاميم فاخرة للمجالس بضمان 10 سنوات. أقمشة عالية الجودة وتطريز يدوي. أسعار تبدأ من 5,000 ريال. اتصل: 0553719009';
 const pageUrl = '/services/byoot-shaar';

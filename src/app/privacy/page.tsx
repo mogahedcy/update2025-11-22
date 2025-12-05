@@ -5,6 +5,8 @@ import NavbarArabic from '@/components/NavbarArabic'
 import Footer from '@/components/Footer'
 import { generateCanonicalUrl } from '@/lib/seo-utils'
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'سياسة الخصوصية | محترفين الديار العالمية',
   description: 'سياسة الخصوصية لمحترفين الديار العالمية في جدة. نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية وفقاً لأعلى المعايير الأمنية والقوانين السعودية.',

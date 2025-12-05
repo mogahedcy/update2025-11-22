@@ -5,6 +5,8 @@ import NavbarArabic from '@/components/NavbarArabic'
 import Footer from '@/components/Footer'
 import { generateCanonicalUrl } from '@/lib/seo-utils'
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'شروط الخدمة | محترفين الديار العالمية - الشروط والأحكام',
   description: 'شروط وأحكام الخدمة لمحترفين الديار العالمية في جدة. تعرف على الشروط والأحكام، الضمانات، وسياسات الدفع والتركيب التي تحكم استخدام خدماتنا.',

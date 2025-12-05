@@ -24,6 +24,8 @@ import { Button } from '@/components/ui/button'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { generateCanonicalUrl } from '@/lib/seo-utils'
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'طلب عرض سعر | محترفين الديار العالمية - احصل على عرض مجاني',
   description: 'احصل على عرض سعر مجاني ومفصل من محترفين الديار العالمية في جدة. أسعار تنافسية، جودة عالية، ضمان شامل، تركيب احترافي لجميع أنواع المظلات والبرجولات.',

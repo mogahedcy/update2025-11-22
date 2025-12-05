@@ -36,6 +36,8 @@ import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
+export const dynamic = 'force-dynamic';
+
 const pageTitle = 'تنسيق حدائق جدة - ضمان سنتين | محترفين الديار';
 const pageDescription = 'تصميم وتنسيق حدائق بجدة بضمان سنتين. زراعة نباتات محلية وأنظمة ري حديثة. أسعار تبدأ من 150 ريال/م². استشارة مجانية';
 const pageUrl = '/services/landscaping';

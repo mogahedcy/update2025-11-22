@@ -19,6 +19,8 @@ import {
   generateRobotsMetadata,
   generateCanonicalUrl
 } from '@/lib/seo-utils';
+
+export const dynamic = 'force-dynamic';
 import {
   Car,
   Shield,
