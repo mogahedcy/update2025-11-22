@@ -9,103 +9,191 @@ export async function GET() {
       url: '', 
       priority: '1.0', 
       changefreq: 'daily',
-      keywords: 'مظلات جدة، سواتر، برجولات، تنسيق حدائق، محترفين الديار العالمية'
-    },
-    { 
-      url: '/services/mazallat', 
-      priority: '0.9', 
-      changefreq: 'daily',
-      keywords: 'مظلات سيارات جدة، تركيب مظلات، مظلات حديد، مظلات قماش، أسعار مظلات السيارات، شركة مظلات جدة'
-    },
-    { 
-      url: '/services/pergolas', 
-      priority: '0.9', 
-      changefreq: 'daily',
-      keywords: 'برجولات جدة، تصميم برجولات، برجولات خشبية، برجولات حديد، برجولات حدائق، تركيب برجولات جدة'
-    },
-    { 
-      url: '/services/sawater', 
-      priority: '0.9', 
-      changefreq: 'daily',
-      keywords: 'سواتر جدة، سواتر خصوصية، سواتر حديد، سواتر قماش، تركيب سواتر جدة، أسعار السواتر'
-    },
-    { 
-      url: '/services/sandwich-panel', 
-      priority: '0.9', 
-      changefreq: 'weekly',
-      keywords: 'ساندوتش بانل جدة، عزل حراري، ألواح ساندوتش بانل'
-    },
-    { 
-      url: '/services/renovation', 
-      priority: '0.9', 
-      changefreq: 'weekly',
-      keywords: 'ترميم ملحقات جدة، تجديد ملحقات، شركة ترميم'
-    },
-    { 
-      url: '/services/landscaping', 
-      priority: '0.9', 
-      changefreq: 'weekly',
-      keywords: 'تنسيق حدائق جدة، تصميم حدائق، شركة تنسيق حدائق'
-    },
-    { 
-      url: '/services/byoot-shaar', 
-      priority: '0.9', 
-      changefreq: 'weekly',
-      keywords: 'بيوت شعر جدة، خيام تراثية، بيوت شعر تراثية'
-    },
-    { 
-      url: '/services/khayyam', 
-      priority: '0.9', 
-      changefreq: 'weekly',
-      keywords: 'خيام جدة، خيام ملكية، خيام فاخرة، تأجير خيام'
-    },
-    { 
-      url: '/portfolio', 
-      priority: '0.8', 
-      changefreq: 'daily',
-      keywords: 'أعمال مظلات جدة، مشاريع سواتر، معرض أعمال الديار'
-    },
-    { 
-      url: '/portfolio/reviews', 
-      priority: '0.8', 
-      changefreq: 'weekly',
-      keywords: 'تقييمات العملاء، آراء العملاء، تجارب العملاء جدة'
+      keywords: {
+        ar: 'مظلات جدة، سواتر، برجولات، تنسيق حدائق، محترفين الديار العالمية',
+        en: 'Jeddah shades, fences, pergolas, landscaping, Aldeyar Global Professionals'
+      },
+      hasEnglish: true
     },
     { 
       url: '/about', 
       priority: '0.8', 
       changefreq: 'monthly',
-      keywords: 'محترفين الديار العالمية، شركة مظلات جدة، عن الشركة'
+      keywords: {
+        ar: 'محترفين الديار العالمية، شركة مظلات جدة، عن الشركة',
+        en: 'Aldeyar Global Professionals, Jeddah shades company, about us'
+      },
+      hasEnglish: true
     },
     { 
       url: '/articles', 
       priority: '0.7', 
       changefreq: 'daily',
-      keywords: 'مقالات مظلات، نصائح تركيب، دليل شامل'
+      keywords: {
+        ar: 'مقالات مظلات، نصائح تركيب، دليل شامل',
+        en: 'Shades articles, installation tips, comprehensive guide'
+      },
+      hasEnglish: true
     },
     { 
       url: '/contact', 
       priority: '0.8', 
       changefreq: 'monthly',
-      keywords: 'اتصل بنا، رقم تليفون، عنوان الشركة جدة'
+      keywords: {
+        ar: 'اتصل بنا، رقم تليفون، عنوان الشركة جدة',
+        en: 'Contact us, phone number, Jeddah company address'
+      },
+      hasEnglish: true
+    },
+    { 
+      url: '/services/mazallat', 
+      priority: '0.9', 
+      changefreq: 'daily',
+      keywords: {
+        ar: 'مظلات سيارات جدة، تركيب مظلات، مظلات حديد، مظلات قماش، أسعار مظلات السيارات، شركة مظلات جدة',
+        en: 'Car shades Jeddah, shade installation, metal shades, fabric shades'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/services/pergolas', 
+      priority: '0.9', 
+      changefreq: 'daily',
+      keywords: {
+        ar: 'برجولات جدة، تصميم برجولات، برجولات خشبية، برجولات حديد، برجولات حدائق، تركيب برجولات جدة',
+        en: 'Pergolas Jeddah, pergola design, wooden pergolas, metal pergolas'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/services/sawater', 
+      priority: '0.9', 
+      changefreq: 'daily',
+      keywords: {
+        ar: 'سواتر جدة، سواتر خصوصية، سواتر حديد، سواتر قماش، تركيب سواتر جدة، أسعار السواتر',
+        en: 'Privacy fences Jeddah, metal fences, fabric fences'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/services/sandwich-panel', 
+      priority: '0.9', 
+      changefreq: 'weekly',
+      keywords: {
+        ar: 'ساندوتش بانل جدة، عزل حراري، ألواح ساندوتش بانل',
+        en: 'Sandwich panel Jeddah, thermal insulation'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/services/renovation', 
+      priority: '0.9', 
+      changefreq: 'weekly',
+      keywords: {
+        ar: 'ترميم ملحقات جدة، تجديد ملحقات، شركة ترميم',
+        en: 'Jeddah renovation, annex renovation'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/services/landscaping', 
+      priority: '0.9', 
+      changefreq: 'weekly',
+      keywords: {
+        ar: 'تنسيق حدائق جدة، تصميم حدائق، شركة تنسيق حدائق',
+        en: 'Landscaping Jeddah, garden design'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/services/byoot-shaar', 
+      priority: '0.9', 
+      changefreq: 'weekly',
+      keywords: {
+        ar: 'بيوت شعر جدة، خيام تراثية، بيوت شعر تراثية',
+        en: 'Traditional tents Jeddah, heritage tents'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/services/khayyam', 
+      priority: '0.9', 
+      changefreq: 'weekly',
+      keywords: {
+        ar: 'خيام جدة، خيام ملكية، خيام فاخرة، تأجير خيام',
+        en: 'Royal tents Jeddah, luxury tents'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/portfolio', 
+      priority: '0.8', 
+      changefreq: 'daily',
+      keywords: {
+        ar: 'أعمال مظلات جدة، مشاريع سواتر، معرض أعمال الديار',
+        en: 'Jeddah shades projects, fence projects, Aldeyar portfolio'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/portfolio/reviews', 
+      priority: '0.8', 
+      changefreq: 'weekly',
+      keywords: {
+        ar: 'تقييمات العملاء، آراء العملاء، تجارب العملاء جدة',
+        en: 'Customer reviews, testimonials'
+      },
+      hasEnglish: false
     },
     { 
       url: '/quote', 
       priority: '0.9', 
       changefreq: 'monthly',
-      keywords: 'طلب عرض سعر، احسب التكلفة، أسعار مظلات جدة'
+      keywords: {
+        ar: 'طلب عرض سعر، احسب التكلفة، أسعار مظلات جدة',
+        en: 'Request quote, calculate cost, Jeddah shades prices'
+      },
+      hasEnglish: false
     },
     { 
       url: '/search', 
       priority: '0.7', 
       changefreq: 'monthly',
-      keywords: 'بحث في الموقع، البحث عن خدمات'
+      keywords: {
+        ar: 'بحث في الموقع، البحث عن خدمات',
+        en: 'Site search, search services'
+      },
+      hasEnglish: false
     },
     { 
       url: '/faq', 
       priority: '0.75', 
       changefreq: 'monthly',
-      keywords: 'أسئلة شائعة، الأسئلة المتكررة، استفسارات'
+      keywords: {
+        ar: 'أسئلة شائعة، الأسئلة المتكررة، استفسارات',
+        en: 'FAQ, frequently asked questions'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/privacy', 
+      priority: '0.5', 
+      changefreq: 'yearly',
+      keywords: {
+        ar: 'سياسة الخصوصية، حماية البيانات',
+        en: 'Privacy policy, data protection'
+      },
+      hasEnglish: false
+    },
+    { 
+      url: '/terms', 
+      priority: '0.5', 
+      changefreq: 'yearly',
+      keywords: {
+        ar: 'شروط الخدمة، الشروط والأحكام',
+        en: 'Terms of service, terms and conditions'
+      },
+      hasEnglish: false
     }
   ];
 
@@ -127,8 +215,37 @@ export async function GET() {
     console.error('Error fetching articles for sitemap:', error);
   }
 
-  const staticSitemap = staticPages
-    .map((page) => `<url><loc>${baseUrl}${page.url}</loc><lastmod>${new Date().toISOString()}</lastmod><changefreq>${page.changefreq}</changefreq><priority>${page.priority}</priority><image:image><image:loc>${baseUrl}/images/logo.png</image:loc><image:caption><![CDATA[${page.keywords}]]></image:caption><image:title><![CDATA[محترفين الديار العالمية - ${page.keywords}]]></image:title></image:image></url>`)
+  const generateUrlEntry = (page: typeof staticPages[0], locale: 'ar' | 'en' = 'ar') => {
+    const isArabic = locale === 'ar';
+    const urlPath = isArabic ? page.url : `/en${page.url}`;
+    const arUrl = `${baseUrl}${page.url || '/'}`;
+    const enUrl = `${baseUrl}/en${page.url || ''}`;
+    
+    let hreflangTags = '';
+    if (page.hasEnglish) {
+      hreflangTags = `
+    <xhtml:link rel="alternate" hreflang="ar" href="${arUrl}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${arUrl}"/>`;
+    }
+    
+    return `<url>
+    <loc>${baseUrl}${urlPath}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>${hreflangTags}
+    <image:image>
+      <image:loc>${baseUrl}/images/logo.png</image:loc>
+      <image:caption><![CDATA[${page.keywords[locale]}]]></image:caption>
+      <image:title><![CDATA[محترفين الديار العالمية - ${page.keywords[locale]}]]></image:title>
+    </image:image>
+  </url>`;
+  };
+
+  const arabicPages = staticPages.map(page => generateUrlEntry(page, 'ar')).join('\n  ');
+  const englishPages = staticPages
+    .filter(page => page.hasEnglish)
+    .map(page => generateUrlEntry(page, 'en'))
     .join('\n  ');
 
   const articlesSitemap = dbArticles.length > 0 
@@ -138,22 +255,32 @@ export async function GET() {
         const lastModified = article.updatedAt ? new Date(article.updatedAt).toISOString() : new Date().toISOString();
         const keywords = article.keywords || article.title;
         
-        return `<url><loc>${baseUrl}/articles/${encodedSlug}</loc><lastmod>${lastModified}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority><news:news><news:publication><news:name>محترفين الديار العالمية</news:name><news:language>ar</news:language></news:publication><news:publication_date>${lastModified}</news:publication_date><news:title><![CDATA[${article.title}]]></news:title><news:keywords><![CDATA[${keywords}]]></news:keywords></news:news></url>`;
+        return `<url>
+    <loc>${baseUrl}/articles/${encodedSlug}</loc>
+    <lastmod>${lastModified}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <news:news>
+      <news:publication>
+        <news:name>محترفين الديار العالمية</news:name>
+        <news:language>ar</news:language>
+      </news:publication>
+      <news:publication_date>${lastModified}</news:publication_date>
+      <news:title><![CDATA[${article.title}]]></news:title>
+      <news:keywords><![CDATA[${keywords}]]></news:keywords>
+    </news:news>
+  </url>`;
       }).join('\n  ')
     : '';
-
-  const sitemapReferences = `<url><loc>${baseUrl}/sitemap-projects.xml</loc><lastmod>${new Date().toISOString()}</lastmod><changefreq>daily</changefreq><priority>0.95</priority></url>
-  <url><loc>${baseUrl}/sitemap-articles.xml</loc><lastmod>${new Date().toISOString()}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>${baseUrl}/sitemap-images.xml</loc><lastmod>${new Date().toISOString()}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`;
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  ${staticSitemap}
+  ${arabicPages}
+  ${englishPages}
   ${articlesSitemap}
-  ${sitemapReferences}
 </urlset>`;
 
   return new Response(sitemap, {
