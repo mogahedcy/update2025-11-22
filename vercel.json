@@ -14,7 +14,7 @@
   },
   "regions": ["iad1"],
   "env": {
-    "NEXT_PUBLIC_BASE_URL": "https://aldeyarksa.tech"
+    "NEXT_PUBLIC_BASE_URL": "https://www.aldeyarksa.tech"
   },
   "headers": [
     {
@@ -26,7 +26,7 @@
         },
         {
           "key": "X-Frame-Options",
-          "value": "DENY"
+          "value": "SAMEORIGIN"
         },
         {
           "key": "X-XSS-Protection",
