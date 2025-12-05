@@ -1,9 +1,9 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
-import { useState, useRef, useEffect } from 'react';
-import { Globe, ChevronDown } from 'lucide-react';
+import { useRouter, usePathname } from '@/i18n/navigation';
+import { useTransition, useState, useRef, useEffect } from 'react';
+import { Globe, ChevronDown, Loader2 } from 'lucide-react';
 
 const languages = [
   { code: 'ar', name: 'العربية', flag: '🇸🇦', dir: 'rtl' },
@@ -14,6 +14,7 @@ export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -31,22 +32,27 @@ export default function LanguageSwitcher() {
   }, []);
 
   const switchLanguage = (newLocale: string) => {
-    const currentPath = pathname.replace(/^\/(ar|en)/, '') || '/';
-    const newPath = newLocale === 'ar' ? currentPath : `/${newLocale}${currentPath}`;
-    router.push(newPath);
     setIsOpen(false);
+    startTransition(() => {
+      router.replace(pathname, { locale: newLocale as 'ar' | 'en' });
+    });
   };
 
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium"
+        disabled={isPending}
+        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm font-medium disabled:opacity-50"
         aria-label="تغيير اللغة / Change Language"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <Globe className="w-4 h-4 text-primary" />
+        {isPending ? (
+          <Loader2 className="w-4 h-4 text-primary animate-spin" />
+        ) : (
+          <Globe className="w-4 h-4 text-primary" />
+        )}
         <span className="hidden sm:inline">{currentLanguage.flag}</span>
         <span className="hidden md:inline text-xs">{currentLanguage.code.toUpperCase()}</span>
         <ChevronDown className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />

@@ -25,14 +25,6 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 35037
-externalPort = 3000
-
-[[ports]]
-localPort = 35161
-externalPort = 8080
-
-[[ports]]
 localPort = 35975
 externalPort = 5000
 
@@ -79,6 +71,10 @@ externalPort = 8008
 [[ports]]
 localPort = 44833
 externalPort = 8081
+
+[[ports]]
+localPort = 45441
+externalPort = 3000
 
 [workflows]
 runButton = "Project"
@@ -225,13 +221,13 @@ args = "Website Server"
 name = "Website Server"
 author = "agent"
 
+[workflows.workflow.metadata]
+outputType = "webview"
+
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "bun run dev"
 waitForPort = 5000
-
-[workflows.workflow.metadata]
-outputType = "webview"
 
 [agent]
 expertMode = true

@@ -189,7 +189,7 @@ export default async function LocaleLayout({
         <link rel="prefetch" href="/contact" />
         
         <StructuredDataScript data={faqPageSchema} />
-        <LocalBusinessSchema />
+        <LocalBusinessSchema locale={locale} />
       </head>
       <body className={`antialiased ${isRTL ? 'font-arabic' : 'font-sans'} pb-16 lg:pb-0`} suppressHydrationWarning={true}>
         <NextIntlClientProvider messages={messages}>

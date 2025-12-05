@@ -1,11 +1,21 @@
-export default function LocalBusinessSchema() {
+interface LocalBusinessSchemaProps {
+  locale?: string;
+}
+
+export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSchemaProps) {
+  const isArabic = locale === 'ar';
+
   const localBusinessData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://www.aldeyarksa.tech/#organization",
-    "name": "محترفين الديار العالمية",
-    "alternateName": "محترفين الديار | مظلات وبرجولات جدة",
-    "description": "شركة متخصصة في تركيب المظلات والبرجولات والسواتر والساندوتش بانل وتنسيق الحدائق في جدة مع خبرة 15 عاماً وضمان 10 سنوات",
+    "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+    "alternateName": isArabic 
+      ? "محترفين الديار | مظلات وبرجولات جدة"
+      : "Aldeyar | Shades and Pergolas Jeddah",
+    "description": isArabic
+      ? "شركة متخصصة في تركيب المظلات والبرجولات والسواتر والساندوتش بانل وتنسيق الحدائق في جدة مع خبرة 15 عاماً وضمان 10 سنوات"
+      : "Specialized company in installing shades, pergolas, fences, sandwich panels, and landscaping in Jeddah with 15 years of experience and 10-year warranty",
     "url": "https://www.aldeyarksa.tech",
     "logo": {
       "@type": "ImageObject",
@@ -22,9 +32,9 @@ export default function LocalBusinessSchema() {
     "email": "ksaaldeyar@gmail.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "جدة",
-      "addressLocality": "جدة",
-      "addressRegion": "منطقة مكة المكرمة",
+      "streetAddress": isArabic ? "جدة" : "Jeddah",
+      "addressLocality": isArabic ? "جدة" : "Jeddah",
+      "addressRegion": isArabic ? "منطقة مكة المكرمة" : "Makkah Region",
       "postalCode": "21442",
       "addressCountry": {
         "@type": "Country",
@@ -39,10 +49,10 @@ export default function LocalBusinessSchema() {
     "areaServed": [
       {
         "@type": "City",
-        "name": "جدة",
+        "name": isArabic ? "جدة" : "Jeddah",
         "containedIn": {
           "@type": "AdministrativeArea",
-          "name": "منطقة مكة المكرمة"
+          "name": isArabic ? "منطقة مكة المكرمة" : "Makkah Region"
         }
       }
     ],
@@ -68,7 +78,9 @@ export default function LocalBusinessSchema() {
         "closes": "22:00"
       }
     ],
-    "paymentAccepted": "نقداً، بطاقات ائتمان، تحويل بنكي",
+    "paymentAccepted": isArabic 
+      ? "نقداً، بطاقات ائتمان، تحويل بنكي"
+      : "Cash, Credit Cards, Bank Transfer",
     "currenciesAccepted": "SAR",
     "foundingDate": "2010",
     "aggregateRating": {
@@ -80,14 +92,16 @@ export default function LocalBusinessSchema() {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "خدمات محترفين الديار",
+      "name": isArabic ? "خدمات محترفين الديار" : "Aldeyar Professional Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "تركيب مظلات سيارات",
-            "description": "تركيب مظلات سيارات بتصاميم عصرية وخامات عالية الجودة",
+            "name": isArabic ? "تركيب مظلات سيارات" : "Car Shades Installation",
+            "description": isArabic 
+              ? "تركيب مظلات سيارات بتصاميم عصرية وخامات عالية الجودة"
+              : "Installing car shades with modern designs and high-quality materials",
             "provider": {
               "@id": "https://www.aldeyarksa.tech/#organization"
             }
@@ -97,8 +111,10 @@ export default function LocalBusinessSchema() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "تركيب برجولات حدائق",
-            "description": "تركيب برجولات خشبية وحديدية للحدائق والاستراحات",
+            "name": isArabic ? "تركيب برجولات حدائق" : "Garden Pergolas Installation",
+            "description": isArabic 
+              ? "تركيب برجولات خشبية وحديدية للحدائق والاستراحات"
+              : "Installing wooden and iron pergolas for gardens and rest areas",
             "provider": {
               "@id": "https://www.aldeyarksa.tech/#organization"
             }
@@ -108,8 +124,10 @@ export default function LocalBusinessSchema() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "تركيب سواتر",
-            "description": "تركيب سواتر للخصوصية والحماية بأنواع متعددة",
+            "name": isArabic ? "تركيب سواتر" : "Privacy Fences Installation",
+            "description": isArabic 
+              ? "تركيب سواتر للخصوصية والحماية بأنواع متعددة"
+              : "Installing privacy fences for protection in various types",
             "provider": {
               "@id": "https://www.aldeyarksa.tech/#organization"
             }
@@ -119,8 +137,10 @@ export default function LocalBusinessSchema() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "ساندوتش بانل",
-            "description": "تركيب ساندوتش بانل للعزل الحراري والصوتي",
+            "name": isArabic ? "ساندوتش بانل" : "Sandwich Panel Installation",
+            "description": isArabic 
+              ? "تركيب ساندوتش بانل للعزل الحراري والصوتي"
+              : "Installing sandwich panels for thermal and acoustic insulation",
             "provider": {
               "@id": "https://www.aldeyarksa.tech/#organization"
             }
@@ -130,8 +150,10 @@ export default function LocalBusinessSchema() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "تنسيق حدائق",
-            "description": "تصميم وتنسيق الحدائق بأحدث الأساليب",
+            "name": isArabic ? "تنسيق حدائق" : "Landscaping",
+            "description": isArabic 
+              ? "تصميم وتنسيق الحدائق بأحدث الأساليب"
+              : "Designing and landscaping gardens with the latest techniques",
             "provider": {
               "@id": "https://www.aldeyarksa.tech/#organization"
             }
@@ -141,8 +163,36 @@ export default function LocalBusinessSchema() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "بيوت شعر تراثية",
-            "description": "تصنيع وتركيب بيوت شعر تراثية أصيلة",
+            "name": isArabic ? "بيوت شعر تراثية" : "Traditional Hair Houses",
+            "description": isArabic 
+              ? "تصنيع وتركيب بيوت شعر تراثية أصيلة"
+              : "Manufacturing and installing authentic traditional hair houses",
+            "provider": {
+              "@id": "https://www.aldeyarksa.tech/#organization"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": isArabic ? "خيام ملكية" : "Royal Tents",
+            "description": isArabic 
+              ? "تصنيع وتركيب خيام ملكية فاخرة للمناسبات"
+              : "Manufacturing and installing luxury royal tents for events",
+            "provider": {
+              "@id": "https://www.aldeyarksa.tech/#organization"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": isArabic ? "ترميم ملحقات" : "Annex Renovation",
+            "description": isArabic 
+              ? "ترميم وتجديد الملحقات والاستراحات"
+              : "Renovating and refurbishing annexes and rest areas",
             "provider": {
               "@id": "https://www.aldeyarksa.tech/#organization"
             }
@@ -150,21 +200,28 @@ export default function LocalBusinessSchema() {
         }
       ]
     },
-    "slogan": "خبرة 15 عاماً في خدمتكم - ضمان 10 سنوات",
+    "slogan": isArabic 
+      ? "خبرة 15 عاماً في خدمتكم - ضمان 10 سنوات"
+      : "15 Years of Experience at Your Service - 10-Year Warranty",
     "contactPoint": [
       {
         "@type": "ContactPoint",
         "telephone": "+966553719009",
-        "contactType": "خدمة العملاء",
+        "contactType": isArabic ? "خدمة العملاء" : "Customer Service",
         "areaServed": "SA",
-        "availableLanguage": ["ar", "Arabic"],
+        "availableLanguage": ["ar", "en", "Arabic", "English"],
         "contactOption": "TollFree"
       }
     ],
     "sameAs": [
       "https://www.instagram.com/aldiyarglobal",
-      "https://wa.me/966553719009"
-    ]
+      "https://wa.me/966553719009",
+      "https://vm.tiktok.com/ZShKSH6o9/"
+    ],
+    "knowsLanguage": ["ar", "en"],
+    "keywords": isArabic
+      ? "مظلات سيارات جدة، برجولات خشبية، سواتر خصوصية، ساندوتش بانل، تنسيق حدائق، بيوت شعر، خيام ملكية، ترميم ملحقات"
+      : "car shades jeddah, wooden pergolas, privacy fences, sandwich panel, landscaping, traditional houses, royal tents, renovation"
   };
 
   return (

@@ -61,12 +61,245 @@
   "hero": {
     "companyName": "Aldeyar Professionals",
     "tagline": "Shades, Fences, Pergolas & Sandwich Panels in Jeddah",
-    "description": "Car shades installation • Garden pergolas • Fences • Sandwich panels • Landscaping • Traditional houses • Royal tents • Renovation",
+    "description": "Car shades installation - Garden pergolas - Fences - Sandwich panels - Landscaping - Traditional houses - Royal tents - Renovation",
     "projects": "5000+ Projects",
     "warranty": "10-Year Warranty",
     "experience": "15+ Years Experience",
     "freeConsultation": "Free Consultation Now",
     "needHelp": "Need help? Contact us!"
+  },
+  "servicesSection": {
+    "title": "Our Comprehensive Services",
+    "subtitle": "We offer 8 specialized and integrated services including shades, pergolas, fences, sandwich panels, renovation, landscaping, traditional houses, and royal tents with the highest quality standards",
+    "moreInfo": "More Information",
+    "mostRequested": "Most Requested",
+    "featured": "Featured",
+    "fromPrice": "From",
+    "priceByArea": "By Area",
+    "ctaTitle": "Free Consultation for All Services",
+    "ctaSubtitle": "Our specialized team is ready to help you choose the perfect solution for your project and provide professional advice to ensure the best results",
+    "contactNow": "Contact Us Now",
+    "viewPortfolio": "View Our Work",
+    "servicesData": {
+      "carShades": {
+        "title": "Car Shades",
+        "description": "Luxury protection with modern designs",
+        "features": ["Complete sun protection", "Various designs"],
+        "price": "From 2,500 SAR"
+      },
+      "sandwichPanel": {
+        "title": "Sandwich Panel",
+        "description": "Professional thermal and acoustic insulation",
+        "features": ["Heat and sound insulation", "Fire resistant"],
+        "price": "By area"
+      },
+      "renovation": {
+        "title": "Annex Renovation",
+        "description": "Complete renovation with latest technology",
+        "features": ["Villa and rest house renovation", "Complete maintenance"]
+      },
+      "pergolas": {
+        "title": "Garden Pergolas",
+        "description": "Elegant designs that add exceptional beauty",
+        "features": ["Wooden and iron", "Exclusive designs"],
+        "price": "From 3,500 SAR"
+      },
+      "fences": {
+        "title": "Fences",
+        "description": "Complete privacy and guaranteed protection",
+        "features": ["PVC, iron, and fabric", "100% privacy"],
+        "price": "From 1,800 SAR"
+      },
+      "traditionalHouses": {
+        "title": "Traditional Houses",
+        "description": "Authentic heritage with modern touch",
+        "features": ["Handcrafted", "Authentic Saudi heritage"]
+      },
+      "landscaping": {
+        "title": "Landscaping",
+        "description": "Professional design and smart irrigation systems",
+        "features": ["Modern design", "Climate-suitable plants"]
+      },
+      "royalTents": {
+        "title": "Royal Tents",
+        "description": "World-class luxury for special occasions",
+        "features": ["Exclusive royal designs", "Events and celebrations"]
+      }
+    }
+  },
+  "whyChooseUs": {
+    "title": "Why Aldeyar Professionals is the First Choice in Jeddah?",
+    "subtitle": "We are proud to be the leading company in shades, pergolas, and sandwich panels in Jeddah. Our long experience and commitment to quality have made us the first choice for thousands of satisfied customers",
+    "trustTitle": "Aldeyar Professionals - Trust and Quality Since 2009",
+    "stats": {
+      "projects": {
+        "number": "+5000",
+        "label": "Successful Projects",
+        "description": "Diverse projects across all services"
+      },
+      "experience": {
+        "number": "15",
+        "label": "Years Experience",
+        "description": "Accumulated experience in Saudi market"
+      },
+      "services": {
+        "number": "8",
+        "label": "Specialized Services",
+        "description": "Comprehensive and integrated services"
+      },
+      "support": {
+        "number": "24/7",
+        "label": "Continuous Support",
+        "description": "Customer service and continuous technical support"
+      }
+    },
+    "features": {
+      "experience": {
+        "title": "15 Years Proven Experience",
+        "description": "Over 15 years of accumulated experience in executing all types of projects with the highest quality standards",
+        "highlight": "15 Years"
+      },
+      "warranty": {
+        "title": "Comprehensive 10-Year Warranty",
+        "description": "We offer a comprehensive 10-year warranty on all our services with free periodic maintenance",
+        "highlight": "10 Years Warranty"
+      },
+      "customers": {
+        "title": "+5000 Satisfied Customers",
+        "description": "More than 5000 customers satisfied with our services in Jeddah and surrounding areas testify to our quality work",
+        "highlight": "+5000 Customers"
+      },
+      "punctuality": {
+        "title": "Commitment to Deadlines",
+        "description": "We are committed to specified project delivery dates without delays with accurate work scheduling follow-up",
+        "highlight": "Full Commitment"
+      },
+      "comprehensive": {
+        "title": "Comprehensive Integrated Service",
+        "description": "8 specialized services under one roof from design and execution to maintenance and follow-up",
+        "highlight": "8 Services"
+      },
+      "coverage": {
+        "title": "Complete Jeddah Coverage",
+        "description": "We cover all neighborhoods and areas of Jeddah and surrounding areas with a mobile and specialized work team",
+        "highlight": "Full Coverage"
+      }
+    },
+    "trustBadges": {
+      "expertSupervision": "Supervision by expert engineers",
+      "qualityMaterials": "Quality in material selection",
+      "experiencedLabor": "Experienced skilled labor",
+      "globalStandards": "International quality standards",
+      "technicalTeam": "Specialized technical team"
+    }
+  },
+  "howItWorks": {
+    "badge": "How We Work?",
+    "title": "Your Journey with Us from",
+    "titleHighlight": "Start to Finish",
+    "subtitle": "4 simple steps to get your shade, pergola, or any project with premium quality and 10-year warranty",
+    "ctaTitle": "Start Your Journey with Us Now!",
+    "ctaSubtitle": "Within 48 hours, your project in shades, pergolas, fences, or any service begins",
+    "ctaButton": "Call Now and Get 15% Discount",
+    "ctaSecondary": "Book Free Consultation",
+    "noCommitment": "No commitment",
+    "freeConsultation": "Free consultation",
+    "instantQuote": "Instant quote",
+    "allServices": "All our services: Car shades - Pergolas - Fences - Sandwich panel - Landscaping - Traditional houses - Royal tents - Renovation",
+    "steps": {
+      "step1": {
+        "title": "Free Consultation",
+        "description": "Contact us via WhatsApp or phone. A specialized engineer listens to your needs for shades, pergolas, fences, sandwich panel, or any other service and provides the optimal solution within 30 minutes.",
+        "details": ["30 minutes", "Via WhatsApp or visit", "100% Free"]
+      },
+      "step2": {
+        "title": "Visit and Accurate Measurement",
+        "description": "A specialized technician visits your site, takes accurate measurements for your car shades, garden pergola, or fence, and shows you various samples and designs. All this for free.",
+        "details": ["One hour", "Accurate 3D measurement", "Various design display"]
+      },
+      "step3": {
+        "title": "Transparent Price Quote",
+        "description": "You receive a detailed price quote including everything - materials, installation, warranty. No hidden costs.",
+        "details": ["Competitive prices", "Documented contract", "Full transparency"]
+      },
+      "step4": {
+        "title": "Fast Professional Installation",
+        "description": "A team of 4-6 professional technicians starts installing your shade, pergola, fence, or project with high quality. Clean and organized work. 10-year warranty starts immediately.",
+        "details": ["1-3 days depending on project", "Professional specialized team", "Guaranteed high quality"]
+      }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Comprehensive answers to the most common questions from our customers about Aldeyar Professionals services. Didn't find an answer to your question? Contact us directly",
+    "loading": "Loading FAQ...",
+    "noResults": "No questions available in this category",
+    "ctaTitle": "Didn't Find an Answer to Your Question?",
+    "ctaSubtitle": "Aldeyar Professionals customer service team is ready to answer all your inquiries and provide appropriate free consultation for your needs",
+    "contactWhatsApp": "Contact via WhatsApp",
+    "directCall": "Direct Call",
+    "categories": {
+      "all": "All",
+      "carShades": "Car Shades",
+      "fences": "Fences",
+      "royalTents": "Royal Tents",
+      "traditionalHouses": "Traditional Houses",
+      "pergolas": "Pergolas",
+      "landscaping": "Landscaping",
+      "hangars": "Hangars",
+      "chainLink": "Chain Link",
+      "tiles": "Tiles",
+      "sandwichPanel": "Sandwich Panel"
+    }
+  },
+  "testimonials": {
+    "rating": "Rating 4.9 out of 5",
+    "title": "Our Happy Customers' Reviews",
+    "subtitle": "Trust of over 5000 customers in Jeddah",
+    "ctaTitle": "Join Our Satisfied Customers",
+    "ctaSubtitle": "Get the same level of quality and excellent service that thousands of customers before you received",
+    "ctaButton": "Get Free Consultation Now",
+    "prevReview": "Previous review",
+    "nextReview": "Next review",
+    "selectReview": "Select review",
+    "reviews": [
+      {
+        "name": "Ahmed Al-Malki",
+        "location": "Al-Rawdah District, Jeddah",
+        "service": "Car Shades",
+        "text": "Excellent service from Aldeyar Professionals. The car shades were installed with high quality and on time. I recommend dealing with them."
+      },
+      {
+        "name": "Fatima Al-Otaibi",
+        "location": "Al-Naseem District, Jeddah",
+        "service": "Garden Pergola",
+        "text": "The garden pergola was done with great precision. The design is wonderful and the materials are high quality. Thanks to Aldeyar Professionals team."
+      },
+      {
+        "name": "Mohammed Al-Ghamdi",
+        "location": "Al-Andalus District, Jeddah",
+        "service": "Sandwich Panel",
+        "text": "Sandwich panel installation for my warehouse was done with high professionalism. Excellent insulation and fast execution. Best company in Jeddah."
+      },
+      {
+        "name": "Sara Al-Qahtani",
+        "location": "Al-Shati District, Jeddah",
+        "service": "Privacy Fences",
+        "text": "The fences achieved the required privacy with beautiful design. The work team is professional and the service is excellent."
+      },
+      {
+        "name": "Abdullah Al-Harbi",
+        "location": "North Jeddah",
+        "service": "Annex Renovation",
+        "text": "The annex renovation was done wonderfully. Attention to detail and high-quality materials. The result exceeded expectations."
+      },
+      {
+        "name": "Noura Al-Salmi",
+        "location": "Al-Zahra District, Jeddah",
+        "service": "Landscaping",
+        "text": "The garden landscaping became more beautiful than expected. Climate-suitable plants and excellent irrigation system."
+      }
+    ]
   },
   "footer": {
     "aboutCompany": "About the Company",
@@ -78,7 +311,62 @@
     "everyday": "Every Day",
     "allRightsReserved": "All Rights Reserved",
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "companyName": "Aldeyar Global Professionals",
+    "companySubtitle": "All Specialized Services - Jeddah",
+    "companyDescription": "Leading company in shades, pergolas, and sandwich panels in Jeddah. 15 years of experience providing the best services with the highest standards of quality and perfection.",
+    "stayConnected": "Stay Connected with Us",
+    "latestOffers": "Get the latest offers and specialized articles",
+    "emailContact": "Email",
+    "followUs": "Follow Us",
+    "requestQuote": "Request Quote",
+    "serviceAreas": "Service Areas",
+    "contactInfo": "Contact Information",
+    "callUs": "Call Us",
+    "location": "Location",
+    "jeddahSA": "Jeddah, Saudi Arabia",
+    "customerService247": "24/7 Customer Service",
+    "developedBy": "Website developed and managed by engineer",
+    "services": {
+      "carShades": "Car Shades Jeddah",
+      "pergolas": "Garden Pergolas Jeddah",
+      "fences": "Privacy Fences Jeddah",
+      "sandwichPanel": "Sandwich Panel Jeddah",
+      "renovation": "Annex Renovation Jeddah",
+      "landscaping": "Landscaping Jeddah",
+      "traditionalHouses": "Traditional Hair Houses",
+      "royalTents": "Luxury Royal Tents"
+    },
+    "links": {
+      "portfolio": "Portfolio",
+      "about": "About Aldeyar Global Professionals",
+      "articles": "Articles",
+      "quotes": "Price Quotes",
+      "faq": "Frequently Asked Questions",
+      "contact": "Contact Us",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "areas": {
+      "north": "North Jeddah Shades",
+      "central": "Central Jeddah Shades",
+      "east": "East Jeddah Shades",
+      "south": "South Jeddah Shades",
+      "west": "West Jeddah Shades",
+      "faisaliyah": "Al-Faisaliyah Shades",
+      "zahra": "Al-Zahra Shades",
+      "naim": "Al-Naim Shades"
+    },
+    "stats": {
+      "clients": "Satisfied Clients",
+      "projects": "Completed Projects",
+      "experience": "Years Experience",
+      "rating": "Customer Rating"
+    },
+    "seo": {
+      "title": "Aldeyar Global Professionals - Best Shades and Pergolas Company in Jeddah",
+      "description": "Aldeyar Global Professionals is the leading company in Jeddah for installing car shades, pergolas, fences, sandwich panels, annex renovation, landscaping, traditional hair houses, and royal tents. We serve all Jeddah neighborhoods with 15 years of experience and comprehensive 10-year warranty."
+    }
   },
   "common": {
     "readMore": "Read More",
@@ -195,14 +483,15 @@
     "viewProject": "View Project",
     "projectDetails": "Project Details"
   },
-  "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Answers to the most common questions"
-  },
   "articles": {
     "title": "Blog",
     "subtitle": "Latest articles and tips",
     "readTime": "minutes to read",
     "relatedArticles": "Related Articles"
+  },
+  "seo": {
+    "homeTitle": "Shades and Fences Jeddah | Aldeyar Professionals - 10 Year Warranty",
+    "homeDescription": "Aldeyar Global Professionals - Installing car shades, pergolas, fences, sandwich panels, landscaping, traditional houses in Jeddah. 15 years experience, 10 year warranty.",
+    "keywords": "car shades jeddah, wooden pergolas jeddah, privacy fences jeddah, sandwich panel jeddah, landscaping jeddah, aldeyar global professionals, shades installation saudi arabia"
   }
 }
