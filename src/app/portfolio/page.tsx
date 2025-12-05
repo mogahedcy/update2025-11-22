@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import PortfolioPageClient from './PortfolioPageClient';
+
+export const dynamic = 'force-dynamic';
 import StructuredDataScript from '@/components/StructuredDataScript';
 import VideoObjectSchema from '@/components/VideoObjectSchema';
 import NavbarArabic from '@/components/NavbarArabic';

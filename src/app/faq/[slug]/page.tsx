@@ -8,6 +8,8 @@ import { ArrowRight, Home } from 'lucide-react';
 import { generateCanonicalUrl } from '@/lib/seo-utils';
 import ShareButton from '@/components/ShareButton';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }

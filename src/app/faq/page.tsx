@@ -8,6 +8,8 @@ import { generateCanonicalUrl } from '@/lib/seo-utils';
 import { prisma } from '@/lib/prisma';
 import EnhancedFAQSchema from '@/components/EnhancedFAQSchema';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'الأسئلة الشائعة | محترفين الديار العالمية - إجابات شاملة',
   description: 'إجابات شاملة على الأسئلة الشائعة حول خدمات محترفين الديار العالمية في جدة. المظلات، السواتر، البرجولات، الخيام، الأسعار، الضمان، التركيب والصيانة.',

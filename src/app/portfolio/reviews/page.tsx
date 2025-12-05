@@ -1,8 +1,9 @@
-
 import type { Metadata } from 'next';
 import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import ReviewsPageClient from './ReviewsPageClient';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'تقييمات ومراجعات العملاء - محترفين الديار العالمية',

@@ -7,6 +7,8 @@ import ArticleSchema from '@/components/ArticleSchema';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { generateCanonicalUrl, getAbsoluteUrl } from '@/lib/seo-utils';
 
+export const dynamic = 'force-dynamic';
+
 interface Props {
   params: Promise<{ id: string }>;
 }
