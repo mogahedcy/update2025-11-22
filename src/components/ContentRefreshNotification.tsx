@@ -23,8 +23,14 @@ export default function ContentRefreshNotification({
     const storageKey = `last-seen-${contentType}`;
     const lastSeenUpdate = localStorage.getItem(storageKey);
 
-    // If there's a new update since last visit, show notification
-    if (!lastSeenUpdate || new Date(lastSeenUpdate) < new Date(lastUpdate)) {
+    // First-time visitor: Store current timestamp but don't show notification
+    if (!lastSeenUpdate) {
+      localStorage.setItem(storageKey, new Date().toISOString());
+      return;
+    }
+
+    // Returning visitor: Check if there's new content since their last visit
+    if (new Date(lastSeenUpdate) < new Date(lastUpdate)) {
       // Wait 2 seconds before showing to avoid jarring experience
       const timer = setTimeout(() => {
         setShowNotification(true);
