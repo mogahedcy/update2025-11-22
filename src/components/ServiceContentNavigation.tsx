@@ -1,19 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { Image as ImageIcon, FileText, HelpCircle, ArrowDown } from 'lucide-react';
+import { Image as ImageIcon, FileText, HelpCircle, Star, ArrowDown } from 'lucide-react';
 import { useLocale } from 'next-intl';
 
 interface ServiceContentNavigationProps {
   projectsCount: number;
   articlesCount: number;
   faqsCount: number;
+  reviewsCount?: number;
 }
 
 export default function ServiceContentNavigation({
   projectsCount,
   articlesCount,
-  faqsCount
+  faqsCount,
+  reviewsCount = 0
 }: ServiceContentNavigationProps) {
   const locale = useLocale();
   const isRTL = locale === 'ar';
@@ -50,6 +52,20 @@ export default function ServiceContentNavigation({
       borderColor: 'border-purple-200'
     }
   ];
+
+  // Add reviews section if there are reviews
+  if (reviewsCount > 0) {
+    sections.push({
+      id: 'reviews',
+      icon: Star,
+      title: isRTL ? 'التقييمات' : 'Reviews',
+      count: reviewsCount,
+      label: isRTL ? 'تقييم' : 'reviews',
+      bgColor: 'bg-yellow-50',
+      iconColor: 'text-yellow-600',
+      borderColor: 'border-yellow-200'
+    });
+  }
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);

@@ -9,7 +9,9 @@ import ReviewSchema from '@/components/ReviewSchema';
 import ProjectsGallery from '@/components/services/ProjectsGallery';
 import ArticlesSection from '@/components/services/ArticlesSection';
 import FAQSection from '@/components/services/FAQSection';
+import ReviewsSection from '@/components/services/ReviewsSection';
 import ServiceContentNavigation from '@/components/ServiceContentNavigation';
+import ServiceReviewSchema from '@/components/ServiceReviewSchema';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { 
@@ -185,10 +187,34 @@ async function getRelatedContent() {
       ]
     });
 
-    return { projects, articles, faqs };
+    // Fetch approved reviews from projects in this category
+    const reviews = await prisma.comments.findMany({
+      where: {
+        status: 'APPROVED',
+        projects: {
+          status: 'PUBLISHED',
+          ...categoryWhere
+        }
+      },
+      select: {
+        id: true,
+        name: true,
+        rating: true,
+        message: true,
+        createdAt: true,
+        likes: true
+      },
+      orderBy: [
+        { rating: 'desc' },
+        { createdAt: 'desc' }
+      ],
+      take: 50 // Get top 50 reviews
+    });
+
+    return { projects, articles, faqs, reviews };
   } catch (error) {
     console.error('Error fetching related content:', error);
-    return { projects: [], articles: [], faqs: [] };
+    return { projects: [], articles: [], faqs: [], reviews: [] };
   }
 }
 
@@ -216,7 +242,13 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
     { label: t('breadcrumb.mazallat'), href: `${localePath}/services/mazallat`, current: true }
   ];
 
-  const { projects, articles, faqs } = await getRelatedContent();
+  const { projects, articles, faqs, reviews } = await getRelatedContent();
+
+  // Calculate review statistics
+  const totalReviews = reviews.length;
+  const averageRating = totalReviews > 0 
+    ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews 
+    : 0;
 
   const heroFeatures = [
     { icon: MapPin, text: t('hero.features.allAreas') },
@@ -440,6 +472,11 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articlesListSchema) }}
       />
       <ReviewSchema {...reviewSchemaData} />
+      <ServiceReviewSchema 
+        serviceName={t('pageTitle')}
+        serviceUrl={`${baseUrl}${isArabic ? '' : '/en'}/services/mazallat`}
+        reviews={reviews}
+      />
 
       <div className="min-h-screen bg-background">
         <Navbar />
@@ -555,6 +592,7 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
           projectsCount={projects.length}
           articlesCount={articles.length}
           faqsCount={faqs.length}
+          reviewsCount={reviews.length}
         />
 
         <div id="projects">
@@ -601,6 +639,15 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
 
         <div id="faqs">
           <FAQSection faqs={faqs} categoryName={categoryName} />
+        </div>
+
+        <div id="reviews">
+          <ReviewsSection 
+            reviews={reviews}
+            categoryName={categoryName}
+            averageRating={averageRating}
+            totalReviews={totalReviews}
+          />
         </div>
 
         <section className="py-20 bg-background">
