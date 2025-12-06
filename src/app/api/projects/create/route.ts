@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
-import { generateSlug } from '@/lib/utils';
+import { generateArabicSlug } from '@/lib/arabic-slug';
 import { randomUUID } from 'crypto';
 import { normalizeCategoryName } from '@/lib/categoryNormalizer';
 import { checkAdminAuth } from '@/lib/auth';
@@ -47,8 +47,8 @@ export async function POST(request: NextRequest) {
       console.log(`✅ تم تحويل الفئة: "${data.category}" → "${normalizedCategory}"`);
     }
 
-    // إنشاء slug فريد للمشروع
-    const baseSlug = generateSlug(data.title);
+    // إنشاء slug فريد للمشروع باستخدام الأحرف العربية
+    const baseSlug = generateArabicSlug(data.title, normalizedCategory);
     let slug = baseSlug;
     let counter = 1;
     
