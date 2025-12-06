@@ -14,6 +14,8 @@ import ReviewSchema from '@/components/ReviewSchema';
 import SearchActionSchema from '@/components/SearchActionSchema';
 import HowToSchema from '@/components/HowToSchema';
 import ProductSchema from '@/components/ProductSchema';
+import OrganizationSchema from '@/components/OrganizationSchema';
+import WebSiteSchema from '@/components/WebSiteSchema';
 
 const PortfolioSection = dynamic(() => import('@/components/PortfolioSection'), {
   loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
@@ -80,6 +82,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   
   return (
     <>
+      <OrganizationSchema locale={locale} />
+      <WebSiteSchema locale={locale} />
       <HomePageBreadcrumb locale={locale} />
       <ReviewSchema 
         serviceName={isArabic ? "مظلات وبرجولات وسواتر جدة - محترفين الديار العالمية" : "Shades, Pergolas and Fences Jeddah - Aldeyar Global"}
@@ -133,9 +137,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "مظلات سيارات من خامات PVC عالمية، مقاومة للحرارة والأمطار، بضمان 10 سنوات"
           : "Car shades made of global PVC materials, heat and rain resistant, with 10 year warranty"}
-        price="2500"
+        image="https://www.aldeyarksa.tech/images/services/car-shades.webp"
+        price="2500.00"
+        currency="SAR"
         rating={{ ratingValue: 4.9, reviewCount: 287 }}
-        sku="CAR-SHADE-001"
+        sku="CAR-SHADE-PVC-001"
+        brand={isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals"}
       />
       <Navbar />
       <HeroSection />
