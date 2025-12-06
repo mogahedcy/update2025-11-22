@@ -7,6 +7,9 @@ import ArticleSchema from '@/components/ArticleSchema';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { generateCanonicalUrl, getAbsoluteUrl } from '@/lib/seo-utils';
 import IntlProvider from '@/components/IntlProvider';
+import WhatsAppWidget from '@/components/WhatsAppWidget';
+import FloatingCallButton from '@/components/FloatingCallButton';
+import BottomNavigation from '@/components/BottomNavigation';
 
 export const dynamic = 'force-dynamic';
 
@@ -210,6 +213,9 @@ export default async function ArticlePage({ params }: Props) {
       <NavbarArabic />
       <ArticleDetailsClient article={article} />
       <Footer />
+      <WhatsAppWidget />
+      <FloatingCallButton />
+      <BottomNavigation />
     </IntlProvider>
   );
 }

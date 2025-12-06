@@ -8,6 +8,9 @@ import VideoObjectSchema from '@/components/VideoObjectSchema';
 import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import IntlProvider from '@/components/IntlProvider';
+import WhatsAppWidget from '@/components/WhatsAppWidget';
+import FloatingCallButton from '@/components/FloatingCallButton';
+import BottomNavigation from '@/components/BottomNavigation';
 
 export const metadata: Metadata = {
   title: 'معرض أعمالنا | محترفين الديار العالمية',
@@ -105,6 +108,9 @@ export default function PortfolioPage() {
         <PortfolioPageClient />
       </Suspense>
       <Footer />
+      <WhatsAppWidget />
+      <FloatingCallButton />
+      <BottomNavigation />
     </IntlProvider>
   );
 }

@@ -13,6 +13,9 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Search as SearchIcon, X, Filter, ChevronDown } from 'lucide-react';
 import IntlProvider from '@/components/IntlProvider';
+import WhatsAppWidget from '@/components/WhatsAppWidget';
+import FloatingCallButton from '@/components/FloatingCallButton';
+import BottomNavigation from '@/components/BottomNavigation';
 
 interface ApiResult {
   id: string;
@@ -297,6 +300,9 @@ export default function SearchPage() {
       }>
         <SearchContent />
       </Suspense>
+      <WhatsAppWidget />
+      <FloatingCallButton />
+      <BottomNavigation />
     </IntlProvider>
   );
 }
