@@ -2,7 +2,17 @@ import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { verifyToken } from '@/lib/jwt'
+import { Noto_Sans_Arabic } from "next/font/google";
+import "../globals.css";
 import DashboardLayoutClient from './DashboardLayoutClient'
+
+const notoSansArabic = Noto_Sans_Arabic({
+  variable: "--font-arabic",
+  subsets: ["arabic"],
+  weight: ["400", "500", "700"],
+  display: 'swap',
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: 'لوحة التحكم | محترفين الديار العالمية',
@@ -26,5 +36,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
     redirect('/login')
   }
 
-  return <DashboardLayoutClient admin={admin}>{children}</DashboardLayoutClient>
+  return (
+    <html lang="ar" dir="rtl" className={notoSansArabic.variable}>
+      <body className="antialiased font-arabic" suppressHydrationWarning={true}>
+        <DashboardLayoutClient admin={admin}>{children}</DashboardLayoutClient>
+      </body>
+    </html>
+  )
 }
