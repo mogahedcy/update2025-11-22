@@ -5,7 +5,7 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 
-const localizedPages = ['/', '/about', '/contact', '/services/mazallat'];
+const localizedPages = ['/', '/about', '/contact', '/services/mazallat', '/portfolio'];
 
 const nonLocalizedPages = ['/search', '/terms', '/quote', '/services/renovation', '/services/sawater', '/services/pergolas', '/services/landscaping', '/services/sandwich-panel', '/services/hangars'];
 
