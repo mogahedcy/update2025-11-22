@@ -767,5 +767,16 @@
       "articlesListName": "Articles about Fences in Jeddah",
       "articlesListDescription": "Comprehensive guide and educational articles about fence types and best options"
     }
+  },
+  "contentRefresh": {
+    "title": "New Content Available!",
+    "message": {
+      "projects": "New projects have been added. Refresh to see our latest work.",
+      "articles": "New articles have been published. Refresh to read them.",
+      "faqs": "New FAQs have been added. Refresh to read them.",
+      "reviews": "New customer reviews have been added. Refresh to read them."
+    },
+    "refreshButton": "Refresh Now",
+    "dismissButton": "Later"
   }
 }

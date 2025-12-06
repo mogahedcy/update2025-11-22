@@ -12,6 +12,7 @@ import FAQSection from '@/components/services/FAQSection';
 import ReviewsSection from '@/components/services/ReviewsSection';
 import ServiceContentNavigation from '@/components/ServiceContentNavigation';
 import ServiceReviewSchema from '@/components/ServiceReviewSchema';
+import ContentRefreshNotification from '@/components/ContentRefreshNotification';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { 
@@ -19,6 +20,7 @@ import {
   generateFAQSchema,
   generateProductSchema,
 } from '@/lib/seo-utils';
+import { getServiceContentUpdates } from '@/lib/cache-manager';
 
 import {
   Car,
@@ -243,6 +245,10 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
   ];
 
   const { projects, articles, faqs, reviews } = await getRelatedContent();
+
+  // Get content updates for cache notification
+  const categoryWhere = buildCategoryWhereClause('mazallat');
+  const contentUpdates = await getServiceContentUpdates(categoryWhere);
 
   // Calculate review statistics
   const totalReviews = reviews.length;
@@ -708,6 +714,12 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
         </section>
 
         <Footer />
+        
+        {/* Content Refresh Notification */}
+        <ContentRefreshNotification 
+          lastUpdate={contentUpdates.mostRecentUpdate}
+          contentType="projects"
+        />
       </div>
     </>
   );
