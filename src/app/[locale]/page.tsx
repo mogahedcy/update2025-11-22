@@ -25,7 +25,7 @@ const StickyWhatsApp = dynamic(() => import('@/components/StickyWhatsApp'));
 
 const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), {
   loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
-  ssr: false
+  ssr: true
 });
 
 const FAQSection = dynamic(() => import('@/components/FAQSection'), {
