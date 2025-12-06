@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { ArrowRight, Home } from 'lucide-react';
 import { generateCanonicalUrl } from '@/lib/seo-utils';
 import ShareButton from '@/components/ShareButton';
+import IntlProvider from '@/components/IntlProvider';
 
 export const dynamic = 'force-dynamic';
 
@@ -137,7 +138,7 @@ export default async function FAQDetailPage({ params }: PageProps) {
   };
 
   return (
-    <>
+    <IntlProvider>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -229,6 +230,6 @@ export default async function FAQDetailPage({ params }: PageProps) {
       </div>
 
       <Footer />
-    </>
+    </IntlProvider>
   );
 }

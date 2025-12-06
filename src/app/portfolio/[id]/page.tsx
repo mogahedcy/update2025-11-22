@@ -322,7 +322,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
   }) : null;
 
   return (
-    <>
+    <IntlProvider>
       <BreadcrumbSchema items={breadcrumbItems} />
       <script
         type="application/ld+json"
@@ -349,6 +349,6 @@ export default async function ProjectDetailsPage({ params }: Props) {
       <NavbarArabic />
       <ProjectDetailsClient project={project} projectId={id} />
       <Footer />
-    </>
+    </IntlProvider>
   );
 }

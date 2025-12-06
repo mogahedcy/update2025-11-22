@@ -118,7 +118,7 @@ export default function QuotePage() {
   ];
 
   return (
-    <>
+    <IntlProvider>
       {/* Structured Data for SEO */}
       <script
         type="application/ld+json"
@@ -555,6 +555,6 @@ export default function QuotePage() {
       </div>
 
       <Footer />
-    </>
+    </IntlProvider>
   )
 }

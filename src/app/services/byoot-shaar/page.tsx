@@ -31,6 +31,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import IntlProvider from '@/components/IntlProvider'
 
 export const dynamic = 'force-dynamic';
 
@@ -293,7 +294,7 @@ export default function ByootShaarPage() {
   };
 
   return (
-    <>
+    <IntlProvider>
       <BreadcrumbSchema items={breadcrumbItems} />
       <script
         type="application/ld+json"
@@ -639,6 +640,6 @@ export default function ByootShaarPage() {
       </div>
 
       <Footer />
-    </>
+    </IntlProvider>
   )
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import IntlProvider from '@/components/IntlProvider';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import ReviewSchema from '@/components/ReviewSchema';
@@ -360,7 +361,7 @@ export default function SawaterPage() {
   };
 
   return (
-    <>
+    <IntlProvider>
       <BreadcrumbSchema items={breadcrumbItems} />
       <script
         type="application/ld+json"
@@ -777,6 +778,6 @@ export default function SawaterPage() {
         {/* Footer */}
         <Footer />
       </div>
-    </>
+    </IntlProvider>
   );
 }

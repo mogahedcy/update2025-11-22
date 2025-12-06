@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import ReviewsPageClient from './ReviewsPageClient';
+import IntlProvider from '@/components/IntlProvider';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,12 +20,14 @@ export const metadata: Metadata = {
 
 export default function ReviewsPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <NavbarArabic />
-      <main className="flex-1">
-        <ReviewsPageClient />
-      </main>
-      <Footer />
-    </div>
+    <IntlProvider>
+      <div className="min-h-screen flex flex-col">
+        <NavbarArabic />
+        <main className="flex-1">
+          <ReviewsPageClient />
+        </main>
+        <Footer />
+      </div>
+    </IntlProvider>
   );
 }

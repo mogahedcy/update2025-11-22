@@ -3,11 +3,13 @@ import { Button } from '@/components/ui/button';
 import { Search, ArrowLeft, Home } from 'lucide-react';
 import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
+import IntlProvider from '@/components/IntlProvider';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <NavbarArabic />
+    <IntlProvider>
+      <div className="min-h-screen flex flex-col">
+        <NavbarArabic />
 
       <main className="flex-1 flex items-center justify-center bg-gray-50">
         <div className="max-w-lg mx-auto px-4 text-center">
@@ -56,7 +58,8 @@ export default function NotFound() {
         </div>
       </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </IntlProvider>
   );
 }

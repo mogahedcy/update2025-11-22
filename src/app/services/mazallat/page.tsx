@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
+import IntlProvider from '@/components/IntlProvider';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import ReviewSchema from '@/components/ReviewSchema';
@@ -456,7 +457,7 @@ export default async function MazallatPage() {
   };
 
   return (
-    <>
+    <IntlProvider>
       <BreadcrumbSchema items={breadcrumbItems} />
       <script
         type="application/ld+json"
@@ -706,6 +707,6 @@ export default async function MazallatPage() {
         {/* Footer */}
         <Footer />
       </div>
-    </>
+    </IntlProvider>
   );
 }

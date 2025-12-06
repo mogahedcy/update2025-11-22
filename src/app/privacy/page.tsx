@@ -70,7 +70,7 @@ const privacyPrinciples = [
 
 export default function PrivacyPage() {
   return (
-    <>
+    <IntlProvider>
       <NavbarArabic />
 
       <div className="min-h-screen bg-white">
@@ -288,6 +288,6 @@ export default function PrivacyPage() {
       </div>
 
       <Footer />
-    </>
+    </IntlProvider>
   )
 }

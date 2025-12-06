@@ -11,7 +11,7 @@ interface IntlProviderProps {
 
 export default function IntlProvider({ children, locale = 'ar' }: IntlProviderProps) {
   return (
-    <NextIntlClientProvider locale={locale} messages={arMessages}>
+    <NextIntlClientProvider locale={locale} messages={arMessages} timeZone="Asia/Riyadh">
       {children}
     </NextIntlClientProvider>
   );

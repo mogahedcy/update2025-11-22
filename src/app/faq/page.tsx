@@ -93,13 +93,13 @@ export default async function FAQPage() {
   const faqs = await getFAQs();
   
   return (
-    <>
+    <IntlProvider>
       <EnhancedFAQSchema faqs={faqs} />
       <NavbarArabic />
       <Suspense fallback={<LoadingFallback />}>
         <FAQPageClient initialFAQs={faqs} />
       </Suspense>
       <Footer />
-    </>
+    </IntlProvider>
   );
 }

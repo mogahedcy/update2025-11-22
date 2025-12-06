@@ -70,7 +70,7 @@ const keyTerms = [
 
 export default function TermsPage() {
   return (
-    <>
+    <IntlProvider>
       <NavbarArabic />
 
       <div className="min-h-screen bg-white">
@@ -348,6 +348,6 @@ export default function TermsPage() {
       </div>
 
       <Footer />
-    </>
+    </IntlProvider>
   )
 }
