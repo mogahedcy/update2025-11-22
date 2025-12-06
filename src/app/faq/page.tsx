@@ -7,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 import { generateCanonicalUrl } from '@/lib/seo-utils';
 import { prisma } from '@/lib/prisma';
 import EnhancedFAQSchema from '@/components/EnhancedFAQSchema';
+import IntlProvider from '@/components/IntlProvider';
 
 export const dynamic = 'force-dynamic';
 

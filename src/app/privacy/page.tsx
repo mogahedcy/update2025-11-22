@@ -4,6 +4,7 @@ import Link from 'next/link'
 import NavbarArabic from '@/components/NavbarArabic'
 import Footer from '@/components/Footer'
 import { generateCanonicalUrl } from '@/lib/seo-utils'
+import IntlProvider from '@/components/IntlProvider'
 
 export const dynamic = 'force-dynamic';
 

@@ -7,6 +7,7 @@ import StructuredDataScript from '@/components/StructuredDataScript';
 import VideoObjectSchema from '@/components/VideoObjectSchema';
 import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
+import IntlProvider from '@/components/IntlProvider';
 
 export const metadata: Metadata = {
   title: 'معرض أعمالنا | محترفين الديار العالمية',
@@ -83,7 +84,7 @@ const portfolioStructuredData = {
 
 export default function PortfolioPage() {
   return (
-    <>
+    <IntlProvider>
       <StructuredDataScript data={portfolioStructuredData} />
       <VideoObjectSchema 
         name="جولة في معرض أعمال محترفين الديار - مشاريع المظلات والبرجولات"
@@ -104,6 +105,6 @@ export default function PortfolioPage() {
         <PortfolioPageClient />
       </Suspense>
       <Footer />
-    </>
+    </IntlProvider>
   );
 }

@@ -23,6 +23,7 @@ import Footer from '@/components/Footer'
 import { Button } from '@/components/ui/button'
 import BreadcrumbSchema from '@/components/BreadcrumbSchema'
 import { generateCanonicalUrl } from '@/lib/seo-utils'
+import IntlProvider from '@/components/IntlProvider'
 
 export const dynamic = 'force-dynamic';
 

@@ -6,6 +6,7 @@ import ArticleDetailsClient from './ArticleDetailsClient';
 import ArticleSchema from '@/components/ArticleSchema';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import { generateCanonicalUrl, getAbsoluteUrl } from '@/lib/seo-utils';
+import IntlProvider from '@/components/IntlProvider';
 
 export const dynamic = 'force-dynamic';
 
@@ -182,7 +183,7 @@ export default async function ArticlePage({ params }: Props) {
   } : null;
 
   return (
-    <>
+    <IntlProvider>
       <BreadcrumbSchema items={breadcrumbItems} />
       <ArticleSchema
         headline={article.title}
@@ -209,6 +210,6 @@ export default async function ArticlePage({ params }: Props) {
       <NavbarArabic />
       <ArticleDetailsClient article={article} />
       <Footer />
-    </>
+    </IntlProvider>
   );
 }
