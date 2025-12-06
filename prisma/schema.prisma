@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  url       = env("NEON_DATABASE_URL")
   directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
@@ -278,15 +278,15 @@ model automation_schedules {
   lastFixRun          DateTime?
   nextGenerateRun     DateTime?
   nextFixRun          DateTime?
-  faqEnabled          Boolean   @default(false)
-  faqFrequency        String    @default("weekly")
-  faqCount            Int       @default(5)
-  faqNiche            String?
-  faqAutoPublish      Boolean   @default(false)
-  lastFaqRun          DateTime?
-  nextFaqRun          DateTime?
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
+  faqAutoPublish      Boolean   @default(false)
+  faqCount            Int       @default(5)
+  faqEnabled          Boolean   @default(false)
+  faqFrequency        String    @default("weekly")
+  faqNiche            String?
+  lastFaqRun          DateTime?
+  nextFaqRun          DateTime?
 }
 
 model automation_logs {

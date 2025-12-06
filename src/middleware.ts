@@ -5,12 +5,17 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 
-const localizedPages = ['/', '/about', '/articles', '/contact', '/services/mazallat'];
+const localizedPages = ['/', '/about', '/contact', '/services/mazallat'];
+
+const nonLocalizedPages = ['/portfolio', '/search', '/terms', '/quote', '/services/renovation', '/services/sawater', '/services/pergolas', '/services/landscaping', '/services/sandwich-panel', '/services/hangars'];
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const hostname = request.headers.get('host') || '';
   const pathname = url.pathname;
+  
+  const isArticleDetailPage = /^\/articles\/[^\/]+$/.test(pathname);
+  const isNonLocalizedPage = nonLocalizedPages.some(page => pathname === page || pathname.startsWith(page + '/'));
   
   if (
     pathname.startsWith('/api') ||
@@ -19,7 +24,9 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/uploads') ||
     pathname.includes('.') ||
     pathname.startsWith('/dashboard') ||
-    pathname.startsWith('/login')
+    pathname.startsWith('/login') ||
+    isArticleDetailPage ||
+    isNonLocalizedPage
   ) {
     const response = NextResponse.next({
       request: {

@@ -243,6 +243,7 @@ integrations = ["javascript_openai:1.0.0"]
 [userenv.shared]
 NEXT_PUBLIC_BASE_URL = "https://www.aldeyarksa.tech"
 JWT_SECRET = "I9wREFuSzrXjEh29NDCz0TaHDmaFbYpgGDq8mWhSD4w="
+NEON_DATABASE_URL = "postgresql://neondb_owner:npg_Cdt08PknDiKz@ep-withered-bread-a48nkvax-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
 
 [userenv.production]
 DATABASE_URL_UNPOOLED = "postgresql://neondb_owner:npg_Cdt08PknDiKz@ep-withered-bread-a48nkvax.us-east-1.aws.neon.tech/neondb?sslmode=require"

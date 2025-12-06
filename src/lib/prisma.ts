@@ -6,7 +6,8 @@ const globalForPrisma = globalThis as unknown as {
 
 // تحميل DATABASE_URL من المتغيرات البيئية
 const getDatabaseUrl = () => {
-  const url = process.env.DATABASE_URL || 
+  const url = process.env.NEON_DATABASE_URL || 
+              process.env.DATABASE_URL || 
               process.env.POSTGRES_PRISMA_URL || 
               process.env.POSTGRES_URL;
   
