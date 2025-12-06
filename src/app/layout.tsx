@@ -59,6 +59,9 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" className={`${notoSansArabic.variable} ${inter.variable}`} suppressHydrationWarning={true}>
       <head>
         <meta name="theme-color" content="#059669" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="preload" href="/images/hero-bg.webp" as="image" type="image/webp" />
         <style dangerouslySetInnerHTML={{__html: `
           :root{--background:40 25% 98%;--foreground:39 39% 21%;--primary:39 39% 21%;--accent:134 61% 41%;--border:40 35% 85%;--card:40 25% 98%;--card-foreground:39 39% 21%;--radius:0.5rem;}
           *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border:0 solid hsl(var(--border));}
