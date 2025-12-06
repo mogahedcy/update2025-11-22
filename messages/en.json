@@ -630,5 +630,142 @@
       "articlesListName": "Articles about Car Shades in Jeddah",
       "articlesListDescription": "Comprehensive guide and educational articles about car and garden shades"
     }
+  },
+  "sawater": {
+    "pageTitle": "Fences Jeddah - 15 Year Warranty | Aldeyar Professionals",
+    "pageDescription": "Installation of iron, wooden and fabric fences in Jeddah with 15-year warranty. High-quality privacy fences, competitive prices starting from 80 SAR per meter. Free consultation",
+    "keywords": "fences jeddah, iron fences, wooden fences, fabric fences, shinko fences, fence installation, fence prices, fence company",
+    "hero": {
+      "title": "Best Fences in",
+      "titleHighlight": "Jeddah",
+      "subtitle": "Complete Privacy and Unmatched Quality",
+      "description": "Aldeyar Professionals - 15 years of experience installing the best types of fences in Jeddah. Iron, wooden, fabric and shinko fences with highest quality and best prices with comprehensive 15-year warranty",
+      "features": {
+        "allAreas": "We serve all Jeddah neighborhoods",
+        "warranty": "Comprehensive 15-year warranty",
+        "projects": "More than 3000 completed fences"
+      },
+      "callCta": "Call for Free Consultation",
+      "whatsappCta": "WhatsApp Now"
+    },
+    "servicesSection": {
+      "title": "Specialized Fence Types",
+      "subtitle": "We offer a comprehensive range of high-quality fences to suit all needs",
+      "moreInfo": "More Information"
+    },
+    "fenceTypes": {
+      "metal": {
+        "title": "Iron Fences",
+        "description": "Durable and strong iron fences providing maximum privacy and protection. Ideal for villas and residential complexes.",
+        "features": ["High durability", "Weather resistant", "Modern designs"],
+        "price": "Starting from 180 SAR/m"
+      },
+      "wood": {
+        "title": "Wooden Fences",
+        "description": "Natural or treated wood fences with elegant designs that add aesthetic beauty with required privacy.",
+        "features": ["Elegant natural look", "Insect-treated wood", "Multiple colors"],
+        "price": "Starting from 150 SAR/m"
+      },
+      "fabric": {
+        "title": "Fabric Fences",
+        "description": "Economical and practical fabric fences, ideal for gardens and areas that need good ventilation with privacy.",
+        "features": ["Economical and flexible", "Various colors", "Easy maintenance"],
+        "price": "Starting from 80 SAR/m"
+      },
+      "shinko": {
+        "title": "Shinko Fences",
+        "description": "Corrugated metal shinko fences providing good insulation and excellent durability at suitable prices for large projects.",
+        "features": ["Good thermal insulation", "High durability", "Fast installation"],
+        "price": "Starting from 120 SAR/m"
+      }
+    },
+    "whyChooseUs": {
+      "title": "Why Choose Aldeyar Professionals Fences?",
+      "features": {
+        "experience": {
+          "title": "15 Years Experience",
+          "description": "Over 15 years of experience installing all types of fences with highest quality standards"
+        },
+        "warranty": {
+          "title": "15 Year Warranty",
+          "description": "We offer a comprehensive 15-year warranty on all fences with free periodic maintenance"
+        },
+        "team": {
+          "title": "Specialized Team",
+          "description": "Team of engineers and technicians trained at the highest level"
+        },
+        "speed": {
+          "title": "Fast Execution",
+          "description": "Speed in execution while maintaining highest quality standards"
+        },
+        "satisfaction": {
+          "title": "Customer Satisfaction",
+          "description": "Customer satisfaction rate up to 97% with excellent ratings"
+        },
+        "prices": {
+          "title": "Competitive Prices",
+          "description": "Best prices in the market with unmatched high quality"
+        }
+      }
+    },
+    "stats": {
+      "projects": "Completed Fences",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction",
+      "support": "Customer Service"
+    },
+    "projectsGallery": {
+      "title": "Our Portfolio in",
+      "viewAll": "View All Projects",
+      "viewProject": "View Project"
+    },
+    "articlesSection": {
+      "title": "Articles and Tips about",
+      "viewAll": "View All Articles",
+      "readMore": "Read More"
+    },
+    "faqSection": {
+      "title": "Frequently Asked Questions about",
+      "noFaqs": "No FAQs available at the moment"
+    },
+    "relatedServices": {
+      "title": "Related Services",
+      "subtitle": "Discover more of our distinguished services",
+      "mazallat": {
+        "title": "Shades",
+        "description": "Installation of car and garden shades in various types and materials.",
+        "features": ["Car shades", "Garden shades", "School shades"]
+      },
+      "pergolas": {
+        "title": "Pergolas",
+        "description": "Design and execution of wooden and iron pergolas in modern styles.",
+        "features": ["Wooden pergolas", "Iron pergolas", "Mixed pergolas"]
+      },
+      "byootShaar": {
+        "title": "Traditional Tents",
+        "description": "Design and execution of traditional and modern hair houses with finest materials.",
+        "features": ["Royal hair houses", "Traditional hair houses", "Arabic majlis"]
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "subtitle": "Contact us now for a free consultation and a customized quote for your needs",
+      "callButton": "Call Now",
+      "whatsappButton": "Contact via WhatsApp"
+    },
+    "breadcrumb": {
+      "services": "Our Services",
+      "sawater": "Fences"
+    },
+    "schema": {
+      "serviceName": "Fences Jeddah",
+      "serviceDescription": "Best fences in Jeddah from Aldeyar Professionals. Iron fences, wooden fences, fabric fences, shinko fences. 15-year warranty and 15 years of experience.",
+      "productName": "Privacy Fences - Jeddah",
+      "productDescription": "High-quality fences for privacy and protection. Available in multiple materials: iron, wood, fabric, shinko. 15-year warranty on materials and installation.",
+      "projectsListName": "Fence Projects in Jeddah - Aldeyar Professionals",
+      "projectsListDescription": "Our portfolio of fence installations of all types in Jeddah",
+      "articlesListName": "Articles about Fences in Jeddah",
+      "articlesListDescription": "Comprehensive guide and educational articles about fence types and best options"
+    }
   }
 }

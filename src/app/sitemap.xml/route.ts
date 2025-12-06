@@ -53,7 +53,7 @@ export async function GET() {
         ar: 'مظلات سيارات جدة، تركيب مظلات، مظلات حديد، مظلات قماش، أسعار مظلات السيارات، شركة مظلات جدة',
         en: 'Car shades Jeddah, shade installation, metal shades, fabric shades'
       },
-      hasEnglish: false
+      hasEnglish: true
     },
     { 
       url: '/services/pergolas', 
@@ -73,7 +73,7 @@ export async function GET() {
         ar: 'سواتر جدة، سواتر خصوصية، سواتر حديد، سواتر قماش، تركيب سواتر جدة، أسعار السواتر',
         en: 'Privacy fences Jeddah, metal fences, fabric fences'
       },
-      hasEnglish: false
+      hasEnglish: true
     },
     { 
       url: '/services/sandwich-panel', 
