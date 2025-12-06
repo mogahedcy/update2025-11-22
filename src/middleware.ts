@@ -7,7 +7,7 @@ const intlMiddleware = createMiddleware(routing);
 
 const localizedPages = ['/', '/about', '/contact', '/services/mazallat'];
 
-const nonLocalizedPages = ['/portfolio', '/search', '/terms', '/quote', '/services/renovation', '/services/sawater', '/services/pergolas', '/services/landscaping', '/services/sandwich-panel', '/services/hangars'];
+const nonLocalizedPages = ['/search', '/terms', '/quote', '/services/renovation', '/services/sawater', '/services/pergolas', '/services/landscaping', '/services/sandwich-panel', '/services/hangars'];
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
