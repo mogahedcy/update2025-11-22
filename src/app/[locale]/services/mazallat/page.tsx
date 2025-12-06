@@ -9,6 +9,7 @@ import ReviewSchema from '@/components/ReviewSchema';
 import ProjectsGallery from '@/components/services/ProjectsGallery';
 import ArticlesSection from '@/components/services/ArticlesSection';
 import FAQSection from '@/components/services/FAQSection';
+import ServiceContentNavigation from '@/components/ServiceContentNavigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { 
@@ -550,9 +551,19 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
           </div>
         </section>
 
-        <ProjectsGallery projects={projects} categoryName={categoryName} />
+        <ServiceContentNavigation 
+          projectsCount={projects.length}
+          articlesCount={articles.length}
+          faqsCount={faqs.length}
+        />
 
-        <ArticlesSection articles={articles} categoryName={categoryName} />
+        <div id="projects">
+          <ProjectsGallery projects={projects} categoryName={categoryName} />
+        </div>
+
+        <div id="articles">
+          <ArticlesSection articles={articles} categoryName={categoryName} />
+        </div>
 
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -588,7 +599,9 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
           </div>
         </section>
 
-        <FAQSection faqs={faqs} categoryName={categoryName} />
+        <div id="faqs">
+          <FAQSection faqs={faqs} categoryName={categoryName} />
+        </div>
 
         <section className="py-20 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

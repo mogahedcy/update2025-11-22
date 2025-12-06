@@ -6,8 +6,6 @@ import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
-import FAQSection from '@/components/FAQSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
 import Footer from '@/components/Footer';
 import HomePageBreadcrumb from '@/components/HomePageBreadcrumb';
 import ReviewSchema from '@/components/ReviewSchema';
@@ -16,6 +14,7 @@ import HowToSchema from '@/components/HowToSchema';
 import ProductSchema from '@/components/ProductSchema';
 import OrganizationSchema from '@/components/OrganizationSchema';
 import WebSiteSchema from '@/components/WebSiteSchema';
+import RelatedContent from '@/components/RelatedContent';
 
 const PortfolioSection = dynamic(() => import('@/components/PortfolioSection'), {
   loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
@@ -23,6 +22,16 @@ const PortfolioSection = dynamic(() => import('@/components/PortfolioSection'), 
 });
 
 const StickyWhatsApp = dynamic(() => import('@/components/StickyWhatsApp'));
+
+const TestimonialsSection = dynamic(() => import('@/components/TestimonialsSection'), {
+  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  ssr: false
+});
+
+const FAQSection = dynamic(() => import('@/components/FAQSection'), {
+  loading: () => <div className="min-h-[400px] animate-pulse bg-gray-100" />,
+  ssr: true
+});
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -147,6 +156,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Navbar />
       <HeroSection />
       <ServicesSection />
+      <RelatedContent 
+        serviceName={isArabic ? "مظلات السيارات" : "Car Shades"}
+        serviceSlug="mazallat"
+        projectsCount={20}
+        articlesCount={8}
+        faqsCount={12}
+      />
       <WhyChooseUsSection />
       <HowItWorksSection />
       <PortfolioSection />

@@ -6,34 +6,35 @@ import { Phone, MessageCircle, ArrowLeft, Star, MapPin, Clock, Shield, Award } f
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
+import { generateHeroAltText } from '@/lib/image-alt-text';
 
 const slides = {
   ar: [
     {
       url: '/images/slider1.webp',
-      alt: 'مظلات وبرجولات حدائق فاخرة - تركيب برجولات خشبية ومظلات سيارات جدة',
+      alt: generateHeroAltText('مظلات وبرجولات حدائق فاخرة - تركيب برجولات خشبية ومظلات سيارات'),
     },
     {
       url: '/images/slider2.webp',
-      alt: 'تركيب مظلات سيارات لكسان وحديد - محترفين الديار جدة',
+      alt: generateHeroAltText('تركيب مظلات سيارات لكسان وحديد عالية الجودة'),
     },
     {
       url: '/images/slider3.webp',
-      alt: 'سواتر حديد وقماش - تنسيق حدائق وساندوتش بانل جدة',
+      alt: generateHeroAltText('سواتر حديد وقماش - تنسيق حدائق وساندوتش بانل'),
     },
   ],
   en: [
     {
       url: '/images/slider1.webp',
-      alt: 'Luxury garden shades and pergolas - Installing wooden pergolas and car shades in Jeddah',
+      alt: 'Luxury garden shades and pergolas - Installing wooden pergolas and car shades in Jeddah | Aldeyar Global Professionals',
     },
     {
       url: '/images/slider2.webp',
-      alt: 'Installing Lexan and iron car shades - Aldeyar Professionals Jeddah',
+      alt: 'Installing high-quality Lexan and iron car shades in Jeddah | Aldeyar Professionals',
     },
     {
       url: '/images/slider3.webp',
-      alt: 'Iron and fabric fences - Landscaping and sandwich panel Jeddah',
+      alt: 'Iron and fabric fences - Landscaping and sandwich panel in Jeddah | Aldeyar Global',
     },
   ],
 };
