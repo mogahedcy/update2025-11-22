@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('pageTitle'),
     description: t('pageDescription'),
     keywords: t('keywords'),
-    authors: [{ name: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals' }],
+    authors: [{ name: isArabic ? 'ديار جدة' : 'Deyar Jeddah' }],
     robots: 'index, follow',
     alternates: {
       canonical: `${baseUrl}${canonicalPath}`,
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: t('pageTitle'),
       description: t('pageDescription'),
       url: `${baseUrl}${canonicalPath}`,
-      siteName: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      siteName: isArabic ? 'ديار جدة' : 'Deyar Jeddah',
       type: 'website',
       locale: isArabic ? 'ar_SA' : 'en_US',
       images: [
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: pageImage,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'سواتر جدة - محترفين الديار العالمية' : 'Fences Jeddah - Aldeyar Global Professionals',
+          alt: isArabic ? 'سواتر جدة - ديار جدة' : 'Fences Jeddah - Deyar Jeddah',
         },
       ],
     },
@@ -404,11 +404,11 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
         "uploadDate": new Date().toISOString(),
         "author": {
           "@type": "Organization",
-          "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals"
+          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals"
         },
         "publisher": {
           "@type": "Organization",
-          "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/logo.png`
@@ -435,11 +435,11 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
         "image": article.article_media_items?.[0]?.src || '',
         "author": {
           "@type": "Organization",
-          "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals"
+          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals"
         },
         "publisher": {
           "@type": "Organization",
-          "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/logo.png`

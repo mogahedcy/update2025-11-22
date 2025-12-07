@@ -102,10 +102,10 @@ const altText = generateHeroAltText({
 ```typescript
 export async function generateMetadata({ params }) {
   return {
-    title: 'مظلات سيارات جدة - محترفين الديار العالمية',
+    title: 'مظلات سيارات جدة - ديار جدة',
     description: 'أفضل شركة تركيب مظلات سيارات في جدة...',
     keywords: 'مظلات سيارات جدة, تركيب مظلات, مظلات حديد...',
-    authors: [{ name: 'محترفين الديار العالمية' }],
+    authors: [{ name: 'ديار جدة' }],
     robots: 'index, follow',
     
     // Canonical & Alternates
@@ -120,10 +120,10 @@ export async function generateMetadata({ params }) {
     
     // Open Graph
     openGraph: {
-      title: 'مظلات سيارات جدة - محترفين الديار العالمية',
+      title: 'مظلات سيارات جدة - ديار جدة',
       description: 'أفضل شركة تركيب مظلات...',
       url: 'https://www.aldeyarksa.tech/services/mazallat',
-      siteName: 'محترفين الديار العالمية',
+      siteName: 'ديار جدة',
       type: 'website',
       locale: 'ar_SA',
       images: [
@@ -131,7 +131,7 @@ export async function generateMetadata({ params }) {
           url: 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp',
           width: 1200,
           height: 630,
-          alt: 'مظلات سيارات جدة - محترفين الديار العالمية',
+          alt: 'مظلات سيارات جدة - ديار جدة',
         },
       ],
     },
@@ -184,7 +184,7 @@ export async function generateMetadata({ params }) {
   <image:image>
     <image:loc>https://www.aldeyarksa.tech/images/logo.png</image:loc>
     <image:caption><![CDATA[مظلات سيارات جدة، تركيب مظلات، شركة مظلات]]></image:caption>
-    <image:title><![CDATA[محترفين الديار العالمية - مظلات سيارات جدة]]></image:title>
+    <image:title><![CDATA[ديار جدة - مظلات سيارات جدة]]></image:title>
   </image:image>
 </url>
 ```
@@ -290,7 +290,7 @@ Disallow: /
   "description": "تركيب مظلات سيارات احترافية...",
   "provider": {
     "@type": "Organization",
-    "name": "محترفين الديار العالمية"
+    "name": "ديار جدة"
   },
   "areaServed": {
     "@type": "City",
@@ -422,7 +422,7 @@ Disallow: /
         "contentUrl": "https://res.cloudinary.com/...",
         "author": {
           "@type": "Organization",
-          "name": "محترفين الديار العالمية"
+          "name": "ديار جدة"
         }
       }
     }

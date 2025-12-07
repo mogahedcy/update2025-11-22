@@ -1,5 +1,5 @@
 # ✅ المراجعة النهائية للصفحة الرئيسية
-## محترفين الديار العالمية | جاهزة للنشر
+## ديار جدة | جاهزة للنشر
 
 **تاريخ المراجعة**: 14 نوفمبر 2025  
 **الحالة**: ✅ **جاهزة للنشر بدون أخطاء**  
@@ -71,7 +71,7 @@ openGraph: {
     url: 'https://www.aldeyarksa.tech/images/hero-bg.webp',
     width: 1200,                    // ✅ الأبعاد المثالية
     height: 630,                    // ✅ نسبة 1.91:1 (الموصى بها)
-    alt: 'محترفين الديار العالمية - مظلات سيارات وبرجولات وسواتر جدة',
+    alt: 'ديار جدة - مظلات سيارات وبرجولات وسواتر جدة',
   }],
 }
 
@@ -95,7 +95,7 @@ twitter: {
 // PortfolioSection.tsx - Alt text ديناميكي
 <Image
   src={mainMedia.src}
-  alt={`${project.title} - محترفين الديار العالمية جدة`}  // ✅ ديناميكي
+  alt={`${project.title} - ديار جدة جدة`}  // ✅ ديناميكي
   title={`${project.title} - ${project.category} في ${project.location}`}  // ✅ Title
   fill
   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // ✅ Responsive
@@ -119,14 +119,14 @@ twitter: {
    - يحتوي على الكلمات المفتاحية الرئيسية
    - واضح وجذاب
 
-✅ Description: "شركة محترفين الديار العالمية ✅ تركيب مظلات سيارات..."
+✅ Description: "شركة ديار جدة ✅ تركيب مظلات سيارات..."
    - الطول: 155 حرف (مثالي: 150-160)
    - يحتوي على CTA وكلمات مفتاحية
    - استخدام emoji بشكل مناسب
 
 ✅ Keywords: شامل ومستهدف (18 كلمة مفتاحية)
 
-✅ Authors: [{ name: 'محترفين الديار العالمية' }]
+✅ Authors: [{ name: 'ديار جدة' }]
 
 ✅ Robots: "index, follow" (صحيح)
 
@@ -171,7 +171,7 @@ twitter: {
 ```json
 {
   "@type": "Organization",
-  "name": "محترفين الديار العالمية",              // ✅ موحّد
+  "name": "ديار جدة",              // ✅ موحّد
   "alternateName": "Al Deyar Professional Global",  // ✅
   "address": {
     "streetAddress": "Al Makarunah Rd, تقاطع، التحليه",  // ✅ محدّث
@@ -198,7 +198,7 @@ twitter: {
 ```json
 {
   "@type": "LocalBusiness",
-  "name": "محترفين الديار العالمية",              // ✅ موحّد
+  "name": "ديار جدة",              // ✅ موحّد
   "address": {
     "streetAddress": "Al Makarunah Rd, تقاطع، التحليه",  // ✅ موحّد
     "postalCode": "23461"                           // ✅ موحّد
@@ -223,9 +223,9 @@ twitter: {
 ```json
 {
   "@type": "Service",
-  "serviceType": "خدمات محترفين الديار العالمية",
+  "serviceType": "خدمات ديار جدة",
   "provider": {
-    "name": "محترفين الديار العالمية",            // ✅ موحّد
+    "name": "ديار جدة",            // ✅ موحّد
     "url": "https://www.aldeyarksa.tech"            // ✅ محدّث
   },
   "hasOfferCatalog": {
@@ -272,7 +272,7 @@ twitter: {
 
 ```typescript
 <ReviewSchema 
-  serviceName="مظلات وبرجولات وسواتر جدة - محترفين الديار العالمية"  // ✅
+  serviceName="مظلات وبرجولات وسواتر جدة - ديار جدة"  // ✅
   itemType="LocalBusiness"                                        // ✅
   serviceUrl="https://www.aldeyarksa.tech"                        // ✅
   aggregateRating={{ ratingValue: 4.9, reviewCount: 287 }}       // ✅
@@ -354,7 +354,7 @@ twitter: {
 - ✅ "برجولات حدائق جدة" (كثافة مناسبة)
 - ✅ "سواتر جدة" (كثافة مناسبة)
 - ✅ "ساندوتش بانل جدة" (كثافة مناسبة)
-- ✅ "محترفين الديار العالمية" (موحّد)
+- ✅ "ديار جدة" (موحّد)
 
 **الكثافة الإجمالية**: 2-3% (مثالي)
 

@@ -159,7 +159,7 @@ const averageRating = totalReviews > 0
   "url": "https://www.aldeyarksa.tech/services/mazallat",
   "provider": {
     "@type": "Organization",
-    "name": "محترفين الديار العالمية",
+    "name": "ديار جدة",
     "url": "https://www.aldeyarksa.tech"
   },
   "aggregateRating": {
