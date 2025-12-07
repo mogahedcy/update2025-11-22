@@ -102,7 +102,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   if (!project) {
     return {
-      title: 'المشروع غير موجود | محترفين الديار العالمية',
+      title: 'المشروع غير موجود | ديار جدة',
       description: 'المشروع المطلوب غير متوفر',
       robots: 'noindex, nofollow'
     };
@@ -117,13 +117,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const shortTitle = project.title.length > 40 
     ? project.title.substring(0, 37) + '...' 
     : project.title;
-  const seoTitle = `${shortTitle} | محترفين الديار`;
+  const seoTitle = `${shortTitle} | ديار جدة`;
   
   // تحسين الوصف ليكون واضح ومباشر بدون قطع في المنتصف (150-160 حرف)
   const cleanDescription = project.description.replace(/\s+/g, ' ').trim();
   const seoDescription = cleanDescription.length > 140 
-    ? cleanDescription.substring(0, 140).trim() + ' - محترفين الديار جدة'
-    : `${cleanDescription} - ${project.category} في ${project.location} | محترفين الديار`;
+    ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة'
+    : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة`;
   
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
@@ -139,7 +139,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       'سواتر',
       'برجولات',
       'تنسيق حدائق',
-      'محترفين الديار',
+      'ديار جدة',
       project.location,
       project.title
     ].join(', '),
@@ -147,29 +147,31 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: seoTitle,
       description: seoDescription,
       url: fullUrl,
-      siteName: 'محترفين الديار العالمية',
+      siteName: 'ديار جدة',
       locale: 'ar_SA',
       type: 'article',
       publishedTime: project.createdAt,
       modifiedTime: project.updatedAt || project.createdAt,
-      authors: ['محترفين الديار العالمية'],
+      authors: ['ديار جدة'],
+      // ✅ جميع صور المشروع - كل صورة سيتم أرشفتها في Google Images
       images: allImages.length > 0 
         ? allImages.map((img: any, index: number) => ({
             url: getAbsoluteUrl(img.src),
             width: 1200,
             height: 630,
-            alt: img.alt || img.title || `${project.title} - صورة ${index + 1}`,
+            alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
             type: getMediaType(img.src),
           }))
         : [{
             url: getAbsoluteUrl(mainImage),
             width: 1200,
             height: 630,
-            alt: `${project.title} - محترفين الديار العالمية جدة`,
+            alt: `${project.title} - ديار جدة`,
             type: 'image/jpeg',
           }],
+      // ✅ جميع فيديوهات المشروع
       videos: allVideos.length > 0
-        ? allVideos.map((video: any) => ({
+        ? allVideos.map((video: any, index: number) => ({
             url: getAbsoluteUrl(video.src),
             width: 1280,
             height: 720,
@@ -181,8 +183,14 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       card: 'summary_large_image' as const,
       title: seoTitle,
       description: seoDescription.substring(0, 200),
+      creator: '@deyarjeddah',
+      site: '@deyarjeddah',
+      // ✅ جميع الصور (Twitter يدعم حتى 4 صور)
       images: allImages.length > 0 
-        ? allImages.slice(0, 4).map((img: any) => getAbsoluteUrl(img.src))
+        ? allImages.slice(0, 4).map((img: any, index: number) => ({
+            url: getAbsoluteUrl(img.src),
+            alt: img.alt || img.title || `${project.title} - صورة ${index + 1}`,
+          }))
         : [getAbsoluteUrl(mainImage)],
     },
     alternates: {
@@ -281,7 +289,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
 
   const imageGallerySchema = images.length > 1 ? generateImageGallerySchema({
     name: `معرض صور ${project.title}`,
-    description: `معرض صور مشروع ${project.title} - ${project.category} في ${project.location} | محترفين الديار العالمية`,
+    description: `معرض صور مشروع ${project.title} - ${project.category} في ${project.location} | ديار جدة`,
     url: `/portfolio/${project.slug || id}`,
     category: project.category,
     location: project.location,
@@ -289,8 +297,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
     dateModified: project.updatedAt,
     images: images.map((item: any, index: number) => ({
       url: getAbsoluteUrl(item.src),
-      caption: item.title || `${project.title} - ${project.category} - صورة ${index + 1}`,
-      alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1}`,
+      caption: item.title || item.description || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
+      alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
       width: 1200,
       height: 800
     }))
@@ -324,12 +332,16 @@ export default async function ProjectDetailsPage({ params }: Props) {
   return (
     <IntlProvider>
       <BreadcrumbSchema items={breadcrumbItems} />
+      
+      {/* ✅ Creative Work Schema - للمشروع والصور والفيديوهات */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(structuredData),
         }}
       />
+      
+      {/* ✅ Project Schema - بيانات المشروع المتقدمة */}
       {projectSchema && (
         <script
           type="application/ld+json"
@@ -338,6 +350,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
           }}
         />
       )}
+      
+      {/* ✅ Image Gallery Schema - معرض الصور (جميع الصور) */}
       {imageGallerySchema && (
         <script
           type="application/ld+json"
@@ -346,6 +360,60 @@ export default async function ProjectDetailsPage({ params }: Props) {
           }}
         />
       )}
+      
+      {/* ✅ LocalBusiness Schema - معلومات الشركة والتقييمات */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            name: 'ديار جدة',
+            description: `${project.category} في ${project.location} - تنفيذ ديار جدة بجودة عالية وضمان 10 سنوات`,
+            image: images.length > 0 ? images.map((img: any) => getAbsoluteUrl(img.src)) : [getAbsoluteUrl(mainImage)],
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: project.location || 'جدة',
+              addressRegion: 'منطقة مكة المكرمة',
+              addressCountry: 'SA'
+            },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: '21.5433',
+              longitude: '39.1728'
+            },
+            telephone: '+966553719009',
+            priceRange: '$$',
+            ...(validReviews.length > 0 && averageRating > 0 ? {
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: averageRating.toString(),
+                reviewCount: validReviews.length.toString(),
+                bestRating: '5',
+                worstRating: '1'
+              }
+            } : {}),
+            ...(validReviews.length > 0 ? {
+              review: validReviews.map((comment: any) => ({
+                '@type': 'Review',
+                author: {
+                  '@type': 'Person',
+                  name: comment.name?.trim() || 'عميل'
+                },
+                datePublished: comment.createdAt ? new Date(comment.createdAt).toISOString() : new Date().toISOString(),
+                reviewBody: comment.message?.trim() || '',
+                reviewRating: {
+                  '@type': 'Rating',
+                  ratingValue: Math.min(5, Math.max(1, Number(comment.rating))).toString(),
+                  bestRating: '5',
+                  worstRating: '1'
+                }
+              }))
+            } : {})
+          }),
+        }}
+      />
+      
       <NavbarArabic />
       <ProjectDetailsClient project={project} projectId={id} />
       <Footer />
