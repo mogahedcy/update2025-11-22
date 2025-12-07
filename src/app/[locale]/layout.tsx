@@ -11,6 +11,7 @@ import LocalBusinessSchema from "@/components/LocalBusinessSchema";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import BottomNavigation from "@/components/BottomNavigation";
 import FloatingCallButton from "@/components/FloatingCallButton";
+import CacheClearNotification from "@/components/CacheClearNotification";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -150,6 +151,7 @@ export default async function LocaleLayout({
       <ServiceWorkerRegister />
       <WebVitals />
       {children}
+      <CacheClearNotification locale={locale} />
       <WhatsAppWidget />
       <FloatingCallButton />
       <BottomNavigation />
