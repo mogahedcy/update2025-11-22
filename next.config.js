@@ -156,7 +156,20 @@ const nextConfig = {
     ];
   },
   async redirects() {
-    return [];
+    return [
+      // Canonical domain redirect - enforce www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'aldeyarksa.tech',
+          },
+        ],
+        destination: 'https://www.aldeyarksa.tech/:path*',
+        permanent: true,
+      },
+    ];
   },
 };
 
