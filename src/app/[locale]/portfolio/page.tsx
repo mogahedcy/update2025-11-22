@@ -113,7 +113,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ loca
   // Get last update for content refresh notification with error handling
   let lastProjectUpdate = null;
   try {
-    lastProjectUpdate = await prisma.project.findFirst({
+    lastProjectUpdate = await prisma.projects.findFirst({
       orderBy: { updatedAt: 'desc' },
       select: { updatedAt: true }
     });
