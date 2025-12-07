@@ -12,8 +12,6 @@ import Footer from '@/components/Footer';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
 import FloatingCallButton from '@/components/FloatingCallButton';
 import BottomNavigation from '@/components/BottomNavigation';
-import ContentRefreshNotification from '@/components/ContentRefreshNotification';
-import { prisma } from '@/lib/prisma';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -110,18 +108,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ loca
   const { locale } = await params;
   setRequestLocale(locale);
   
-  // Get last update for content refresh notification with error handling
-  let lastProjectUpdate = null;
-  try {
-    lastProjectUpdate = await prisma.projects.findFirst({
-      orderBy: { updatedAt: 'desc' },
-      select: { updatedAt: true }
-    });
-  } catch (error) {
-    console.error('Error fetching last project update:', error);
-    // Continue without the notification feature if DB fails
-  }
-  
   return (
     <>
       <StructuredDataScript data={portfolioStructuredData} />
@@ -143,12 +129,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ loca
       }>
         <PortfolioPageClient />
       </Suspense>
-      {lastProjectUpdate && (
-        <ContentRefreshNotification 
-          lastUpdate={lastProjectUpdate.updatedAt.toISOString()}
-          contentType="projects"
-        />
-      )}
       <Footer />
       <WhatsAppWidget />
       <FloatingCallButton />
