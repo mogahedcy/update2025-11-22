@@ -83,7 +83,7 @@ export default function EnhancedFAQSchema({ faqs, baseUrl = 'https://www.aldeyar
     inLanguage: 'ar',
     isPartOf: {
       '@type': 'WebSite',
-      name: 'محترفين الديار العالمية',
+      name: 'ديار جدة',
       url: baseUrl
     },
     breadcrumb: breadcrumbSchema

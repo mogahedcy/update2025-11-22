@@ -4,7 +4,7 @@ export default function StructuredDataScript({ data }: { data?: any | any[] }) {
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "محترفين الديار العالمية",
+    "name": "ديار جدة",
     "alternateName": "Al Deyar Professional Global",
     "url": baseUrl,
     "logo": `${baseUrl}/favicon.svg`,
@@ -67,7 +67,7 @@ export default function StructuredDataScript({ data }: { data?: any | any[] }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${baseUrl}/#organization`,
-    "name": "محترفين الديار العالمية",
+    "name": "ديار جدة",
     "image": `${baseUrl}/favicon.svg`,
     "url": baseUrl,
     "telephone": "+966553719009",
@@ -102,7 +102,7 @@ export default function StructuredDataScript({ data }: { data?: any | any[] }) {
   const websiteData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "محترفين الديار العالمية",
+    "name": "ديار جدة",
     "url": baseUrl,
     "potentialAction": {
       "@type": "SearchAction",

@@ -63,7 +63,7 @@ export default function ReviewSchema({
   const reviewsToUse = reviews || defaultReviews;
 
   const defaultProvider = {
-    name: 'محترفين الديار العالمية',
+    name: 'ديار جدة',
     url: 'https://www.aldeyarksa.tech'
   };
 

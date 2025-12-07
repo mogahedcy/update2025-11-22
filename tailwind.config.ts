@@ -89,6 +89,20 @@ export default {
         '2xl': '1536px',
       },
       },
+      keyframes: {
+        'slide-up': {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        'spin-slow': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+      },
+      animation: {
+        'slide-up': 'slide-up 0.5s ease-out',
+        'spin-slow': 'spin-slow 3s linear infinite',
+      },
     }
   },
   plugins: [require("tailwindcss-animate")],
