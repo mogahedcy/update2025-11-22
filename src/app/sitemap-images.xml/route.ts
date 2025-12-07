@@ -27,16 +27,16 @@ export async function GET() {
       images: [
         {
           url: `${baseUrl}/images/logo.png`,
-          caption: 'شعار محترفين الديار العالمية - أفضل شركة مظلات وسواتر في جدة',
-          title: 'محترفين الديار العالمية',
-          alt: 'شعار محترفين الديار العالمية',
+          caption: 'شعار ديار جدة - أفضل شركة مظلات وسواتر في جدة',
+          title: 'ديار جدة',
+          alt: 'شعار ديار جدة',
           location: 'جدة، السعودية'
         },
         {
           url: `${baseUrl}/images/hero-bg.webp`,
           caption: 'الصفحة الرئيسية - مظلات وسواتر وبرجولات عالية الجودة في جدة',
           title: 'خدمات المظلات والسواتر في جدة',
-          alt: 'مظلات وسواتر جدة - محترفين الديار العالمية',
+          alt: 'مظلات وسواتر جدة - ديار جدة',
           location: 'جدة، السعودية'
         }
       ],
@@ -50,7 +50,7 @@ export async function GET() {
         {
           url: `${baseUrl}/uploads/mazallat-1.webp`,
           caption: 'مظلات سيارات عالية الجودة - تركيب احترافي في جدة مع ضمان 10 سنوات',
-          title: 'مظلات سيارات جدة - محترفين الديار',
+          title: 'مظلات سيارات جدة - ديار جدة',
           alt: 'تركيب مظلات سيارات في جدة',
           location: 'جدة، السعودية'
         }
@@ -65,7 +65,7 @@ export async function GET() {
         {
           url: `${baseUrl}/uploads/pergola-1.jpg`,
           caption: 'برجولات خشبية وحديدية للحدائق - تصميم وتنفيذ احترافي في جدة',
-          title: 'برجولات حدائق جدة - محترفين الديار',
+          title: 'برجولات حدائق جدة - ديار جدة',
           alt: 'برجولات خشبية للحدائق في جدة',
           location: 'جدة، السعودية'
         }
@@ -80,7 +80,7 @@ export async function GET() {
         {
           url: `${baseUrl}/uploads/sawater-1.webp`,
           caption: 'سواتر خصوصية وحماية - أحدث التصاميم والخامات في جدة',
-          title: 'سواتر جدة - محترفين الديار',
+          title: 'سواتر جدة - ديار جدة',
           alt: 'سواتر خصوصية في جدة',
           location: 'جدة، السعودية'
         }
@@ -95,7 +95,7 @@ export async function GET() {
         {
           url: `${baseUrl}/uploads/sandwich-panel-1.jpg`,
           caption: 'ساندوتش بانل للعزل الحراري - حلول متقدمة وعالية الجودة في جدة',
-          title: 'ساندوتش بانل جدة - محترفين الديار',
+          title: 'ساندوتش بانل جدة - ديار جدة',
           alt: 'ألواح ساندوتش بانل للعزل الحراري',
           location: 'جدة، السعودية'
         }
@@ -110,7 +110,7 @@ export async function GET() {
         {
           url: `${baseUrl}/uploads/landscaping-1.webp`,
           caption: 'تنسيق وتصميم الحدائق - خدمات شاملة واحترافية في جدة',
-          title: 'تنسيق حدائق جدة - محترفين الديار',
+          title: 'تنسيق حدائق جدة - ديار جدة',
           alt: 'تنسيق حدائق منزلية في جدة',
           location: 'جدة، السعودية'
         }
@@ -125,7 +125,7 @@ export async function GET() {
         {
           url: `${baseUrl}/uploads/byoot-shaar-1.webp`,
           caption: 'بيوت شعر تراثية - أصالة وجودة عالية في جدة',
-          title: 'بيوت شعر جدة - محترفين الديار',
+          title: 'بيوت شعر جدة - ديار جدة',
           alt: 'بيوت شعر تراثية في جدة',
           location: 'جدة، السعودية'
         }
@@ -140,7 +140,7 @@ export async function GET() {
         {
           url: `${baseUrl}/uploads/khayyam-1.webp`,
           caption: 'خيام ملكية فاخرة - للمناسبات الخاصة والاستراحات في جدة',
-          title: 'خيام ملكية جدة - محترفين الديار',
+          title: 'خيام ملكية جدة - ديار جدة',
           alt: 'خيام ملكية للمناسبات في جدة',
           location: 'جدة، السعودية'
         }
@@ -194,13 +194,13 @@ export async function GET() {
           : `${baseUrl}${media.src.startsWith('/') ? '' : '/'}${media.src}`;
         
         const optimizedAlt = media.alt || 
-          `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | محترفين الديار العالمية`;
+          `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`;
         
         const caption = media.description || 
-          `صورة توضيحية لمشروع ${project.title} من نوع ${project.category} في ${project.location}. تنفيذ محترفين الديار العالمية بجودة عالية وضمان 10 سنوات`;
+          `صورة توضيحية لمشروع ${project.title} من نوع ${project.category} في ${project.location}. تنفيذ ديار جدة بجودة عالية وضمان 10 سنوات`;
         
         const imageTitle = media.title || 
-          `${project.category} - ${project.title} - صورة ${index + 1} | محترفين الديار`;
+          `${project.category} - ${project.title} - صورة ${index + 1} | ديار جدة`;
 
         return {
           url: imageUrl.replace(/\s+/g, '%20'),
