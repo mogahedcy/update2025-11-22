@@ -26,9 +26,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     metadataBase: new URL('https://www.aldeyarksa.tech'),
     title: {
       default: isArabic 
-        ? "محترفين الديار العالمية | أفضل مظلات وبرجولات جدة - خبرة 15 عام"
-        : "Aldeyar Global Professionals | Best Shades & Pergolas in Jeddah - 15 Years Experience",
-      template: isArabic ? "%s | محترفين الديار العالمية" : "%s | Aldeyar Global Professionals"
+        ? "ديار جدة | أفضل مظلات وبرجولات جدة - خبرة 15 عام"
+        : "Deyar Jeddah | Best Shades & Pergolas in Jeddah - 15 Years Experience",
+      template: isArabic ? "%s | ديار جدة" : "%s | Deyar Jeddah"
     },
     description: isArabic
       ? "الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر. خبرة 15 عاماً، ضمان 10 سنوات، تركيب احترافي، أسعار منافسة."
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     keywords: isArabic
       ? "مظلات جدة، برجولات جدة، سواتر جدة، مظلات سيارات، برجولات خشبية، سواتر حديد، تركيب مظلات، تركيب برجولات، تركيب سواتر، مظلات حدائق، برجولات حدائق، سواتر خصوصية، مظلات pvc، مظلات قماش، برجولات بلاستيك، محترفين الديار العالمية، شركة مظلات جدة، أفضل شركة مظلات، مظلات بأسعار منافسة، مظلات وبرجولات، تنسيق حدائق جدة، هناجر جدة، ساندوتش بانل جدة، تركيب هناجر، بناء هناجر، مظلات سيارات جدة، مظلات حدائق جدة، برجولات خشبية جدة، سواتر حديد جدة، مظلات خارجية، مظلات داخلية، أسعار مظلات جدة، ضمان مظلات 10 سنوات، مظلات احترافية، مظلات عازلة للحرارة، مظلات مقاومة للأمطار، تصميم مظلات، تنفيذ مظلات، برجولات حديثة، برجولات كلاسيك، برجولات فاخرة، برجولات للفلل، برجولات للحدائق، تصميم برجولات، سواتر قماش، سواتر خشبية، سواتر pvc، سواتر شينكو، سواتر مجدول، سواتر لكسان، سواتر عازلة"
       : "jeddah shades, jeddah pergolas, jeddah fences, car shades, wooden pergolas, metal fences, shade installation, pergola installation, fence installation, garden shades, garden pergolas, privacy fences, pvc shades, fabric shades, plastic pergolas, aldeyar global professionals, shade company jeddah, best shade company, competitive prices shades, shades and pergolas, landscaping jeddah, hangars jeddah, sandwich panel jeddah, hangar installation, hangar construction, car shades jeddah, garden shades jeddah, wooden pergolas jeddah, metal fences jeddah, outdoor shades, indoor shades, shade prices jeddah, 10-year warranty shades, professional shades, heat-resistant shades, rain-resistant shades, shade design, shade execution, modern pergolas, classic pergolas, luxury pergolas, villa pergolas, garden pergolas, pergola design, fabric fences, wooden fences, pvc fences, shinco fences, woven fences, lexan fences, insulated fences",
-    authors: [{ name: isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals" }],
+    authors: [{ name: isArabic ? "ديار جدة" : "Deyar Jeddah" }],
     robots: "index, follow",
     alternates: {
       canonical: locale === 'ar' ? '/' : '/en',
@@ -48,13 +48,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: isArabic 
-        ? "محترفين الديار العالمية - خدمات شاملة في جدة"
-        : "Aldeyar Global Professionals - Comprehensive Services in Jeddah",
+        ? "ديار جدة - خدمات شاملة في جدة"
+        : "Deyar Jeddah - Comprehensive Services in Jeddah",
       description: isArabic
         ? "شركة متخصصة في المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة"
         : "Specialized company in shades, pergolas, fences, and landscaping in Jeddah",
       url: "https://www.aldeyarksa.tech",
-      siteName: isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+      siteName: isArabic ? "ديار جدة" : "Deyar Jeddah",
       locale: isArabic ? "ar_SA" : "en_US",
       type: "website",
       images: [
@@ -62,13 +62,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: "https://www.aldeyarksa.tech/images/slider1.webp",
           width: 1200,
           height: 630,
-          alt: isArabic ? "محترفين الديار العالمية - مظلات وبرجولات جدة" : "Aldeyar Global - Shades and Pergolas Jeddah",
+          alt: isArabic ? "ديار جدة - مظلات وبرجولات جدة" : "Deyar Jeddah - Shades and Pergolas Jeddah",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+      title: isArabic ? "ديار جدة" : "Deyar Jeddah",
       description: isArabic 
         ? "خدمات شاملة في المظلات والبرجولات والسواتر في جدة"
         : "Comprehensive services in shades, pergolas, and fences in Jeddah",

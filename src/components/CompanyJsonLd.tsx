@@ -10,8 +10,8 @@ export default function CompanyJsonLd() {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       '@id': `${baseUrl}/#organization`,
-      name: 'محترفين الديار العالمية',
-      alternateName: ['Aldeyar Global Professionals', 'الديار العالمية', 'محترفين الديار'],
+      name: 'ديار جدة',
+      alternateName: ['Deyar Jeddah Professionals', 'الديار العالمية', 'محترفين الديار'],
       description:
         'الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر وتنسيق الحدائق. خبرة 15 عاماً وضمان شامل على جميع الأعمال.',
       url: baseUrl,
@@ -224,7 +224,7 @@ export default function CompanyJsonLd() {
       '@type': 'WebSite',
       '@id': `${baseUrl}/#website`,
       url: baseUrl,
-      name: 'محترفين الديار العالمية',
+      name: 'ديار جدة',
       description:
         'موقع الشركة الرائدة في جدة لخدمات المظلات والسواتر والبرجولات وتنسيق الحدائق',
       publisher: { '@id': `${baseUrl}/#organization` },
@@ -243,7 +243,7 @@ export default function CompanyJsonLd() {
       '@type': 'WebPage',
       '@id': `${baseUrl}/#webpage`,
       url: baseUrl,
-      name: 'الصفحة الرئيسية - محترفين الديار العالمية',
+      name: 'الصفحة الرئيسية - ديار جدة',
       description:
         'الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر وتنسيق الحدائق مع ضمان شامل',
       isPartOf: { '@id': `${baseUrl}/#website` },

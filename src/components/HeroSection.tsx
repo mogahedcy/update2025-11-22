@@ -26,7 +26,7 @@ const slides = {
   en: [
     {
       url: '/images/slider1.webp',
-      alt: 'Luxury garden shades and pergolas - Installing wooden pergolas and car shades in Jeddah | Aldeyar Global Professionals',
+      alt: 'Luxury garden shades and pergolas - Installing wooden pergolas and car shades in Jeddah | Deyar Jeddah',
     },
     {
       url: '/images/slider2.webp',
@@ -34,7 +34,7 @@ const slides = {
     },
     {
       url: '/images/slider3.webp',
-      alt: 'Iron and fabric fences - Landscaping and sandwich panel in Jeddah | Aldeyar Global',
+      alt: 'Iron and fabric fences - Landscaping and sandwich panel in Jeddah | Deyar Jeddah',
     },
   ],
 };

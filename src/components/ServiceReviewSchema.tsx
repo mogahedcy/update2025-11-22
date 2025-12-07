@@ -21,7 +21,7 @@ export default function ServiceReviewSchema({
   serviceUrl,
   reviews,
   provider = {
-    name: 'محترفين الديار العالمية - Aldeyar Global Professionals',
+    name: 'ديار جدة - Deyar Jeddah',
     url: 'https://www.aldeyarksa.tech'
   }
 }: ServiceReviewSchemaProps) {

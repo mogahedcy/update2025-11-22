@@ -9,7 +9,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://www.aldeyarksa.tech/#organization",
-    "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+    "name": isArabic ? "ديار جدة" : "Deyar Jeddah",
     "alternateName": isArabic 
       ? "محترفين الديار | مظلات وبرجولات جدة"
       : "Aldeyar | Shades and Pergolas Jeddah",
