@@ -110,11 +110,17 @@ export default async function PortfolioPage({ params }: { params: Promise<{ loca
   const { locale } = await params;
   setRequestLocale(locale);
   
-  // Get last update for content refresh notification
-  const lastProjectUpdate = await prisma.project.findFirst({
-    orderBy: { updatedAt: 'desc' },
-    select: { updatedAt: true }
-  });
+  // Get last update for content refresh notification with error handling
+  let lastProjectUpdate = null;
+  try {
+    lastProjectUpdate = await prisma.project.findFirst({
+      orderBy: { updatedAt: 'desc' },
+      select: { updatedAt: true }
+    });
+  } catch (error) {
+    console.error('Error fetching last project update:', error);
+    // Continue without the notification feature if DB fails
+  }
   
   return (
     <>
