@@ -5,7 +5,7 @@ import PortfolioPageClient from './PortfolioPageClient';
 export const dynamic = 'force-dynamic';
 import StructuredDataScript from '@/components/StructuredDataScript';
 import VideoObjectSchema from '@/components/VideoObjectSchema';
-import NavbarArabic from '@/components/NavbarArabic';
+import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import IntlProvider from '@/components/IntlProvider';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
@@ -96,7 +96,7 @@ export default function PortfolioPage() {
         uploadDate={new Date().toISOString()}
         duration="PT3M"
       />
-      <NavbarArabic />
+      <Navbar />
       <Suspense fallback={
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
