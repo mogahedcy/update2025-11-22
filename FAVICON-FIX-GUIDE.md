@@ -28,12 +28,14 @@
 ### 2. إضافة روابط Favicon في HTML Head
 
 ```tsx
-<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
 <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 ```
+
+**ملاحظة**: في Next.js 13+، هذه الروابط يتم توليدها تلقائياً من metadata configuration، لذلك لا داعي لإضافتها يدوياً.
 
 ## 🔧 خطوات إصلاح الملفات (يدوياً)
 
