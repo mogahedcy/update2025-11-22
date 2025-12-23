@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { aiArticleAgent } from '@/lib/ai-article-agent';
 import { aiFAQAgent } from '@/lib/ai-faq-agent';

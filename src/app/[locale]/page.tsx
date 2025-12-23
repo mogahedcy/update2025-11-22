@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { getTranslations } from 'next-intl/server';
 import Navbar from '@/components/Navbar';

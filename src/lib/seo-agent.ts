@@ -59,7 +59,7 @@ export interface CompetitorInsight {
 }
 
 export class SEOAgent {
-  async analyzeKeywords(content: string, targetKeywords: string[], language: string = 'ar'): Promise<KeywordAnalysis> {
+  async analyzeKeywords(content: string, targetKeywords: string[], language = 'ar'): Promise<KeywordAnalysis> {
     try {
       const prompt = `أنت خبير SEO متقدم متخصص في السوق السعودي. حلل المحتوى التالي واستخرج الكلمات المفتاحية:
 
@@ -126,7 +126,7 @@ ${url ? `الرابط: ${url}` : ''}
     topic: string,
     keywords: string[],
     contentType: 'article' | 'project_description' | 'service_page',
-    wordCount: number = 800
+    wordCount = 800
   ): Promise<{ title: string; content: string; meta_description: string; tags: string[] }> {
     try {
       const contentTypeAr = {

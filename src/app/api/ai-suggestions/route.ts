@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { SEOAgent } from '@/lib/seo-agent';
 import { analyzeCompetitors } from '@/lib/competitor-analyzer';
 

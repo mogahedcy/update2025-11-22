@@ -400,7 +400,7 @@ export default function AutomationClient() {
                     min="1"
                     max="10"
                     value={smartCount}
-                    onChange={(e) => setSmartCount(parseInt(e.target.value) || 1)}
+                    onChange={(e) => setSmartCount(Number.parseInt(e.target.value) || 1)}
                     className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500"
                     disabled={smartLoading}
                   />
@@ -945,7 +945,7 @@ export default function AutomationClient() {
                           value={scheduleSettings.generateCount}
                           onChange={(e) => setScheduleSettings({
                             ...scheduleSettings,
-                            generateCount: parseInt(e.target.value)
+                            generateCount: Number.parseInt(e.target.value)
                           })}
                           className="w-full"
                           disabled={!scheduleSettings.generateEnabled}
@@ -1075,7 +1075,7 @@ export default function AutomationClient() {
                           value={scheduleSettings.faqCount}
                           onChange={(e) => setScheduleSettings({
                             ...scheduleSettings,
-                            faqCount: parseInt(e.target.value)
+                            faqCount: Number.parseInt(e.target.value)
                           })}
                           className="w-full"
                           disabled={!scheduleSettings.faqEnabled}

@@ -86,7 +86,7 @@ export async function searchCompetitorContent(
 
 export async function analyzeCompetitors(
   searchQuery: string,
-  useWebSearch: boolean = true
+  useWebSearch = true
 ): Promise<CompetitorAnalysis> {
   try {
     console.log('🔍 تحليل المنافسين باستخدام GROQ AI المتقدم...');
@@ -151,7 +151,7 @@ export async function analyzeCompetitors(
 export async function generateSmartArticleIdeas(
   analysis: CompetitorAnalysis,
   niche: string,
-  count: number = 5
+  count = 5
 ): Promise<GeneratedArticleIdea[]> {
   try {
     const prompt = `أنت كاتب محتوى خبير ومتخصص في SEO للسوق السعودي.

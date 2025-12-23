@@ -279,7 +279,7 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
         }
 
         // Auto cleanup if memory usage is high
-        if (parseFloat(used) / parseFloat(limit) > 0.8) {
+        if (Number.parseFloat(used) / Number.parseFloat(limit) > 0.8) {
           memoryManager.performCleanup();
           imageCache.clearCache();
         }

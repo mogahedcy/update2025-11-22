@@ -149,7 +149,7 @@ export async function generateUniqueSlug(
   category?: string,
   checkUnique?: (slug: string) => Promise<boolean>
 ): Promise<string> {
-  let slug = generateArabicSlug(title, category);
+  const slug = generateArabicSlug(title, category);
   
   if (!checkUnique) {
     return slug;
@@ -214,7 +214,7 @@ export function parseSlugInfo(slug: string): {
  * @param imageIndex رقم الصورة
  * @returns نص بديل محسّن
  */
-export function generateImageAltFromSlug(slug: string, imageIndex: number = 1): string {
+export function generateImageAltFromSlug(slug: string, imageIndex = 1): string {
   const info = parseSlugInfo(slug);
   const title = slug.replace(/-/g, ' ');
   

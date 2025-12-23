@@ -59,7 +59,7 @@ export function generateAltText(options: AltTextOptions): string {
 /**
  * Generate alt text for service images
  */
-export function generateServiceAltText(serviceName: string, location: string = 'جدة'): string {
+export function generateServiceAltText(serviceName: string, location = 'جدة'): string {
   return generateAltText({
     serviceType: serviceName,
     location: `${location}، السعودية`,
@@ -74,7 +74,7 @@ export function generateProjectAltText(
   projectTitle: string,
   category: string,
   location: string,
-  imageIndex: number = 0
+  imageIndex = 0
 ): string {
   return generateAltText({
     serviceType: category,
@@ -112,28 +112,28 @@ export function generateImageCaption(
  * Service-specific alt text generators
  */
 export const serviceAltTextGenerators = {
-  carShades: (location: string = 'جدة') => 
+  carShades: (location = 'جدة') => 
     generateServiceAltText('مظلات سيارات PVC عالية الجودة', location),
   
-  pergolas: (location: string = 'جدة') =>
+  pergolas: (location = 'جدة') =>
     generateServiceAltText('برجولات خشبية وحديدية للحدائق', location),
   
-  fences: (location: string = 'جدة') =>
+  fences: (location = 'جدة') =>
     generateServiceAltText('سواتر حديد للخصوصية والحماية', location),
   
-  landscaping: (location: string = 'جدة') =>
+  landscaping: (location = 'جدة') =>
     generateServiceAltText('تنسيق وتصميم حدائق منزلية', location),
   
-  sandwichPanel: (location: string = 'جدة') =>
+  sandwichPanel: (location = 'جدة') =>
     generateServiceAltText('ساندوتش بانل للعزل الحراري', location),
   
-  traditionalHouses: (location: string = 'جدة') =>
+  traditionalHouses: (location = 'جدة') =>
     generateServiceAltText('بيوت شعر تراثية أصيلة', location),
   
-  royalTents: (location: string = 'جدة') =>
+  royalTents: (location = 'جدة') =>
     generateServiceAltText('خيام ملكية فاخرة', location),
   
-  renovation: (location: string = 'جدة') =>
+  renovation: (location = 'جدة') =>
     generateServiceAltText('ترميم وصيانة الملحقات', location),
 };
 

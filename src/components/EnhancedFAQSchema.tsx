@@ -16,7 +16,7 @@ interface EnhancedFAQSchemaProps {
 function stripHtmlAndCleanText(text: string): string {
   if (!text) return '';
   
-  let cleaned = text
+  const cleaned = text
     .replace(/<[^>]*>/g, '')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
