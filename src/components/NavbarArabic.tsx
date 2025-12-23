@@ -187,7 +187,7 @@ export default function NavbarArabic() {
                 <span className="text-white font-bold text-xl">د</span>
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-lg font-bold text-primary dark:text-white">محترفين الديار</h1>
+                <h1 className="text-lg font-bold text-primary dark:text-white">ديار جدة العالمية</h1>
                 <p className="text-xs text-gray-600 dark:text-gray-400">العالمية</p>
               </div>
             </Link>

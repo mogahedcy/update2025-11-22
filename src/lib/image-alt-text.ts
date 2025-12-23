@@ -15,7 +15,7 @@ interface AltTextOptions {
  * Generate SEO-optimized alt text following the pattern:
  * {serviceType} {material} في {location} - {projectDetails} | {companyName}
  * 
- * Example: "مظلات سيارات PVC في حي الروضة جدة - مشروع فيلا المهندس أحمد | محترفين الديار العالمية"
+ * Example: "مظلات سيارات PVC في حي الروضة جدة - مشروع فيلا المهندس أحمد | ديار جدة العالمية"
  */
 export function generateAltText(options: AltTextOptions): string {
   const {
@@ -24,7 +24,7 @@ export function generateAltText(options: AltTextOptions): string {
     location = 'جدة',
     projectDetails = '',
     imageIndex,
-    companyName = 'محترفين الديار العالمية'
+    companyName = 'ديار جدة العالمية'
   } = options;
 
   const parts: string[] = [];
@@ -87,7 +87,7 @@ export function generateProjectAltText(
  * Generate alt text for hero/banner images
  */
 export function generateHeroAltText(description: string): string {
-  return `${description} - محترفين الديار العالمية | أفضل شركة مظلات وسواتر في جدة`;
+  return `${description} - ديار جدة العالمية | أفضل شركة مظلات وسواتر في جدة`;
 }
 
 /**
@@ -99,7 +99,7 @@ export function generateImageCaption(
   location: string,
   additionalInfo?: string
 ): string {
-  const caption = `صورة توضيحية لمشروع ${projectName} من نوع ${serviceType} في ${location}. تنفيذ محترفين الديار العالمية بجودة عالية وضمان 10 سنوات`;
+  const caption = `صورة توضيحية لمشروع ${projectName} من نوع ${serviceType} في ${location}. تنفيذ ديار جدة العالمية بجودة عالية وضمان 10 سنوات`;
   
   if (additionalInfo) {
     return `${caption}. ${additionalInfo}`;

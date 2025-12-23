@@ -50,13 +50,13 @@ export function generateOptimizedAltText(
     if (projectLocation) {
       alt += ` في ${projectLocation}`;
     }
-    alt += ' | محترفين الديار العالمية';
+    alt += ' | ديار جدة العالمية';
 
     // العنوان
     title = `صورة ${projectCategory} - ${projectTitle}`;
 
     // الوصف
-    description = `مشروع ${projectCategory} تم تنفيذه بواسطة محترفين الديار العالمية`;
+    description = `مشروع ${projectCategory} تم تنفيذه بواسطة ديار جدة العالمية`;
     if (projectLocation) {
       description += ` في ${projectLocation}`;
     }
@@ -66,31 +66,31 @@ export function generateOptimizedAltText(
     contextType = 'article';
     
     // alt text للمقالات
-    alt = `صورة توضيحية لمقال: ${articleTitle} | محترفين الديار`;
+    alt = `صورة توضيحية لمقال: ${articleTitle} | ديار جدة العالمية`;
     title = `${articleTitle} - صورة توضيحية`;
-    description = `صورة توضيحية تدعم محتوى مقال ${articleTitle} على موقع محترفين الديار العالمية`;
+    description = `صورة توضيحية تدعم محتوى مقال ${articleTitle} على موقع ديار جدة العالمية`;
 
   } else if (serviceType) {
     contextType = 'service';
     
     // alt text للخدمات
-    alt = `خدمة ${serviceType} - محترفين الديار العالمية في جدة`;
-    title = `${serviceType} - محترفين الديار`;
-    description = `صورة توضيحية لخدمة ${serviceType} التي نقدمها في محترفين الديار العالمية`;
+    alt = `خدمة ${serviceType} - ديار جدة العالمية في جدة`;
+    title = `${serviceType} - ديار جدة العالمية`;
+    description = `صورة توضيحية لخدمة ${serviceType} التي نقدمها في ديار جدة العالمية`;
   } else {
     // Fallback: إذا لم يتوفر أي سياق، نستخدم قيم افتراضية
     contextType = 'general';
     const imageName = imageSrc.split('/').pop()?.split('.')[0] || 'صورة';
     
-    alt = `${projectTitle || imageName} - محترفين الديار العالمية`;
+    alt = `${projectTitle || imageName} - ديار جدة العالمية`;
     title = projectTitle || imageName;
-    description = `صورة من محترفين الديار العالمية - ${projectTitle || 'معرض أعمالنا'}`;
+    description = `صورة من ديار جدة العالمية - ${projectTitle || 'معرض أعمالنا'}`;
   }
 
   // إضافة الكلمات المفتاحية
   const allKeywords = [
     ...keywords,
-    'محترفين الديار',
+    'ديار جدة العالمية',
     'جدة',
     projectCategory || serviceType || 'خدمات',
     projectLocation || 'السعودية'
@@ -126,12 +126,12 @@ export function generateImageObjectSchema(
     "uploadDate": uploadDate ? uploadDate.toISOString() : new Date().toISOString(),
     "author": {
       "@type": "Organization",
-      "name": "محترفين الديار العالمية",
+      "name": "ديار جدة العالمية",
       "url": "https://www.aldeyarksa.tech"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "محترفين الديار العالمية",
+      "name": "ديار جدة العالمية",
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.aldeyarksa.tech/favicon.svg"
@@ -139,16 +139,16 @@ export function generateImageObjectSchema(
     },
     "copyrightHolder": {
       "@type": "Organization",
-      "name": "محترفين الديار العالمية"
+      "name": "ديار جدة العالمية"
     },
     "license": "https://www.aldeyarksa.tech/terms",
     "acquireLicensePage": "https://www.aldeyarksa.tech/contact",
-    "creditText": "محترفين الديار العالمية - جدة، السعودية",
+    "creditText": "ديار جدة العالمية - جدة، السعودية",
     "creator": {
       "@type": "Organization",
-      "name": "محترفين الديار العالمية"
+      "name": "ديار جدة العالمية"
     },
-    "copyrightNotice": "© محترفين الديار العالمية - جميع الحقوق محفوظة",
+    "copyrightNotice": "© ديار جدة العالمية - جميع الحقوق محفوظة",
     "isPartOf": {
       "@type": "WebPage",
       "url": pageUrl
@@ -201,7 +201,7 @@ export function processImagesBatch(
         keywords: [
           context.projectCategory || context.serviceType || '',
           context.projectLocation || 'جدة',
-          'محترفين الديار'
+          'ديار جدة العالمية'
         ].filter(Boolean),
         context: context.projectTitle ? 'project' : 'service'
       };
@@ -232,26 +232,26 @@ export function generateCategoryBasedAlt(
 ): string {
   // التأكد من وجود قيم صالحة
   const safeCategory = category || 'مشروع';
-  const safeTitle = projectTitle || 'محترفين الديار';
+  const safeTitle = projectTitle || 'ديار جدة العالمية';
   const safeLocation = location || 'جدة';
   
   const templates: { [key: string]: string } = {
-    'مظلات سيارات': `مظلات سيارات ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'مظلات': `مظلات سيارات ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'سواتر': `سواتر ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'خيم ملكية': `خيم ملكية ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'بيوت شعر ملكي': `بيوت شعر ملكي ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'بيوت شعر': `بيوت شعر ملكي ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'برجولات': `برجولات ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'تنسيق حدائق': `تنسيق حدائق ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'هناجر': `هناجر ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'شبوك': `شبوك ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'قراميد': `قراميد ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'ساندوتش بانل': `ساندوتش بانل ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
-    'ترميم': `ساندوتش بانل ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`,
+    'مظلات سيارات': `مظلات سيارات ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'مظلات': `مظلات سيارات ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'سواتر': `سواتر ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'خيم ملكية': `خيم ملكية ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'بيوت شعر ملكي': `بيوت شعر ملكي ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'بيوت شعر': `بيوت شعر ملكي ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'برجولات': `برجولات ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'تنسيق حدائق': `تنسيق حدائق ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'هناجر': `هناجر ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'شبوك': `شبوك ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'قراميد': `قراميد ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'ساندوتش بانل': `ساندوتش بانل ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
+    'ترميم': `ساندوتش بانل ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`,
   };
 
-  return templates[safeCategory] || `${safeCategory} - ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | محترفين الديار`;
+  return templates[safeCategory] || `${safeCategory} - ${safeTitle} في ${safeLocation} - صورة ${imageIndex + 1} | ديار جدة العالمية`;
 }
 
 /**

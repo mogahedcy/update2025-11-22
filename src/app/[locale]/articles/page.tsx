@@ -20,9 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     keywords: isArabic
       ? 'مقالات مظلات, نصائح برجولات, مقالات تنسيق حدائق, مظلات جدة, برجولات جدة, ديار جدة'
       : 'shades articles, pergolas tips, landscaping articles, Jeddah shades, Jeddah pergolas, Aldeyar Professionals',
-    authors: [{ name: isArabic ? 'ديار جدة' : 'Deyar Jeddah' }],
-    creator: isArabic ? 'ديار جدة' : 'Deyar Jeddah',
-    publisher: isArabic ? 'ديار جدة' : 'Deyar Jeddah',
+    authors: [{ name: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah' }],
+    creator: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
+    publisher: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
     robots: 'index, follow',
     openGraph: {
       title: isArabic 
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         ? 'اكتشف مقالاتنا المتخصصة في المظلات والبرجولات والسواتر وتنسيق الحدائق'
         : 'Discover our specialized articles on shades, pergolas, fences, and landscaping',
       url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/articles`,
-      siteName: isArabic ? 'ديار جدة' : 'Deyar Jeddah',
+      siteName: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       images: [
         {
           url: 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp',
@@ -81,7 +81,7 @@ export default async function ArticlesPage({ params }: { params: Promise<{ local
     url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/articles`,
     publisher: {
       '@type': 'Organization',
-      name: isArabic ? 'ديار جدة' : 'Deyar Jeddah',
+      name: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       logo: {
         '@type': 'ImageObject',
         url: 'https://www.aldeyarksa.tech/logo.svg'

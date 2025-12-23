@@ -219,7 +219,7 @@ export function generateImageAltFromSlug(slug: string, imageIndex = 1): string {
   const title = slug.replace(/-/g, ' ');
   
   const templates = [
-    `${title} - صورة رئيسية | محترفين الديار العالمية`,
+    `${title} - صورة رئيسية | ديار جدة العالمية`,
     `تفاصيل ${title} - منظر قريب`,
     `${title} جودة عالية - صورة جانبية`,
     `تركيب ${title} احترافي - الخامات`,

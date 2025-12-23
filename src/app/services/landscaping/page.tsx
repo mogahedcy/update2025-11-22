@@ -39,7 +39,7 @@ import IntlProvider from '@/components/IntlProvider'
 
 export const dynamic = 'force-dynamic';
 
-const pageTitle = 'تنسيق حدائق جدة - ضمان سنتين | محترفين الديار';
+const pageTitle = 'تنسيق حدائق جدة - ضمان سنتين | ديار جدة العالمية';
 const pageDescription = 'تصميم وتنسيق حدائق بجدة بضمان سنتين. زراعة نباتات محلية وأنظمة ري حديثة. أسعار تبدأ من 150 ريال/م². استشارة مجانية';
 const pageUrl = '/services/landscaping';
 const pageImage = 'https://www.aldeyarksa.tech/uploads/landscaping-1.webp';
@@ -48,13 +48,13 @@ export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
   keywords: 'تنسيق حدائق جدة، تصميم حدائق، شركة تنسيق حدائق، حدائق منزلية، زراعة نباتات، أنظمة ري، تيل صناعي',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  authors: [{ name: 'ديار جدة العالمية' }],
   openGraph: generateOpenGraphMetadata({
     title: pageTitle,
     description: pageDescription,
     url: pageUrl,
     image: pageImage,
-    imageAlt: 'تنسيق حدائق جدة - محترفين الديار العالمية',
+    imageAlt: 'تنسيق حدائق جدة - ديار جدة العالمية',
     type: 'website'
   }),
   twitter: generateTwitterMetadata({
@@ -327,7 +327,7 @@ export default function LandscapingPage() {
 
   const serviceSchema = generateServiceSchema({
     name: 'تنسيق حدائق في جدة - منزلية وخارجية وفلل',
-    description: 'أفضل تنسيق حدائق في جدة من محترفين الديار العالمية. حدائق منزلية، خارجية، فلل وصيانة. زراعة نباتات محلية وأنظمة ري حديثة.',
+    description: 'أفضل تنسيق حدائق في جدة من ديار جدة العالمية. حدائق منزلية، خارجية، فلل وصيانة. زراعة نباتات محلية وأنظمة ري حديثة.',
     areaServed: 'جدة',
     priceRange: '150-250',
     image: pageImage,
@@ -344,7 +344,7 @@ export default function LandscapingPage() {
     description: 'تصميم وتنسيق حدائق احترافية مع زراعة نباتات محلية وأنظمة ري حديثة. ضمان سنتين على جميع الأعمال.',
     image: [pageImage],
     category: 'تنسيق حدائق',
-    brand: 'محترفين الديار',
+    brand: 'ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -352,7 +352,7 @@ export default function LandscapingPage() {
   });
 
   const reviewSchemaData = {
-    serviceName: 'تنسيق حدائق جدة - محترفين الديار',
+    serviceName: 'تنسيق حدائق جدة - ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -404,7 +404,7 @@ export default function LandscapingPage() {
 
             {/* Subheading */}
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              محترفين الديار العالمية - خبرة 15 عاماً في تصميم وتنسيق الحدائق المنزلية والعامة.
+              ديار جدة العالمية - خبرة 15 عاماً في تصميم وتنسيق الحدائق المنزلية والعامة.
               تصاميم مبتكرة وأحدث التقنيات وأفضل النباتات المحلية
             </p>
 

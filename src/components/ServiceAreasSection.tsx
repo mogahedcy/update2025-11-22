@@ -73,7 +73,7 @@ export default function ServiceAreasSection() {
             مناطق خدماتنا في جدة
           </h2>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            محترفين الديار تغطي جميع أحياء ومناطق جدة بفرق عمل متخصصة ومتنقلة.
+            ديار جدة العالمية تغطي جميع أحياء ومناطق جدة بفرق عمل متخصصة ومتنقلة.
             نصل إليكم أينما كنتم في جدة لتقديم أفضل خدماتنا بأسرع وقت ممكن
           </p>
         </div>

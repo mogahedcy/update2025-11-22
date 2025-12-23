@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Car, Shield, Sun, Star, CheckCircle, Phone } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'دليل مظلات السيارات الشامل في جدة 2024 - أنواع وأسعار وتركيب | محترفين الديار',
+  title: 'دليل مظلات السيارات الشامل في جدة 2024 - أنواع وأسعار وتركيب | ديار جدة العالمية',
   description: 'دليل شامل لمظلات السيارات في جدة 2024: أفضل الأنواع، الأسعار التنافسية، طرق التركيب المحترف، نصائح الاختيار والصيانة مع ضمان 10 سنوات',
   keywords: 'مظلات سيارات جدة، أسعار مظلات السيارات، تركيب مظلات جدة، مظلات PVC، مظلات حديد، مظلات قماش، حماية السيارات',
   openGraph: {
@@ -75,11 +75,11 @@ export default function CarShadesGuidePage() {
             "description": "دليل شامل لمظلات السيارات في جدة يشمل الأنواع والأسعار وطرق التركيب",
             "author": {
               "@type": "Organization",
-              "name": "محترفين الديار العالمية"
+              "name": "ديار جدة العالمية"
             },
             "publisher": {
               "@type": "Organization",
-              "name": "محترفين الديار العالمية",
+              "name": "ديار جدة العالمية",
               "logo": "https://www.aldeyarksa.tech/images/logo.png"
             },
             "datePublished": "2024-12-22",
@@ -209,7 +209,7 @@ export default function CarShadesGuidePage() {
       <section className="py-16 bg-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">احصل على استشارة مجانية الآن</h2>
-          <p className="text-xl mb-8">فريق خبراء محترفين الديار جاهز لمساعدتك في اختيار المظلة المناسبة</p>
+          <p className="text-xl mb-8">فريق خبراء ديار جدة العالمية جاهز لمساعدتك في اختيار المظلة المناسبة</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"

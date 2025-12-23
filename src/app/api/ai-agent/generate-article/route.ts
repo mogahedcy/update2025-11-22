@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
         wordCount: wordCount || 1000,
         includeImages: includeImages !== false,
         imageCount: imageCount || 3,
-        author: author || 'محترفين الديار العالمية',
+        author: author || 'ديار جدة العالمية',
         featured: featured || false
       },
       shouldPublish || false

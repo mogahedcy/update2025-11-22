@@ -134,7 +134,7 @@ export default function PortfolioSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-            أحدث أعمال محترفين الديار في جدة
+            أحدث أعمال ديار جدة العالمية في جدة
           </h2>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
             استكشف أحدث مشاريعنا المتميزة في جدة والمناطق المحيطة. نعرض لك أحدث عمل في كل خدمة من خدماتنا المتخصصة
@@ -440,7 +440,7 @@ export default function PortfolioSection() {
             هل لديك مشروع مماثل؟
           </h3>
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            محترفين الديار جاهزون لتنفيذ مشروعك بنفس مستوى الجودة والاحترافية.
+            ديار جدة العالمية جاهزون لتنفيذ مشروعك بنفس مستوى الجودة والاحترافية.
             نقدم استشارة مجانية شاملة وعرض سعر مخصص يناسب احتياجاتك ومتطلبات مشروعك
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -82,7 +82,7 @@ export default function ServicesSection() {
     "serviceType": isRTL ? "خدمات ديار جدة" : "Deyar Jeddah Services",
     "provider": {
       "@type": "Organization",
-      "name": isRTL ? "ديار جدة" : "Deyar Jeddah",
+      "name": isRTL ? "ديار جدة العالمية" : "Deyar Jeddah",
       "url": "https://www.aldeyarksa.tech"
     },
     "hasOfferCatalog": {

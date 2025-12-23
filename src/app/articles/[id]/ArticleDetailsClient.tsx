@@ -210,7 +210,7 @@ export default function ArticleDetailsClient({ article }: Props) {
                           alt: optimizedAlt,
                           title: currentMedia.title || article.title,
                           description: currentMedia.caption || article.excerpt,
-                          keywords: [article.category, 'محترفين الديار', 'جدة', ...(article.tags?.map(t => t.name) || [])],
+                          keywords: [article.category, 'ديار جدة العالمية', 'جدة', ...(article.tags?.map(t => t.name) || [])],
                           context: 'article'
                         },
                         `/articles/${article.slug || article.id}`

@@ -43,7 +43,7 @@ import {
   Sun
 } from 'lucide-react';
 
-const pageTitle = 'برجولات جدة - ضمان 10 سنوات | محترفين الديار';
+const pageTitle = 'برجولات جدة - ضمان 10 سنوات | ديار جدة العالمية';
 const pageDescription = 'تركيب برجولات خشبية وحديدية بجدة بضمان 10 سنوات. تصاميم عصرية مقاومة للعوامل الجوية. أسعار تبدأ من 3,000 ريال. استشارة مجانية';
 const pageUrl = '/services/pergolas';
 const pageImage = 'https://www.aldeyarksa.tech/uploads/pergola-1.jpg';
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
   keywords: 'برجولات جدة، برجولات خشبية، برجولات حديد، تصميم برجولات، برجولات حدائق، تركيب برجولات، شركة برجولات',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  authors: [{ name: 'ديار جدة العالمية' }],
   openGraph: generateOpenGraphMetadata({
     title: pageTitle,
     description: pageDescription,
     url: pageUrl,
     image: pageImage,
-    imageAlt: 'برجولات خشبية جدة - محترفين الديار العالمية',
+    imageAlt: 'برجولات خشبية جدة - ديار جدة العالمية',
     type: 'website'
   }),
   twitter: generateTwitterMetadata({
@@ -249,7 +249,7 @@ const testimonials = [
     id: 2,
     name: 'د. فاطمة السعودي',
     role: 'طبيبة - شمال جدة',
-    content: 'اخترت برجولة ألومنيوم لمنطقة الجلوس الخارجية. النتيجة فاقت التوقعات! جودة عالية وتصميم أنيق. فريق محترفين الديار محترف جداً.',
+    content: 'اخترت برجولة ألومنيوم لمنطقة الجلوس الخارجية. النتيجة فاقت التوقعات! جودة عالية وتصميم أنيق. فريق ديار جدة العالمية محترف جداً.',
     rating: 5,
     image: '/images/testimonials/client2.jpg'
   },
@@ -336,7 +336,7 @@ const articlesData = [
     title: 'الفرق بين البرجولات الخشبية والحديدية',
     excerpt: 'تعرف على المقارنة الشاملة بين البرجولات الخشبية والحديدية من حيث المتانة والتكلفة والجمال لاختيار الأنسب لحديقتك.',
     image: '/uploads/pergola-1.jpg',
-    author: 'فريق محترفين الديار',
+    author: 'فريق ديار جدة العالمية',
     publishDate: '2024-01-20',
     readTime: '6 دقائق'
   },
@@ -345,7 +345,7 @@ const articlesData = [
     title: 'أفكار تصميم البرجولات الحديثة للحدائق',
     excerpt: 'اكتشف أحدث اتجاهات تصميم البرجولات العصرية وكيفية دمجها مع تنسيق الحدائق لإنشاء مساحة خارجية مثالية.',
     image: '/uploads/pergola-2.jpg',
-    author: 'فريق محترفين الديار',
+    author: 'فريق ديار جدة العالمية',
     publishDate: '2024-01-15',
     readTime: '8 دقائق'
   },
@@ -354,7 +354,7 @@ const articlesData = [
     title: 'كيفية صيانة البرجولات لضمان طول عمرها',
     excerpt: 'دليل شامل للعناية بالبرجولات الخشبية والحديدية، ونصائح الصيانة الدورية لضمان بقائها جميلة ومتينة لسنوات طويلة.',
     image: '/uploads/pergola-1.jpg',
-    author: 'فريق محترفين الديار',
+    author: 'فريق ديار جدة العالمية',
     publishDate: '2024-01-08',
     readTime: '5 دقائق'
   }
@@ -395,7 +395,7 @@ export default function PergolasPage() {
 
   const serviceSchema = generateServiceSchema({
     name: 'برجولات جدة - خشبية وحديدية',
-    description: 'أفضل برجولات في جدة من محترفين الديار. برجولات خشبية، حديدية، ألومنيوم وحدائق. ضمان 15 عاماً وتصاميم عصرية.',
+    description: 'أفضل برجولات في جدة من ديار جدة العالمية. برجولات خشبية، حديدية، ألومنيوم وحدائق. ضمان 15 عاماً وتصاميم عصرية.',
     areaServed: 'جدة',
     priceRange: '200-500',
     image: 'https://ext.same-assets.com/3372524550/1177626593.jpeg',
@@ -412,7 +412,7 @@ export default function PergolasPage() {
     description: 'برجولات حدائق خشبية وحديدية عالية الجودة مقاومة للعوامل الجوية. تصاميم عصرية وضمان 10 سنوات.',
     image: ['https://ext.same-assets.com/3372524550/1177626593.jpeg'],
     category: 'برجولات خارجية',
-    brand: 'محترفين الديار',
+    brand: 'ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -420,7 +420,7 @@ export default function PergolasPage() {
   });
 
   const reviewSchemaData = {
-    serviceName: 'برجولات جدة - محترفين الديار',
+    serviceName: 'برجولات جدة - ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -472,7 +472,7 @@ export default function PergolasPage() {
 
               {/* Subheading */}
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
-                محترفين الديار - خبرة 15 عاماً في تصميم وتنفيذ أفضل البرجولات في جدة.
+                ديار جدة العالمية - خبرة 15 عاماً في تصميم وتنفيذ أفضل البرجولات في جدة.
                 برجولات خشبية، حديدية، ألومنيوم وحدائق بأجود الخامات وضمان شامل
               </p>
 
@@ -906,7 +906,7 @@ export default function PergolasPage() {
               جاهز لتصميم برجولة أحلامك؟
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
-              احصل على استشارة مجانية وعرض سعر تنافسي لبرجولتك من خبراء محترفين الديار
+              احصل على استشارة مجانية وعرض سعر تنافسي لبرجولتك من خبراء ديار جدة العالمية
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="tel:+966553719009">

@@ -190,7 +190,7 @@ ${JSON.stringify(imagesList, null, 2)}
             src: image.src,
             alt: selection.altText || image.title || 'صورة من معرض الأعمال',
             description:
-              selection.description || image.description || 'صورة من مشاريع محترفين الديار',
+              selection.description || image.description || 'صورة من مشاريع ديار جدة العالمية',
             type: 'IMAGE' as const
           });
         }

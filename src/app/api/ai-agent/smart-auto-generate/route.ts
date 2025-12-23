@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
             metaDescription: metaTags.metaDescription,
             keywords: idea.keywords.join(', '),
             category: idea.category,
-            author: 'محترفين الديار العالمية',
+            author: 'ديار جدة العالمية',
             status: autoPublish ? 'PUBLISHED' : 'DRAFT',
             featured: false,
             views: 0,

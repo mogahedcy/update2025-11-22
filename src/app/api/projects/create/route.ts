@@ -71,9 +71,9 @@ export async function POST(request: NextRequest) {
         projectDuration: data.projectDuration || null,
         projectCost: data.projectCost || null,
         slug: slug,
-        metaTitle: data.metaTitle || `${data.title} في ${data.location} | محترفين الديار العالمية`,
+        metaTitle: data.metaTitle || `${data.title} في ${data.location} | ديار جدة العالمية`,
         metaDescription: data.metaDescription || `${data.description.substring(0, 150)}...`,
-        keywords: data.keywords || `${data.category}, ${data.location}, جدة, محترفين الديار`,
+        keywords: data.keywords || `${data.category}, ${data.location}, جدة, ديار جدة العالمية`,
         status: 'PUBLISHED',
         publishedAt: new Date(),
         updatedAt: new Date()

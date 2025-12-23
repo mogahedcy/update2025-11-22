@@ -39,10 +39,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: isArabic 
-      ? 'مظلات وسواتر جدة | محترفين الديار - ضمان 10 سنوات'
+      ? 'مظلات وسواتر جدة | ديار جدة العالمية - ضمان 10 سنوات'
       : 'Shades and Fences Jeddah | Aldeyar Professionals - 10 Year Warranty',
     description: isArabic
-      ? 'شركة محترفين الديار العالمية - تركيب مظلات سيارات، برجولات، سواتر، ساندوتش بانل، تنسيق حدائق، بيوت شعر بجدة. خبرة 15 عام، ضمان 10 سنوات.'
+      ? 'شركة ديار جدة العالمية - تركيب مظلات سيارات، برجولات، سواتر، ساندوتش بانل، تنسيق حدائق، بيوت شعر بجدة. خبرة 15 عام، ضمان 10 سنوات.'
       : 'Aldeyar Global Professionals - Installing car shades, pergolas, fences, sandwich panels, landscaping, traditional houses in Jeddah. 15 years experience, 10 year warranty.',
     alternates: {
       canonical: locale === 'ar' ? '/' : '/en',
@@ -54,13 +54,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: isArabic 
-        ? 'مظلات وسواتر جدة | محترفين الديار - ضمان 10 سنوات'
+        ? 'مظلات وسواتر جدة | ديار جدة العالمية - ضمان 10 سنوات'
         : 'Shades and Fences Jeddah | Aldeyar Professionals',
       description: isArabic
-        ? 'محترفين الديار العالمية - تركيب مظلات سيارات، برجولات، سواتر في جدة. خبرة 15 عام، ضمان 10 سنوات'
+        ? 'ديار جدة العالمية - تركيب مظلات سيارات، برجولات، سواتر في جدة. خبرة 15 عام، ضمان 10 سنوات'
         : 'Aldeyar Global Professionals - Installing car shades, pergolas, fences in Jeddah. 15 years experience',
       url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}`,
-      siteName: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      siteName: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
       locale: isArabic ? 'ar_SA' : 'en_US',
       type: 'website',
       images: [
@@ -68,14 +68,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: 'https://www.aldeyarksa.tech/images/hero-bg.webp',
           width: 1200,
           height: 630,
-          alt: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+          alt: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
       title: isArabic 
-        ? 'مظلات وسواتر جدة | محترفين الديار'
+        ? 'مظلات وسواتر جدة | ديار جدة العالمية'
         : 'Shades and Fences Jeddah | Aldeyar',
       description: isArabic
         ? 'تركيب مظلات سيارات، برجولات، سواتر في جدة'
@@ -95,7 +95,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <WebSiteSchema locale={locale} />
       <HomePageBreadcrumb locale={locale} />
       <ReviewSchema 
-        serviceName={isArabic ? "مظلات وبرجولات وسواتر جدة - محترفين الديار العالمية" : "Shades, Pergolas and Fences Jeddah - Aldeyar Global"}
+        serviceName={isArabic ? "مظلات وبرجولات وسواتر جدة - ديار جدة العالمية" : "Shades, Pergolas and Fences Jeddah - Aldeyar Global"}
         itemType="LocalBusiness"
         serviceUrl="https://www.aldeyarksa.tech"
         aggregateRating={{ ratingValue: 4.9, reviewCount: 287 }}
@@ -151,7 +151,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         currency="SAR"
         rating={{ ratingValue: 4.9, reviewCount: 287 }}
         sku="CAR-SHADE-PVC-001"
-        brand={isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals"}
+        brand={isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals"}
       />
       <Navbar />
       <HeroSection />

@@ -37,7 +37,7 @@ import IntlProvider from '@/components/IntlProvider'
 
 export const dynamic = 'force-dynamic';
 
-const pageTitle = 'ترميم ملحقات جدة | محترفين الديار العالمية';
+const pageTitle = 'ترميم ملحقات جدة | ديار جدة العالمية';
 const pageDescription = 'ترميم فلل ومنازل وملحقات في جدة | خبرة 15 عاماً بضمان 5 سنوات. إصلاح تشققات، عزل، صيانة شاملة. مواد أصلية وفريق محترف. عرض سعر مجاني: 0553719009';
 const pageUrl = '/services/renovation';
 const pageImage = 'https://ext.same-assets.com/2228747888/11390105.webp';
@@ -45,14 +45,14 @@ const pageImage = 'https://ext.same-assets.com/2228747888/11390105.webp';
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  keywords: 'ترميم ملحقات جدة، ترميم منازل، إصلاح تشققات، صيانة شاملة، مقاول ترميم، محترفين الديار العالمية',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  keywords: 'ترميم ملحقات جدة، ترميم منازل، إصلاح تشققات، صيانة شاملة، مقاول ترميم، ديار جدة العالمية',
+  authors: [{ name: 'ديار جدة العالمية' }],
   openGraph: generateOpenGraphMetadata({
     title: pageTitle,
     description: pageDescription,
     url: pageUrl,
     image: pageImage,
-    imageAlt: 'ترميم ملحقات في جدة - محترفين الديار العالمية',
+    imageAlt: 'ترميم ملحقات في جدة - ديار جدة العالمية',
     type: 'website'
   }),
   twitter: generateTwitterMetadata({
@@ -303,7 +303,7 @@ export default function RenovationPage() {
 
   const serviceSchema = generateServiceSchema({
     name: 'ترميم ملحقات في جدة - منزلية وتجارية',
-    description: 'أفضل ترميم ملحقات في جدة من محترفين الديار العالمية. ترميم منزلي، تجاري، إصلاح تشققات وصيانة شاملة. ضمان 5 سنوات.',
+    description: 'أفضل ترميم ملحقات في جدة من ديار جدة العالمية. ترميم منزلي، تجاري، إصلاح تشققات وصيانة شاملة. ضمان 5 سنوات.',
     areaServed: 'جدة',
     priceRange: '150-400',
     image: pageImage,
@@ -316,7 +316,7 @@ export default function RenovationPage() {
   })));
 
   const reviewSchemaData = {
-    serviceName: 'ترميم ملحقات جدة - محترفين الديار العالمية',
+    serviceName: 'ترميم ملحقات جدة - ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -364,7 +364,7 @@ export default function RenovationPage() {
 
             {/* Subheading */}
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              محترفين الديار العالمية - خبرة 15 عاماً في ترميم وإعادة تأهيل الملحقات المنزلية والتجارية.
+              ديار جدة العالمية - خبرة 15 عاماً في ترميم وإعادة تأهيل الملحقات المنزلية والتجارية.
               حلول شاملة من الفحص حتى التسليم مع ضمان 5 سنوات
             </p>
 

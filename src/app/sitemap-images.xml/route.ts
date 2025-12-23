@@ -28,7 +28,7 @@ export async function GET() {
         {
           url: `${baseUrl}/images/logo.png`,
           caption: 'شعار ديار جدة - أفضل شركة مظلات وسواتر في جدة',
-          title: 'ديار جدة',
+          title: 'ديار جدة العالمية',
           alt: 'شعار ديار جدة',
           location: 'جدة، السعودية'
         },

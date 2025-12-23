@@ -7,7 +7,7 @@ import SEONotificationSection from './SEONotificationSection';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'لوحة التحكم | محترفين الديار العالمية',
+  title: 'لوحة التحكم | ديار جدة العالمية',
   description: 'لوحة تحكم إدارة شاملة ومتطورة للمشاريع والمحتوى',
   robots: 'noindex, nofollow',
 };
@@ -88,7 +88,7 @@ export default async function DashboardPage() {
                     {getGreeting()}، {admin.fullName || admin.username}!
                   </h1>
                   <p className="text-xl text-gray-600">
-                    مرحباً بك في مركز إدارة محترفين الديار العالمية المتطور
+                    مرحباً بك في مركز إدارة ديار جدة العالمية المتطور
                   </p>
                 </div>
               </div>

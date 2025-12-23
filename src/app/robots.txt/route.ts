@@ -124,7 +124,7 @@ Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/si
 # معلومات إضافية للمطورين ومحركات البحث
 # Contact: ksaaldeyar@gmail.com
 # Website: https://www.aldeyarksa.tech
-# Company: محترفين الديار العالمية
+# Company: ديار جدة العالمية
 # Location: جدة، المملكة العربية السعودية
 # Services: مظلات، برجولات، سواتر، تنسيق حدائق`;
 

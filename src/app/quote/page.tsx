@@ -28,10 +28,10 @@ import IntlProvider from '@/components/IntlProvider'
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'طلب عرض سعر | محترفين الديار العالمية - احصل على عرض مجاني',
-  description: 'احصل على عرض سعر مجاني ومفصل من محترفين الديار العالمية في جدة. أسعار تنافسية، جودة عالية، ضمان شامل، تركيب احترافي لجميع أنواع المظلات والبرجولات.',
-  keywords: 'عرض سعر مجاني، أسعار مظلات جدة، أسعار سواتر، عرض سعر برجولات، محترفين الديار العالمية',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  title: 'طلب عرض سعر | ديار جدة العالمية - احصل على عرض مجاني',
+  description: 'احصل على عرض سعر مجاني ومفصل من ديار جدة العالمية في جدة. أسعار تنافسية، جودة عالية، ضمان شامل، تركيب احترافي لجميع أنواع المظلات والبرجولات.',
+  keywords: 'عرض سعر مجاني، أسعار مظلات جدة، أسعار سواتر، عرض سعر برجولات، ديار جدة العالمية',
+  authors: [{ name: 'ديار جدة العالمية' }],
   robots: 'index, follow',
   alternates: {
     canonical: generateCanonicalUrl('/quote'),
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'طلب عرض سعر | محترفين الديار العالمية',
-    description: 'احصل على عرض سعر مجاني ومفصل من محترفين الديار العالمية في جدة.',
+    title: 'طلب عرض سعر | ديار جدة العالمية',
+    description: 'احصل على عرض سعر مجاني ومفصل من ديار جدة العالمية في جدة.',
     url: generateCanonicalUrl('/quote'),
-    siteName: 'محترفين الديار العالمية',
+    siteName: 'ديار جدة العالمية',
     type: 'website',
     locale: 'ar_SA',
     images: [
@@ -52,13 +52,13 @@ export const metadata: Metadata = {
         url: 'https://www.aldeyarksa.tech/logo.png',
         width: 1200,
         height: 630,
-        alt: 'طلب عرض سعر - محترفين الديار العالمية',
+        alt: 'طلب عرض سعر - ديار جدة العالمية',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'طلب عرض سعر | محترفين الديار العالمية',
+    title: 'طلب عرض سعر | ديار جدة العالمية',
     description: 'احصل على عرض سعر مجاني ومفصل - أسعار تنافسية وجودة عالية',
     images: ['https://www.aldeyarksa.tech/logo.png'],
   }
@@ -126,11 +126,11 @@ export default function QuotePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "طلب عرض سعر - محترفين الديار العالمية",
+            "name": "طلب عرض سعر - ديار جدة العالمية",
             "description": "احصل على عرض سعر مجاني ومفصل لجميع خدماتنا",
             "provider": {
               "@type": "LocalBusiness",
-              "name": "محترفين الديار العالمية",
+              "name": "ديار جدة العالمية",
               "telephone": "+966553719009",
               "email": "ksaaldeyar@gmail.com",
               "address": {

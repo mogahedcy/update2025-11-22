@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 const BASE_URL = 'https://www.aldeyarksa.tech';
-const SITE_NAME = 'محترفين الديار العالمية';
+const SITE_NAME = 'ديار جدة العالمية';
 
 // دوال مساعدة للحصول على URL مطلق ونوع الملف
 export function getAbsoluteUrl(url: string): string {
@@ -297,7 +297,7 @@ export function generateVideoObjectSchema(videos: Array<{
     "uploadDate": video.uploadDate || new Date().toISOString(),
     "publisher": {
       "@type": "Organization",
-      "name": "محترفين الديار العالمية",
+      "name": "ديار جدة العالمية",
       "logo": {
         "@type": "ImageObject",
         "url": `${BASE_URL}/favicon.svg`
@@ -393,12 +393,12 @@ export function generateCreativeWorkSchema(data: {
         "contentUrl": img.url,
         "license": `${BASE_URL}/terms`,
         "acquireLicensePage": `${BASE_URL}/contact`,
-        "creditText": "محترفين الديار العالمية - جدة، السعودية",
+        "creditText": "ديار جدة العالمية - جدة، السعودية",
         "creator": {
           "@type": "Organization",
           "name": SITE_NAME
         },
-        "copyrightNotice": "© محترفين الديار العالمية - جميع الحقوق محفوظة"
+        "copyrightNotice": "© ديار جدة العالمية - جميع الحقوق محفوظة"
       }))
     }),
     ...(data.videos && data.videos.length > 0 && {
@@ -517,8 +517,8 @@ export function generateImageGallerySchema(data: {
         ...(img.height && { "height": { "@type": "QuantitativeValue", "value": img.height, "unitCode": "E37" } }),
         "license": `${BASE_URL}/terms`,
         "acquireLicensePage": `${BASE_URL}/contact`,
-        "creditText": `محترفين الديار العالمية - ${data.location || 'جدة'}`,
-        "copyrightNotice": "© محترفين الديار العالمية",
+        "creditText": `ديار جدة العالمية - ${data.location || 'جدة'}`,
+        "copyrightNotice": "© ديار جدة العالمية",
         "creator": {
           "@type": "Organization",
           "name": SITE_NAME,
@@ -630,7 +630,7 @@ export function generateProjectSchema(data: {
       "caption": img.caption || `مشروع ${data.name} - ${data.category}`,
       "representativeOfPage": index === 0,
       "license": `${BASE_URL}/terms`,
-      "creditText": "محترفين الديار العالمية"
+      "creditText": "ديار جدة العالمية"
     })),
     ...(data.videos && data.videos.length > 0 && {
       "video": data.videos.map((video, index) => ({
@@ -788,7 +788,7 @@ export function generateLocalBusinessSchema(data?: {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "خدمات محترفين الديار العالمية",
+      "name": "خدمات ديار جدة العالمية",
       "itemListElement": [
         {
           "@type": "Offer",
@@ -881,7 +881,7 @@ export function generateOrganizationSchema(data?: {
     "@type": "Organization",
     "@id": `${BASE_URL}/#organization`,
     "name": data?.name || SITE_NAME,
-    "description": data?.description || "محترفين الديار العالمية - شركة رائدة في مجال تركيب المظلات والبرجولات والسواتر في جدة. نقدم خدمات متميزة بأعلى معايير الجودة.",
+    "description": data?.description || "ديار جدة العالمية - شركة رائدة في مجال تركيب المظلات والبرجولات والسواتر في جدة. نقدم خدمات متميزة بأعلى معايير الجودة.",
     "url": BASE_URL,
     "logo": {
       "@type": "ImageObject",
@@ -920,7 +920,7 @@ export function generateOrganizationSchema(data?: {
     ],
     "founder": {
       "@type": "Person",
-      "name": "محترفين الديار العالمية"
+      "name": "ديار جدة العالمية"
     },
     "foundingDate": "2010",
     "areaServed": {

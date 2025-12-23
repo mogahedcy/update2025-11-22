@@ -40,7 +40,7 @@ import {
   Gift
 } from 'lucide-react';
 
-const pageTitle = 'خيام ملكية جدة | محترفين الديار العالمية';
+const pageTitle = 'خيام ملكية جدة | ديار جدة العالمية';
 const pageDescription = 'خيام ملكية فاخرة للأفراح والمناسبات في جدة | تصاميم حصرية بضمان 10 سنوات. خيام VIP وعزاء بأقمشة فخمة. أسعار تبدأ من 8,000 ريال. احجز الآن: 0553719009';
 const pageUrl = '/services/khayyam';
 const pageImage = 'https://ext.same-assets.com/200922472/870035748.jpeg';
@@ -48,14 +48,14 @@ const pageImage = 'https://ext.same-assets.com/200922472/870035748.jpeg';
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  keywords: 'خيام ملكية جدة، خيام أفراح، خيام مناسبات، خيام VIP، خيام عزاء، خيام فاخرة، تأجير خيام، محترفين الديار العالمية',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  keywords: 'خيام ملكية جدة، خيام أفراح، خيام مناسبات، خيام VIP، خيام عزاء، خيام فاخرة، تأجير خيام، ديار جدة العالمية',
+  authors: [{ name: 'ديار جدة العالمية' }],
   openGraph: generateOpenGraphMetadata({
     title: pageTitle,
     description: pageDescription,
     url: pageUrl,
     image: pageImage,
-    imageAlt: 'خيام ملكية جدة - محترفين الديار العالمية',
+    imageAlt: 'خيام ملكية جدة - ديار جدة العالمية',
     type: 'website'
   }),
   twitter: generateTwitterMetadata({
@@ -246,7 +246,7 @@ const testimonials = [
     id: 2,
     name: 'فاطمة المحمدي',
     role: 'صاحبة قاعة أفراح - حي النعيم',
-    content: 'تعاملت مع محترفين الديار في عدة مناسبات. دائماً ما يقدمون خيام فاخرة بتصاميم مميزة وخدمة عملاء ممتازة. أنصح بهم بقوة.',
+    content: 'تعاملت مع ديار جدة العالمية في عدة مناسبات. دائماً ما يقدمون خيام فاخرة بتصاميم مميزة وخدمة عملاء ممتازة. أنصح بهم بقوة.',
     rating: 5,
     image: '/images/testimonials/client2.jpg'
   },
@@ -328,7 +328,7 @@ export default function KhayyamPage() {
 
   const serviceSchema = generateServiceSchema({
     name: 'خيام ملكية جدة - أفراح ومناسبات وVIP',
-    description: 'أفضل خيام ملكية فاخرة في جدة من محترفين الديار. خيام أفراح، خيام مناسبات، خيام VIP، خيام عزاء. تصميم وتنفيذ احترافي. ضمان 10 سنوات.',
+    description: 'أفضل خيام ملكية فاخرة في جدة من ديار جدة العالمية. خيام أفراح، خيام مناسبات، خيام VIP، خيام عزاء. تصميم وتنفيذ احترافي. ضمان 10 سنوات.',
     areaServed: 'جدة',
     priceRange: '8000-20000',
     image: pageImage,
@@ -341,7 +341,7 @@ export default function KhayyamPage() {
   })));
 
   const reviewSchemaData = {
-    serviceName: 'خيام ملكية جدة - محترفين الديار العالمية',
+    serviceName: 'خيام ملكية جدة - ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -389,7 +389,7 @@ export default function KhayyamPage() {
 
               {/* Subheading */}
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
-                محترفين الديار - خبرة 15 عاماً في تصميم وتنفيذ أفضل الخيام الملكية الفاخرة في جدة.
+                ديار جدة العالمية - خبرة 15 عاماً في تصميم وتنفيذ أفضل الخيام الملكية الفاخرة في جدة.
                 خيام أفراح، مناسبات، VIP وعزاء بأجود الخامات المستوردة وضمان شامل
               </p>
 
@@ -734,7 +734,7 @@ export default function KhayyamPage() {
               جاهز لحجز خيمة ملكية فاخرة؟
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
-              احصل على استشارة مجانية وعرض سعر تنافسي لخيمتك الملكية من خبراء محترفين الديار
+              احصل على استشارة مجانية وعرض سعر تنافسي لخيمتك الملكية من خبراء ديار جدة العالمية
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="tel:+966553719009">

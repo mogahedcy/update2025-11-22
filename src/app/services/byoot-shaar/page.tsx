@@ -35,7 +35,7 @@ import IntlProvider from '@/components/IntlProvider'
 
 export const dynamic = 'force-dynamic';
 
-const pageTitle = 'بيوت شعر جدة | محترفين الديار العالمية';
+const pageTitle = 'بيوت شعر جدة | ديار جدة العالمية';
 const pageDescription = 'بيوت شعر ملكية وعربية تراثية في جدة | تصاميم فاخرة للمجالس بضمان 10 سنوات. أقمشة عالية الجودة وتطريز يدوي. أسعار تبدأ من 5,000 ريال. اتصل: 0553719009';
 const pageUrl = '/services/byoot-shaar';
 const pageImage = 'https://ext.same-assets.com/3073684241/1858852453.jpeg';
@@ -43,14 +43,14 @@ const pageImage = 'https://ext.same-assets.com/3073684241/1858852453.jpeg';
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  keywords: 'بيوت شعر جدة، بيوت شعر ملكية، بيوت شعر عربية، مجالس شعر، خيام تراثية، محترفين الديار العالمية',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  keywords: 'بيوت شعر جدة، بيوت شعر ملكية، بيوت شعر عربية، مجالس شعر، خيام تراثية، ديار جدة العالمية',
+  authors: [{ name: 'ديار جدة العالمية' }],
   openGraph: generateOpenGraphMetadata({
     title: pageTitle,
     description: pageDescription,
     url: pageUrl,
     image: pageImage,
-    imageAlt: 'بيوت شعر ملكية في جدة - محترفين الديار العالمية',
+    imageAlt: 'بيوت شعر ملكية في جدة - ديار جدة العالمية',
     type: 'website'
   }),
   twitter: generateTwitterMetadata({
@@ -189,7 +189,7 @@ const testimonials = [
     id: 1,
     name: 'أحمد محمد الغامدي',
     role: 'صاحب مزرعة - حي الصفا',
-    content: 'بيت شعر رائع وتنفيذ ممتاز. الجودة عالية جداً والفريق محترف. أنصح بشدة بالتعامل مع محترفين الديار العالمية.',
+    content: 'بيت شعر رائع وتنفيذ ممتاز. الجودة عالية جداً والفريق محترف. أنصح بشدة بالتعامل مع ديار جدة العالمية.',
     rating: 5,
     image: '/images/testimonials/client1.jpg'
   },
@@ -286,7 +286,7 @@ export default function ByootShaarPage() {
   })));
 
   const reviewSchemaData = {
-    serviceName: 'بيوت شعر جدة - محترفين الديار العالمية',
+    serviceName: 'بيوت شعر جدة - ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -334,7 +334,7 @@ export default function ByootShaarPage() {
 
             {/* Subheading */}
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              محترفين الديار العالمية - خبرة 15 عاماً في تصميم وتنفيذ بيوت شعر ملكية وعربية تقليدية.
+              ديار جدة العالمية - خبرة 15 عاماً في تصميم وتنفيذ بيوت شعر ملكية وعربية تقليدية.
               أقمشة عالية الجودة، تصاميم أصيلة، وضمان شامل 10 سنوات
             </p>
 

@@ -139,7 +139,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       'سواتر',
       'برجولات',
       'تنسيق حدائق',
-      'ديار جدة',
+      'ديار جدة العالمية',
       project.location,
       project.title
     ].join(', '),
@@ -147,12 +147,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: seoTitle,
       description: seoDescription,
       url: fullUrl,
-      siteName: 'ديار جدة',
+      siteName: 'ديار جدة العالمية',
       locale: 'ar_SA',
       type: 'article',
       publishedTime: project.createdAt,
       modifiedTime: project.updatedAt || project.createdAt,
-      authors: ['ديار جدة'],
+      authors: ['ديار جدة العالمية'],
       // ✅ جميع صور المشروع - كل صورة سيتم أرشفتها في Google Images
       images: allImages.length > 0 
         ? allImages.map((img: any, index: number) => ({
@@ -368,7 +368,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'LocalBusiness',
-            name: 'ديار جدة',
+            name: 'ديار جدة العالمية',
             description: `${project.category} في ${project.location} - تنفيذ ديار جدة بجودة عالية وضمان 10 سنوات`,
             image: images.length > 0 ? images.map((img: any) => getAbsoluteUrl(img.src)) : [getAbsoluteUrl(mainImage)],
             address: {

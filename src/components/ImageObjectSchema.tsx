@@ -39,11 +39,11 @@ export default function ImageObjectSchema({
     }),
     "creator": {
       "@type": "Organization",
-      "name": "ديار جدة"
+      "name": "ديار جدة العالمية"
     },
     "copyrightHolder": {
       "@type": "Organization",
-      "name": "ديار جدة"
+      "name": "ديار جدة العالمية"
     },
     "creditText": "ديار جدة - جدة",
     "acquireLicensePage": "https://www.aldeyarksa.tech/contact",

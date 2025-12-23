@@ -48,7 +48,7 @@ import {
 import { prisma } from '@/lib/prisma';
 import { buildCategoryWhereClause, getServiceNameAr } from '@/lib/services-categories-mapping';
 
-const pageTitle = 'مظلات سيارات جدة - ضمان 10 سنوات | محترفين الديار';
+const pageTitle = 'مظلات سيارات جدة - ضمان 10 سنوات | ديار جدة العالمية';
 const pageDescription = 'تركيب مظلات سيارات وحدائق بجدة بضمان 10 سنوات. مظلات PVC مقاومة للأشعة والأمطار. أسعار تبدأ من 2,500 ريال. استشارة مجانية';
 const pageUrl = '/services/mazallat';
 const pageImage = 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp';
@@ -57,13 +57,13 @@ export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
   keywords: 'مظلات سيارات جدة، مظلات PVC، مظلات حديد، تركيب مظلات، شركة مظلات، أسعار مظلات سيارات',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  authors: [{ name: 'ديار جدة العالمية' }],
   openGraph: generateOpenGraphMetadata({
     title: pageTitle,
     description: pageDescription,
     url: pageUrl,
     image: pageImage,
-    imageAlt: 'مظلات سيارات جدة - محترفين الديار العالمية',
+    imageAlt: 'مظلات سيارات جدة - ديار جدة العالمية',
     type: 'website'
   }),
   twitter: generateTwitterMetadata({
@@ -185,14 +185,14 @@ const testimonials = [
     id: 1,
     name: 'أحمد المحمدي',
     role: 'صاحب فيلا - حي الزهراء',
-    content: 'خدمة ممتازة وجودة عالية في التنفيذ. فريق محترف والتزام في المواعيد. أنصح بشدة بالتعامل مع محترفين الديار.',
+    content: 'خدمة ممتازة وجودة عالية في التنفيذ. فريق محترف والتزام في المواعيد. أنصح بشدة بالتعامل مع ديار جدة العالمية.',
     rating: 5,
   },
   {
     id: 2,
     name: 'سارة العتيبي',
     role: 'مديرة مدرسة - حي النعيم',
-    content: 'ركبوا لنا مظلات للمدرسة بجودة عالية وسعر مناسب. الطلاب محميين من الشمس والأمطار. شكراً لفريق محترفين الديار.',
+    content: 'ركبوا لنا مظلات للمدرسة بجودة عالية وسعر مناسب. الطلاب محميين من الشمس والأمطار. شكراً لفريق ديار جدة العالمية.',
     rating: 5,
   },
   {
@@ -347,7 +347,7 @@ export default async function MazallatPage() {
 
   const serviceSchema = generateServiceSchema({
     name: 'مظلات سيارات جدة',
-    description: 'أفضل مظلات سيارات في جدة من محترفين الديار. مظلات PVC، مظلات حدائق، مظلات مدارس ومسابح. ضمان 10 سنوات وخبرة 15 عاماً.',
+    description: 'أفضل مظلات سيارات في جدة من ديار جدة العالمية. مظلات PVC، مظلات حدائق، مظلات مدارس ومسابح. ضمان 10 سنوات وخبرة 15 عاماً.',
     areaServed: 'جدة',
     priceRange: '2500-10000',
     image: 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp',
@@ -364,7 +364,7 @@ export default async function MazallatPage() {
     description: 'مظلات سيارات عالية الجودة مصنوعة من PVC مقاوم للحرارة والأشعة فوق البنفسجية. ضمان 10 سنوات على الخامات والتركيب.',
     image: ['https://www.aldeyarksa.tech/uploads/mazallat-1.webp'],
     category: 'مظلات خارجية',
-    brand: 'محترفين الديار',
+    brand: 'ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -372,7 +372,7 @@ export default async function MazallatPage() {
   });
 
   const reviewSchemaData = {
-    serviceName: 'مظلات سيارات جدة - محترفين الديار',
+    serviceName: 'مظلات سيارات جدة - ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -383,7 +383,7 @@ export default async function MazallatPage() {
   const projectsListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "مشاريع مظلات السيارات في جدة - محترفين الديار",
+    "name": "مشاريع مظلات السيارات في جدة - ديار جدة العالمية",
     "description": "معرض أعمالنا في تركيب مظلات السيارات والحدائق في جدة",
     "numberOfItems": projects.length,
     "itemListElement": projects.map((project, index) => ({
@@ -402,11 +402,11 @@ export default async function MazallatPage() {
         "uploadDate": new Date().toISOString(),
         "author": {
           "@type": "Organization",
-          "name": "محترفين الديار العالمية"
+          "name": "ديار جدة العالمية"
         },
         "publisher": {
           "@type": "Organization",
-          "name": "محترفين الديار العالمية",
+          "name": "ديار جدة العالمية",
           "logo": {
             "@type": "ImageObject",
             "url": "https://www.aldeyarksa.tech/logo.png"
@@ -414,7 +414,7 @@ export default async function MazallatPage() {
         },
         "copyrightHolder": {
           "@type": "Organization",
-          "name": "محترفين الديار العالمية"
+          "name": "ديار جدة العالمية"
         },
         "license": "https://www.aldeyarksa.tech/terms",
         "acquireLicensePage": "https://www.aldeyarksa.tech/contact"
@@ -440,11 +440,11 @@ export default async function MazallatPage() {
         "image": article.article_media_items?.[0]?.src || '',
         "author": {
           "@type": "Organization",
-          "name": "محترفين الديار العالمية"
+          "name": "ديار جدة العالمية"
         },
         "publisher": {
           "@type": "Organization",
-          "name": "محترفين الديار العالمية",
+          "name": "ديار جدة العالمية",
           "logo": {
             "@type": "ImageObject",
             "url": "https://www.aldeyarksa.tech/logo.png"
@@ -505,7 +505,7 @@ export default async function MazallatPage() {
               </h1>
 
               <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
-                محترفين الديار - خبرة 15 عاماً في تركيب أفضل مظلات السيارات والحدائق والمدارس في جدة.
+                ديار جدة العالمية - خبرة 15 عاماً في تركيب أفضل مظلات السيارات والحدائق والمدارس في جدة.
                 مظلات PVC عالية الجودة، تصاميم عصرية، وضمان شامل 10 سنوات
               </p>
 
@@ -606,7 +606,7 @@ export default async function MazallatPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-                لماذا تختار محترفين الديار؟
+                لماذا تختار ديار جدة العالمية؟
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 نجمع بين الخبرة الطويلة والجودة العالية لنقدم لك أفضل خدمات المظلات في جدة

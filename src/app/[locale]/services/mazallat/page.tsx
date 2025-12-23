@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('pageTitle'),
     description: t('pageDescription'),
     keywords: t('keywords'),
-    authors: [{ name: isArabic ? 'ديار جدة' : 'Deyar Jeddah' }],
+    authors: [{ name: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah' }],
     robots: 'index, follow',
     alternates: {
       canonical: `${baseUrl}${canonicalPath}`,
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: t('pageTitle'),
       description: t('pageDescription'),
       url: `${baseUrl}${canonicalPath}`,
-      siteName: isArabic ? 'ديار جدة' : 'Deyar Jeddah',
+      siteName: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       type: 'website',
       locale: isArabic ? 'ar_SA' : 'en_US',
       images: [
@@ -368,7 +368,7 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
     description: t('schema.productDescription'),
     image: [pageImage],
     category: isArabic ? 'مظلات خارجية' : 'Outdoor Shades',
-    brand: isArabic ? 'محترفين الديار' : 'Aldeyar Professionals',
+    brand: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Professionals',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -405,11 +405,11 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
         "uploadDate": new Date().toISOString(),
         "author": {
           "@type": "Organization",
-          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals"
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals"
         },
         "publisher": {
           "@type": "Organization",
-          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals",
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/logo.png`
@@ -436,11 +436,11 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
         "image": article.article_media_items?.[0]?.src || '',
         "author": {
           "@type": "Organization",
-          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals"
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals"
         },
         "publisher": {
           "@type": "Organization",
-          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals",
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/logo.png`

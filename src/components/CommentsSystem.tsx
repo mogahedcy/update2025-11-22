@@ -316,7 +316,7 @@ export default function CommentsSystem({
 
     const reply: Comment = {
       id: Date.now(),
-      author: currentUser?.name || 'فريق محترفين الديار',
+      author: currentUser?.name || 'فريق ديار جدة العالمية',
       avatar: currentUser?.avatar || 'https://ui-avatars.com/api/?name=محترفين+الديار&background=0f172a&color=fff',
       date: new Date().toLocaleDateString('ar-SA'),
       content: replyContent,

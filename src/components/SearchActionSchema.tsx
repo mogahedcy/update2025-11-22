@@ -10,7 +10,7 @@ export default function SearchActionSchema({ baseUrl = 'https://www.aldeyarksa.t
     "@context": "https://schema.org",
     "@type": "WebSite",
     "url": baseUrl,
-    "name": "ديار جدة",
+    "name": "ديار جدة العالمية",
     "description": "شركة متخصصة في المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة",
     "potentialAction": {
       "@type": "SearchAction",

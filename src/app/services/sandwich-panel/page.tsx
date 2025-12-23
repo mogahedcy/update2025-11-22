@@ -35,7 +35,7 @@ import IntlProvider from '@/components/IntlProvider'
 
 export const dynamic = 'force-dynamic';
 
-const pageTitle = 'ساندوتش بانل جدة | محترفين الديار العالمية';
+const pageTitle = 'ساندوتش بانل جدة | ديار جدة العالمية';
 const pageDescription = 'غرف ساندوتش بانل بأعلى جودة في جدة | عزل حراري وصوتي ممتاز بضمان 10 سنوات. تركيب سريع ومتقن. أسعار تبدأ من 165 ريال/م². عرض سعر مجاني: 0553719009';
 const pageUrl = '/services/sandwich-panel';
 const pageImage = 'https://ext.same-assets.com/165531043/871301785.webp';
@@ -43,14 +43,14 @@ const pageImage = 'https://ext.same-assets.com/165531043/871301785.webp';
 export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
-  keywords: 'ساندوتش بانل جدة، غرف ساندوتش بانل، مستودعات ساندوتش بانل، عزل حراري، عزل صوتي، محترفين الديار العالمية',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  keywords: 'ساندوتش بانل جدة، غرف ساندوتش بانل، مستودعات ساندوتش بانل، عزل حراري، عزل صوتي، ديار جدة العالمية',
+  authors: [{ name: 'ديار جدة العالمية' }],
   openGraph: generateOpenGraphMetadata({
     title: pageTitle,
     description: pageDescription,
     url: pageUrl,
     image: pageImage,
-    imageAlt: 'غرف ساندوتش بانل في جدة - محترفين الديار العالمية',
+    imageAlt: 'غرف ساندوتش بانل في جدة - ديار جدة العالمية',
     type: 'website'
   }),
   twitter: generateTwitterMetadata({
@@ -175,7 +175,7 @@ const testimonials = [
     id: 3,
     name: 'أحمد الغامدي',
     role: 'مقاول - شركة إنشاءات',
-    content: 'نتعامل مع محترفين الديار العالمية في جميع مشاريع ساندوتش بانل. الجودة والمصداقية والأسعار المنافسة.',
+    content: 'نتعامل مع ديار جدة العالمية في جميع مشاريع ساندوتش بانل. الجودة والمصداقية والأسعار المنافسة.',
     rating: 5,
     image: '/images/testimonials/client3.jpg'
   }
@@ -266,7 +266,7 @@ export default function SandwichPanelPage() {
 
   const serviceSchema = generateServiceSchema({
     name: 'غرف ساندوتش بانل في جدة - سكنية وتجارية وصناعية',
-    description: 'أفضل غرف ساندوتش بانل في جدة من محترفين الديار العالمية. غرف سكنية، تجارية، صناعية ومستودعات. عزل حراري وصوتي ممتاز. ضمان 10 سنوات.',
+    description: 'أفضل غرف ساندوتش بانل في جدة من ديار جدة العالمية. غرف سكنية، تجارية، صناعية ومستودعات. عزل حراري وصوتي ممتاز. ضمان 10 سنوات.',
     areaServed: 'جدة',
     priceRange: '165-220',
     image: pageImage,
@@ -279,7 +279,7 @@ export default function SandwichPanelPage() {
   })));
 
   const reviewSchemaData = {
-    serviceName: 'ساندوتش بانل جدة - محترفين الديار العالمية',
+    serviceName: 'ساندوتش بانل جدة - ديار جدة العالمية',
     aggregateRating: {
       ratingValue: 4.9,
       reviewCount: 167
@@ -327,7 +327,7 @@ export default function SandwichPanelPage() {
 
             {/* Subheading */}
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              محترفين الديار العالمية - خبرة 15 عاماً في تصميم وتنفيذ غرف ساندوتش بانل عالية الجودة.
+              ديار جدة العالمية - خبرة 15 عاماً في تصميم وتنفيذ غرف ساندوتش بانل عالية الجودة.
               عزل حراري وصوتي فائق، تركيب سريع، أسعار تبدأ من 165 ريال/م²
             </p>
 

@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
       category || 'مشاريع',
       location || 'السعودية',
       'جدة',
-      'محترفين الديار',
+      'ديار جدة العالمية',
       ...competitorKeywords.slice(0, 5)
     ];
     
@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
         category || 'مشاريع',
         location || 'السعودية',
         'جدة',
-        'محترفين الديار',
+        'ديار جدة العالمية',
         title.split(' ').slice(0, 3).join(' '),
         ...competitorKeywords.slice(0, 5)
       ];
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
     // 3. توليد اقتراحات للعناوين مع دمج اقتراحات المنافسين
     try {
       const baseTitle = [
-        `${title} في ${location || 'السعودية'} - محترفين الديار`,
+        `${title} في ${location || 'السعودية'} - ديار جدة العالمية`,
         `${category || 'مشروع'} احترافي: ${title} | ${location || 'جدة'}`,
         `تنفيذ ${category || 'مشروع'} ${title} بأعلى جودة في ${location || 'السعودية'}`
       ];
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
       console.error('خطأ في توليد العناوين:', error);
       suggestions.titleSuggestions = [
-        `${title} في ${location || 'السعودية'} - محترفين الديار`,
+        `${title} في ${location || 'السعودية'} - ديار جدة العالمية`,
         `${category || 'مشروع'} احترافي: ${title}`,
         `تنفيذ ${category || 'مشروع'} ${title} بأعلى جودة`
       ];
@@ -141,7 +141,7 @@ export async function POST(request: NextRequest) {
         console.log('✅ تم توليد اقتراح للوصف');
       } catch (error) {
         console.error('خطأ في توليد الوصف:', error);
-        suggestions.contentSuggestions = `مشروع ${category || ''} ${title} في ${location || 'السعودية'}. تم تنفيذه بأعلى معايير الجودة والاحترافية من قبل محترفين الديار العالمية. نفخر بتقديم أفضل الحلول والخدمات المتميزة لعملائنا.`;
+        suggestions.contentSuggestions = `مشروع ${category || ''} ${title} في ${location || 'السعودية'}. تم تنفيذه بأعلى معايير الجودة والاحترافية من قبل ديار جدة العالمية. نفخر بتقديم أفضل الحلول والخدمات المتميزة لعملائنا.`;
       }
     }
 
@@ -157,7 +157,7 @@ export async function POST(request: NextRequest) {
     } catch (error) {
       console.error('خطأ في توليد Meta Tags:', error);
       suggestions.metaTags = {
-        title: `${title} في ${location || 'السعودية'} | محترفين الديار العالمية`,
+        title: `${title} في ${location || 'السعودية'} | ديار جدة العالمية`,
         description: description?.substring(0, 150) || `${title} - مشروع ${category || ''} تم تنفيذه بأعلى معايير الجودة في ${location || 'السعودية'}.`,
         og_title: title,
         og_description: description?.substring(0, 200) || `مشروع ${category || ''} احترافي`,

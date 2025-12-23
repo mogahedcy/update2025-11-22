@@ -44,7 +44,7 @@ export class AIArticleAgent {
       wordCount = 1000,
       includeImages = true,
       imageCount = 3,
-      author = 'محترفين الديار العالمية',
+      author = 'ديار جدة العالمية',
       featured = false
     } = options;
 
