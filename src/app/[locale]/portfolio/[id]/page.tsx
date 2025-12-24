@@ -23,7 +23,7 @@ import IntlProvider from '@/components/IntlProvider';
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export const dynamicParams = true;
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 60; // تحديث كل دقيقة بدلاً من ساعة لعرض المشاريع الجديدة بسرعة
 
 interface Props {
   params: Promise<{ locale: string; id: string }>;
