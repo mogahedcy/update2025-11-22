@@ -57,7 +57,7 @@ export default function TestimonialsSection() {
   }));
 
   const serviceName = isRTL 
-    ? "خدمات ديار جدة - مظلات وبرجولات جدة"
+    ? "خدمات ديار جدة العالمية - مظلات وبرجولات جدة"
     : "Deyar Jeddah Professionals Services - Shades and Pergolas Jeddah";
 
   return (

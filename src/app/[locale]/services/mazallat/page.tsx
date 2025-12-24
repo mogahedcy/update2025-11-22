@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: pageImage,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'مظلات سيارات جدة - ديار جدة' : 'Car Shades Jeddah - Deyar Jeddah',
+          alt: isArabic ? 'مظلات سيارات جدة - ديار جدة العالمية' : 'Car Shades Jeddah - Deyar Jeddah',
         },
       ],
     },

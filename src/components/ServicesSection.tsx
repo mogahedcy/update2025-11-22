@@ -79,7 +79,7 @@ export default function ServicesSection() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": isRTL ? "خدمات ديار جدة" : "Deyar Jeddah Services",
+    "serviceType": isRTL ? "خدمات ديار جدة العالمية" : "Deyar Jeddah Services",
     "provider": {
       "@type": "Organization",
       "name": isRTL ? "ديار جدة العالمية" : "Deyar Jeddah",
@@ -87,7 +87,7 @@ export default function ServicesSection() {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": isRTL ? "خدمات ديار جدة" : "Deyar Jeddah Services",
+      "name": isRTL ? "خدمات ديار جدة العالمية" : "Deyar Jeddah Services",
       "itemListElement": services
         .filter(service => service.price)
         .map(service => {

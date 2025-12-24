@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: pageImage,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'سواتر جدة - ديار جدة' : 'Fences Jeddah - Deyar Jeddah',
+          alt: isArabic ? 'سواتر جدة - ديار جدة العالمية' : 'Fences Jeddah - Deyar Jeddah',
         },
       ],
     },

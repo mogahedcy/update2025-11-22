@@ -26,9 +26,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     metadataBase: new URL('https://www.aldeyarksa.tech'),
     title: {
       default: isArabic 
-        ? "ديار جدة | أفضل مظلات وبرجولات جدة - خبرة 15 عام"
+        ? "ديار جدة العالمية | أفضل مظلات وبرجولات جدة - خبرة 15 عام"
         : "Deyar Jeddah | Best Shades & Pergolas in Jeddah - 15 Years Experience",
-      template: isArabic ? "%s | ديار جدة" : "%s | Deyar Jeddah"
+      template: isArabic ? "%s | ديار جدة العالمية" : "%s | Deyar Jeddah"
     },
     description: isArabic
       ? "الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر. خبرة 15 عاماً، ضمان 10 سنوات، تركيب احترافي، أسعار منافسة."
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: isArabic 
-        ? "ديار جدة - خدمات شاملة في جدة"
+        ? "ديار جدة العالمية - خدمات شاملة في جدة"
         : "Deyar Jeddah - Comprehensive Services in Jeddah",
       description: isArabic
         ? "شركة متخصصة في المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة"
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: "https://www.aldeyarksa.tech/images/slider1.webp",
           width: 1200,
           height: 630,
-          alt: isArabic ? "ديار جدة - مظلات وبرجولات جدة" : "Deyar Jeddah - Shades and Pergolas Jeddah",
+          alt: isArabic ? "ديار جدة العالمية - مظلات وبرجولات جدة" : "Deyar Jeddah - Shades and Pergolas Jeddah",
         },
       ],
     },

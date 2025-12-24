@@ -45,7 +45,7 @@ export default function ImageObjectSchema({
       "@type": "Organization",
       "name": "ديار جدة العالمية"
     },
-    "creditText": "ديار جدة - جدة",
+    "creditText": "ديار جدة العالمية - جدة",
     "acquireLicensePage": "https://www.aldeyarksa.tech/contact",
     "license": "https://www.aldeyarksa.tech/terms",
     "inLanguage": "ar"

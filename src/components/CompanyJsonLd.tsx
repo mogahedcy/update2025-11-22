@@ -243,7 +243,7 @@ export default function CompanyJsonLd() {
       '@type': 'WebPage',
       '@id': `${baseUrl}/#webpage`,
       url: baseUrl,
-      name: 'الصفحة الرئيسية - ديار جدة',
+      name: 'الصفحة الرئيسية - ديار جدة العالمية',
       description:
         'الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر وتنسيق الحدائق مع ضمان شامل',
       isPartOf: { '@id': `${baseUrl}/#website` },

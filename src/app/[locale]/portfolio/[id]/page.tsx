@@ -102,7 +102,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   if (!project) {
     return {
-      title: 'المشروع غير موجود | ديار جدة',
+      title: 'المشروع غير موجود | ديار جدة العالمية',
       description: 'المشروع المطلوب غير متوفر',
       robots: 'noindex, nofollow'
     };
@@ -117,13 +117,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const shortTitle = project.title.length > 40 
     ? project.title.substring(0, 37) + '...' 
     : project.title;
-  const seoTitle = `${shortTitle} | ديار جدة`;
+  const seoTitle = `${shortTitle} | ديار جدة العالمية`;
   
   // تحسين الوصف ليكون واضح ومباشر بدون قطع في المنتصف (150-160 حرف)
   const cleanDescription = project.description.replace(/\s+/g, ' ').trim();
   const seoDescription = cleanDescription.length > 140 
-    ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة'
-    : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة`;
+    ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة العالمية'
+    : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة العالمية`;
   
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
@@ -159,14 +159,14 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
             url: getAbsoluteUrl(img.src),
             width: 1200,
             height: 630,
-            alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
+            alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة العالمية`,
             type: getMediaType(img.src),
           }))
         : [{
             url: getAbsoluteUrl(mainImage),
             width: 1200,
             height: 630,
-            alt: `${project.title} - ديار جدة`,
+            alt: `${project.title} - ديار جدة العالمية`,
             type: 'image/jpeg',
           }],
       // ✅ جميع فيديوهات المشروع
@@ -289,7 +289,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
 
   const imageGallerySchema = images.length > 1 ? generateImageGallerySchema({
     name: `معرض صور ${project.title}`,
-    description: `معرض صور مشروع ${project.title} - ${project.category} في ${project.location} | ديار جدة`,
+    description: `معرض صور مشروع ${project.title} - ${project.category} في ${project.location} | ديار جدة العالمية`,
     url: `/portfolio/${project.slug || id}`,
     category: project.category,
     location: project.location,
@@ -297,8 +297,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
     dateModified: project.updatedAt,
     images: images.map((item: any, index: number) => ({
       url: getAbsoluteUrl(item.src),
-      caption: item.title || item.description || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
-      alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
+      caption: item.title || item.description || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة العالمية`,
+      alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة العالمية`,
       width: 1200,
       height: 800
     }))
@@ -369,7 +369,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
             '@context': 'https://schema.org',
             '@type': 'LocalBusiness',
             name: 'ديار جدة العالمية',
-            description: `${project.category} في ${project.location} - تنفيذ ديار جدة بجودة عالية وضمان 10 سنوات`,
+            description: `${project.category} في ${project.location} - تنفيذ ديار جدة العالمية بجودة عالية وضمان 10 سنوات`,
             image: images.length > 0 ? images.map((img: any) => getAbsoluteUrl(img.src)) : [getAbsoluteUrl(mainImage)],
             address: {
               '@type': 'PostalAddress',
