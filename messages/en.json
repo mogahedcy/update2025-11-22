@@ -778,5 +778,455 @@
     },
     "refreshButton": "Refresh Now",
     "dismissButton": "Later"
+  },
+  "byootShaar": {
+    "pageTitle": "Traditional Hair Tents Jeddah | Deyar Jeddah",
+    "pageDescription": "Royal and Arabic traditional hair tents in Jeddah | Luxurious designs with 10-year warranty. High-quality fabrics and handmade embroidery. Prices from 5,000 SAR. Call: 0553719009",
+    "keywords": "hair tents jeddah, royal hair tents, arabic hair tents, traditional tents, Deyar Jeddah",
+    "hero": {
+      "title": "Best Hair Tents in",
+      "titleHighlight": "Jeddah",
+      "subtitle": "Authentic Heritage and High Quality",
+      "description": "Deyar Jeddah - 15 years of experience in designing and executing royal and traditional Arabic hair tents. High-quality fabrics, authentic designs, and comprehensive 10-year warranty",
+      "features": {
+        "warranty": "10 Year Warranty",
+        "quality": "Highest Quality",
+        "team": "Professional Team",
+        "delivery": "Fast Delivery"
+      },
+      "callCta": "Call for Free Consultation",
+      "whatsappCta": "WhatsApp Now"
+    },
+    "byootTypes": {
+      "title": "Types of Hair Tents We Offer",
+      "subtitle": "A diverse collection of hair tents to suit all your needs and requirements",
+      "royal": {
+        "title": "Royal Hair Tents",
+        "description": "Luxurious royal hair tents designed with the highest quality and luxury standards",
+        "price": "Starting from 8,000 SAR",
+        "size": "6×8 meters",
+        "category": "Royal",
+        "features": ["Luxurious royal designs", "High-quality fabrics", "Handmade embroidery", "Distinctive lighting"]
+      },
+      "arabic": {
+        "title": "Arabic Hair Tents",
+        "description": "Traditional Arabic style hair tents reflecting authenticity and heritage",
+        "price": "Starting from 6,000 SAR",
+        "size": "5×7 meters",
+        "category": "Traditional",
+        "features": ["Authentic Arabic style", "Traditional designs", "Traditional materials", "High quality"]
+      },
+      "majalis": {
+        "title": "Majlis Hair Tents",
+        "description": "Hair tents specially designed for men's majlis with luxury and spaciousness",
+        "price": "Starting from 7,000 SAR",
+        "size": "8×10 meters",
+        "category": "Majlis",
+        "features": ["Spacious designs", "Comfortable seating", "Excellent ventilation", "Complete privacy"]
+      },
+      "gardens": {
+        "title": "Garden Hair Tents",
+        "description": "Hair tents designed for home gardens while maintaining privacy",
+        "price": "Starting from 5,000 SAR",
+        "size": "4×6 meters",
+        "category": "Gardens",
+        "features": ["Outdoor designs", "Weather resistant", "Natural views", "Open spaces"]
+      }
+    },
+    "stats": {
+      "projects": "Hair Tents Completed",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction",
+      "support": "Technical Support"
+    },
+    "gallery": {
+      "title": "Our Portfolio",
+      "subtitle": "View a collection of our best hair tent projects"
+    },
+    "testimonials": {
+      "title": "Customer Reviews",
+      "subtitle": "Real testimonials from our valued customers who trusted our services"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Comprehensive answers to the most important questions about hair tent services"
+    },
+    "cta": {
+      "title": "Get Your Dream Hair Tent Now",
+      "subtitle": "Contact us today and get a free consultation and customized quote for your requirements",
+      "whatsappButton": "WhatsApp Now",
+      "callButton": "Call Now",
+      "emailButton": "Email Us"
+    },
+    "relatedServices": {
+      "title": "Other Services You May Like",
+      "subtitle": "Discover more of our distinguished services in shades and construction"
+    },
+    "breadcrumb": {
+      "services": "Our Services",
+      "byootShaar": "Hair Tents"
+    },
+    "schema": {
+      "serviceName": "Hair Tents in Jeddah - Royal, Arabic and Majlis",
+      "serviceDescription": "Royal and traditional Arabic hair tents in Jeddah. Design and execution of luxurious hair tents for majlis and gardens with highest quality standards. 10-year warranty."
+    }
+  },
+  "khayyam": {
+    "pageTitle": "Royal Tents Jeddah | Deyar Jeddah",
+    "pageDescription": "Luxurious royal tents for weddings and events in Jeddah | Exclusive designs with 10-year warranty. VIP and mourning tents with luxurious fabrics. Prices from 8,000 SAR. Book now: 0553719009",
+    "keywords": "royal tents jeddah, wedding tents, event tents, VIP tents, mourning tents, luxury tents, tent rental, Deyar Jeddah",
+    "hero": {
+      "title": "Best Luxury Royal Tents in",
+      "titleHighlight": "Jeddah",
+      "subtitle": "Exclusive Designs and Exceptional Luxury",
+      "description": "Deyar Jeddah - 15 years of experience in designing and executing the best luxury royal tents in Jeddah. Wedding, event, VIP and mourning tents with the finest imported materials and comprehensive warranty",
+      "features": {
+        "allAreas": "We serve all Jeddah areas",
+        "warranty": "Comprehensive 10-year warranty",
+        "projects": "More than 1000 completed tents"
+      },
+      "callCta": "Call for Free Consultation",
+      "whatsappCta": "WhatsApp Now"
+    },
+    "tentTypes": {
+      "title": "Specialized Royal Tent Types",
+      "subtitle": "We offer a diverse range of luxury royal tents for all events and needs",
+      "royalLuxury": {
+        "title": "Luxury Royal Tents",
+        "description": "Luxury royal tents with elegant and distinctive design, equipped with all comfort amenities, suitable for official events and VIP reception.",
+        "features": ["Exclusive luxury designs", "High-quality imported fabrics", "Complete VIP equipment"],
+        "price": "Starting from 15,000 SAR",
+        "capacity": "Capacity 50-500 people"
+      },
+      "weddingEvents": {
+        "title": "Wedding & Event Tents",
+        "description": "Tents specially designed for weddings and special occasions, featuring luxury and spaciousness with customization options based on event type.",
+        "features": ["Elegant romantic designs", "Distinctive lighting and decorations", "Spacious comfortable areas"],
+        "price": "Starting from 10,000 SAR",
+        "capacity": "Capacity 100-800 people"
+      },
+      "mourning": {
+        "title": "Mourning Tents",
+        "description": "Tents dedicated for mourning gatherings, designed to provide comfort and privacy appropriate to the occasion.",
+        "features": ["Appropriate modest designs", "Comfortable ventilation and lighting", "Complete privacy"],
+        "price": "Starting from 8,000 SAR",
+        "capacity": "Capacity 50-400 people"
+      },
+      "vip": {
+        "title": "VIP Tents",
+        "description": "VIP tents with special specifications and exceptional equipment, designed to meet VIP requirements and high-end events.",
+        "features": ["Exceptional specifications", "Advanced technical equipment", "Distinguished personal service"],
+        "price": "Starting from 20,000 SAR",
+        "capacity": "Capacity 30-300 people"
+      }
+    },
+    "whyChooseUs": {
+      "title": "Why We Are the Best Choice for Royal Tents?",
+      "subtitle": "We are pioneers in royal tents in Jeddah with extensive experience and exceptional quality",
+      "features": {
+        "royalDesigns": {
+          "title": "Luxury Royal Designs",
+          "description": "Exclusive royal designs combining authenticity and modern luxury"
+        },
+        "importedMaterials": {
+          "title": "High-Quality Imported Materials",
+          "description": "Finest imported fabrics and materials resistant to weather conditions"
+        },
+        "team": {
+          "title": "Professional Specialized Team",
+          "description": "Designers and engineers specialized in royal tents and events"
+        },
+        "fastExecution": {
+          "title": "Fast and Perfect Execution",
+          "description": "Speed in installation and execution while maintaining highest quality standards"
+        },
+        "customerService": {
+          "title": "Distinguished Customer Service",
+          "description": "Customer service available 24/7 to ensure your complete satisfaction"
+        },
+        "packages": {
+          "title": "Comprehensive Packages",
+          "description": "Complete packages including design, installation, decoration and equipment"
+        }
+      }
+    },
+    "stats": {
+      "projects": "Tents Completed",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction",
+      "support": "Continuous Service"
+    },
+    "gallery": {
+      "title": "Our Distinguished Royal Tents Gallery",
+      "subtitle": "View a collection of our best royal tents completed for various events",
+      "viewMore": "View More Projects"
+    },
+    "testimonials": {
+      "title": "What Our Customers Say About Our Royal Tents",
+      "subtitle": "Real testimonials from our valued customers who chose our royal tents"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions About Royal Tents",
+      "subtitle": "Comprehensive answers to your most important inquiries about royal tent services"
+    },
+    "relatedServices": {
+      "title": "Other Services You May Like",
+      "subtitle": "Explore more of our specialized services"
+    },
+    "cta": {
+      "title": "Ready to Book a Luxury Royal Tent?",
+      "subtitle": "Get a free consultation and competitive quote for your royal tent from Deyar Jeddah experts",
+      "callButton": "Call Now - Free",
+      "whatsappButton": "Instant WhatsApp",
+      "quoteButton": "Request Quote"
+    },
+    "breadcrumb": {
+      "services": "Our Services",
+      "khayyam": "Royal Tents"
+    },
+    "schema": {
+      "serviceName": "Royal Tents Jeddah - Weddings, Events and VIP",
+      "serviceDescription": "Best luxury royal tents in Jeddah from Deyar Jeddah. Wedding tents, event tents, VIP tents, mourning tents. Professional design and execution. 10-year warranty."
+    }
+  },
+  "landscaping": {
+    "pageTitle": "Landscaping Jeddah | Deyar Jeddah",
+    "pageDescription": "Professional landscaping in Jeddah | Green space design with highest quality standards. Waterfalls, fountains, natural and artificial grass. Competitive prices. Call: 0553719009",
+    "keywords": "landscaping jeddah, garden design, waterfalls, fountains, artificial grass, natural grass, villa gardens, Deyar Jeddah",
+    "hero": {
+      "title": "Best Landscaping in",
+      "titleHighlight": "Jeddah",
+      "subtitle": "Creative Designs and Charming Green Spaces",
+      "description": "Deyar Jeddah - 15 years of experience in landscaping and green space design. Waterfalls, fountains, natural and artificial grass, pathways, and garden lighting with highest quality",
+      "features": {
+        "allAreas": "We serve all Jeddah areas",
+        "warranty": "Comprehensive warranty on all work",
+        "projects": "More than 2000 gardens completed"
+      },
+      "callCta": "Call for Free Consultation",
+      "whatsappCta": "WhatsApp Now"
+    },
+    "serviceTypes": {
+      "title": "Landscaping Services",
+      "subtitle": "We offer comprehensive services to transform your garden into a charming natural oasis",
+      "design": {
+        "title": "Garden Design",
+        "description": "Professional garden design with latest engineering software considering space and climate",
+        "features": ["3D designs", "Local climate consideration", "Smart space planning"],
+        "price": "Based on area"
+      },
+      "grass": {
+        "title": "Grass and Green Areas",
+        "description": "Installation of natural and artificial grass with highest quality and comprehensive warranty",
+        "features": ["Natural grass", "Artificial grass", "Periodic maintenance"],
+        "price": "Starting from 40 SAR/meter"
+      },
+      "waterfalls": {
+        "title": "Waterfalls and Fountains",
+        "description": "Design and execution of waterfalls and fountains with latest technologies",
+        "features": ["Wall waterfalls", "Dancing fountains", "LED lighting"],
+        "price": "Starting from 5,000 SAR"
+      },
+      "lighting": {
+        "title": "Garden Lighting",
+        "description": "Smart garden lighting systems adding charming atmosphere",
+        "features": ["Energy-efficient LED", "Smart control", "Multiple colors"],
+        "price": "Based on project"
+      }
+    },
+    "stats": {
+      "projects": "Gardens Completed",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction",
+      "support": "Technical Support"
+    },
+    "breadcrumb": {
+      "services": "Our Services",
+      "landscaping": "Landscaping"
+    },
+    "schema": {
+      "serviceName": "Landscaping Jeddah",
+      "serviceDescription": "Best landscaping services in Jeddah from Deyar Jeddah. Garden design, waterfalls, fountains, natural and artificial grass. 15 years experience."
+    }
+  },
+  "pergolas": {
+    "pageTitle": "Pergolas Jeddah | Deyar Jeddah",
+    "pageDescription": "Wooden and iron pergolas in Jeddah | Modern designs with 10-year warranty. Garden and rooftop pergolas at best prices. Call: 0553719009",
+    "keywords": "pergolas jeddah, wooden pergolas, iron pergolas, garden pergolas, rooftop pergolas, Deyar Jeddah",
+    "hero": {
+      "title": "Best Pergolas in",
+      "titleHighlight": "Jeddah",
+      "subtitle": "Modern Designs and Exceptional Quality",
+      "description": "Deyar Jeddah - 15 years of experience in designing and executing the best wooden and iron pergolas. Modern designs, high-quality materials, and comprehensive 10-year warranty",
+      "features": {
+        "allAreas": "We serve all Jeddah areas",
+        "warranty": "Comprehensive 10-year warranty",
+        "projects": "More than 3000 pergolas completed"
+      },
+      "callCta": "Call for Free Consultation",
+      "whatsappCta": "WhatsApp Now"
+    },
+    "pergolaTypes": {
+      "title": "Specialized Pergola Types",
+      "subtitle": "We offer a diverse range of pergolas to suit all needs",
+      "wooden": {
+        "title": "Wooden Pergolas",
+        "description": "Pergolas from finest treated wood with elegant natural designs",
+        "features": ["Insect-treated wood", "Elegant natural designs", "High durability"],
+        "price": "Starting from 3,500 SAR"
+      },
+      "iron": {
+        "title": "Iron Pergolas",
+        "description": "Strong and durable metal pergolas with modern designs",
+        "features": ["Superior durability", "Rust resistant", "Modern designs"],
+        "price": "Starting from 4,000 SAR"
+      },
+      "mixed": {
+        "title": "Mixed Pergolas",
+        "description": "Pergolas combining wood and iron for best results",
+        "features": ["Wood beauty and iron durability", "Unique designs", "Long lifespan"],
+        "price": "Starting from 5,000 SAR"
+      },
+      "rooftop": {
+        "title": "Rooftop Pergolas",
+        "description": "Pergolas specially designed for rooftops and terraces",
+        "features": ["Weather resistant", "Shade provision", "Integrated lighting"],
+        "price": "Starting from 6,000 SAR"
+      }
+    },
+    "stats": {
+      "projects": "Pergolas Completed",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction",
+      "support": "Technical Support"
+    },
+    "breadcrumb": {
+      "services": "Our Services",
+      "pergolas": "Pergolas"
+    },
+    "schema": {
+      "serviceName": "Pergolas Jeddah",
+      "serviceDescription": "Best wooden and iron pergolas in Jeddah from Deyar Jeddah. Modern designs, 10-year warranty, 15 years experience."
+    }
+  },
+  "renovation": {
+    "pageTitle": "Renovation Jeddah | Deyar Jeddah",
+    "pageDescription": "Professional renovation services in Jeddah | Villa, rest house, annex renovation. Painting, plumbing, electrical work. Competitive prices. Call: 0553719009",
+    "keywords": "renovation jeddah, villa renovation, rest house renovation, home maintenance, painting, plumbing, electrical, Deyar Jeddah",
+    "hero": {
+      "title": "Best Renovation Services in",
+      "titleHighlight": "Jeddah",
+      "subtitle": "Comprehensive Renovation with Highest Quality Standards",
+      "description": "Deyar Jeddah - 15 years of experience in renovation and renewal. Villa, rest house, annex renovation. Painting, plumbing, electrical, and all maintenance work",
+      "features": {
+        "allAreas": "We serve all Jeddah areas",
+        "warranty": "Comprehensive warranty on all work",
+        "projects": "More than 1500 renovation projects"
+      },
+      "callCta": "Call for Free Consultation",
+      "whatsappCta": "WhatsApp Now"
+    },
+    "serviceTypes": {
+      "title": "Renovation Services",
+      "subtitle": "We offer comprehensive renovation services to transform your home into an architectural masterpiece",
+      "villas": {
+        "title": "Villa Renovation",
+        "description": "Comprehensive villa renovation including all construction and finishing work",
+        "features": ["Structural renovation", "Interior finishing", "Exterior facades"],
+        "price": "Based on project"
+      },
+      "resthouses": {
+        "title": "Rest House Renovation",
+        "description": "Comprehensive rest house renewal while maintaining architectural character",
+        "features": ["Complete renewal", "Pool maintenance", "Facility updates"],
+        "price": "Based on project"
+      },
+      "painting": {
+        "title": "Painting Work",
+        "description": "Interior and exterior painting with finest paint types",
+        "features": ["Interior painting", "Exterior painting", "Wallpaper"],
+        "price": "Starting from 15 SAR/meter"
+      },
+      "plumbing": {
+        "title": "Plumbing Work",
+        "description": "Maintenance and renewal of water and sewage networks",
+        "features": ["New installations", "Leak repair", "Sanitary fixture installation"],
+        "price": "Based on work"
+      }
+    },
+    "stats": {
+      "projects": "Renovation Projects",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction",
+      "support": "Technical Support"
+    },
+    "breadcrumb": {
+      "services": "Our Services",
+      "renovation": "Renovation"
+    },
+    "schema": {
+      "serviceName": "Renovation Jeddah",
+      "serviceDescription": "Best renovation services in Jeddah from Deyar Jeddah. Villa, rest house, annex renovation. 15 years experience."
+    }
+  },
+  "sandwichPanel": {
+    "pageTitle": "Sandwich Panel Jeddah | Deyar Jeddah",
+    "pageDescription": "Insulated sandwich panels in Jeddah | Thermal and sound insulation panels. Ready rooms, warehouses, offices. 10-year warranty. Call: 0553719009",
+    "keywords": "sandwich panel jeddah, insulated panels, ready rooms, warehouses, thermal insulation, sound insulation, Deyar Jeddah",
+    "hero": {
+      "title": "Best Sandwich Panels in",
+      "titleHighlight": "Jeddah",
+      "subtitle": "Thermal and Sound Insulation with Highest Specifications",
+      "description": "Deyar Jeddah - 15 years of experience in installing sandwich panels. Thermal and sound insulation, ready rooms, warehouses, and offices with 10-year warranty",
+      "features": {
+        "allAreas": "We serve all Jeddah areas",
+        "warranty": "Comprehensive 10-year warranty",
+        "projects": "More than 800 completed projects"
+      },
+      "callCta": "Call for Free Consultation",
+      "whatsappCta": "WhatsApp Now"
+    },
+    "panelTypes": {
+      "title": "Sandwich Panel Types",
+      "subtitle": "We provide the best types of sandwich panels for all uses",
+      "walls": {
+        "title": "Wall Sandwich Panels",
+        "description": "Insulated wall panels in various thicknesses",
+        "features": ["Excellent thermal insulation", "Sound insulation", "Fire resistant"],
+        "price": "Starting from 85 SAR/meter"
+      },
+      "roofs": {
+        "title": "Roof Sandwich Panels",
+        "description": "Insulated roof panels with excellent water drainage",
+        "features": ["Water drainage", "Thermal insulation", "Lightweight"],
+        "price": "Starting from 95 SAR/meter"
+      },
+      "rooms": {
+        "title": "Ready Rooms",
+        "description": "Complete ready rooms for offices and accommodation",
+        "features": ["Fast installation", "Complete equipment", "Portable"],
+        "price": "Starting from 8,000 SAR"
+      },
+      "warehouses": {
+        "title": "Warehouses",
+        "description": "Sandwich panel warehouses in various sizes",
+        "features": ["Large spaces", "Excellent insulation", "High security"],
+        "price": "Based on area"
+      }
+    },
+    "stats": {
+      "projects": "Projects Completed",
+      "experience": "Years Experience",
+      "satisfaction": "Customer Satisfaction",
+      "support": "Technical Support"
+    },
+    "breadcrumb": {
+      "services": "Our Services",
+      "sandwichPanel": "Sandwich Panel"
+    },
+    "schema": {
+      "serviceName": "Sandwich Panel Jeddah",
+      "serviceDescription": "Best sandwich panels and insulated panels in Jeddah from Deyar Jeddah. Ready rooms, warehouses, thermal and sound insulation. 10-year warranty."
+    }
   }
 }
