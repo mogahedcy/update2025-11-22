@@ -127,7 +127,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ loca
           </div>
         </div>
       }>
-        <PortfolioPageClient />
+        <PortfolioPageClient locale={locale} />
       </Suspense>
       <Footer />
       <WhatsAppWidget />

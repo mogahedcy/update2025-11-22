@@ -125,9 +125,10 @@ const useDebounce = (value: string, delay: number) => {
   return debouncedValue;
 };
 
-export default function PortfolioPageClient() {
+export default function PortfolioPageClient({ locale = 'ar' }: { locale?: string }) {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const localePath = locale === 'ar' ? '' : `/${locale}`;
   
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(false);
@@ -546,7 +547,7 @@ export default function PortfolioPageClient() {
                     transition={{ delay: index * 0.1 }}
                     className="group"
                   >
-                    <Link href={`/portfolio/${project.slug || project.id}`}>
+                    <Link href={`${localePath}/portfolio/${project.slug || project.id}`}>
                       <div className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 hover:scale-105">
                         {/* Enhanced Image Container */}
                         <ProtectedMedia className="relative aspect-[4/3] overflow-hidden">
@@ -704,7 +705,7 @@ export default function PortfolioPageClient() {
                     transition={{ delay: index * 0.1 }}
                     className="group"
                   >
-                    <Link href={`/portfolio/${project.slug || project.id}`}>
+                    <Link href={`${localePath}/portfolio/${project.slug || project.id}`}>
                       <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center transform hover:-translate-y-1">
                         {/* Image */}
                         {mainMedia && (

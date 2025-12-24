@@ -25,7 +25,7 @@ export const dynamicParams = true;
 export const revalidate = 3600; // Revalidate every hour
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }
 
 // دالة لإنشاء thumbnail من فيديو Cloudinary
@@ -97,8 +97,8 @@ async function getProject(id: string) {
   }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-  const { id } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
+  const { locale, id } = await params;
   
   const project = await getProject(id);
 
@@ -127,7 +127,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة العالمية'
     : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة العالمية`;
   
-  const pageUrl = `/portfolio/${project.slug || id}`;
+  const localePath = locale === 'ar' ? '' : `/${locale}`;
+  const pageUrl = `${localePath}/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
 
   return {
@@ -198,8 +199,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     alternates: {
       canonical: fullUrl,
       languages: {
-        'ar-SA': fullUrl,
-        'x-default': fullUrl
+        'ar': `/portfolio/${project.slug || id}`,
+        'en': `/en/portfolio/${project.slug || id}`,
+        'x-default': `/portfolio/${project.slug || id}`
       }
     },
     robots: generateRobotsMetadata()
@@ -214,7 +216,7 @@ export function generateViewport() {
 }
 
 export default async function ProjectDetailsPage({ params }: Props) {
-  const { id } = await params;
+  const { locale, id } = await params;
   const decodedId = decodeURIComponent(id);
   const project = await getProject(decodedId);
 
@@ -224,17 +226,19 @@ export default async function ProjectDetailsPage({ params }: Props) {
 
   // 301 Redirect من UUID إلى Slug لتحسين SEO وتوحيد الفهرسة
   if (UUID_REGEX.test(decodedId) && project.slug && project.slug !== decodedId) {
-    permanentRedirect(`/portfolio/${project.slug}`);
+    const localePath = locale === 'ar' ? '' : `/${locale}`;
+    permanentRedirect(`${localePath}/portfolio/${project.slug}`);
   }
 
   // إعداد structured data
   const images = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
   const videos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
-  const fullUrl = getAbsoluteUrl(`/portfolio/${project.slug || id}`);
+  const localePath = locale === 'ar' ? '' : `/${locale}`;
+  const fullUrl = getAbsoluteUrl(`${localePath}/portfolio/${project.slug || id}`);
 
   const breadcrumbItems = [
-    { label: 'المشاريع', href: '/portfolio' },
-    { label: project.title, href: `/portfolio/${project.slug || id}`, current: true }
+    { label: 'المشاريع', href: `${localePath}/portfolio` },
+    { label: project.title, href: `${localePath}/portfolio/${project.slug || id}`, current: true }
   ];
 
   // جلب التعليقات للمشروع لإضافتها كـ Reviews في الـ schema
@@ -252,7 +256,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
   const structuredData = generateCreativeWorkSchema({
     name: project.title,
     description: project.description,
-    url: `/portfolio/${project.slug || id}`,
+    url: `${localePath}/portfolio/${project.slug || id}`,
     category: project.category,
     location: project.location,
     dateCreated: project.createdAt,
