@@ -341,7 +341,8 @@ export default async function ByootShaarPage({ params }: { params: Promise<{ loc
     areaServed: isArabic ? 'جدة' : 'Jeddah',
     priceRange: '5000-8000',
     image: pageImage,
-    url: '/services/byoot-shaar'
+    url: `${localePath}/services/byoot-shaar`,
+    aggregateRating: { ratingValue: 4.9, reviewCount: 167 }
   });
 
   const faqSchemaData = faqs.map(faq => ({
@@ -388,7 +389,7 @@ export default async function ByootShaarPage({ params }: { params: Promise<{ loc
 
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={breadcrumbItems} locale={locale} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}

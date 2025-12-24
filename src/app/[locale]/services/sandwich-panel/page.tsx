@@ -139,7 +139,7 @@ export default async function SandwichPanelPage({ params }: { params: Promise<{ 
 
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={breadcrumbItems} locale={locale} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <ReviewSchema {...reviewSchemaData} />
 

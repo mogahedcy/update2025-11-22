@@ -4,13 +4,18 @@ interface BreadcrumbSchemaProps {
   items: BreadcrumbItem[];
   baseUrl?: string;
   homeName?: string;
+  locale?: string;
 }
 
 export default function BreadcrumbSchema({ 
   items, 
   baseUrl = 'https://www.aldeyarksa.tech',
-  homeName = 'الرئيسية'
+  homeName,
+  locale = 'ar'
 }: BreadcrumbSchemaProps) {
+  // Use provided homeName or default based on locale
+  const homeLabel = homeName || (locale === 'ar' ? 'الرئيسية' : 'Home');
+  const homeUrl = locale === 'ar' ? baseUrl : `${baseUrl}/en`;
   const breadcrumbList = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -18,14 +23,20 @@ export default function BreadcrumbSchema({
       {
         "@type": "ListItem",
         "position": 1,
-        "name": homeName,
-        "item": baseUrl
+        "name": homeLabel,
+        "item": {
+          "@type": "Thing",
+          "@id": homeUrl
+        }
       },
       ...items.map((item, index) => ({
         "@type": "ListItem",
         "position": index + 2,
         "name": item.label,
-        "item": `${baseUrl}${item.href}`
+        "item": {
+          "@type": "Thing",
+          "@id": `${baseUrl}${item.href}`
+        }
       }))
     ]
   };

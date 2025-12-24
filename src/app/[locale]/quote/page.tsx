@@ -169,7 +169,7 @@ export default async function QuotePage({ params }: { params: Promise<{ locale: 
           __html: JSON.stringify(schemaData)
         }}
       />
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={breadcrumbItems} locale={locale} />
 
       {/* hreflang tags */}
       <link rel="alternate" hrefLang="ar" href={`${baseUrl}/quote`} />

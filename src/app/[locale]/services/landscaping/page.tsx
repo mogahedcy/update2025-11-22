@@ -134,7 +134,8 @@ export default async function LandscapingPage({ params }: { params: Promise<{ lo
     areaServed: isArabic ? 'جدة' : 'Jeddah',
     priceRange: '150-500',
     image: pageImage,
-    url: '/services/landscaping'
+    url: `${localePath}/services/landscaping`,
+    aggregateRating: { ratingValue: 4.9, reviewCount: 150 }
   });
 
   const reviewSchemaData = {
@@ -144,7 +145,7 @@ export default async function LandscapingPage({ params }: { params: Promise<{ lo
 
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={breadcrumbItems} locale={locale} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <ReviewSchema {...reviewSchemaData} />
 

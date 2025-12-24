@@ -152,6 +152,10 @@ export function generateServiceSchema(data: {
   priceRange?: string;
   image?: string;
   url?: string;
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+  };
 }) {
   return {
     "@context": "https://schema.org",
@@ -159,19 +163,9 @@ export function generateServiceSchema(data: {
     "name": data.name,
     "description": data.description,
     "provider": {
-      "@type": "LocalBusiness",
+      "@type": "Organization",
       "name": SITE_NAME,
-      "image": data.image || `${BASE_URL}/favicon.svg`,
-      "telephone": "+966553719009",
-      "email": "ksaaldeyar@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "شارع الأمير سلطان",
-        "addressLocality": "جدة",
-        "addressRegion": "منطقة مكة المكرمة",
-        "postalCode": "21423",
-        "addressCountry": "SA"
-      }
+      "url": BASE_URL
     },
     "areaServed": {
       "@type": "City",
@@ -182,6 +176,15 @@ export function generateServiceSchema(data: {
         "@type": "AggregateOffer",
         "priceCurrency": "SAR",
         "price": data.priceRange
+      }
+    }),
+    ...(data.aggregateRating && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": data.aggregateRating.ratingValue.toString(),
+        "reviewCount": data.aggregateRating.reviewCount.toString(),
+        "bestRating": "5",
+        "worstRating": "1"
       }
     }),
     ...(data.url && { "url": generateCanonicalUrl(data.url) })

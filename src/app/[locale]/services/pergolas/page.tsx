@@ -139,7 +139,7 @@ export default async function PergolasPage({ params }: { params: Promise<{ local
 
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={breadcrumbItems} locale={locale} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <ReviewSchema {...reviewSchemaData} />
 

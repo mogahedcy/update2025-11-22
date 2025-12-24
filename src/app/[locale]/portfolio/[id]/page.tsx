@@ -333,7 +333,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
 
   return (
     <IntlProvider>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={breadcrumbItems} locale={locale} />
       
       {/* ✅ Creative Work Schema - للمشروع والصور والفيديوهات */}
       <script
