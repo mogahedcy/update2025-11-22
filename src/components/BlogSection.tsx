@@ -57,7 +57,7 @@ export default function BlogSection() {
         
         if (data.success && data.articles) {
           setArticles(data.articles);
-          console.log('✅ تم جلب المقالات:', data.articles.length);
+          // Articles fetched successfully
         }
       } catch (error) {
         console.error('❌ خطأ في جلب المقالات:', error);

@@ -1,4 +1,7 @@
-export default function StructuredDataScript({ data }: { data?: any | any[] }) {
+// Type for structured data - allows any valid JSON-LD schema
+type StructuredDataType = Record<string, unknown>;
+
+export default function StructuredDataScript({ data }: { data?: StructuredDataType | StructuredDataType[] }) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
 
   const organizationData = {

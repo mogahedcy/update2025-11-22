@@ -79,7 +79,7 @@ export default function PortfolioSection() {
             .slice(0, 8); // أخذ أحدث 8 مشاريع فقط
 
           setProjects(latestProjects);
-          console.log('✅ تم جلب أحدث المشاريع:', latestProjects.length);
+          // Debug logging removed for production
         } else {
           // الطريقة البديلة إذا فشلت الطريقة الأولى
           const projectPromises = serviceCategories.map(async (category) => {
@@ -267,7 +267,7 @@ export default function PortfolioSection() {
                                 videoElement.style.display = 'none';
                               }}
                               onLoadedData={(e) => {
-                                console.log('تم تحميل الفيديو بنجاح:', project.title);
+                                // Video loaded successfully
                                 const video = e.target as HTMLVideoElement;
                                 // تشغيل فوري متعدد المحاولات
                                 const attemptPlay = () => {

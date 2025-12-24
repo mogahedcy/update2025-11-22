@@ -95,10 +95,15 @@ class PerformanceMonitor {
   }
 
   logMetrics() {
-    if (process.env.NODE_ENV === 'development') {
+    // Metrics logging disabled in production - only log in development if needed
+    if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined' && (window as Window & { DEBUG_PERFORMANCE?: boolean }).DEBUG_PERFORMANCE) {
+      // eslint-disable-next-line no-console
       console.group('🚀 Performance Metrics');
+      // eslint-disable-next-line no-console
       console.log('Load Complete:', this.metrics.loadComplete.toFixed(2), 'ms');
+      // eslint-disable-next-line no-console
       console.log('Image Cache Size:', imageCache.getCacheSize());
+      // eslint-disable-next-line no-console
       console.groupEnd();
     }
   }
@@ -119,12 +124,16 @@ class MemoryManager {
 
   monitorMemory() {
     if (typeof window !== 'undefined' && 'memory' in performance) {
-      const memory = (performance as any).memory;
+      const memory = (performance as { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory;
+      if (!memory) return;
+      
       const used = memory.usedJSHeapSize / 1048576; // MB
       const total = memory.totalJSHeapSize / 1048576; // MB
       const limit = memory.jsHeapSizeLimit / 1048576; // MB
 
-      if (process.env.NODE_ENV === 'development') {
+      // Memory logging disabled - only log in development with DEBUG flag
+      if (process.env.NODE_ENV === 'development' && (window as Window & { DEBUG_PERFORMANCE?: boolean }).DEBUG_PERFORMANCE) {
+        // eslint-disable-next-line no-console
         console.log(`Memory: ${used.toFixed(2)}MB / ${total.toFixed(2)}MB (Limit: ${limit.toFixed(2)}MB)`);
       }
 
@@ -177,7 +186,7 @@ export const preloadCriticalResources = (resources: string[]) => {
 };
 
 // Virtualization helper for large lists
-export const useVirtualization = (items: any[], containerHeight: number, itemHeight: number) => {
+export const useVirtualization = <T,>(items: T[], containerHeight: number, itemHeight: number) => {
   const [scrollTop, setScrollTop] = useState(0);
   const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
 
@@ -251,11 +260,18 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
   useEffect(() => {
     if (!isClient) return;
 
+    // Performance logging disabled in production - controlled by DEBUG flag
     const logPerformance = () => {
-      console.group('🚀 Performance Metrics');
-      console.log('Load Complete:', metrics.loadComplete.toFixed(2), 'ms');
-      console.log('Image Cache Size:', imageCache.getCacheSize());
-      console.groupEnd();
+      if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined' && (window as Window & { DEBUG_PERFORMANCE?: boolean }).DEBUG_PERFORMANCE) {
+        // eslint-disable-next-line no-console
+        console.group('🚀 Performance Metrics');
+        // eslint-disable-next-line no-console
+        console.log('Load Complete:', metrics.loadComplete.toFixed(2), 'ms');
+        // eslint-disable-next-line no-console
+        console.log('Image Cache Size:', imageCache.getCacheSize());
+        // eslint-disable-next-line no-console
+        console.groupEnd();
+      }
     };
 
     if (metrics.loadComplete > 0) {
@@ -269,12 +285,16 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
     // Monitor memory usage
     const monitorMemory = () => {
       if ('memory' in performance) {
-        const memory = (performance as any).memory;
+        const memory = (performance as { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory;
+        if (!memory) return;
+        
         const used = (memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
         const total = (memory.totalJSHeapSize / 1024 / 1024).toFixed(2);
         const limit = (memory.jsHeapSizeLimit / 1024 / 1024).toFixed(2);
 
-        if (process.env.NODE_ENV === 'development') {
+        // Memory logging disabled - controlled by DEBUG flag
+        if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined' && (window as Window & { DEBUG_PERFORMANCE?: boolean }).DEBUG_PERFORMANCE) {
+          // eslint-disable-next-line no-console
           console.log(`Memory: ${used}MB / ${total}MB (Limit: ${limit}MB)`);
         }
 

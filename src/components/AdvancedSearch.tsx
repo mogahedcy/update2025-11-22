@@ -24,6 +24,7 @@ interface Article {
   rating: number;
   commentsCount: number;
   keywords: string[];
+  searchScore?: number;
 }
 
 interface AdvancedSearchProps {
