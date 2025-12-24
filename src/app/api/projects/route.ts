@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { randomUUID } from 'crypto';
 import { normalizeCategoryName } from '@/lib/categoryNormalizer';
 import { checkAdminAuth } from '@/lib/auth';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 // GET - جلب المشاريع مع إحصائيات التفاعل
 export async function GET(request: NextRequest) {
@@ -232,6 +233,45 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // التحقق من الوسائط المرفوعة
+    if (mediaItems && Array.isArray(mediaItems)) {
+      // حد أقصى لعدد الملفات
+      if (mediaItems.length > 20) {
+        return NextResponse.json(
+          { error: 'عدد الملفات المرفوعة يتجاوز الحد المسموح (20 ملف كحد أقصى)' },
+          { status: 400 }
+        );
+      }
+
+      // التحقق من حجم ونوع كل ملف
+      const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+      const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+      const ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/webm', 'video/ogg'];
+
+      for (const item of mediaItems) {
+        // التحقق من حجم الملف
+        if (item.fileSize && item.fileSize > MAX_FILE_SIZE) {
+          return NextResponse.json(
+            { error: `حجم الملف "${item.title || 'غير معروف'}" يتجاوز 10MB` },
+            { status: 400 }
+          );
+        }
+
+        // التحقق من نوع الملف
+        if (item.mimeType) {
+          const isValidImage = item.type === 'IMAGE' && ALLOWED_IMAGE_TYPES.includes(item.mimeType);
+          const isValidVideo = item.type === 'VIDEO' && ALLOWED_VIDEO_TYPES.includes(item.mimeType);
+          
+          if (!isValidImage && !isValidVideo) {
+            return NextResponse.json(
+              { error: `نوع الملف "${item.mimeType}" غير مدعوم. الأنواع المدعومة: JPEG, PNG, WebP, GIF, MP4, WebM` },
+              { status: 400 }
+            );
+          }
+        }
+      }
+    }
+
     // إنشاء slug فريد
     const slug = generateSlug(title);
     const existingSlug = await prisma.projects.findUnique({
@@ -322,6 +362,18 @@ export async function POST(request: NextRequest) {
       } catch (error) {
         console.warn('⚠️ فشل في إشعار محركات البحث:', error);
       }
+    }
+
+    // إعادة التحقق من صفحات المعرض لعرض المشروع الجديد فوراً
+    try {
+      revalidatePath('/portfolio');
+      revalidatePath('/en/portfolio');
+      revalidatePath(`/portfolio/${project.slug || project.id}`);
+      revalidatePath(`/en/portfolio/${project.slug || project.id}`);
+      revalidateTag('projects');
+      console.log('✅ تم تحديث ذاكرة التخزين المؤقت للمعرض');
+    } catch (error) {
+      console.warn('⚠️ فشل في تحديث ذاكرة التخزين المؤقت:', error);
     }
 
     const formatted = {
