@@ -11,7 +11,7 @@ export default function OrganizationSchema({ locale = 'ar' }: OrganizationSchema
   
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah Professionals",
     "alternateName": isArabic ? "الديار للمظلات والسواتر" : "Aldeyar Shades and Fences",
     "url": "https://www.aldeyarksa.tech",

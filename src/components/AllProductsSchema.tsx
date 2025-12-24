@@ -174,7 +174,7 @@ export default function AllProductsSchema({ locale = 'ar' }: AllProductsSchemaPr
           "availability": "https://schema.org/InStock",
           "itemCondition": "https://schema.org/NewCondition",
           "seller": {
-            "@type": "Organization",
+            "@type": "LocalBusiness",
             "name": brand,
             "url": baseUrl
           },
