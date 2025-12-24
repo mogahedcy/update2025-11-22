@@ -12,7 +12,9 @@ import {
   generateTwitterMetadata,
   generateRobotsMetadata,
   getAbsoluteUrl,
-  getMediaType
+  getMediaType,
+  generateCollectionPageSchema,
+  generateIndividualImageSchemas
 } from '@/lib/seo-utils';
 import ProjectDetailsClient from './ProjectDetailsClient';
 import IntlProvider from '@/components/IntlProvider';
@@ -360,6 +362,56 @@ export default async function ProjectDetailsPage({ params }: Props) {
           }}
         />
       )}
+      
+      {/* ✅ CollectionPage Schema - لإظهار الصفحة كمجموعة صور */}
+      {images.length > 1 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateCollectionPageSchema({
+              name: `معرض ${project.title}`,
+              description: `مجموعة صور مشروع ${project.title} - ${project.category} في ${project.location} | ديار جدة العالمية`,
+              url: `/portfolio/${project.slug || id}`,
+              images: images.map((item: any, index: number) => ({
+                url: getAbsoluteUrl(item.src),
+                caption: item.title || `${project.title} - صورة ${index + 1}`,
+                alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1}`,
+                width: 1200,
+                height: 800
+              })),
+              category: project.category,
+              location: project.location,
+              dateCreated: project.createdAt,
+              dateModified: project.updatedAt
+            })),
+          }}
+        />
+      )}
+      
+      {/* ✅ Individual ImageObject Schemas - كل صورة بشكل مستقل للفهرسة الفردية */}
+      {images.length > 0 && generateIndividualImageSchemas({
+        projectName: project.title,
+        projectDescription: project.description,
+        projectUrl: `/portfolio/${project.slug || id}`,
+        category: project.category,
+        location: project.location,
+        dateCreated: project.createdAt,
+        images: images.map((item: any, index: number) => ({
+          url: getAbsoluteUrl(item.src),
+          caption: item.title || `${project.title} - صورة ${index + 1}`,
+          alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1}`,
+          width: 1200,
+          height: 800
+        }))
+      }).map((schema, index) => (
+        <script
+          key={`individual-image-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
+      ))}
       
       {/* ✅ LocalBusiness Schema - معلومات الشركة والتقييمات */}
       <script
