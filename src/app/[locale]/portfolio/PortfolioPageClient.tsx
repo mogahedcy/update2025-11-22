@@ -128,7 +128,7 @@ const useDebounce = (value: string, delay: number) => {
 export default function PortfolioPageClient({ locale = 'ar' }: { locale?: string }) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const localePath = locale === 'ar' ? '' : `/${locale}`;
+  const localePath = locale === 'ar' ? '' : '/en';
   
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(false);

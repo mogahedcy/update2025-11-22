@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
@@ -127,7 +128,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة العالمية'
     : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة العالمية`;
   
-  const localePath = locale === 'ar' ? '' : `/${locale}`;
+  const localePath = locale === 'ar' ? '' : '/en';
   const pageUrl = `${localePath}/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
 
@@ -217,6 +218,7 @@ export function generateViewport() {
 
 export default async function ProjectDetailsPage({ params }: Props) {
   const { locale, id } = await params;
+  const t = await getTranslations({ locale, namespace: 'navbar' });
   const decodedId = decodeURIComponent(id);
   const project = await getProject(decodedId);
 
@@ -226,18 +228,18 @@ export default async function ProjectDetailsPage({ params }: Props) {
 
   // 301 Redirect من UUID إلى Slug لتحسين SEO وتوحيد الفهرسة
   if (UUID_REGEX.test(decodedId) && project.slug && project.slug !== decodedId) {
-    const localePath = locale === 'ar' ? '' : `/${locale}`;
+    const localePath = locale === 'ar' ? '' : '/en';
     permanentRedirect(`${localePath}/portfolio/${project.slug}`);
   }
 
   // إعداد structured data
   const images = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
   const videos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
-  const localePath = locale === 'ar' ? '' : `/${locale}`;
+  const localePath = locale === 'ar' ? '' : '/en';
   const fullUrl = getAbsoluteUrl(`${localePath}/portfolio/${project.slug || id}`);
 
   const breadcrumbItems = [
-    { label: 'المشاريع', href: `${localePath}/portfolio` },
+    { label: t('portfolio'), href: `${localePath}/portfolio` },
     { label: project.title, href: `${localePath}/portfolio/${project.slug || id}`, current: true }
   ];
 
