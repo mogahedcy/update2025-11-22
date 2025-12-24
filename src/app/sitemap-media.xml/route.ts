@@ -92,15 +92,11 @@ export async function GET() {
       .replace(/'/g, '&apos;');
   }
 
-  // إنشاء إدخالات الصور
+  // إنشاء إدخالات الصور - استخدام التنسيق المدعوم من Google
   const imageEntries = images.map(img => `  <url>
     <loc>${escapeXml(img.projectUrl)}</loc>
     <image:image>
       <image:loc>${escapeXml(img.url)}</image:loc>
-      <image:caption><![CDATA[${img.caption}]]></image:caption>
-      <image:title><![CDATA[${img.title}]]></image:title>
-      <image:geo_location><![CDATA[${img.location}]]></image:geo_location>
-      <image:license>${baseUrl}/terms</image:license>
     </image:image>
     <lastmod>${img.lastmod}</lastmod>
     <changefreq>weekly</changefreq>
@@ -117,10 +113,10 @@ export async function GET() {
       <video:title><![CDATA[${vid.title}]]></video:title>
       <video:description><![CDATA[${vid.caption}]]></video:description>
       <video:content_loc>${escapeXml(vid.url)}</video:content_loc>
-      <video:player_loc>${escapeXml(vid.projectUrl)}</video:player_loc>
+      <video:publication_date>${vid.lastmod}</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:live>no</video:live>
-      <video:uploader info="${baseUrl}">ديار جدة العالمية</video:uploader>
+      <video:uploader info="${baseUrl}"><![CDATA[ديار جدة العالمية]]></video:uploader>
     </video:video>
     <lastmod>${vid.lastmod}</lastmod>
     <changefreq>weekly</changefreq>

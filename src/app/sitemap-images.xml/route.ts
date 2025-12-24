@@ -240,9 +240,6 @@ export async function GET() {
       const cleanUrl = img.url.replace(/\s+/g, '%20');
       return `    <image:image>
       <image:loc>${escapeXml(cleanUrl)}</image:loc>
-      <image:caption><![CDATA[${img.caption}]]></image:caption>
-      <image:title><![CDATA[${img.title}]]></image:title>
-      <image:geo_location><![CDATA[${img.location}]]></image:geo_location>
     </image:image>`;
     }).join('\n');
   }
