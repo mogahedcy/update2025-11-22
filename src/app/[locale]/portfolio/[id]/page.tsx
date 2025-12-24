@@ -131,6 +131,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const localePath = locale === 'ar' ? '' : '/en';
   const pageUrl = `${localePath}/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
+  const arPath = `/portfolio/${project.slug || id}`;
+  const enPath = `/en/portfolio/${project.slug || id}`;
 
   return {
     title: seoTitle,
@@ -200,9 +202,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: fullUrl,
       languages: {
-        'ar': `/portfolio/${project.slug || id}`,
-        'en': `/en/portfolio/${project.slug || id}`,
-        'x-default': `/portfolio/${project.slug || id}`
+        'ar': arPath,
+        'en': enPath,
+        'x-default': arPath
       }
     },
     robots: generateRobotsMetadata()
@@ -226,16 +228,17 @@ export default async function ProjectDetailsPage({ params }: Props) {
     notFound();
   }
 
+  // تحديد مسار اللغة مرة واحدة لاستخدامه في جميع الروابط
+  const localePath = locale === 'ar' ? '' : '/en';
+
   // 301 Redirect من UUID إلى Slug لتحسين SEO وتوحيد الفهرسة
   if (UUID_REGEX.test(decodedId) && project.slug && project.slug !== decodedId) {
-    const localePath = locale === 'ar' ? '' : '/en';
     permanentRedirect(`${localePath}/portfolio/${project.slug}`);
   }
 
   // إعداد structured data
   const images = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
   const videos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
-  const localePath = locale === 'ar' ? '' : '/en';
   const fullUrl = getAbsoluteUrl(`${localePath}/portfolio/${project.slug || id}`);
 
   const breadcrumbItems = [
