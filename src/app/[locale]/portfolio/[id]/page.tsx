@@ -128,11 +128,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة العالمية'
     : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة العالمية`;
   
+  const baseUrl = 'https://www.aldeyarksa.tech';
   const localePath = locale === 'ar' ? '' : '/en';
   const pageUrl = `${localePath}/portfolio/${project.slug || id}`;
-  const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
-  const arPath = `/portfolio/${project.slug || id}`;
-  const enPath = `/en/portfolio/${project.slug || id}`;
+  const fullUrl = `${baseUrl}${pageUrl}`;
+  const arPath = `${baseUrl}/portfolio/${project.slug || id}`;
+  const enPath = `${baseUrl}/en/portfolio/${project.slug || id}`;
 
   return {
     title: seoTitle,
