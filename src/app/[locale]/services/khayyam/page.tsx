@@ -459,9 +459,9 @@ export default async function KhayyamPage({ params }: { params: Promise<{ locale
         <Navbar />
 
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-purple/5 via-accent/5 to-pink/10 py-20 lg:py-32 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 py-20 lg:py-32 overflow-hidden">
           <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple/5 to-pink/5" />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50" />
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -507,8 +507,8 @@ export default async function KhayyamPage({ params }: { params: Promise<{ locale
             </div>
           </div>
 
-          <div className="absolute top-1/4 left-8 w-16 h-16 bg-purple/10 rounded-full blur-xl" />
-          <div className="absolute bottom-1/4 right-8 w-20 h-20 bg-pink/10 rounded-full blur-xl" />
+          <div className="absolute top-1/4 left-8 w-16 h-16 bg-purple-100 rounded-full blur-xl" />
+          <div className="absolute bottom-1/4 right-8 w-20 h-20 bg-pink-100 rounded-full blur-xl" />
         </section>
 
         {/* Tent Types Section */}
@@ -593,7 +593,7 @@ export default async function KhayyamPage({ params }: { params: Promise<{ locale
             {/* Stats Section */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
               {stats.map((stat) => (
-                <div key={stat.label} className="text-center bg-gradient-to-br from-purple/5 to-pink/5 rounded-2xl p-6">
+                <div key={stat.label} className="text-center bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6">
                   <div className="text-4xl md:text-5xl font-bold text-purple-600 mb-2">
                     {stat.number}
                   </div>
@@ -677,7 +677,7 @@ export default async function KhayyamPage({ params }: { params: Promise<{ locale
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20 bg-gradient-to-br from-purple/5 via-pink/5 to-indigo/10">
+        <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
@@ -702,7 +702,7 @@ export default async function KhayyamPage({ params }: { params: Promise<{ locale
                   </p>
 
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-purple/20 to-pink/20 rounded-full flex items-center justify-center mr-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full flex items-center justify-center mr-4">
                       <span className="text-primary font-bold text-lg">
                         {(isArabic ? testimonial.nameAr : testimonial.nameEn).charAt(0)}
                       </span>
@@ -735,7 +735,7 @@ export default async function KhayyamPage({ params }: { params: Promise<{ locale
                 <div key={`faq-${index}`} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300">
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-primary mb-3 flex items-start">
-                      <div className="bg-purple/10 text-purple-600 rounded-full p-1 mr-3 mt-1 flex-shrink-0">
+                      <div className="bg-purple-100 text-purple-600 rounded-full p-1 mr-3 mt-1 flex-shrink-0">
                         <Plus className="w-4 h-4" />
                       </div>
                       {isArabic ? faq.questionAr : faq.questionEn}

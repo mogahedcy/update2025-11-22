@@ -19,7 +19,6 @@ import {
   MessageCircle,
   ArrowLeft,
   ArrowRight,
-  Clock,
   Award,
   Shield,
   Check,

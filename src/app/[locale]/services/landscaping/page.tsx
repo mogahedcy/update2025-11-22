@@ -9,7 +9,7 @@ import ReviewSchema from '@/components/ReviewSchema';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { generateServiceSchema, generateFAQSchema } from '@/lib/seo-utils';
+import { generateServiceSchema } from '@/lib/seo-utils';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600;

@@ -25,7 +25,6 @@ import {
   MapPin,
   Home,
   Paintbrush,
-  Wrench,
   Droplets
 } from 'lucide-react';
 
