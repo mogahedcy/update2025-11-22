@@ -120,6 +120,7 @@ Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/si
 Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-projects.xml
 Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-articles.xml
 Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-images.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-media.xml
 
 # معلومات إضافية للمطورين ومحركات البحث
 # Contact: ksaaldeyar@gmail.com
