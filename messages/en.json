@@ -1228,5 +1228,193 @@
       "serviceName": "Sandwich Panel Jeddah",
       "serviceDescription": "Best sandwich panels and insulated panels in Jeddah from Deyar Jeddah. Ready rooms, warehouses, thermal and sound insulation. 10-year warranty."
     }
+  },
+  "quote": {
+    "meta": {
+      "title": "Request a Quote | Deyar Jeddah Global - Get a Free Quote",
+      "description": "Get a free and detailed quote from Deyar Jeddah Global in Jeddah. Competitive prices, high quality, comprehensive warranty, professional installation for all types of shades and pergolas.",
+      "keywords": "free quote, jeddah shades prices, fence prices, pergola quote, Deyar Jeddah Global"
+    },
+    "hero": {
+      "title": "Get a Free Quote",
+      "description": "Detailed and transparent quote within 24 hours. Free consultation with no obligation from your side",
+      "features": {
+        "freeQuote": "Free Quote",
+        "fastResponse": "Response within 24 hours",
+        "expertConsultation": "Expert Consultation"
+      }
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "quote": "Request Quote"
+    },
+    "whyChoose": {
+      "title": "Why Choose Our Quotes?",
+      "items": {
+        "freeQuotes": {
+          "title": "Free Quotes",
+          "description": "We provide detailed and free quotes with no obligation"
+        },
+        "competitive": {
+          "title": "Competitive Prices",
+          "description": "Best prices in the market with uncompromised quality"
+        },
+        "transparency": {
+          "title": "Full Transparency",
+          "description": "No hidden fees, everything is clear and detailed"
+        },
+        "warranty": {
+          "title": "Comprehensive Warranty",
+          "description": "5-year warranty on all our work"
+        }
+      }
+    },
+    "form": {
+      "title": "Quote Request Form",
+      "contactInfo": {
+        "title": "Contact Information",
+        "fullName": "Full Name",
+        "fullNamePlaceholder": "Enter your full name",
+        "fullNameHelp": "Full name is required for contact",
+        "phone": "Phone Number",
+        "phonePlaceholder": "05xxxxxxxx",
+        "phoneHelp": "Saudi mobile number in format 05xxxxxxxx",
+        "email": "Email Address",
+        "emailPlaceholder": "example@email.com",
+        "emailHelp": "Optional - to send the quote via email",
+        "area": "Area/District",
+        "areaPlaceholder": "Al Salamah District, Jeddah",
+        "areaHelp": "Area or district name to identify project location"
+      },
+      "serviceDetails": {
+        "title": "Service Details",
+        "serviceType": "Required Service Type",
+        "serviceTypePlaceholder": "Select service type",
+        "serviceTypeHelp": "Select the main required service"
+      },
+      "projectDetails": {
+        "title": "Project Details",
+        "area": "Required Area (square meter)",
+        "areaPlaceholder": "Example: 50",
+        "budget": "Approximate Budget",
+        "budgetPlaceholder": "Select budget",
+        "budgetOptions": {
+          "5k-10k": "5,000 - 10,000 SAR",
+          "10k-20k": "10,000 - 20,000 SAR",
+          "20k-50k": "20,000 - 50,000 SAR",
+          "50k+": "More than 50,000 SAR"
+        },
+        "preferredDate": "Preferred Site Visit Date",
+        "preferredTime": "Select Time",
+        "timeOptions": {
+          "morning": "Morning (8:00 - 12:00)",
+          "afternoon": "Afternoon (12:00 - 4:00)",
+          "evening": "Evening (4:00 - 6:00)"
+        }
+      },
+      "additionalDetails": {
+        "title": "Additional Project Details",
+        "placeholder": "Write project details: required design type, preferred colors, any special requirements, etc...",
+        "help": "Mention all important details to understand your needs accurately"
+      },
+      "terms": {
+        "agree": "I agree to the",
+        "termsOfService": "Terms of Service",
+        "and": "and",
+        "privacyPolicy": "Privacy Policy"
+      },
+      "submit": "Submit Quote Request",
+      "required": "*"
+    },
+    "sidebar": {
+      "directContact": {
+        "title": "Prefer Direct Contact?",
+        "description": "Contact us directly for an instant quote",
+        "callNow": "Call Now",
+        "whatsapp": "Direct WhatsApp"
+      },
+      "included": {
+        "title": "What's Included in the Quote",
+        "items": [
+          "Free site assessment",
+          "Specialized technical consultation",
+          "Detailed and transparent quote",
+          "Clear time schedule",
+          "Comprehensive work warranty",
+          "After-sales service",
+          "Professional work team",
+          "Best materials and supplies"
+        ]
+      },
+      "services": {
+        "title": "Our Services & Prices",
+        "viewAll": "View All Services"
+      },
+      "responseTime": {
+        "title": "Response Time",
+        "items": [
+          "Instant response via phone/WhatsApp",
+          "Detailed quote within 24 hours",
+          "Site inspection within 48 hours",
+          "Execution starts as agreed"
+        ]
+      }
+    },
+    "process": {
+      "title": "How We Work?",
+      "description": "Simple and fast process to get a quote and execute the project",
+      "steps": {
+        "request": {
+          "title": "Request Quote",
+          "description": "Fill the form or contact us directly"
+        },
+        "inspect": {
+          "title": "Site Inspection",
+          "description": "Free site visit and measurements"
+        },
+        "quote": {
+          "title": "Price Quote",
+          "description": "Detailed and transparent quote with timeline"
+        },
+        "execute": {
+          "title": "Execution",
+          "description": "Work starts according to agreed schedule"
+        }
+      }
+    },
+    "services": {
+      "mazallat": {
+        "name": "Car Shades",
+        "price": "Starting from 150 SAR/m²"
+      },
+      "sawater": {
+        "name": "Privacy Fences",
+        "price": "Starting from 120 SAR/m²"
+      },
+      "pergolas": {
+        "name": "Garden Pergolas",
+        "price": "Starting from 200 SAR/m²"
+      },
+      "khayyam": {
+        "name": "Royal Tents",
+        "price": "Starting from 300 SAR/m²"
+      },
+      "byootShaar": {
+        "name": "Hair Houses",
+        "price": "Starting from 250 SAR/m²"
+      },
+      "sandwichPanel": {
+        "name": "Sandwich Panel",
+        "price": "Starting from 165 SAR/m²"
+      },
+      "landscaping": {
+        "name": "Landscaping",
+        "price": "Per project"
+      },
+      "renovation": {
+        "name": "Renovation",
+        "price": "Starting from 180 SAR/m²"
+      }
+    }
   }
 }
