@@ -5,7 +5,7 @@ import AutomationClient from './AutomationClient';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'الأتمتة الذكية | محترفين الديار العالمية',
+  title: 'الأتمتة الذكية | ديار جدة العالمية',
   description: 'توليد المقالات وإصلاح SEO تلقائياً بالذكاء الاصطناعي',
   robots: 'noindex, nofollow',
 };

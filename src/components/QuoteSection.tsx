@@ -68,7 +68,7 @@ export default function QuoteSection() {
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             احصل على عرض سعر مجاني ومفصل لمشروعك مع زيارة مجانية لأخذ القياسات
-            والاستشارة الفنية المتخصصة من فريق محترفين الديار
+            والاستشارة الفنية المتخصصة من فريق ديار جدة العالمية
           </p>
         </div>
 

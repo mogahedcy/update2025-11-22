@@ -9,6 +9,10 @@ import ReviewSchema from '@/components/ReviewSchema';
 import ProjectsGallery from '@/components/services/ProjectsGallery';
 import ArticlesSection from '@/components/services/ArticlesSection';
 import FAQSection from '@/components/services/FAQSection';
+import ReviewsSection from '@/components/services/ReviewsSection';
+import ServiceContentNavigation from '@/components/ServiceContentNavigation';
+import ServiceReviewSchema from '@/components/ServiceReviewSchema';
+import ContentRefreshNotification from '@/components/ContentRefreshNotification';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { 
@@ -16,6 +20,7 @@ import {
   generateFAQSchema,
   generateProductSchema,
 } from '@/lib/seo-utils';
+import { getServiceContentUpdates } from '@/lib/cache-manager';
 
 import {
   Shield,
@@ -60,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('pageTitle'),
     description: t('pageDescription'),
     keywords: t('keywords'),
-    authors: [{ name: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals' }],
+    authors: [{ name: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah' }],
     robots: 'index, follow',
     alternates: {
       canonical: `${baseUrl}${canonicalPath}`,
@@ -74,7 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: t('pageTitle'),
       description: t('pageDescription'),
       url: `${baseUrl}${canonicalPath}`,
-      siteName: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      siteName: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       type: 'website',
       locale: isArabic ? 'ar_SA' : 'en_US',
       images: [
@@ -82,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: pageImage,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'سواتر جدة - محترفين الديار العالمية' : 'Fences Jeddah - Aldeyar Global Professionals',
+          alt: isArabic ? 'سواتر جدة - ديار جدة العالمية' : 'Fences Jeddah - Deyar Jeddah',
         },
       ],
     },
@@ -183,10 +188,34 @@ async function getRelatedContent() {
       ]
     });
 
-    return { projects, articles, faqs };
+    // Fetch approved reviews from projects in this category
+    const reviews = await prisma.comments.findMany({
+      where: {
+        status: 'APPROVED',
+        projects: {
+          status: 'PUBLISHED',
+          ...categoryWhere
+        }
+      },
+      select: {
+        id: true,
+        name: true,
+        rating: true,
+        message: true,
+        createdAt: true,
+        likes: true
+      },
+      orderBy: [
+        { rating: 'desc' },
+        { createdAt: 'desc' }
+      ],
+      take: 50 // Get top 50 reviews
+    });
+
+    return { projects, articles, faqs, reviews };
   } catch (error) {
     console.error('Error fetching related content:', error);
-    return { projects: [], articles: [], faqs: [] };
+    return { projects: [], articles: [], faqs: [], reviews: [] };
   }
 }
 
@@ -214,7 +243,17 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
     { label: t('breadcrumb.sawater'), href: `${localePath}/services/sawater`, current: true }
   ];
 
-  const { projects, articles, faqs } = await getRelatedContent();
+  const { projects, articles, faqs, reviews } = await getRelatedContent();
+
+  // Get content updates for cache notification
+  const categoryWhere = buildCategoryWhereClause('sawater');
+  const contentUpdates = await getServiceContentUpdates(categoryWhere);
+
+  // Calculate review statistics
+  const totalReviews = reviews.length;
+  const averageRating = totalReviews > 0 
+    ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews 
+    : 0;
 
   const heroFeatures = [
     { icon: MapPin, text: t('hero.features.allAreas') },
@@ -328,7 +367,7 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
     description: t('schema.productDescription'),
     image: [pageImage],
     category: isArabic ? 'سواتر خصوصية' : 'Privacy Fences',
-    brand: isArabic ? 'محترفين الديار' : 'Aldeyar Professionals',
+    brand: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Professionals',
     aggregateRating: {
       ratingValue: 4.8,
       reviewCount: 142
@@ -365,11 +404,11 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
         "uploadDate": new Date().toISOString(),
         "author": {
           "@type": "Organization",
-          "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals"
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals"
         },
         "publisher": {
           "@type": "Organization",
-          "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/logo.png`
@@ -396,11 +435,11 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
         "image": article.article_media_items?.[0]?.src || '',
         "author": {
           "@type": "Organization",
-          "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals"
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals"
         },
         "publisher": {
           "@type": "Organization",
-          "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/logo.png`
@@ -416,7 +455,7 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
 
   return (
     <>
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <BreadcrumbSchema items={breadcrumbItems} locale={locale} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
@@ -438,6 +477,11 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articlesListSchema) }}
       />
       <ReviewSchema {...reviewSchemaData} />
+      <ServiceReviewSchema 
+        serviceName={t('pageTitle')}
+        serviceUrl={`${baseUrl}${isArabic ? '' : '/en'}/services/sawater`}
+        reviews={reviews}
+      />
 
       <div className="min-h-screen bg-background">
         <Navbar />
@@ -549,9 +593,20 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
           </div>
         </section>
 
-        <ProjectsGallery projects={projects} categoryName={categoryName} />
+        <ServiceContentNavigation 
+          projectsCount={projects.length}
+          articlesCount={articles.length}
+          faqsCount={faqs.length}
+          reviewsCount={reviews.length}
+        />
 
-        <ArticlesSection articles={articles} categoryName={categoryName} />
+        <div id="projects">
+          <ProjectsGallery projects={projects} categoryName={categoryName} />
+        </div>
+
+        <div id="articles">
+          <ArticlesSection articles={articles} categoryName={categoryName} />
+        </div>
 
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -587,7 +642,18 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
           </div>
         </section>
 
-        <FAQSection faqs={faqs} categoryName={categoryName} />
+        <div id="faqs">
+          <FAQSection faqs={faqs} categoryName={categoryName} />
+        </div>
+
+        <div id="reviews">
+          <ReviewsSection 
+            reviews={reviews}
+            categoryName={categoryName}
+            averageRating={averageRating}
+            totalReviews={totalReviews}
+          />
+        </div>
 
         <section className="py-20 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -647,6 +713,12 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
         </section>
 
         <Footer />
+        
+        {/* Content Refresh Notification */}
+        <ContentRefreshNotification 
+          lastUpdate={contentUpdates.mostRecentUpdate}
+          contentType="projects"
+        />
       </div>
     </>
   );

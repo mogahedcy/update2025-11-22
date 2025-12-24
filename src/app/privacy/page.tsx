@@ -9,10 +9,10 @@ import IntlProvider from '@/components/IntlProvider'
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'سياسة الخصوصية | محترفين الديار العالمية',
-  description: 'سياسة الخصوصية لمحترفين الديار العالمية في جدة. نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية وفقاً لأعلى المعايير الأمنية والقوانين السعودية.',
-  keywords: 'سياسة الخصوصية، حماية البيانات، أمان المعلومات، محترفين الديار العالمية',
-  authors: [{ name: 'محترفين الديار العالمية' }],
+  title: 'سياسة الخصوصية | ديار جدة العالمية',
+  description: 'سياسة الخصوصية لديار جدة العالمية في جدة. نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية وفقاً لأعلى المعايير الأمنية والقوانين السعودية.',
+  keywords: 'سياسة الخصوصية، حماية البيانات، أمان المعلومات، ديار جدة العالمية',
+  authors: [{ name: 'ديار جدة العالمية' }],
   robots: 'index, follow',
   alternates: {
     canonical: generateCanonicalUrl('/privacy'),
@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'سياسة الخصوصية | محترفين الديار العالمية',
-    description: 'سياسة الخصوصية لمحترفين الديار العالمية. نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية.',
+    title: 'سياسة الخصوصية | ديار جدة العالمية',
+    description: 'سياسة الخصوصية لديار جدة العالمية. نحن ملتزمون بحماية خصوصيتك وبياناتك الشخصية.',
     url: generateCanonicalUrl('/privacy'),
-    siteName: 'محترفين الديار العالمية',
+    siteName: 'ديار جدة العالمية',
     type: 'website',
     locale: 'ar_SA',
     images: [
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
         url: 'https://www.aldeyarksa.tech/logo.png',
         width: 1200,
         height: 630,
-        alt: 'سياسة الخصوصية - محترفين الديار العالمية',
+        alt: 'سياسة الخصوصية - ديار جدة العالمية',
       },
     ],
   },
   twitter: {
     card: 'summary',
-    title: 'سياسة الخصوصية | محترفين الديار العالمية',
+    title: 'سياسة الخصوصية | ديار جدة العالمية',
     description: 'حماية بياناتك وخصوصيتك أولويتنا',
     images: ['https://www.aldeyarksa.tech/logo.png'],
   }
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
               سياسة الخصوصية
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              نحن في محترفين الديار العالمية ملتزمون بحماية خصوصيتك وضمان أمان بياناتك الشخصية
+              نحن في ديار جدة العالمية ملتزمون بحماية خصوصيتك وضمان أمان بياناتك الشخصية
             </p>
             <div className="mt-8 text-sm text-gray-500">
               آخر تحديث: ديسمبر 2024
@@ -124,7 +124,7 @@ export default function PrivacyPage() {
                   مقدمة
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
-                  تحدد سياسة الخصوصية هذه كيفية قيام محترفين الديار العالمية ("نحن"، "لنا"، "الشركة") بجمع واستخدام وحماية
+                  تحدد سياسة الخصوصية هذه كيفية قيام ديار جدة العالمية ("نحن"، "لنا"، "الشركة") بجمع واستخدام وحماية
                   المعلومات التي تقدمها عند استخدام موقعنا الإلكتروني أو خدماتنا. نحن ملتزمون بضمان حماية خصوصيتك.
                 </p>
               </div>

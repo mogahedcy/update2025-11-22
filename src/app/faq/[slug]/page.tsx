@@ -36,24 +36,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!faq) {
     return {
-      title: 'سؤال غير موجود | محترفين الديار العالمية',
+      title: 'سؤال غير موجود | ديار جدة العالمية',
       description: 'السؤال المطلوب غير موجود'
     };
   }
 
-  const title = faq.metaTitle || `${faq.question} | الأسئلة الشائعة - محترفين الديار العالمية`;
+  const title = faq.metaTitle || `${faq.question} | الأسئلة الشائعة - ديار جدة العالمية`;
   const description = faq.metaDescription || faq.answer.substring(0, 160);
 
   return {
     title,
     description,
-    keywords: faq.keywords || `أسئلة شائعة، ${faq.category}، محترفين الديار العالمية`,
-    authors: [{ name: 'محترفين الديار العالمية' }],
+    keywords: faq.keywords || `أسئلة شائعة، ${faq.category}، ديار جدة العالمية`,
+    authors: [{ name: 'ديار جدة العالمية' }],
     openGraph: {
       title,
       description,
       url: generateCanonicalUrl(`/faq/${slug}`),
-      siteName: 'محترفين الديار العالمية',
+      siteName: 'ديار جدة العالمية',
       locale: 'ar_SA',
       type: 'article',
       images: [

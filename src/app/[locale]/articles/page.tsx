@@ -12,33 +12,33 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: isArabic 
-      ? 'أرشيف المقالات | محترفين الديار العالمية - مقالات ونصائح في المظلات والبرجولات'
+      ? 'أرشيف المقالات | ديار جدة العالمية - مقالات ونصائح في المظلات والبرجولات'
       : 'Articles Archive | Aldeyar Professionals - Tips on Shades and Pergolas',
     description: isArabic
-      ? 'اكتشف أحدث المقالات والنصائح حول المظلات، البرجولات، السواتر، وتنسيق الحدائق من خبراء محترفين الديار العالمية في جدة.'
-      : 'Discover the latest articles and tips about shades, pergolas, fences, and landscaping from Aldeyar Global Professionals experts in Jeddah.',
+      ? 'اكتشف أحدث المقالات والنصائح حول المظلات، البرجولات، السواتر، وتنسيق الحدائق من خبراء ديار جدة العالمية في جدة.'
+      : 'Discover the latest articles and tips about shades, pergolas, fences, and landscaping from Deyar Jeddah experts in Jeddah.',
     keywords: isArabic
-      ? 'مقالات مظلات, نصائح برجولات, مقالات تنسيق حدائق, مظلات جدة, برجولات جدة, محترفين الديار العالمية'
+      ? 'مقالات مظلات, نصائح برجولات, مقالات تنسيق حدائق, مظلات جدة, برجولات جدة, ديار جدة العالمية'
       : 'shades articles, pergolas tips, landscaping articles, Jeddah shades, Jeddah pergolas, Aldeyar Professionals',
-    authors: [{ name: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals' }],
-    creator: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
-    publisher: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+    authors: [{ name: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah' }],
+    creator: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
+    publisher: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
     robots: 'index, follow',
     openGraph: {
       title: isArabic 
-        ? 'أرشيف المقالات | محترفين الديار العالمية'
+        ? 'أرشيف المقالات | ديار جدة العالمية'
         : 'Articles Archive | Aldeyar Professionals',
       description: isArabic
         ? 'اكتشف مقالاتنا المتخصصة في المظلات والبرجولات والسواتر وتنسيق الحدائق'
         : 'Discover our specialized articles on shades, pergolas, fences, and landscaping',
       url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/articles`,
-      siteName: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      siteName: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       images: [
         {
           url: 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp',
           width: 1200,
           height: 630,
-          alt: isArabic ? 'أرشيف مقالات محترفين الديار العالمية' : 'Aldeyar Professionals Articles Archive'
+          alt: isArabic ? 'أرشيف مقالات ديار جدة العالمية' : 'Deyar Jeddah Articles Archive'
         }
       ],
       locale: isArabic ? 'ar_SA' : 'en_US',
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     twitter: {
       card: 'summary_large_image',
       title: isArabic 
-        ? 'أرشيف المقالات | محترفين الديار العالمية'
+        ? 'أرشيف المقالات | ديار جدة العالمية'
         : 'Articles Archive | Aldeyar Professionals',
       description: isArabic
         ? 'اكتشف مقالاتنا المتخصصة في المظلات والبرجولات'
@@ -73,15 +73,15 @@ export default async function ArticlesPage({ params }: { params: Promise<{ local
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: isArabic 
-      ? 'أرشيف المقالات - محترفين الديار العالمية'
-      : 'Articles Archive - Aldeyar Global Professionals',
+      ? 'أرشيف المقالات - ديار جدة العالمية'
+      : 'Articles Archive - Deyar Jeddah',
     description: isArabic
       ? 'مقالات متخصصة في المظلات والبرجولات والسواتر وتنسيق الحدائق'
       : 'Specialized articles on shades, pergolas, fences, and landscaping',
     url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/articles`,
     publisher: {
       '@type': 'Organization',
-      name: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      name: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       logo: {
         '@type': 'ImageObject',
         url: 'https://www.aldeyarksa.tech/logo.svg'

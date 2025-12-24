@@ -56,7 +56,7 @@ export async function GET() {
     <xhtml:link rel="alternate" hreflang="x-default" href="${faqUrl}" />
     <news:news>
       <news:publication>
-        <news:name>محترفين الديار العالمية</news:name>
+        <news:name>ديار جدة العالمية</news:name>
         <news:language>ar</news:language>
       </news:publication>
       <news:publication_date>${lastMod}</news:publication_date>

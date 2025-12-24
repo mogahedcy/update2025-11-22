@@ -17,11 +17,20 @@ import {
   Save
 } from 'lucide-react';
 
+interface SearchFilters {
+  q?: string;
+  category?: string;
+  location?: string;
+  featured?: string;
+  hasVideo?: string;
+  [key: string]: string | undefined;
+}
+
 interface SavedSearch {
   id: string;
   name: string;
   query: string;
-  filters: any;
+  filters: SearchFilters;
   createdAt: Date;
   lastUsed: Date;
   useCount: number;
@@ -39,7 +48,7 @@ export default function SavedSearches() {
     const saved = localStorage.getItem('savedSearches');
     if (saved) {
       try {
-        const searches = JSON.parse(saved).map((search: any) => ({
+        const searches = JSON.parse(saved).map((search: SavedSearch) => ({
           ...search,
           createdAt: new Date(search.createdAt),
           lastUsed: new Date(search.lastUsed)
@@ -116,8 +125,8 @@ export default function SavedSearches() {
     setEditingId(null);
   };
 
-  const formatFilters = (filters: any) => {
-    const active = [];
+  const formatFilters = (filters: SearchFilters): string[] => {
+    const active: string[] = [];
     if (filters.category) active.push(filters.category);
     if (filters.location) active.push(filters.location);
     if (filters.featured === 'true') active.push('مميز');

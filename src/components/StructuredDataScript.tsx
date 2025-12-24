@@ -1,10 +1,13 @@
-export default function StructuredDataScript({ data }: { data?: any | any[] }) {
+// Type for structured data - allows any valid JSON-LD schema
+type StructuredDataType = Record<string, unknown>;
+
+export default function StructuredDataScript({ data }: { data?: StructuredDataType | StructuredDataType[] }) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
 
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "محترفين الديار العالمية",
+    "name": "ديار جدة العالمية",
     "alternateName": "Al Deyar Professional Global",
     "url": baseUrl,
     "logo": `${baseUrl}/favicon.svg`,
@@ -40,7 +43,7 @@ export default function StructuredDataScript({ data }: { data?: any | any[] }) {
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "خدمات محترفين الديار",
+      "name": "خدمات ديار جدة العالمية",
       "itemListElement": [
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "مظلات السيارات", "description": "تركيب مظلات سيارات لكسان وحديد وقماش PVC بأعلى معايير الجودة في جدة" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "البرجولات", "description": "تصميم وتنفيذ برجولات خشبية وحديدية وألومنيوم للحدائق والمساحات الخارجية" } },
@@ -67,7 +70,7 @@ export default function StructuredDataScript({ data }: { data?: any | any[] }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${baseUrl}/#organization`,
-    "name": "محترفين الديار العالمية",
+    "name": "ديار جدة العالمية",
     "image": `${baseUrl}/favicon.svg`,
     "url": baseUrl,
     "telephone": "+966553719009",
@@ -102,7 +105,7 @@ export default function StructuredDataScript({ data }: { data?: any | any[] }) {
   const websiteData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "محترفين الديار العالمية",
+    "name": "ديار جدة العالمية",
     "url": baseUrl,
     "potentialAction": {
       "@type": "SearchAction",
