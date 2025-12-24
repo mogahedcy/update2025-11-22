@@ -35,7 +35,7 @@ export default function WatermarkOverlay({
       <div className="relative w-full h-full">
         <Image
           src="/watermark-logo.webp"
-          alt="ديار جدة - حقوق الصورة محفوظة"
+          alt="ديار جدة العالمية - حقوق الصورة محفوظة"
           fill
           className="object-contain select-none"
           draggable={false}

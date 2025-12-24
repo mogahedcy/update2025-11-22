@@ -33,14 +33,14 @@ export default function ReviewSchema({
     {
       author: 'أحمد المالكي',
       rating: 5,
-      reviewBody: 'خدمة ممتازة وجودة عالية في التنفيذ. فريق محترف جداً والتزام بالمواعيد. أنصح بالتعامل مع محترفين الديار.',
+      reviewBody: 'خدمة ممتازة وجودة عالية في التنفيذ. فريق محترف جداً والتزام بالمواعيد. أنصح بالتعامل مع ديار جدة العالمية.',
       datePublished: '2024-11-15',
       title: 'خدمة ممتازة'
     },
     {
       author: 'فاطمة السعودي',
       rating: 5,
-      reviewBody: 'النتيجة فاقت التوقعات! جودة عالية وتصميم أنيق. فريق محترفين الديار محترف جداً ويهتم بأدق التفاصيل.',
+      reviewBody: 'النتيجة فاقت التوقعات! جودة عالية وتصميم أنيق. فريق ديار جدة العالمية محترف جداً ويهتم بأدق التفاصيل.',
       datePublished: '2024-10-28',
       title: 'فاقت التوقعات'
     },
@@ -63,7 +63,7 @@ export default function ReviewSchema({
   const reviewsToUse = reviews || defaultReviews;
 
   const defaultProvider = {
-    name: 'ديار جدة',
+    name: 'ديار جدة العالمية',
     url: 'https://www.aldeyarksa.tech'
   };
 

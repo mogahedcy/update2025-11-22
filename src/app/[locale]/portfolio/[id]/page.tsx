@@ -12,7 +12,9 @@ import {
   generateTwitterMetadata,
   generateRobotsMetadata,
   getAbsoluteUrl,
-  getMediaType
+  getMediaType,
+  generateCollectionPageSchema,
+  generateIndividualImageSchemas
 } from '@/lib/seo-utils';
 import ProjectDetailsClient from './ProjectDetailsClient';
 import IntlProvider from '@/components/IntlProvider';
@@ -102,7 +104,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   if (!project) {
     return {
-      title: 'المشروع غير موجود | ديار جدة',
+      title: 'المشروع غير موجود | ديار جدة العالمية',
       description: 'المشروع المطلوب غير متوفر',
       robots: 'noindex, nofollow'
     };
@@ -117,13 +119,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const shortTitle = project.title.length > 40 
     ? project.title.substring(0, 37) + '...' 
     : project.title;
-  const seoTitle = `${shortTitle} | ديار جدة`;
+  const seoTitle = `${shortTitle} | ديار جدة العالمية`;
   
   // تحسين الوصف ليكون واضح ومباشر بدون قطع في المنتصف (150-160 حرف)
   const cleanDescription = project.description.replace(/\s+/g, ' ').trim();
   const seoDescription = cleanDescription.length > 140 
-    ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة'
-    : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة`;
+    ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة العالمية'
+    : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة العالمية`;
   
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
@@ -139,7 +141,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       'سواتر',
       'برجولات',
       'تنسيق حدائق',
-      'ديار جدة',
+      'ديار جدة العالمية',
       project.location,
       project.title
     ].join(', '),
@@ -147,26 +149,26 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: seoTitle,
       description: seoDescription,
       url: fullUrl,
-      siteName: 'ديار جدة',
+      siteName: 'ديار جدة العالمية',
       locale: 'ar_SA',
       type: 'article',
       publishedTime: project.createdAt,
       modifiedTime: project.updatedAt || project.createdAt,
-      authors: ['ديار جدة'],
+      authors: ['ديار جدة العالمية'],
       // ✅ جميع صور المشروع - كل صورة سيتم أرشفتها في Google Images
       images: allImages.length > 0 
         ? allImages.map((img: any, index: number) => ({
             url: getAbsoluteUrl(img.src),
             width: 1200,
             height: 630,
-            alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
+            alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة العالمية`,
             type: getMediaType(img.src),
           }))
         : [{
             url: getAbsoluteUrl(mainImage),
             width: 1200,
             height: 630,
-            alt: `${project.title} - ديار جدة`,
+            alt: `${project.title} - ديار جدة العالمية`,
             type: 'image/jpeg',
           }],
       // ✅ جميع فيديوهات المشروع
@@ -289,7 +291,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
 
   const imageGallerySchema = images.length > 1 ? generateImageGallerySchema({
     name: `معرض صور ${project.title}`,
-    description: `معرض صور مشروع ${project.title} - ${project.category} في ${project.location} | ديار جدة`,
+    description: `معرض صور مشروع ${project.title} - ${project.category} في ${project.location} | ديار جدة العالمية`,
     url: `/portfolio/${project.slug || id}`,
     category: project.category,
     location: project.location,
@@ -297,8 +299,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
     dateModified: project.updatedAt,
     images: images.map((item: any, index: number) => ({
       url: getAbsoluteUrl(item.src),
-      caption: item.title || item.description || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
-      alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة`,
+      caption: item.title || item.description || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة العالمية`,
+      alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة العالمية`,
       width: 1200,
       height: 800
     }))
@@ -361,6 +363,56 @@ export default async function ProjectDetailsPage({ params }: Props) {
         />
       )}
       
+      {/* ✅ CollectionPage Schema - لإظهار الصفحة كمجموعة صور */}
+      {images.length > 1 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(generateCollectionPageSchema({
+              name: `معرض ${project.title}`,
+              description: `مجموعة صور مشروع ${project.title} - ${project.category} في ${project.location} | ديار جدة العالمية`,
+              url: `/portfolio/${project.slug || id}`,
+              images: images.map((item: any, index: number) => ({
+                url: getAbsoluteUrl(item.src),
+                caption: item.title || `${project.title} - صورة ${index + 1}`,
+                alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1}`,
+                width: 1200,
+                height: 800
+              })),
+              category: project.category,
+              location: project.location,
+              dateCreated: project.createdAt,
+              dateModified: project.updatedAt
+            })),
+          }}
+        />
+      )}
+      
+      {/* ✅ Individual ImageObject Schemas - كل صورة بشكل مستقل للفهرسة الفردية */}
+      {images.length > 0 && generateIndividualImageSchemas({
+        projectName: project.title,
+        projectDescription: project.description,
+        projectUrl: `/portfolio/${project.slug || id}`,
+        category: project.category,
+        location: project.location,
+        dateCreated: project.createdAt,
+        images: images.map((item: any, index: number) => ({
+          url: getAbsoluteUrl(item.src),
+          caption: item.title || `${project.title} - صورة ${index + 1}`,
+          alt: item.alt || `${project.category} في ${project.location} - صورة ${index + 1}`,
+          width: 1200,
+          height: 800
+        }))
+      }).map((schema, index) => (
+        <script
+          key={`individual-image-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
+      ))}
+      
       {/* ✅ LocalBusiness Schema - معلومات الشركة والتقييمات */}
       <script
         type="application/ld+json"
@@ -368,8 +420,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'LocalBusiness',
-            name: 'ديار جدة',
-            description: `${project.category} في ${project.location} - تنفيذ ديار جدة بجودة عالية وضمان 10 سنوات`,
+            name: 'ديار جدة العالمية',
+            description: `${project.category} في ${project.location} - تنفيذ ديار جدة العالمية بجودة عالية وضمان 10 سنوات`,
             image: images.length > 0 ? images.map((img: any) => getAbsoluteUrl(img.src)) : [getAbsoluteUrl(mainImage)],
             address: {
               '@type': 'PostalAddress',

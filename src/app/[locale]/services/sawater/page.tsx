@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('pageTitle'),
     description: t('pageDescription'),
     keywords: t('keywords'),
-    authors: [{ name: isArabic ? 'ديار جدة' : 'Deyar Jeddah' }],
+    authors: [{ name: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah' }],
     robots: 'index, follow',
     alternates: {
       canonical: `${baseUrl}${canonicalPath}`,
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: t('pageTitle'),
       description: t('pageDescription'),
       url: `${baseUrl}${canonicalPath}`,
-      siteName: isArabic ? 'ديار جدة' : 'Deyar Jeddah',
+      siteName: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       type: 'website',
       locale: isArabic ? 'ar_SA' : 'en_US',
       images: [
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: pageImage,
           width: 1200,
           height: 630,
-          alt: isArabic ? 'سواتر جدة - ديار جدة' : 'Fences Jeddah - Deyar Jeddah',
+          alt: isArabic ? 'سواتر جدة - ديار جدة العالمية' : 'Fences Jeddah - Deyar Jeddah',
         },
       ],
     },
@@ -367,7 +367,7 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
     description: t('schema.productDescription'),
     image: [pageImage],
     category: isArabic ? 'سواتر خصوصية' : 'Privacy Fences',
-    brand: isArabic ? 'محترفين الديار' : 'Aldeyar Professionals',
+    brand: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Professionals',
     aggregateRating: {
       ratingValue: 4.8,
       reviewCount: 142
@@ -404,11 +404,11 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
         "uploadDate": new Date().toISOString(),
         "author": {
           "@type": "Organization",
-          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals"
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals"
         },
         "publisher": {
           "@type": "Organization",
-          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals",
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/logo.png`
@@ -435,11 +435,11 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
         "image": article.article_media_items?.[0]?.src || '',
         "author": {
           "@type": "Organization",
-          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals"
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals"
         },
         "publisher": {
           "@type": "Organization",
-          "name": isArabic ? "ديار جدة" : "Aldeyar Global Professionals",
+          "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/logo.png`

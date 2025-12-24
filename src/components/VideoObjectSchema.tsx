@@ -32,7 +32,7 @@ export default function VideoObjectSchema({
     ...(embedUrl && { "embedUrl": embedUrl }),
     "publisher": {
       "@type": "Organization",
-      "name": "ديار جدة",
+      "name": "ديار جدة العالمية",
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.aldeyarksa.tech/logo.png"

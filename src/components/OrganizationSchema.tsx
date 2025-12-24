@@ -12,7 +12,7 @@ export default function OrganizationSchema({ locale = 'ar' }: OrganizationSchema
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": isArabic ? "ديار جدة" : "Deyar Jeddah Professionals",
+    "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah Professionals",
     "alternateName": isArabic ? "الديار للمظلات والسواتر" : "Aldeyar Shades and Fences",
     "url": "https://www.aldeyarksa.tech",
     "logo": {
@@ -23,7 +23,7 @@ export default function OrganizationSchema({ locale = 'ar' }: OrganizationSchema
     },
     "image": "https://www.aldeyarksa.tech/images/hero-bg.webp",
     "description": isArabic 
-      ? "شركة ديار جدة - رائدة في تركيب المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة. خبرة 15 عاماً، ضمان 10 سنوات، تركيب احترافي."
+      ? "شركة ديار جدة العالمية - رائدة في تركيب المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة. خبرة 15 عاماً، ضمان 10 سنوات، تركيب احترافي."
       : "Deyar Jeddah Professionals - Leading company for installing shades, pergolas, fences, and landscaping in Jeddah. 15 years experience, 10 year warranty, professional installation.",
     "address": {
       "@type": "PostalAddress",

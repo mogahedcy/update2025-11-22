@@ -261,7 +261,7 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                           <Image
                             key={`image-${selectedMediaIndex}`}
                             src={currentMedia.src}
-                            alt={`${currentMedia.title || project.title} - مشروع ${project.category} في ${project.location} من محترفين الديار العالمية جدة`}
+                            alt={`${currentMedia.title || project.title} - مشروع ${project.category} في ${project.location} من ديار جدة العالمية جدة`}
                             fill
                             className="object-cover cursor-pointer transition-opacity duration-300"
                             onClick={() => setIsLightboxOpen(true)}
@@ -675,7 +675,7 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                     <Image
                       key={`lightbox-image-${selectedMediaIndex}`}
                       src={currentMedia.src}
-                      alt={`${currentMedia.title || project.title} - مشروع ${project.category} في ${project.location} من محترفين الديار العالمية جدة`}
+                      alt={`${currentMedia.title || project.title} - مشروع ${project.category} في ${project.location} من ديار جدة العالمية جدة`}
                       width={1200}
                       height={800}
                       className="max-w-full max-h-[90vh] object-contain"

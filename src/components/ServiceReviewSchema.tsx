@@ -21,7 +21,7 @@ export default function ServiceReviewSchema({
   serviceUrl,
   reviews,
   provider = {
-    name: 'ديار جدة - Deyar Jeddah',
+    name: 'ديار جدة العالمية - Deyar Jeddah',
     url: 'https://www.aldeyarksa.tech'
   }
 }: ServiceReviewSchemaProps) {

@@ -247,7 +247,7 @@ export default function ProjectCommentsSection({
           <div className="relative">
             <motion.div
               animate={{ rotate: [0, 5, 0, -5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
               className="absolute -inset-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-xl opacity-30"
             />
             <MessageCircle className="w-10 h-10 text-blue-600 ml-4 relative z-10" />

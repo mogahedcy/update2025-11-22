@@ -67,8 +67,8 @@ export async function GET() {
           const imageUrl = media.src.startsWith('http') ? media.src : `${baseUrl}${media.src}`;
           return createImageTags({
             imageUrl,
-            caption: `${media.alt || media.title || project.title} - ${project.category} في ${project.location} من محترفين الديار العالمية`,
-            title: `${project.title} - محترفين الديار العالمية جدة`,
+            caption: `${media.alt || media.title || project.title} - ${project.category} في ${project.location} من ديار جدة العالمية`,
+            title: `${project.title} - ديار جدة العالمية جدة`,
             geoLocation: `${project.location}, المملكة العربية السعودية`,
             license: `${baseUrl}/terms`
           });
@@ -78,7 +78,7 @@ export async function GET() {
           return createVideoTags({
             thumbnailUrl,
             title: `${project.title} - فيديو ${project.category} في ${project.location}`,
-            description: `${media.description || project.description} - محترفين الديار العالمية جدة`,
+            description: `${media.description || project.description} - ديار جدة العالمية جدة`,
             contentUrl: videoUrl,
             playerUrl: projectUrl,
             baseUrl
@@ -92,12 +92,12 @@ export async function GET() {
       
       // تحسين الكلمات المفتاحية
       const keywords = project.keywords ? project.keywords : 
-        `${project.category} ${project.location}, مظلات جدة, سواتر جدة, برجولات جدة, محترفين الديار العالمية`;
+        `${project.category} ${project.location}, مظلات جدة, سواتر جدة, برجولات جدة, ديار جدة العالمية`;
       
       // تحسين العنوان والوصف
-      const seoTitle = project.metaTitle || `${project.title} في ${project.location} | محترفين الديار العالمية`;
+      const seoTitle = project.metaTitle || `${project.title} في ${project.location} | ديار جدة العالمية`;
       const seoDescription = project.metaDescription || 
-        `${project.description.substring(0, 150)}... مشروع ${project.category} في ${project.location} من محترفين الديار العالمية - أفضل شركة مظلات وسواتر في جدة`;
+        `${project.description.substring(0, 150)}... مشروع ${project.category} في ${project.location} من ديار جدة العالمية - أفضل شركة مظلات وسواتر في جدة`;
 
       return `<url><loc>${safeEncodeUrl(projectUrl)}</loc><lastmod>${project.updatedAt.toISOString()}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority><xhtml:link rel="canonical" href="${safeEncodeUrl(projectUrl)}" /><xhtml:link rel="alternate" hreflang="ar" href="${safeEncodeUrl(projectUrl)}" />${mediaContent}</url>`;
     })
@@ -106,8 +106,8 @@ export async function GET() {
   // إضافة صفحة المعرض الرئيسية
   const portfolioIndexPage = `<url><loc>${safeEncodeUrl(`${baseUrl}/portfolio`)}</loc><lastmod>${new Date().toISOString()}</lastmod><changefreq>daily</changefreq><priority>0.9</priority><xhtml:link rel="canonical" href="${safeEncodeUrl(`${baseUrl}/portfolio`)}" /><xhtml:link rel="alternate" hreflang="ar" href="${safeEncodeUrl(`${baseUrl}/portfolio`)}" />${createImageTags({
     imageUrl: `${baseUrl}/images/portfolio-hero.webp`,
-    caption: 'معرض أعمال محترفين الديار العالمية - مشاريع مظلات وسواتر متميزة في جدة',
-    title: 'معرض أعمال محترفين الديار العالمية',
+    caption: 'معرض أعمال ديار جدة العالمية - مشاريع مظلات وسواتر متميزة في جدة',
+    title: 'معرض أعمال ديار جدة العالمية',
     geoLocation: 'جدة، المملكة العربية السعودية'
   })}</url>`;
 

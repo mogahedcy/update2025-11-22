@@ -10,7 +10,7 @@ export async function GET() {
       priority: '1.0', 
       changefreq: 'daily',
       keywords: {
-        ar: 'مظلات جدة، سواتر، برجولات، تنسيق حدائق، ديار جدة',
+        ar: 'مظلات جدة، سواتر، برجولات، تنسيق حدائق، ديار جدة العالمية',
         en: 'Jeddah shades, fences, pergolas, landscaping, Deyar Jeddah'
       },
       hasEnglish: true
@@ -20,7 +20,7 @@ export async function GET() {
       priority: '0.8', 
       changefreq: 'monthly',
       keywords: {
-        ar: 'ديار جدة، شركة مظلات جدة، عن الشركة',
+        ar: 'ديار جدة العالمية، شركة مظلات جدة، عن الشركة',
         en: 'Deyar Jeddah, Jeddah shades company, about us'
       },
       hasEnglish: true
@@ -237,7 +237,7 @@ export async function GET() {
     <image:image>
       <image:loc>${baseUrl}/images/logo.png</image:loc>
       <image:caption><![CDATA[${page.keywords[locale]}]]></image:caption>
-      <image:title><![CDATA[ديار جدة - ${page.keywords[locale]}]]></image:title>
+      <image:title><![CDATA[ديار جدة العالمية - ${page.keywords[locale]}]]></image:title>
     </image:image>
   </url>`;
   };
@@ -262,7 +262,7 @@ export async function GET() {
     <priority>0.8</priority>
     <news:news>
       <news:publication>
-        <news:name>ديار جدة</news:name>
+        <news:name>ديار جدة العالمية</news:name>
         <news:language>ar</news:language>
       </news:publication>
       <news:publication_date>${lastModified}</news:publication_date>

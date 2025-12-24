@@ -490,7 +490,7 @@ export const technicalArticles: TechnicalArticle[] = [
         </div>
 
         <p class="text-sm text-gray-500 text-center mt-8">
-          المصدر: فريق محترفين الديار العالمية - خبراء المظلات والهياكل المعدنية في السعودية
+          المصدر: فريق ديار جدة العالمية - خبراء المظلات والهياكل المعدنية في السعودية
         </p>
       </div>
     `
@@ -568,7 +568,7 @@ export const technicalArticles: TechnicalArticle[] = [
     metaDescription: 'دليل مقارنة شامل لجميع مواد المظلات. تحليل تقني لـ PVC، حديد مجلفن، لكسان، HDPE، خشب، ألومنيوم. أيها الأفضل لمشروعك؟',
     keywords: 'مقارنة مواد المظلات، PVC vs لكسان، أفضل مادة للمظلات، مقارنة تقنية، اختيار مواد البناء',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية - قسم الأبحاث',
+    author: 'فريق ديار جدة العالمية - قسم الأبحاث',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: true,
