@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import NavbarArabic from '@/components/NavbarArabic';
 import Footer from '@/components/Footer';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
@@ -23,10 +22,10 @@ import IntlProvider from '@/components/IntlProvider';
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export const dynamicParams = true;
-export const revalidate = 60; // تحديث كل دقيقة بدلاً من ساعة لعرض المشاريع الجديدة بسرعة
+export const revalidate = 3600; // Revalidate every hour
 
 interface Props {
-  params: Promise<{ locale: string; id: string }>;
+  params: Promise<{ id: string }>;
 }
 
 // دالة لإنشاء thumbnail من فيديو Cloudinary
@@ -49,36 +48,18 @@ function generateVideoThumbnail(videoUrl: string): string | null {
   }
 }
 
-// دالة لتحويل النص إلى slug (إزالة المسافات واستبدالها بـ -)
-function textToSlug(text: string): string {
-  return text.trim().replace(/\s+/g, '-');
-}
-
 // دالة جلب المشروع مباشرة من قاعدة البيانات - بدون تزامن مع API
 async function getProject(id: string) {
   try {
-    // Next.js already decodes URL parameters, so we use id directly
-    // تحويل النص المُدخل إلى slug للمقارنة (استبدال المسافات بـ -)
-    const normalizedId = textToSlug(id);
-    const titleWithSpaces = id.replace(/-/g, ' ');
+    // فك ترميز URL للتعامل مع الأحرف العربية
+    const decodedId = decodeURIComponent(id);
     
-    // البحث باستخدام المعرف أو الـ slug أو العنوان المحول
+    // البحث باستخدام المعرف أو الـ slug مع جلب _count للتعليقات
     const project = await prisma.projects.findFirst({
       where: {
         OR: [
-          { id: id },
-          { slug: id },
-          { slug: normalizedId },
-          // البحث بالعنوان الأصلي (دعم الروابط العربية) - case insensitive
-          { title: { equals: id, mode: 'insensitive' } },
-          { title: { equals: titleWithSpaces, mode: 'insensitive' } },
-          { title: { equals: normalizedId, mode: 'insensitive' } },
-          // البحث الجزئي - إذا كان العنوان موجود ضمن الرابط (مثال: "مظلة" ضمن "مظلات-سيارات-مظلة")
-          { title: { contains: id, mode: 'insensitive' } },
-          { title: { contains: titleWithSpaces, mode: 'insensitive' } },
-          // البحث العكسي - إذا كان الرابط موجود ضمن العنوان
-          { title: { startsWith: id, mode: 'insensitive' } },
-          { title: { endsWith: id, mode: 'insensitive' } }
+          { id: decodedId },
+          { slug: decodedId }
         ]
       },
       include: {
@@ -116,8 +97,8 @@ async function getProject(id: string) {
   }
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
-  const { locale, id } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
   
   const project = await getProject(id);
 
@@ -146,12 +127,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة العالمية'
     : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة العالمية`;
   
-  const baseUrl = 'https://www.aldeyarksa.tech';
-  const localePath = locale === 'ar' ? '' : '/en';
-  const pageUrl = `${localePath}/portfolio/${project.slug || id}`;
-  const fullUrl = `${baseUrl}${pageUrl}`;
-  const arPath = `${baseUrl}/portfolio/${project.slug || id}`;
-  const enPath = `${baseUrl}/en/portfolio/${project.slug || id}`;
+  const pageUrl = `/portfolio/${project.slug || id}`;
+  const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
 
   return {
     title: seoTitle,
@@ -221,9 +198,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: fullUrl,
       languages: {
-        'ar': arPath,
-        'en': enPath,
-        'x-default': arPath
+        'ar-SA': fullUrl,
+        'x-default': fullUrl
       }
     },
     robots: generateRobotsMetadata()
@@ -238,31 +214,27 @@ export function generateViewport() {
 }
 
 export default async function ProjectDetailsPage({ params }: Props) {
-  const { locale, id } = await params;
-  const t = await getTranslations({ locale, namespace: 'navbar' });
-  // Next.js already decodes URL parameters, no need to decode again
-  const project = await getProject(id);
+  const { id } = await params;
+  const decodedId = decodeURIComponent(id);
+  const project = await getProject(decodedId);
 
   if (!project) {
     notFound();
   }
 
-  // تحديد مسار اللغة مرة واحدة لاستخدامه في جميع الروابط
-  const localePath = locale === 'ar' ? '' : '/en';
-
   // 301 Redirect من UUID إلى Slug لتحسين SEO وتوحيد الفهرسة
-  if (UUID_REGEX.test(id) && project.slug && project.slug !== id) {
-    permanentRedirect(`${localePath}/portfolio/${project.slug}`);
+  if (UUID_REGEX.test(decodedId) && project.slug && project.slug !== decodedId) {
+    permanentRedirect(`/portfolio/${project.slug}`);
   }
 
   // إعداد structured data
   const images = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
   const videos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
-  const fullUrl = getAbsoluteUrl(`${localePath}/portfolio/${project.slug || id}`);
+  const fullUrl = getAbsoluteUrl(`/portfolio/${project.slug || id}`);
 
   const breadcrumbItems = [
-    { label: t('portfolio'), href: `${localePath}/portfolio` },
-    { label: project.title, href: `${localePath}/portfolio/${project.slug || id}`, current: true }
+    { label: 'المشاريع', href: '/portfolio' },
+    { label: project.title, href: `/portfolio/${project.slug || id}`, current: true }
   ];
 
   // جلب التعليقات للمشروع لإضافتها كـ Reviews في الـ schema
@@ -280,7 +252,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
   const structuredData = generateCreativeWorkSchema({
     name: project.title,
     description: project.description,
-    url: `${localePath}/portfolio/${project.slug || id}`,
+    url: `/portfolio/${project.slug || id}`,
     category: project.category,
     location: project.location,
     dateCreated: project.createdAt,
