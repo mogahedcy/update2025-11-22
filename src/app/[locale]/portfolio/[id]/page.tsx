@@ -52,15 +52,13 @@ function generateVideoThumbnail(videoUrl: string): string | null {
 // دالة جلب المشروع مباشرة من قاعدة البيانات - بدون تزامن مع API
 async function getProject(id: string) {
   try {
-    // فك ترميز URL للتعامل مع الأحرف العربية
-    const decodedId = decodeURIComponent(id);
-    
+    // Next.js already decodes URL parameters, so we use id directly
     // البحث باستخدام المعرف أو الـ slug مع جلب _count للتعليقات
     const project = await prisma.projects.findFirst({
       where: {
         OR: [
-          { id: decodedId },
-          { slug: decodedId }
+          { id: id },
+          { slug: id }
         ]
       },
       include: {
@@ -222,8 +220,8 @@ export function generateViewport() {
 export default async function ProjectDetailsPage({ params }: Props) {
   const { locale, id } = await params;
   const t = await getTranslations({ locale, namespace: 'navbar' });
-  const decodedId = decodeURIComponent(id);
-  const project = await getProject(decodedId);
+  // Next.js already decodes URL parameters, no need to decode again
+  const project = await getProject(id);
 
   if (!project) {
     notFound();
@@ -233,7 +231,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
   const localePath = locale === 'ar' ? '' : '/en';
 
   // 301 Redirect من UUID إلى Slug لتحسين SEO وتوحيد الفهرسة
-  if (UUID_REGEX.test(decodedId) && project.slug && project.slug !== decodedId) {
+  if (UUID_REGEX.test(id) && project.slug && project.slug !== id) {
     permanentRedirect(`${localePath}/portfolio/${project.slug}`);
   }
 
