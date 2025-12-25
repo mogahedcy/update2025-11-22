@@ -280,6 +280,42 @@ export async function POST(request: NextRequest) {
 
     const finalSlug = existingSlug ? `${slug}-${Date.now()}` : slug;
 
+    // حساب عدد الصور والفيديوهات
+    const imageCount = mediaItems?.filter((item: any) => item.type === 'IMAGE').length || 0;
+    const videoCount = mediaItems?.filter((item: any) => item.type === 'VIDEO').length || 0;
+
+    // 🌍 ترجمة تلقائية إلى الإنجليزية باستخدام Groq AI (اختياري)
+    let englishMetadata: any = null;
+    if (process.env.GROQ_API_KEY) {
+      try {
+        console.log('🔄 بدء الترجمة التلقائية إلى الإنجليزية...');
+        const { translateProjectToEnglish } = await import('@/lib/ai-translator');
+        
+        englishMetadata = await translateProjectToEnglish(
+          {
+            title,
+            description,
+            category,
+            location,
+            metaTitle,
+            metaDescription,
+            keywords: keywords?.split(',').map((k: string) => k.trim()),
+            tags: tags?.map((t: any) => t.name || t),
+            materials: materials?.map((m: any) => m.name || m)
+          },
+          imageCount,
+          videoCount
+        );
+        
+        console.log('✅ تمت الترجمة بنجاح:', englishMetadata.title);
+        
+        // حفظ الترجمة الإنجليزية في حقل منفصل (JSON)
+        // يمكن استخدامها لاحقاً لعرض المحتوى بالإنجليزية
+      } catch (translationError) {
+        console.warn('⚠️ فشلت الترجمة التلقائية، سيتم المتابعة بدون ترجمة:', translationError);
+      }
+    }
+
     const project = await prisma.projects.create({
       data: {
         id: randomUUID(),
@@ -299,21 +335,60 @@ export async function POST(request: NextRequest) {
         status,
         publishedAt: status === 'PUBLISHED' ? new Date() : null,
         updatedAt: new Date(),
+        // حفظ البيانات المترجمة في حقل JSON (إذا كانت متوفرة)
+        ...(englishMetadata && {
+          suggestedKeywords: JSON.stringify({
+            en: englishMetadata.keywords,
+            enMetadata: {
+              title: englishMetadata.title,
+              description: englishMetadata.description,
+              metaTitle: englishMetadata.metaTitle,
+              metaDescription: englishMetadata.metaDescription,
+              richSnippet: englishMetadata.seoOptimized.richSnippet
+            }
+          })
+        }),
         media_items: {
-          create: mediaItems?.map((item: any, index: number) => ({
-            id: randomUUID(),
-            type: item.type,
-            src: item.src || item.url,
-            thumbnail: item.thumbnail || item.src || item.url,
-            title: item.title || `ملف ${index + 1}`,
-            description: item.description || '',
-            duration: item.duration || null,
-            fileSize: item.fileSize || null,
-            mimeType: item.mimeType || null,
-            alt: item.alt || title,
-            caption: item.caption || '',
-            order: index
-          })) || []
+          create: mediaItems?.map((item: any, index: number) => {
+            // تحسين وصف الصور والفيديوهات باستخدام الترجمة
+            let enhancedAlt = item.alt || title;
+            let enhancedDescription = item.description || '';
+            
+            if (englishMetadata) {
+              if (item.type === 'IMAGE' && englishMetadata.seoOptimized.imageAltTexts[index]) {
+                enhancedAlt = `${enhancedAlt} | ${englishMetadata.seoOptimized.imageAltTexts[index]}`;
+              } else if (item.type === 'VIDEO') {
+                const videoIndex = index - imageCount;
+                if (englishMetadata.seoOptimized.videoDescriptions[videoIndex]) {
+                  enhancedDescription = englishMetadata.seoOptimized.videoDescriptions[videoIndex] || enhancedDescription;
+                }
+              }
+            }
+            
+            // إصلاح مشكلة الفيديوهات: تأكد من عدم استخدام src كـ thumbnail للفيديو
+            let thumbnailUrl = item.thumbnail;
+            if (item.type === 'VIDEO' && !thumbnailUrl) {
+              // لا تستخدم src كـ thumbnail للفيديو - دعه null ليتم توليده تلقائياً
+              thumbnailUrl = null;
+            } else if (item.type === 'IMAGE' && !thumbnailUrl) {
+              thumbnailUrl = item.src || item.url;
+            }
+            
+            return {
+              id: randomUUID(),
+              type: item.type,
+              src: item.src || item.url,
+              thumbnail: thumbnailUrl,
+              title: item.title || `ملف ${index + 1}`,
+              description: enhancedDescription || item.description || '',
+              duration: item.duration || null,
+              fileSize: item.fileSize || null,
+              mimeType: item.mimeType || null,
+              alt: enhancedAlt,
+              caption: item.caption || '',
+              order: index
+            };
+          }) || []
         }
       },
       include: {
