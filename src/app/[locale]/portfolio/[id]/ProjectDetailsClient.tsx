@@ -173,9 +173,38 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
 
   // دالة لمعالجة أخطاء الفيديو
   const handleVideoError = (err: any) => {
-    const error = err as Error;
-    console.error('خطأ في تشغيل الفيديو:', error);
-    setVideoError('لا يمكن تشغيل هذا الفيديو. يرجى المحاولة لاحقاً.');
+    const error = err.target as HTMLVideoElement;
+    const errorCode = error.error?.code;
+    const errorMessage = error.error?.message;
+    
+    console.error('❌ خطأ في تشغيل الفيديو:', {
+      code: errorCode,
+      message: errorMessage,
+      src: error.currentSrc,
+      type: error.querySelector('source')?.type
+    });
+    
+    // رسائل خطأ مفصلة بناءً على نوع الخطأ
+    let userFriendlyMessage = 'لا يمكن تشغيل هذا الفيديو.';
+    
+    switch (errorCode) {
+      case 1: // MEDIA_ERR_ABORTED
+        userFriendlyMessage = 'تم إيقاف تحميل الفيديو.';
+        break;
+      case 2: // MEDIA_ERR_NETWORK
+        userFriendlyMessage = 'حدث خطأ في الشبكة أثناء تحميل الفيديو.';
+        break;
+      case 3: // MEDIA_ERR_DECODE
+        userFriendlyMessage = 'الفيديو تالف أو بتنسيق غير مدعوم.';
+        break;
+      case 4: // MEDIA_ERR_SRC_NOT_SUPPORTED
+        userFriendlyMessage = 'تنسيق الفيديو غير مدعوم. يرجى استخدام MP4 أو WebM.';
+        break;
+      default:
+        userFriendlyMessage = 'حدث خطأ غير متوقع في تشغيل الفيديو.';
+    }
+    
+    setVideoError(userFriendlyMessage);
     setVideoLoading(false);
   };
 
@@ -300,9 +329,12 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                                 preload="metadata"
                                 className="w-full h-full object-cover"
                                 poster={currentMedia.thumbnail || undefined}
+                                playsInline
+                                crossOrigin="anonymous"
                                 onLoadStart={() => {
                                   setVideoLoading(true);
                                   setVideoError(null);
+                                  console.log('🎬 بدء تحميل الفيديو:', currentMedia.src);
                                 }}
                                 onCanPlay={() => {
                                   setVideoLoading(false);
@@ -311,9 +343,21 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                                 onError={(e) => handleVideoError(e)}
                                 onLoadedData={() => {
                                   setVideoLoading(false);
+                                  console.log('📹 تم تحميل بيانات الفيديو');
+                                }}
+                                onLoadedMetadata={(e) => {
+                                  console.log('📊 Metadata loaded:', {
+                                    duration: e.currentTarget.duration,
+                                    videoWidth: e.currentTarget.videoWidth,
+                                    videoHeight: e.currentTarget.videoHeight
+                                  });
                                 }}
                               >
                                 <source src={currentMedia.src} type={getVideoType(currentMedia.src)} />
+                                {/* Fallback sources for better compatibility */}
+                                {currentMedia.src.includes('.mp4') && (
+                                  <source src={currentMedia.src.replace('.mp4', '.webm')} type="video/webm" />
+                                )}
                                 متصفحك لا يدعم عرض الفيديو
                               </video>
 

@@ -370,8 +370,19 @@ export async function POST(request: NextRequest) {
             if (item.type === 'VIDEO' && !thumbnailUrl) {
               // لا تستخدم src كـ thumbnail للفيديو - دعه null ليتم توليده تلقائياً
               thumbnailUrl = null;
+              console.log(`📹 فيديو بدون thumbnail: ${item.src}`);
             } else if (item.type === 'IMAGE' && !thumbnailUrl) {
               thumbnailUrl = item.src || item.url;
+            }
+            
+            // التحقق من صحة بيانات الفيديو
+            if (item.type === 'VIDEO') {
+              console.log(`🎬 إنشاء فيديو:`, {
+                src: item.src || item.url,
+                thumbnail: thumbnailUrl,
+                mimeType: item.mimeType,
+                duration: item.duration
+              });
             }
             
             return {

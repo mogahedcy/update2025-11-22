@@ -242,6 +242,17 @@ export default async function ProjectDetailsPage({ params }: Props) {
   const videos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
   const fullUrl = getAbsoluteUrl(`${localePath}/portfolio/${project.slug || id}`);
 
+  // تسجيل معلومات الوسائط للتأكد من صحة البيانات
+  if (videos.length > 0) {
+    console.log(`📹 مشروع يحتوي على ${videos.length} فيديو(هات):`, videos.map(v => ({
+      id: v.id,
+      src: v.src,
+      type: v.type,
+      thumbnail: v.thumbnail,
+      mimeType: v.mimeType
+    })));
+  }
+
   const breadcrumbItems = [
     { label: t('portfolio'), href: `${localePath}/portfolio` },
     { label: project.title, href: `${localePath}/portfolio/${project.slug || id}`, current: true }
