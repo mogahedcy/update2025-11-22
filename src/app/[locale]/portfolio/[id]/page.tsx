@@ -60,6 +60,7 @@ async function getProject(id: string) {
     // Next.js already decodes URL parameters, so we use id directly
     // تحويل النص المُدخل إلى slug للمقارنة (استبدال المسافات بـ -)
     const normalizedId = textToSlug(id);
+    const titleWithSpaces = id.replace(/-/g, ' ');
     
     // البحث باستخدام المعرف أو الـ slug أو العنوان المحول
     const project = await prisma.projects.findFirst({
@@ -68,9 +69,10 @@ async function getProject(id: string) {
           { id: id },
           { slug: id },
           { slug: normalizedId },
-          // البحث بالعنوان الأصلي (دعم الروابط العربية)
-          { title: id },
-          { title: id.replace(/-/g, ' ') }
+          // البحث بالعنوان الأصلي (دعم الروابط العربية) - case insensitive
+          { title: { equals: id, mode: 'insensitive' } },
+          { title: { equals: titleWithSpaces, mode: 'insensitive' } },
+          { title: { equals: normalizedId, mode: 'insensitive' } }
         ]
       },
       include: {
