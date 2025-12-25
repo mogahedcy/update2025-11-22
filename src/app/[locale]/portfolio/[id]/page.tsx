@@ -214,7 +214,7 @@ export function generateViewport() {
 }
 
 export default async function ProjectDetailsPage({ params }: Props) {
-  const { id } = await params;
+  const { id, locale } = await params;
   const decodedId = decodeURIComponent(id);
   const project = await getProject(decodedId);
 
