@@ -63,7 +63,7 @@ export default function SEOImage({
       description: generatedMetadata.description,
       keywords: generatedMetadata.keywords.length > 0 
         ? generatedMetadata.keywords 
-        : [projectCategory || '', projectLocation || 'جدة', 'محترفين الديار'].filter(Boolean),
+        : [projectCategory || '', projectLocation || 'جدة', 'ديار جدة العالمية'].filter(Boolean),
       context: generatedMetadata.context || 'project'
     };
     

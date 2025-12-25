@@ -29,7 +29,7 @@ export default function ProjectStructuredData({ project }: ProjectStructuredData
     "description": project.description,
     "creator": {
       "@type": "Organization",
-      "name": "محترفين الديار العالمية",
+      "name": "ديار جدة العالمية",
       "url": "https://www.aldeyarksa.tech",
       "logo": "https://www.aldeyarksa.tech/images/logo.png",
       "address": {
@@ -47,7 +47,7 @@ export default function ProjectStructuredData({ project }: ProjectStructuredData
       "سواتر",
       "برجولات",
       "تنسيق حدائق",
-      "محترفين الديار العالمية"
+      "ديار جدة العالمية"
     ].join(", "),
     "locationCreated": {
       "@type": "Place",
@@ -65,7 +65,7 @@ export default function ProjectStructuredData({ project }: ProjectStructuredData
         "url": item.src,
         "name": item.title || project.title,
         "description": item.description || project.description,
-        "creator": "محترفين الديار العالمية"
+        "creator": "ديار جدة العالمية"
       })),
     "video": project.mediaItems
       .filter(item => item.type === 'VIDEO')
@@ -75,7 +75,7 @@ export default function ProjectStructuredData({ project }: ProjectStructuredData
         "description": item.description || project.description,
         "contentUrl": item.src,
         "uploadDate": project.completionDate,
-        "creator": "محترفين الديار العالمية"
+        "creator": "ديار جدة العالمية"
       })),
     "aggregateRating": project.rating ? {
       "@type": "AggregateRating",

@@ -9,9 +9,9 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://www.aldeyarksa.tech/#organization",
-    "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+    "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah",
     "alternateName": isArabic 
-      ? "محترفين الديار | مظلات وبرجولات جدة"
+      ? "ديار جدة العالمية | مظلات وبرجولات جدة"
       : "Aldeyar | Shades and Pergolas Jeddah",
     "description": isArabic
       ? "شركة متخصصة في تركيب المظلات والبرجولات والسواتر والساندوتش بانل وتنسيق الحدائق في جدة مع خبرة 15 عاماً وضمان 10 سنوات"
@@ -92,7 +92,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": isArabic ? "خدمات محترفين الديار" : "Aldeyar Professional Services",
+      "name": isArabic ? "خدمات ديار جدة العالمية" : "Aldeyar Professional Services",
       "itemListElement": [
         {
           "@type": "Offer",

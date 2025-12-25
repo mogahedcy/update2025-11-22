@@ -14,7 +14,7 @@ const mazallatProjects = [
     projectDuration: '5 أيام',
     projectCost: '15,000 ريال',
     slug: 'mazallat-sayarat-villa-zahrae',
-    metaTitle: 'مظلات سيارات فيلا حي الزهراء - محترفين الديار',
+    metaTitle: 'مظلات سيارات فيلا حي الزهراء - ديار جدة العالمية',
     metaDescription: 'مشروع تركيب مظلات سيارات PVC عالية الجودة لفيلا في حي الزهراء جدة',
     keywords: 'مظلات سيارات، مظلات PVC، حي الزهراء، جدة',
     images: [
@@ -33,7 +33,7 @@ const mazallatProjects = [
     projectDuration: '7 أيام',
     projectCost: '22,000 ريال',
     slug: 'mazallat-hadaeq-istraha',
-    metaTitle: 'مظلات حدائق استراحة - محترفين الديار',
+    metaTitle: 'مظلات حدائق استراحة - ديار جدة العالمية',
     metaDescription: 'مشروع تركيب مظلات حدائق عصرية لاستراحة في شمال جدة',
     keywords: 'مظلات حدائق، مظلات استراحة، تصميم مظلات، جدة',
     images: [
@@ -52,7 +52,7 @@ const mazallatProjects = [
     projectDuration: '10 أيام',
     projectCost: '45,000 ريال',
     slug: 'mazallat-madrasa-naeem',
-    metaTitle: 'مظلات مدرسة النعيم الأهلية - محترفين الديار',
+    metaTitle: 'مظلات مدرسة النعيم الأهلية - ديار جدة العالمية',
     metaDescription: 'مشروع تركيب مظلات واسعة لملعب مدرسة النعيم الأهلية في جدة',
     keywords: 'مظلات مدارس، مظلات ملاعب، حي النعيم، جدة',
     images: [
@@ -71,7 +71,7 @@ const mazallatProjects = [
     projectDuration: '15 يوماً',
     projectCost: '85,000 ريال',
     slug: 'mazallat-mawaqef-mojama',
-    metaTitle: 'مظلات مواقف مجمع تجاري - محترفين الديار',
+    metaTitle: 'مظلات مواقف مجمع تجاري - ديار جدة العالمية',
     metaDescription: 'مشروع تركيب 20 مظلة لمواقف السيارات في مجمع تجاري بوسط جدة',
     keywords: 'مظلات تجارية، مظلات مواقف، مجمع تجاري، جدة',
     images: [
@@ -90,7 +90,7 @@ const mazallatProjects = [
     projectDuration: '4 أيام',
     projectCost: '12,000 ريال',
     slug: 'mazallat-sayarat-manzel-hadith',
-    metaTitle: 'مظلات سيارات منزل حديث - محترفين الديار',
+    metaTitle: 'مظلات سيارات منزل حديث - ديار جدة العالمية',
     metaDescription: 'تركيب مظلات سيارات بتصميم عصري لمنزل في حي الفيصلية',
     keywords: 'مظلات عصرية، مظلات سيارات، حي الفيصلية، جدة',
     images: [
@@ -108,7 +108,7 @@ const mazallatProjects = [
     projectDuration: '6 أيام',
     projectCost: '18,000 ريال',
     slug: 'mazallat-hadeeqa-manzeliya',
-    metaTitle: 'مظلات حديقة منزلية - محترفين الديار',
+    metaTitle: 'مظلات حديقة منزلية - ديار جدة العالمية',
     metaDescription: 'تركيب مظلات جميلة لحديقة منزلية في حي السلامة',
     keywords: 'مظلات حدائق، مظلات منزلية، حي السلامة، جدة',
     images: [
@@ -162,7 +162,7 @@ const mazallatArticles = [
 <li>التأكد من تصريف المياه بشكل صحيح</li>
 </ul>
 
-<h2>لماذا تختار محترفين الديار؟</h2>
+<h2>لماذا تختار ديار جدة العالمية؟</h2>
 <p>مع خبرة تمتد لأكثر من 15 عاماً في مجال تركيب المظلات في جدة، نقدم لك:</p>
 <ul>
 <li>ضمان 10 سنوات على جميع الأعمال</li>
@@ -171,10 +171,10 @@ const mazallatArticles = [
 <li>خدمة عملاء متميزة 24/7</li>
 </ul>`,
     category: 'مظلات',
-    author: 'محترفين الديار العالمية',
+    author: 'ديار جدة العالمية',
     featured: true,
     slug: 'daleel-ikhtiyar-mazallat-sayarat-jeddah',
-    metaTitle: 'دليل اختيار مظلات السيارات في جدة 2024 | محترفين الديار',
+    metaTitle: 'دليل اختيار مظلات السيارات في جدة 2024 | ديار جدة العالمية',
     metaDescription: 'دليل شامل لاختيار أفضل مظلات السيارات في جدة. أنواع المظلات، معايير الاختيار، والنصائح من الخبراء.',
     keywords: 'مظلات سيارات جدة، أنواع المظلات، مظلات PVC، اختيار مظلات',
     images: ['/uploads/mazallat/car_parking_shade_ca_57a95e0e.jpg']
@@ -210,10 +210,10 @@ const mazallatArticles = [
 <li>فكر في إضافة مراوح سقفية لمزيد من الراحة</li>
 </ul>`,
     category: 'مظلات',
-    author: 'محترفين الديار العالمية',
+    author: 'ديار جدة العالمية',
     featured: true,
     slug: 'mazallat-hadaeq-tasmeem-munaseb',
-    metaTitle: 'مظلات الحدائق: دليل التصميم والاختيار | محترفين الديار',
+    metaTitle: 'مظلات الحدائق: دليل التصميم والاختيار | ديار جدة العالمية',
     metaDescription: 'دليل شامل لاختيار وتصميم مظلات الحدائق المناسبة لمنزلك في جدة',
     keywords: 'مظلات حدائق، تصميم مظلات، برجولات، مظلات خارجية',
     images: ['/uploads/mazallat/garden_patio_shade_s_14b0bb6f.jpg']
@@ -264,7 +264,7 @@ const mazallatArticles = [
 <li>خدمة ما بعد البيع</li>
 </ul>`,
     category: 'مظلات',
-    author: 'محترفين الديار العالمية',
+    author: 'ديار جدة العالمية',
     featured: false,
     slug: 'asaar-mazallat-sayarat-jeddah-2024',
     metaTitle: 'أسعار مظلات السيارات في جدة 2024 | دليل شامل',

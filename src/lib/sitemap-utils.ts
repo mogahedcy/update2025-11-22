@@ -74,7 +74,7 @@ export function createVideoTags(params: {
   const cleanContentUrl = safeEncodeUrl(params.contentUrl);
   const cleanPlayerUrl = safeEncodeUrl(params.playerUrl);
   
-  return `<video:video><video:thumbnail_loc>${cleanThumbnailUrl}</video:thumbnail_loc><video:title><![CDATA[${params.title}]]></video:title><video:description><![CDATA[${params.description}]]></video:description><video:content_loc>${cleanContentUrl}</video:content_loc><video:player_loc allow_embed="yes">${cleanPlayerUrl}</video:player_loc><video:family_friendly>yes</video:family_friendly><video:uploader info="${params.baseUrl}">محترفين الديار العالمية</video:uploader></video:video>`;
+  return `<video:video><video:thumbnail_loc>${cleanThumbnailUrl}</video:thumbnail_loc><video:title><![CDATA[${params.title}]]></video:title><video:description><![CDATA[${params.description}]]></video:description><video:content_loc>${cleanContentUrl}</video:content_loc><video:player_loc allow_embed="yes">${cleanPlayerUrl}</video:player_loc><video:family_friendly>yes</video:family_friendly><video:uploader info="${params.baseUrl}">ديار جدة العالمية</video:uploader></video:video>`;
 }
 
 /**

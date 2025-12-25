@@ -246,7 +246,7 @@ export default function DashboardLayoutClient({ admin, children }: DashboardLayo
             <div className="pt-3 md:pt-4 border-t border-gray-200">
               <div className="text-[10px] md:text-xs text-gray-500 text-center">
                 <div className="mb-1">© {new Date().getFullYear()} جميع الحقوق محفوظة</div>
-                <div className="text-blue-600 font-medium">محترفين الديار العالمية</div>
+                <div className="text-blue-600 font-medium">ديار جدة العالمية</div>
               </div>
             </div>
           </div>

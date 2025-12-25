@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { SEOAgent } from '@/lib/seo-agent';
 import { requireAdmin } from '@/lib/auth-middleware';
@@ -65,7 +65,7 @@ async function fixMissingAltText(mediaId: string, type: 'project' | 'article'): 
       }
       
       // توليد Alt Text ذكي
-      const generatedAlt = `${media.projects.category} - ${media.title || media.projects.title} - محترفين الديار العالمية جدة`;
+      const generatedAlt = `${media.projects.category} - ${media.title || media.projects.title} - ديار جدة العالمية جدة`;
       
       await prisma.media_items.update({
         where: { id: mediaId },
@@ -83,7 +83,7 @@ async function fixMissingAltText(mediaId: string, type: 'project' | 'article'): 
         return { success: false, message: 'الصورة غير موجودة' };
       }
       
-      const generatedAlt = `${media.articles.category} - ${media.title || media.articles.title} - محترفين الديار العالمية`;
+      const generatedAlt = `${media.articles.category} - ${media.title || media.articles.title} - ديار جدة العالمية`;
       
       await prisma.article_media_items.update({
         where: { id: mediaId },
@@ -173,7 +173,7 @@ async function fixDuplicateContent(targetId: string, type: 'project' | 'article'
       }
       
       // توليد وصف فريد
-      const keywords = [project.category, 'جدة', 'محترفين الديار'];
+      const keywords = [project.category, 'جدة', 'ديار جدة العالمية'];
       
       const generated = await seoAgent.generateOptimizedContent(
         project.title,

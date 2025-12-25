@@ -6,34 +6,35 @@ import { Phone, MessageCircle, ArrowLeft, Star, MapPin, Clock, Shield, Award } f
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
+import { generateHeroAltText } from '@/lib/image-alt-text';
 
 const slides = {
   ar: [
     {
       url: '/images/slider1.webp',
-      alt: 'مظلات وبرجولات حدائق فاخرة - تركيب برجولات خشبية ومظلات سيارات جدة',
+      alt: generateHeroAltText('مظلات وبرجولات حدائق فاخرة - تركيب برجولات خشبية ومظلات سيارات'),
     },
     {
       url: '/images/slider2.webp',
-      alt: 'تركيب مظلات سيارات لكسان وحديد - محترفين الديار جدة',
+      alt: generateHeroAltText('تركيب مظلات سيارات لكسان وحديد عالية الجودة'),
     },
     {
       url: '/images/slider3.webp',
-      alt: 'سواتر حديد وقماش - تنسيق حدائق وساندوتش بانل جدة',
+      alt: generateHeroAltText('سواتر حديد وقماش - تنسيق حدائق وساندوتش بانل'),
     },
   ],
   en: [
     {
       url: '/images/slider1.webp',
-      alt: 'Luxury garden shades and pergolas - Installing wooden pergolas and car shades in Jeddah',
+      alt: 'Luxury garden shades and pergolas - Installing wooden pergolas and car shades in Jeddah | Deyar Jeddah',
     },
     {
       url: '/images/slider2.webp',
-      alt: 'Installing Lexan and iron car shades - Aldeyar Professionals Jeddah',
+      alt: 'Installing high-quality Lexan and iron car shades in Jeddah | Aldeyar Professionals',
     },
     {
       url: '/images/slider3.webp',
-      alt: 'Iron and fabric fences - Landscaping and sandwich panel Jeddah',
+      alt: 'Iron and fabric fences - Landscaping and sandwich panel in Jeddah | Deyar Jeddah',
     },
   ],
 };
@@ -151,16 +152,16 @@ export default function HeroSection() {
 
       <div className="relative z-20 text-center text-white px-4 max-w-7xl mx-auto">
         <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8 animate-fade-in px-4">
-          <div className="bg-gradient-to-br from-amber-500 to-amber-600 text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 rounded-full text-xs sm:text-sm font-bold shadow-xl flex items-center gap-1.5 sm:gap-2 transform hover:scale-105 transition-transform">
-            <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-current flex-shrink-0" />
+          <div className="bg-gradient-to-br from-amber-500 to-amber-600 text-white px-4 py-2.5 sm:px-4 sm:py-2.5 md:px-5 rounded-full text-sm sm:text-sm font-bold shadow-xl flex items-center gap-2 sm:gap-2 transform hover:scale-105 transition-transform">
+            <Star className="w-4 h-4 sm:w-4 sm:h-4 fill-current flex-shrink-0" />
             <span className="whitespace-nowrap">{tFeatures('experience')}</span>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-green-600 text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 rounded-full text-xs sm:text-sm font-bold shadow-xl flex items-center gap-1.5 sm:gap-2 transform hover:scale-105 transition-transform">
-            <Shield className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+          <div className="bg-gradient-to-br from-green-500 to-green-600 text-white px-4 py-2.5 sm:px-4 sm:py-2.5 md:px-5 rounded-full text-sm sm:text-sm font-bold shadow-xl flex items-center gap-2 sm:gap-2 transform hover:scale-105 transition-transform">
+            <Shield className="w-4 h-4 sm:w-4 sm:h-4 flex-shrink-0" />
             <span className="whitespace-nowrap">{tFeatures('warranty')}</span>
           </div>
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white px-3 py-2 sm:px-4 sm:py-2.5 md:px-5 rounded-full text-xs sm:text-sm font-bold shadow-xl flex items-center gap-1.5 sm:gap-2 transform hover:scale-105 transition-transform">
-            <Award className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white px-4 py-2.5 sm:px-4 sm:py-2.5 md:px-5 rounded-full text-sm sm:text-sm font-bold shadow-xl flex items-center gap-2 sm:gap-2 transform hover:scale-105 transition-transform">
+            <Award className="w-4 h-4 sm:w-4 sm:h-4 flex-shrink-0" />
             <span className="whitespace-nowrap">{t('projects')}</span>
           </div>
         </div>
@@ -174,7 +175,7 @@ export default function HeroSection() {
           </span>
         </h1>
 
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 text-gray-100 leading-relaxed max-w-4xl mx-auto font-medium px-4 drop-shadow-md">
+        <p className="text-base sm:text-lg md:text-xl lg:text-xl mb-8 sm:mb-10 text-gray-100 leading-relaxed max-w-4xl mx-auto font-medium px-4 drop-shadow-md">
           {t('description')}
         </p>
 
@@ -205,12 +206,12 @@ export default function HeroSection() {
           </Button>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5 md:gap-3 text-xs sm:text-sm max-w-4xl mx-auto px-4">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5 md:gap-3 text-sm sm:text-sm max-w-4xl mx-auto px-4">
           {serviceLinks.slice(0, 4).map((link, index) => (
             <Link 
               key={index}
               href={link.href} 
-              className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 active:bg-white/35 transition-all duration-300 text-white font-medium whitespace-nowrap touch-target"
+              className="px-4 py-2.5 sm:px-4 sm:py-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 active:bg-white/35 transition-all duration-300 text-white font-medium whitespace-nowrap min-h-[44px] flex items-center justify-center"
             >
               {link.label}
             </Link>
@@ -219,7 +220,7 @@ export default function HeroSection() {
             <Link 
               key={index + 4}
               href={link.href} 
-              className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 active:bg-white/35 transition-all duration-300 text-white font-medium whitespace-nowrap touch-target hidden sm:flex"
+              className="px-4 py-2.5 sm:px-4 sm:py-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 active:bg-white/35 transition-all duration-300 text-white font-medium whitespace-nowrap min-h-[44px] items-center justify-center hidden sm:flex"
             >
               {link.label}
             </Link>
