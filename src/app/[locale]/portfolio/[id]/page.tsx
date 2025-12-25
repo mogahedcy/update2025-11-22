@@ -49,16 +49,28 @@ function generateVideoThumbnail(videoUrl: string): string | null {
   }
 }
 
+// دالة لتحويل النص إلى slug (إزالة المسافات واستبدالها بـ -)
+function textToSlug(text: string): string {
+  return text.trim().replace(/\s+/g, '-');
+}
+
 // دالة جلب المشروع مباشرة من قاعدة البيانات - بدون تزامن مع API
 async function getProject(id: string) {
   try {
     // Next.js already decodes URL parameters, so we use id directly
-    // البحث باستخدام المعرف أو الـ slug مع جلب _count للتعليقات
+    // تحويل النص المُدخل إلى slug للمقارنة (استبدال المسافات بـ -)
+    const normalizedId = textToSlug(id);
+    
+    // البحث باستخدام المعرف أو الـ slug أو العنوان المحول
     const project = await prisma.projects.findFirst({
       where: {
         OR: [
           { id: id },
-          { slug: id }
+          { slug: id },
+          { slug: normalizedId },
+          // البحث بالعنوان الأصلي (دعم الروابط العربية)
+          { title: id },
+          { title: id.replace(/-/g, ' ') }
         ]
       },
       include: {
