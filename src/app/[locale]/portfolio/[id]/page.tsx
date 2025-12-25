@@ -21,11 +21,12 @@ import IntlProvider from '@/components/IntlProvider';
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
+// ✅ ISR - تحديث الصفحة تلقائياً كل ساعة مع دعم صفحات جديدة
 export const dynamicParams = true;
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600; // إعادة بناء كل ساعة
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }
 
 // دالة لإنشاء thumbnail من فيديو Cloudinary

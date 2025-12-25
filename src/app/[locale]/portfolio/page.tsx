@@ -4,7 +4,10 @@ import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import PortfolioPageClient from './PortfolioPageClient';
 
-export const dynamic = 'force-dynamic';
+// ✅ ISR - تحديث الصفحة تلقائياً كل ساعة
+export const revalidate = 3600;
+export const dynamicParams = true;
+
 import StructuredDataScript from '@/components/StructuredDataScript';
 import VideoObjectSchema from '@/components/VideoObjectSchema';
 import Navbar from '@/components/Navbar';

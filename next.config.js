@@ -65,7 +65,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [400, 640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
-    minimumCacheTTL: 2592000,
+    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     unoptimized: false,
@@ -79,6 +79,11 @@ const nextConfig = {
   distDir: '.next',
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
+  // تحسينات أداء متقدمة
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 5,
+  },
   allowedDevOrigins: process.env.NEXT_PUBLIC_ALLOWED_DEV_ORIGINS 
     ? process.env.NEXT_PUBLIC_ALLOWED_DEV_ORIGINS.split(',')
     : [
@@ -115,8 +120,14 @@ const nextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
+          // تقليل TTFB
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
         ],
       },
+      // ✅ تخزين الصور في الذاكرة المؤقتة لفترة طويلة
       {
         source: '/images/:path*',
         headers: [
@@ -124,8 +135,13 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
+          {
+            key: 'Content-Type',
+            value: 'image/webp',
+          },
         ],
       },
+      // ✅ تخزين الملفات المرفوعة
       {
         source: '/uploads/:path*',
         headers: [
@@ -135,6 +151,7 @@ const nextConfig = {
           },
         ],
       },
+      // ✅ تخزين الملفات الثابتة من Next.js
       {
         source: '/_next/static/:path*',
         headers: [
@@ -144,6 +161,37 @@ const nextConfig = {
           },
         ],
       },
+      // ✅ تخزين صور Next.js المحسنة
+      {
+        source: '/_next/image/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // ✅ تخزين الـ API responses
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=60, stale-while-revalidate=120',
+          },
+        ],
+      },
+      // ✅ تخزين صفحات المشاريع (يعاد بناؤها تلقائياً)
+      {
+        source: '/portfolio/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      // ✅ تخزين الملفات الثابتة الأخرى
       {
         source: '/favicon.svg',
         headers: [
