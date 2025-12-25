@@ -72,7 +72,13 @@ async function getProject(id: string) {
           // البحث بالعنوان الأصلي (دعم الروابط العربية) - case insensitive
           { title: { equals: id, mode: 'insensitive' } },
           { title: { equals: titleWithSpaces, mode: 'insensitive' } },
-          { title: { equals: normalizedId, mode: 'insensitive' } }
+          { title: { equals: normalizedId, mode: 'insensitive' } },
+          // البحث الجزئي - إذا كان العنوان موجود ضمن الرابط (مثال: "مظلة" ضمن "مظلات-سيارات-مظلة")
+          { title: { contains: id, mode: 'insensitive' } },
+          { title: { contains: titleWithSpaces, mode: 'insensitive' } },
+          // البحث العكسي - إذا كان الرابط موجود ضمن العنوان
+          { title: { startsWith: id, mode: 'insensitive' } },
+          { title: { endsWith: id, mode: 'insensitive' } }
         ]
       },
       include: {
