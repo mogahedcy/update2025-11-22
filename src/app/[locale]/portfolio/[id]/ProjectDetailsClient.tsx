@@ -152,7 +152,8 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
   const toggleVideoMute = () => setIsVideoMuted(!isVideoMuted);
 
   const category = categories.find(c => c.id === project.category);
-  const currentMedia = project.mediaItems?.[selectedMediaIndex] || project.mediaItems?.[0];
+  const mediaItems = project.mediaItems || [];
+  const currentMedia = mediaItems?.[selectedMediaIndex] || mediaItems?.[0];
 
   // دالة للتحقق من نوع الفيديو
   const getVideoType = (src: string): string => {
@@ -209,12 +210,16 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
   };
 
   const handlePrevMedia = () => {
-    const newIndex = selectedMediaIndex === 0 ? project.mediaItems.length - 1 : selectedMediaIndex - 1;
+    const mediaArray = project.mediaItems || [];
+    if (mediaArray.length === 0) return;
+    const newIndex = selectedMediaIndex === 0 ? mediaArray.length - 1 : selectedMediaIndex - 1;
     setSelectedMediaIndex(newIndex);
   };
 
   const handleNextMedia = () => {
-    const newIndex = selectedMediaIndex === project.mediaItems.length - 1 ? 0 : selectedMediaIndex + 1;
+    const mediaArray = project.mediaItems || [];
+    if (mediaArray.length === 0) return;
+    const newIndex = selectedMediaIndex === mediaArray.length - 1 ? 0 : selectedMediaIndex + 1;
     setSelectedMediaIndex(newIndex);
   };
 
@@ -406,7 +411,7 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                 </div>
 
                 {/* أزرار التنقل */}
-                {project.mediaItems.length > 1 && (
+                {mediaItems.length > 1 && (
                   <>
                     <Button
                       variant="secondary"
@@ -429,15 +434,15 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
 
                 {/* مؤشر العدد */}
                 <div className="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm">
-                  {selectedMediaIndex + 1} / {project.mediaItems.length}
+                  {selectedMediaIndex + 1} / {mediaItems.length}
                 </div>
               </div>
               </ProtectedMedia>
 
               {/* معاينات مصغرة */}
-              {project.mediaItems.length > 1 && (
+              {mediaItems.length > 1 && (
                 <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-6 gap-2">
-                  {project.mediaItems.map((media, index) => (
+                  {mediaItems.map((media, index) => (
                     <button
                       key={media.id}
                       onClick={() => setSelectedMediaIndex(index)}
@@ -747,7 +752,7 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
               </div>
 
               {/* أزرار التنقل في Lightbox */}
-              {project.mediaItems.length > 1 && (
+              {mediaItems.length > 1 && (
                 <>
                   <Button
                     variant="ghost"
