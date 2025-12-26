@@ -14,9 +14,7 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || '';
   const pathname = url.pathname;
   
-  const isArticleDetailPage = /^\/articles\/[^\/]+$/.test(pathname);
-  const isNonLocalizedPage = nonLocalizedPages.some(page => pathname === page || pathname.startsWith(page + '/'));
-  
+  // 🔒 السماح بالملفات الثابتة و API بدون تطبيق i18n
   if (
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
@@ -25,52 +23,32 @@ export function middleware(request: NextRequest) {
     pathname.includes('.') ||
     pathname.startsWith('/dashboard') ||
     pathname.startsWith('/login') ||
-    isArticleDetailPage ||
-    isNonLocalizedPage
+    /^\/articles\/[^\/]+$/.test(pathname)
   ) {
-    const response = NextResponse.next({
-      request: {
-        headers: request.headers,
-      },
+    return NextResponse.next({
+      request: { headers: request.headers },
     });
-    
-    response.headers.set('X-Content-Type-Options', 'nosniff');
-    response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
-    
-    return response;
   }
-  
+
+  // ✅ enforce www canonical domain
   if (hostname === 'aldeyarksa.tech' && process.env.NODE_ENV === 'production') {
     url.host = 'www.aldeyarksa.tech';
     return NextResponse.redirect(url, 301);
   }
 
-  const cleanPath = pathname.replace(/^\/(ar|en)/, '') || '/';
-  const isLocalizedPage = localizedPages.some(page => 
-    cleanPath === page || cleanPath.startsWith(page + '/')
-  );
-
-  if (!isLocalizedPage && !pathname.startsWith('/ar') && !pathname.startsWith('/en')) {
-    const response = NextResponse.next({
-      request: {
-        headers: request.headers,
-      },
-    });
-    
+  // ✅ إذا كان المسار بالفعل /ar/ أو /en/ لا تعيد التوجيه
+  if (pathname.startsWith('/ar/') || pathname.startsWith('/en/') || pathname === '/ar' || pathname === '/en') {
+    const response = intlMiddleware(request);
     response.headers.set('X-Content-Type-Options', 'nosniff');
     response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
-    
     return response;
   }
 
+  // ✅ للمسارات بدون locale، تطبيق i18n middleware
   const response = intlMiddleware(request);
-  
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
   
-  const locale = pathname.startsWith('/en') ? 'en' : 'ar';
-  response.headers.set('Link', `<https://www.aldeyarksa.tech${cleanPath}>; rel="canonical", <https://www.aldeyarksa.tech/ar${cleanPath}>; rel="alternate"; hreflang="ar", <https://www.aldeyarksa.tech/en${cleanPath}>; rel="alternate"; hreflang="en", <https://www.aldeyarksa.tech${cleanPath}>; rel="alternate"; hreflang="x-default"`);
-
   return response;
 }
 

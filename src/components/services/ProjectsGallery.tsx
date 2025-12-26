@@ -16,13 +16,15 @@ interface Project {
   featured: boolean;
   category?: string;
   location?: string;
+  views?: number;
+  likes?: number;
   media_items: Array<{
     src: string;
     alt: string | null;
   }>;
-  _count: {
-    project_views: number;
-    project_likes: number;
+  _count?: {
+    project_views?: number;
+    project_likes?: number;
   };
 }
 
@@ -179,14 +181,14 @@ export default function ProjectsGallery({ projects, categoryName }: ProjectsGall
                           whileHover={{ scale: 1.1 }}
                         >
                           <Eye className="w-4 h-4" />
-                          {project._count?.project_views || 0}
+                          {(project._count?.project_views || project.views || 0) > 0 ? (project._count?.project_views || project.views || 0) : ''}
                         </motion.span>
                         <motion.span 
                           className="flex items-center gap-1"
                           whileHover={{ scale: 1.1 }}
                         >
                           <ThumbsUp className="w-4 h-4" />
-                          {project._count?.project_likes || 0}
+                          {(project._count?.project_likes || project.likes || 0) > 0 ? (project._count?.project_likes || project.likes || 0) : ''}
                         </motion.span>
                       </div>
                       <span className="text-accent font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
