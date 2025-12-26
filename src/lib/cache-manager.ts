@@ -17,6 +17,9 @@ export async function checkForNewContent(
   try {
     let lastUpdate: Date | null = null;
 
+    // ✅ Extract category name from categoryFilter for non-project tables
+    const categoryName = categoryFilter?.category?.contains || null;
+
     switch (contentType) {
       case 'projects':
         const latestProject = await prisma.projects.findFirst({
@@ -31,10 +34,11 @@ export async function checkForNewContent(
         break;
 
       case 'articles':
+        // ✅ Use only 'category' field for articles (not description)
         const latestArticle = await prisma.articles.findFirst({
           where: {
             status: 'PUBLISHED',
-            ...categoryFilter
+            ...(categoryName ? { category: { contains: categoryName } } : {})
           },
           orderBy: { updatedAt: 'desc' },
           select: { updatedAt: true }
@@ -46,7 +50,7 @@ export async function checkForNewContent(
         const latestFaq = await prisma.faqs.findFirst({
           where: {
             status: 'PUBLISHED',
-            ...categoryFilter
+            ...(categoryName ? { category: { contains: categoryName } } : {})
           },
           orderBy: { updatedAt: 'desc' },
           select: { updatedAt: true }
@@ -55,10 +59,10 @@ export async function checkForNewContent(
         break;
 
       case 'reviews':
+        // ✅ Comments table only has 'projectId' - don't use category filter
         const latestReview = await prisma.comments.findFirst({
           where: {
-            status: 'APPROVED',
-            ...categoryFilter
+            status: 'APPROVED'
           },
           orderBy: { createdAt: 'desc' },
           select: { createdAt: true }
@@ -89,7 +93,7 @@ export async function getServiceContentUpdates(categoryFilter: any) {
   const [projectsUpdate, articlesUpdate, faqsUpdate, reviewsUpdate] = await Promise.all([
     checkForNewContent('projects', categoryFilter),
     checkForNewContent('articles', categoryFilter),
-    checkForNewContent('faqs', { category: 'مظلات' }),
+    checkForNewContent('faqs', categoryFilter),
     checkForNewContent('reviews', categoryFilter)
   ]);
 
