@@ -295,11 +295,12 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                           <Image
                             key={`image-${selectedMediaIndex}`}
                             src={currentMedia.src}
-                            alt={`${currentMedia.title || project.title} - مشروع ${project.category} في ${project.location} من ديار جدة العالمية جدة`}
+                            alt={currentMedia.alt || currentMedia.title || `${project.title} - ${project.category}`}
                             fill
                             className="object-cover cursor-pointer transition-opacity duration-300"
                             onClick={() => setIsLightboxOpen(true)}
                             priority={selectedMediaIndex === 0}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
                           />
                           <WatermarkOverlay position="bottom-right" opacity={0.5} size="medium" />
                         </>

@@ -55,7 +55,7 @@ async function getProject(id: string) {
     // فك ترميز URL للتعامل مع الأحرف العربية
     const decodedId = decodeURIComponent(id);
     
-    // البحث باستخدام المعرف أو الـ slug مع جلب _count للتعليقات
+    // البحث باستخدام المعرف أو الـ slug مع جلب البيانات الأساسية بسرعة
     const project = await prisma.projects.findFirst({
       where: {
         OR: [
@@ -63,19 +63,71 @@ async function getProject(id: string) {
           { slug: decodedId }
         ]
       },
-      include: {
-        media_items: { orderBy: { order: 'asc' } },
-        project_tags: true,
-        project_materials: true,
-        comments: {
-          where: { rating: { gt: 0 } },
-          select: { id: true, name: true, message: true, rating: true, createdAt: true }
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        category: true,
+        location: true,
+        completionDate: true,
+        client: true,
+        featured: true,
+        projectDuration: true,
+        projectCost: true,
+        views: true,
+        likes: true,
+        rating: true,
+        status: true,
+        slug: true,
+        metaTitle: true,
+        metaDescription: true,
+        keywords: true,
+        createdAt: true,
+        updatedAt: true,
+        media_items: {
+          select: {
+            id: true,
+            type: true,
+            src: true,
+            thumbnail: true,
+            title: true,
+            description: true,
+            duration: true,
+            order: true,
+            alt: true
+          },
+          orderBy: { order: 'asc' }
+        },
+        project_tags: {
+          select: { id: true, name: true }
+        },
+        project_materials: {
+          select: { id: true, name: true }
         },
         _count: {
           select: { comments: true }
         }
       }
     });
+    
+    // جلب التعليقات بشكل منفصل (lazy loading) لتحسين الأداء
+    let comments: any[] = [];
+    if (project) {
+      comments = await prisma.comments.findMany({
+        where: { 
+          projectId: project.id,
+          rating: { gt: 0 }
+        },
+        select: { 
+          id: true, 
+          name: true, 
+          message: true, 
+          rating: true, 
+          createdAt: true 
+        },
+        take: 10
+      });
+    }
 
     if (!project) {
       return null;
@@ -84,10 +136,10 @@ async function getProject(id: string) {
     // تنسيق البيانات بنفس طريقة API
     return {
       ...project,
-      mediaItems: project.media_items,
+      mediaItems: project.media_items || [],
       tags: project.project_tags || [],
       materials: project.project_materials || [],
-      comments: project.comments || [],
+      comments: comments || [],
       views: project.views || 0,
       rating: project.rating || 0,
       _count: project._count
@@ -162,14 +214,14 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
             url: getAbsoluteUrl(img.src),
             width: 1200,
             height: 630,
-            alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة العالمية`,
+            alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location}`,
             type: getMediaType(img.src),
           }))
         : [{
             url: getAbsoluteUrl(mainImage),
             width: 1200,
             height: 630,
-            alt: `${project.title} - ديار جدة العالمية`,
+            alt: `${project.title} - ${project.category}`,
             type: 'image/jpeg',
           }],
       // ✅ جميع فيديوهات المشروع
@@ -197,10 +249,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         : [getAbsoluteUrl(mainImage)],
     },
     alternates: {
-      canonical: fullUrl,
+      canonical: `https://www.aldeyarksa.tech/portfolio/${project.slug || id}`,
       languages: {
         'ar-SA': fullUrl,
-        'x-default': fullUrl
+        'en-US': `https://www.aldeyarksa.tech/en/portfolio/${project.slug || id}`,
+        'x-default': `https://www.aldeyarksa.tech/portfolio/${project.slug || id}`
       }
     },
     robots: generateRobotsMetadata()
