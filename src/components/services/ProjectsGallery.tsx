@@ -176,20 +176,24 @@ export default function ProjectsGallery({ projects, categoryName }: ProjectsGall
                     
                     <div className="flex items-center justify-between text-sm">
                       <div className="flex items-center gap-4 text-muted-foreground">
-                        <motion.span 
-                          className="flex items-center gap-1"
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          <Eye className="w-4 h-4" />
-                          {(project._count?.project_views || project.views || 0) > 0 ? (project._count?.project_views || project.views || 0) : ''}
-                        </motion.span>
-                        <motion.span 
-                          className="flex items-center gap-1"
-                          whileHover={{ scale: 1.1 }}
-                        >
-                          <ThumbsUp className="w-4 h-4" />
-                          {(project._count?.project_likes || project.likes || 0) > 0 ? (project._count?.project_likes || project.likes || 0) : ''}
-                        </motion.span>
+                        {(project._count?.project_views || project.views || 0) > 0 && (
+                          <motion.span 
+                            className="flex items-center gap-1"
+                            whileHover={{ scale: 1.1 }}
+                          >
+                            <Eye className="w-4 h-4" />
+                            {project._count?.project_views || project.views || 0}
+                          </motion.span>
+                        )}
+                        {(project._count?.project_likes || project.likes || 0) > 0 && (
+                          <motion.span 
+                            className="flex items-center gap-1"
+                            whileHover={{ scale: 1.1 }}
+                          >
+                            <ThumbsUp className="w-4 h-4" />
+                            {project._count?.project_likes || project.likes || 0}
+                          </motion.span>
+                        )}
                       </div>
                       <span className="text-accent font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
                         عرض

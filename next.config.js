@@ -217,48 +217,6 @@ const nextConfig = {
         destination: 'https://www.aldeyarksa.tech/:path*',
         permanent: true,
       },
-      // Redirect old service pages to new bilingual pages (Arabic default)
-      {
-        source: '/services/byoot-shaar',
-        destination: '/ar/services/byoot-shaar',
-        permanent: true,
-      },
-      {
-        source: '/services/khayyam',
-        destination: '/ar/services/khayyam',
-        permanent: true,
-      },
-      {
-        source: '/services/landscaping',
-        destination: '/ar/services/landscaping',
-        permanent: true,
-      },
-      {
-        source: '/services/pergolas',
-        destination: '/ar/services/pergolas',
-        permanent: true,
-      },
-      {
-        source: '/services/renovation',
-        destination: '/ar/services/renovation',
-        permanent: true,
-      },
-      {
-        source: '/services/sandwich-panel',
-        destination: '/ar/services/sandwich-panel',
-        permanent: true,
-      },
-      {
-        source: '/services/mazallat',
-        destination: '/ar/services/mazallat',
-        permanent: true,
-      },
-      // Old quote page redirect
-      {
-        source: '/quote',
-        destination: '/ar/quote',
-        permanent: true,
-      },
     ];
   },
 };
