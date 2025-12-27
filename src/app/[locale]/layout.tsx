@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       ? "الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر. خبرة 15 عاماً، ضمان 10 سنوات، تركيب احترافي، أسعار منافسة."
       : "The leading company in Jeddah for installing shades, pergolas, and fences. 15 years of experience, 10-year warranty, professional installation, competitive prices.",
     keywords: isArabic
-      ? "مظلات جدة، برجولات جدة، سواتر جدة، مظلات سيارات، برجولات خشبية، سواتر حديد، تركيب مظلات، تركيب برجولات، تركيب سواتر، مظلات حدائق، برجولات حدائق، سواتر خصوصية، مظلات pvc، مظلات قماش، برجولات بلاستيك، ديار جدة العالمية، شركة مظلات جدة، أفضل شركة مظلات، مظلات بأسعار منافسة، مظلات وبرجولات، تنسيق حدائق جدة، هناجر جدة، ساندوتش بانل جدة، تركيب هناجر، بناء هناجر، مظلات سيارات جدة، مظلات حدائق جدة، برجولات خشبية جدة، سواتر حديد جدة، مظلات خارجية، مظلات داخلية، أسعار مظلات جدة، ضمان مظلات 10 سنوات، مظلات احترافية، مظلات عازلة للحرارة، مظلات مقاومة للأمطار، تصميم مظلات، تنفيذ مظلات، برجولات حديثة، برجولات كلاسيك، برجولات فاخرة، برجولات للفلل، برجولات للحدائق، تصميم برجولات، سواتر قماش، سواتر خشبية، سواتر pvc، سواتر شينكو، سواتر مجدول، سواتر لكسان، سواتر عازلة"
-      : "jeddah shades, jeddah pergolas, jeddah fences, car shades, wooden pergolas, metal fences, shade installation, pergola installation, fence installation, garden shades, garden pergolas, privacy fences, pvc shades, fabric shades, plastic pergolas, aldeyar global professionals, shade company jeddah, best shade company, competitive prices shades, shades and pergolas, landscaping jeddah, hangars jeddah, sandwich panel jeddah, hangar installation, hangar construction, car shades jeddah, garden shades jeddah, wooden pergolas jeddah, metal fences jeddah, outdoor shades, indoor shades, shade prices jeddah, 10-year warranty shades, professional shades, heat-resistant shades, rain-resistant shades, shade design, shade execution, modern pergolas, classic pergolas, luxury pergolas, villa pergolas, garden pergolas, pergola design, fabric fences, wooden fences, pvc fences, shinco fences, woven fences, lexan fences, insulated fences",
+      ? "مظلات سيارات جدة، تركيب مظلات وسواتر، أفضل شركة برجولات، سواتر شينكو، تنسيق حدائق مودرن، أسعار المظلات 2024، شركة ديار جدة، حداد مظلات جدة، مظلات لكسان، بيوت شعر ملكي"
+      : "Jeddah car shades, shade and fence installation, best pergola company, modern landscaping, shade prices 2024, Deyar Jeddah company",
     authors: [{ name: isArabic ? "ديار جدة العالمية" : "Deyar Jeddah" }],
     robots: "index, follow",
     alternates: {
@@ -78,10 +78,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       icon: [
         { url: "/favicon.svg", type: "image/svg+xml" },
         { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
-        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-        { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-        { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }
       ],
       shortcut: "/favicon.ico",
       apple: "/apple-touch-icon.png",

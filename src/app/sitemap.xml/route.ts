@@ -234,11 +234,6 @@ export async function GET() {
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>${hreflangTags}
-    <image:image>
-      <image:loc>${baseUrl}/images/logo.png</image:loc>
-      <image:caption><![CDATA[${page.keywords[locale]}]]></image:caption>
-      <image:title><![CDATA[ديار جدة العالمية - ${page.keywords[locale]}]]></image:title>
-    </image:image>
   </url>`;
   };
 
@@ -305,11 +300,19 @@ export async function GET() {
     ? dbProjects.map((project) => {
         const slug = project.slug || project.id;
         const lastMod = project.updatedAt ? new Date(project.updatedAt).toISOString() : new Date().toISOString();
+        
+        // جلب الصور للمشروع لإضافتها في خريطة الصور بشكل برمجى قوى
+        // ملاحظة: نحتاج لتوسيع الاستعلام أو الاكتفاء بالبيانات الحالية
         return `<url>
     <loc>${baseUrl}/portfolio/${encodeURIComponent(slug)}</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>${baseUrl}/images/portfolio/${slug}.jpg</image:loc>
+      <image:caption><![CDATA[${project.title} - ${project.category} في ${project.location}]]></image:caption>
+      <image:title><![CDATA[${project.title}]]></image:title>
+    </image:image>
   </url>`;
       }).join('\n  ')
     : '';
