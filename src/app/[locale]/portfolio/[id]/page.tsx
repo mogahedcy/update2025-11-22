@@ -167,27 +167,42 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const allImages = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
   const allVideos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
   
-  // تحسين اختيار الصورة الرئيسية للمشاركة
-  let shareImage = 'https://www.aldeyarksa.tech/images/slider1.webp';
-  if (allImages.length > 0) {
-    shareImage = getAbsoluteUrl(allImages[0].src);
-  } else if (allVideos.length > 0) {
-    const thumb = generateVideoThumbnail(allVideos[0].src);
-    if (thumb) shareImage = thumb;
-    else if (allVideos[0].thumbnail) shareImage = getAbsoluteUrl(allVideos[0].thumbnail);
+  // تحسين اختيار الصورة الرئيسية للمشاركة بناءً على البيانات الفعلية للمشروع
+  let shareImage = '';
+  
+  if (allVideos.length > 0) {
+    // الأولوية للفيديو: استخراج صورة معبرة منه (Thumbnail)
+    const generatedThumb = generateVideoThumbnail(allVideos[0].src);
+    if (generatedThumb) {
+      shareImage = generatedThumb;
+    } else if (allVideos[0].thumbnail) {
+      shareImage = getAbsoluteUrl(allVideos[0].thumbnail);
+    }
   }
   
-  // تحسين العنوان ليكون أقل من 60 حرف وبصيغة جذابة لمحركات البحث
-  const shortTitle = project.title.length > 45 
-    ? project.title.substring(0, 42) + '...' 
-    : project.title;
-  const seoTitle = `${shortTitle} | ديار جدة العالمية`;
+  // إذا لم يتوفر فيديو أو فشل استخراج الصورة، نستخدم أول صورة حقيقية للمشروع
+  if (!shareImage && allImages.length > 0) {
+    shareImage = getAbsoluteUrl(allImages[0].src);
+  }
   
-  // تحسين الوصف ليكون واضح ومباشر
-  const cleanDescription = project.description.replace(/\s+/g, ' ').trim();
-  const seoDescription = cleanDescription.length > 155 
-    ? cleanDescription.substring(0, 152).trim() + '...'
-    : `${cleanDescription} - تنفيذ ديار جدة العالمية في ${project.location} بضمان 10 سنوات.`;
+  //Fallback أخير في حال عدم وجود أي وسائط (نادر جداً)
+  if (!shareImage) {
+    shareImage = 'https://www.aldeyarksa.tech/images/slider1.webp';
+  }
+  
+  // تحسين العنوان والكلمات الدلالية بناءً على البيانات التي أدخلها المستخدم في لوحة التحكم
+  const projectKeywords = project.keywords ? project.keywords.split(',').map((k: string) => k.trim()) : [];
+  const dynamicKeywords = [
+    project.title,
+    project.category,
+    project.location,
+    ...projectKeywords,
+    'ديار جدة العالمية'
+  ].filter(Boolean);
+  
+  const seoTitle = project.metaTitle || `${project.title} | ديار جدة العالمية`;
+  const seoDescription = project.metaDescription || 
+    `${project.description.substring(0, 150)}... تنفيذ احترافي في ${project.location} بضمان 10 سنوات.`;
   
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
@@ -195,17 +210,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: seoTitle,
     description: seoDescription,
-    keywords: [
-      project.category,
-      project.title,
-      'مظلات وسواتر جدة',
-      'برجولات حدائق مودرن',
-      'تركيب سواتر قماش',
-      'أفضل شركة مظلات في جدة',
-      'ديار جدة العالمية',
-      project.location,
-      'تصميم مظلات سيارات',
-    ].join(', '),
+    keywords: dynamicKeywords.join(', '),
     openGraph: {
       title: seoTitle,
       description: seoDescription,
@@ -218,19 +223,20 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       authors: ['ديار جدة العالمية'],
       section: project.category,
       tags: project.tags?.map((t: any) => t.name) || [],
-      images: allImages.length > 0 
-        ? allImages.map((img: any) => ({
-            url: getAbsoluteUrl(img.src),
-            width: 1200,
-            height: 630,
-            alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location}`,
-          }))
-        : [{
-            url: shareImage,
-            width: 1200,
-            height: 630,
-            alt: `${project.title} - ${project.category}`,
-          }],
+      images: [
+        {
+          url: shareImage,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+        ...allImages.slice(1, 4).map((img: any) => ({
+          url: getAbsoluteUrl(img.src),
+          width: 1200,
+          height: 630,
+          alt: img.alt || project.title,
+        }))
+      ],
       videos: allVideos.length > 0
         ? allVideos.map((video: any) => ({
             url: getAbsoluteUrl(video.src),
