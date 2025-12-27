@@ -152,11 +152,17 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
   const toggleVideoMute = () => setIsVideoMuted(!isVideoMuted);
 
   const category = categories.find(c => c.id === project.category);
-  const mediaItems = project.mediaItems || [];
-  const currentMedia = mediaItems?.[selectedMediaIndex] || mediaItems?.[0];
+  const mediaItems = project.mediaItems && project.mediaItems.length > 0 ? project.mediaItems : [];
+  const currentMedia = mediaItems.length > 0 ? (mediaItems[selectedMediaIndex] || mediaItems[0]) : null;
 
-  // دالة للتحقق من نوع الفيديو
+  // دالة للتحقق من نوع الفيديو - تدعم Cloudinary URLs
   const getVideoType = (src: string): string => {
+    // التحقق من URL parameter في Cloudinary
+    if (src.includes('/video/upload/') || src.includes('/upload/') && src.includes('cloudinary')) {
+      // Cloudinary تعيد دائماً MP4 من الفيديوهات بشكل افتراضي
+      return 'video/mp4';
+    }
+    
     const extension = src.split('.').pop()?.toLowerCase();
     switch (extension) {
       case 'mp4':
@@ -360,10 +366,6 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                                 }}
                               >
                                 <source src={currentMedia.src} type={getVideoType(currentMedia.src)} />
-                                {/* Fallback sources for better compatibility */}
-                                {currentMedia.src.includes('.mp4') && (
-                                  <source src={currentMedia.src.replace('.mp4', '.webm')} type="video/webm" />
-                                )}
                                 متصفحك لا يدعم عرض الفيديو
                               </video>
 
