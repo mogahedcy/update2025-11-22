@@ -594,6 +594,12 @@ export function generateProjectSchema(data: {
     "genre": data.category,
     "artform": data.category,
     "artworkSurface": data.category,
+    "keywords": `مظلات ${data.location}, برجولات ${data.location}, سواتر ${data.location}, ديار جدة العالمية`,
+    "maintainer": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "url": BASE_URL
+    },
     ...(data.dateCreated && { 
       "dateCreated": data.dateCreated,
       "datePublished": data.dateCreated
@@ -620,7 +626,7 @@ export function generateProjectSchema(data: {
       "name": SITE_NAME,
       "logo": {
         "@type": "ImageObject",
-        "url": `${BASE_URL}/favicon.svg`
+        "url": `${BASE_URL}/logo.png`
       }
     },
     "mainEntityOfPage": {
@@ -637,17 +643,35 @@ export function generateProjectSchema(data: {
       "caption": img.caption || `مشروع ${data.name} - ${data.category}`,
       "representativeOfPage": index === 0,
       "license": `${BASE_URL}/terms`,
-      "creditText": "ديار جدة العالمية"
+      "acquireLicensePage": `${BASE_URL}/contact`,
+      "creditText": "ديار جدة العالمية",
+      "creator": {
+        "@type": "Organization",
+        "name": SITE_NAME
+      },
+      "copyrightNotice": "© ديار جدة العالمية"
     })),
     ...(data.videos && data.videos.length > 0 && {
       "video": data.videos.map((video, index) => ({
         "@type": "VideoObject",
         "@id": `${pageUrl}#video-${index + 1}`,
         "name": video.name || `${data.name} - فيديو ${index + 1}`,
-        "description": video.description || `فيديو مشروع ${data.name}`,
+        "description": video.description || `فيديو يوضح تفاصيل تنفيذ مشروع ${data.name} - ${data.category} في ${data.location}`,
         "contentUrl": video.url,
-        "thumbnailUrl": video.thumbnailUrl || `${BASE_URL}/favicon.svg`,
-        "uploadDate": data.dateCreated || new Date().toISOString()
+        "thumbnailUrl": video.thumbnailUrl || `${BASE_URL}/logo.png`,
+        "uploadDate": data.dateCreated || new Date().toISOString(),
+        "publisher": {
+          "@type": "Organization",
+          "name": SITE_NAME,
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${BASE_URL}/logo.png`
+          }
+        },
+        "potentialAction": {
+          "@type": "WatchAction",
+          "target": video.url
+        }
       }))
     }),
     ...(data.aggregateRating && data.aggregateRating.reviewCount > 0 && {

@@ -217,6 +217,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       modifiedTime: project.updatedAt || project.createdAt,
       authors: ['ديار جدة العالمية'],
       section: project.category,
+      tags: project.tags?.map((t: any) => t.name) || [],
       images: allImages.length > 0 
         ? allImages.map((img: any) => ({
             url: getAbsoluteUrl(img.src),
