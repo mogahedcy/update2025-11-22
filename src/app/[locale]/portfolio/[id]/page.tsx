@@ -166,19 +166,28 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   // استخراج جميع الصور والفيديوهات للمشروع
   const allImages = project.mediaItems?.filter((item: any) => item.type === 'IMAGE') || [];
   const allVideos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
-  const mainImage = allImages[0]?.src || 'https://www.aldeyarksa.tech/logo.png';
   
-  // تحسين العنوان ليكون أقل من 60 حرف
-  const shortTitle = project.title.length > 40 
-    ? project.title.substring(0, 37) + '...' 
+  // تحسين اختيار الصورة الرئيسية للمشاركة
+  // نفضل صورة حقيقية من المشروع على اللوغو، وإذا وجد فيديو نستخدم الصورة المصغرة له
+  let shareImage = 'https://www.aldeyarksa.tech/logo.png';
+  if (allImages.length > 0) {
+    shareImage = getAbsoluteUrl(allImages[0].src);
+  } else if (allVideos.length > 0) {
+    const thumb = generateVideoThumbnail(allVideos[0].src);
+    if (thumb) shareImage = thumb;
+  }
+  
+  // تحسين العنوان ليكون أقل من 60 حرف وبصيغة جذابة لمحركات البحث
+  const shortTitle = project.title.length > 45 
+    ? project.title.substring(0, 42) + '...' 
     : project.title;
-  const seoTitle = `${shortTitle} | ديار جدة العالمية`;
+  const seoTitle = `${shortTitle} | ${project.category} في ${project.location}`;
   
-  // تحسين الوصف ليكون واضح ومباشر بدون قطع في المنتصف (150-160 حرف)
+  // تحسين الوصف ليكون واضح ومباشر (150-160 حرف) مع كلمات دلالية قوية
   const cleanDescription = project.description.replace(/\s+/g, ' ').trim();
-  const seoDescription = cleanDescription.length > 140 
-    ? cleanDescription.substring(0, 140).trim() + ' - ديار جدة العالمية'
-    : `${cleanDescription} - ${project.category} في ${project.location} | ديار جدة العالمية`;
+  const seoDescription = cleanDescription.length > 145 
+    ? cleanDescription.substring(0, 142).trim() + '...'
+    : `${cleanDescription} - تنفيذ ديار جدة العالمية في ${project.location} بأعلى معايير الجودة والضمان.`;
   
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
@@ -188,15 +197,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     description: seoDescription,
     keywords: [
       project.category,
-      'جدة',
-      'السعودية',
-      'مظلات',
-      'سواتر',
-      'برجولات',
-      'تنسيق حدائق',
-      'ديار جدة العالمية',
+      project.title,
+      'مظلات جدة',
+      'برجولات مودرن',
+      'سواتر قماش',
+      'تنسيق حدائق جدة',
+      'شركة ديار جدة العالمية',
       project.location,
-      project.title
     ].join(', '),
     openGraph: {
       title: seoTitle,
@@ -208,29 +215,26 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       publishedTime: project.createdAt,
       modifiedTime: project.updatedAt || project.createdAt,
       authors: ['ديار جدة العالمية'],
-      // ✅ جميع صور المشروع - كل صورة سيتم أرشفتها في Google Images
+      section: project.category,
       images: allImages.length > 0 
-        ? allImages.map((img: any, index: number) => ({
+        ? allImages.map((img: any) => ({
             url: getAbsoluteUrl(img.src),
             width: 1200,
             height: 630,
             alt: img.alt || img.title || `${project.title} - ${project.category} في ${project.location}`,
-            type: getMediaType(img.src),
           }))
         : [{
-            url: getAbsoluteUrl(mainImage),
+            url: shareImage,
             width: 1200,
             height: 630,
             alt: `${project.title} - ${project.category}`,
-            type: 'image/jpeg',
           }],
-      // ✅ جميع فيديوهات المشروع
       videos: allVideos.length > 0
-        ? allVideos.map((video: any, index: number) => ({
+        ? allVideos.map((video: any) => ({
             url: getAbsoluteUrl(video.src),
             width: 1280,
             height: 720,
-            type: getMediaType(video.src),
+            type: 'video/mp4',
           }))
         : undefined,
     },

@@ -314,7 +314,8 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                           <Image
                             key={`image-${selectedMediaIndex}`}
                             src={currentMedia.src}
-                            alt={currentMedia.alt || currentMedia.title || `${project.title} - ${project.category}`}
+                            alt={currentMedia.alt || currentMedia.title || `${project.title} - ${project.category} في ${project.location}`}
+                            title={currentMedia.title || project.title}
                             fill
                             className="object-cover cursor-pointer transition-opacity duration-300"
                             onClick={() => setIsLightboxOpen(true)}
@@ -354,6 +355,8 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                                 preload="metadata"
                                 className="w-full h-full object-cover"
                                 poster={currentMedia.thumbnail || undefined}
+                                title={currentMedia.title || `${project.title} - فيديو المشروع`}
+                                aria-label={currentMedia.description || `${project.title} - فيديو توضيحي`}
                                 playsInline
                                 crossOrigin="anonymous"
                                 onLoadStart={() => {
