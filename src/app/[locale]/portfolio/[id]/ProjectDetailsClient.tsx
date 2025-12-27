@@ -329,22 +329,32 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                           <WatermarkOverlay position="bottom-right" opacity={0.5} size="medium" />
                           {videoError ? (
                             <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                              <div className="text-center">
+                              <div className="text-center p-4">
                                 <div className="text-red-500 mb-2">
                                   <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
                                 </div>
-                                <p className="text-gray-600 text-sm">{videoError}</p>
-                                <button
-                                  onClick={() => {
-                                    setVideoError(null);
-                                    setVideoLoading(true);
-                                  }}
-                                  className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition-colors"
-                                >
-                                  إعادة المحاولة
-                                </button>
+                                <p className="text-gray-600 text-sm mb-4">{videoError}</p>
+                                <div className="flex flex-col gap-2">
+                                  <button
+                                    onClick={() => {
+                                      setVideoError(null);
+                                      setVideoLoading(true);
+                                    }}
+                                    className="px-4 py-2 bg-accent text-white rounded-lg text-sm hover:bg-accent/90 transition-colors"
+                                  >
+                                    إعادة المحاولة
+                                  </button>
+                                  <a 
+                                    href={currentMedia.src} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300 transition-colors"
+                                  >
+                                    فتح الفيديو في صفحة جديدة
+                                  </a>
+                                </div>
                               </div>
                             </div>
                           ) : (
@@ -352,37 +362,30 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                               <video
                                 key={`video-${selectedMediaIndex}-${currentMedia.src}`}
                                 controls
-                                preload="metadata"
-                                className="w-full h-full object-cover"
+                                preload="auto"
+                                playsInline
+                                muted={isVideoMuted}
+                                className="w-full h-full object-contain bg-black"
                                 poster={currentMedia.thumbnail || undefined}
                                 title={currentMedia.title || `${project.title} - فيديو المشروع`}
                                 aria-label={currentMedia.description || `${project.title} - فيديو توضيحي`}
-                                playsInline
                                 crossOrigin="anonymous"
+                                onPlay={handleVideoPlay}
+                                onPause={handleVideoPause}
                                 onLoadStart={() => {
                                   setVideoLoading(true);
                                   setVideoError(null);
-                                  console.log('🎬 بدء تحميل الفيديو:', currentMedia.src);
                                 }}
-                                onCanPlay={() => {
-                                  setVideoLoading(false);
-                                  console.log('✅ الفيديو جاهز للتشغيل');
-                                }}
-                                onError={(e) => handleVideoError(e)}
-                                onLoadedData={() => {
-                                  setVideoLoading(false);
-                                  console.log('📹 تم تحميل بيانات الفيديو');
-                                }}
-                                onLoadedMetadata={(e) => {
-                                  console.log('📊 Metadata loaded:', {
-                                    duration: e.currentTarget.duration,
-                                    videoWidth: e.currentTarget.videoWidth,
-                                    videoHeight: e.currentTarget.videoHeight
-                                  });
+                                onCanPlay={() => setVideoLoading(false)}
+                                onError={(e) => {
+                                  console.error('Video Error:', e);
+                                  handleVideoError(e);
                                 }}
                               >
+                                <source src={currentMedia.src} type="video/mp4" />
+                                <source src={currentMedia.src.replace('.mp4', '.webm')} type="video/webm" />
                                 <source src={currentMedia.src} type={getVideoType(currentMedia.src)} />
-                                متصفحك لا يدعم عرض الفيديو
+                                متصفحك لا يدعم عرض الفيديو. <a href={currentMedia.src} className="underline">اضغط هنا لتحميله</a>
                               </video>
 
                               {/* مؤشر التحميل */}
