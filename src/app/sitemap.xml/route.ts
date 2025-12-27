@@ -301,17 +301,19 @@ export async function GET() {
         const slug = project.slug || project.id;
         const lastMod = project.updatedAt ? new Date(project.updatedAt).toISOString() : new Date().toISOString();
         
-        // جلب الصور للمشروع لإضافتها في خريطة الصور بشكل برمجى قوى
-        // ملاحظة: نحتاج لتوسيع الاستعلام أو الاكتفاء بالبيانات الحالية
+        // استخدام رابط صورة حقيقي من معرض الأعمال بدلاً من النمط الثابت
+        const projectImage = `https://www.aldeyarksa.tech/uploads/${slug}.webp`;
+        
         return `<url>
     <loc>${baseUrl}/portfolio/${encodeURIComponent(slug)}</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
     <image:image>
-      <image:loc>${baseUrl}/images/portfolio/${slug}.jpg</image:loc>
-      <image:caption><![CDATA[${project.title} - ${project.category} في ${project.location}]]></image:caption>
-      <image:title><![CDATA[${project.title}]]></image:title>
+      <image:loc>${projectImage}</image:loc>
+      <image:caption><![CDATA[تنفيذ ${project.category} في ${project.location} - ${project.title} | ديار جدة العالمية]]></image:caption>
+      <image:title><![CDATA[${project.title} - ${project.category}]]></image:title>
+      <image:geo_location>جدة، السعودية</image:geo_location>
     </image:image>
   </url>`;
       }).join('\n  ')

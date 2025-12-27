@@ -46,6 +46,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
       "latitude": "21.5433",
       "longitude": "39.1728"
     },
+    "hasMap": "https://www.google.com/maps?cid=YOUR_CID_HERE",
     "areaServed": [
       {
         "@type": "City",
@@ -54,6 +55,14 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
           "@type": "AdministrativeArea",
           "name": isArabic ? "منطقة مكة المكرمة" : "Makkah Region"
         }
+      },
+      {
+        "@type": "City",
+        "name": isArabic ? "مكة المكرمة" : "Makkah"
+      },
+      {
+        "@type": "City",
+        "name": isArabic ? "الطائف" : "Taif"
       }
     ],
     "priceRange": "$$",

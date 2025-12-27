@@ -45,6 +45,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: isArabic
       ? 'شركة ديار جدة العالمية - تركيب مظلات سيارات، برجولات، سواتر، ساندوتش بانل، تنسيق حدائق، بيوت شعر بجدة. خبرة 15 عام، ضمان 10 سنوات.'
       : 'Aldeyar Global Professionals - Installing car shades, pergolas, fences, sandwich panels, landscaping, traditional houses in Jeddah. 15 years experience, 10 year warranty.',
+    keywords: isArabic
+      ? "مظلات سيارات جدة، سواتر ومظلات، تركيب برجولات، ساندوتش بانل، تنسيق حدائق، أسعار المظلات، شركة مظلات، حداد جدة، مظلات خشبية، سواتر لكسان، بيوت شعر، خيام ملكية، مظلات قماش، سواتر شينكو"
+      : "Jeddah car shades, shades and fences, pergola installation, sandwich panel, landscaping, shade prices, shade company, Jeddah blacksmith, wooden shades, lexan fences",
     alternates: {
       canonical: locale === 'ar' ? '/' : '/en',
       languages: {
