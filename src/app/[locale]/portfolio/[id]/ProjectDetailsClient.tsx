@@ -180,39 +180,52 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
 
   // دالة لمعالجة أخطاء الفيديو
   const handleVideoError = (err: any) => {
-    const error = err.target as HTMLVideoElement;
-    const errorCode = error.error?.code;
-    const errorMessage = error.error?.message;
-    
-    console.error('❌ خطأ في تشغيل الفيديو:', {
-      code: errorCode,
-      message: errorMessage,
-      src: error.currentSrc,
-      type: error.querySelector('source')?.type
-    });
-    
-    // رسائل خطأ مفصلة بناءً على نوع الخطأ
-    let userFriendlyMessage = 'لا يمكن تشغيل هذا الفيديو.';
-    
-    switch (errorCode) {
-      case 1: // MEDIA_ERR_ABORTED
-        userFriendlyMessage = 'تم إيقاف تحميل الفيديو.';
-        break;
-      case 2: // MEDIA_ERR_NETWORK
-        userFriendlyMessage = 'حدث خطأ في الشبكة أثناء تحميل الفيديو.';
-        break;
-      case 3: // MEDIA_ERR_DECODE
-        userFriendlyMessage = 'الفيديو تالف أو بتنسيق غير مدعوم.';
-        break;
-      case 4: // MEDIA_ERR_SRC_NOT_SUPPORTED
-        userFriendlyMessage = 'تنسيق الفيديو غير مدعوم. يرجى استخدام MP4 أو WebM.';
-        break;
-      default:
-        userFriendlyMessage = 'حدث خطأ غير متوقع في تشغيل الفيديو.';
+    try {
+      const error = err?.target as HTMLVideoElement | null;
+      if (!error) {
+        console.error('❌ خطأ في تشغيل الفيديو: لا يمكن الوصول إلى عنصر الفيديو');
+        setVideoError('لا يمكن تشغيل هذا الفيديو.');
+        setVideoLoading(false);
+        return;
+      }
+      
+      const errorCode = error.error?.code;
+      const errorMessage = error.error?.message;
+      
+      console.error('❌ خطأ في تشغيل الفيديو:', {
+        code: errorCode,
+        message: errorMessage,
+        src: error.currentSrc,
+        type: error.querySelector('source')?.type
+      });
+      
+      // رسائل خطأ مفصلة بناءً على نوع الخطأ
+      let userFriendlyMessage = 'لا يمكن تشغيل هذا الفيديو.';
+      
+      switch (errorCode) {
+        case 1: // MEDIA_ERR_ABORTED
+          userFriendlyMessage = 'تم إيقاف تحميل الفيديو.';
+          break;
+        case 2: // MEDIA_ERR_NETWORK
+          userFriendlyMessage = 'حدث خطأ في الشبكة أثناء تحميل الفيديو.';
+          break;
+        case 3: // MEDIA_ERR_DECODE
+          userFriendlyMessage = 'الفيديو تالف أو بتنسيق غير مدعوم.';
+          break;
+        case 4: // MEDIA_ERR_SRC_NOT_SUPPORTED
+          userFriendlyMessage = 'تنسيق الفيديو غير مدعوم. يرجى استخدام MP4 أو WebM.';
+          break;
+        default:
+          userFriendlyMessage = 'حدث خطأ غير متوقع في تشغيل الفيديو.';
+      }
+      
+      setVideoError(userFriendlyMessage);
+      setVideoLoading(false);
+    } catch (e) {
+      console.error('❌ خطأ في معالجة خطأ الفيديو:', e);
+      setVideoError('لا يمكن تشغيل هذا الفيديو.');
+      setVideoLoading(false);
     }
-    
-    setVideoError(userFriendlyMessage);
-    setVideoLoading(false);
   };
 
   const handlePrevMedia = () => {

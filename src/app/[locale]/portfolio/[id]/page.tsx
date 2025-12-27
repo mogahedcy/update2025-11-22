@@ -476,7 +476,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
             '@type': 'LocalBusiness',
             name: 'ديار جدة العالمية',
             description: `${project.category} في ${project.location} - تنفيذ ديار جدة العالمية بجودة عالية وضمان 10 سنوات`,
-            image: images.length > 0 ? images.map((img: any) => getAbsoluteUrl(img.src)) : [getAbsoluteUrl(mainImage)],
+            image: images.length > 0 ? images.map((img: any) => getAbsoluteUrl(img.src)) : ['https://www.aldeyarksa.tech/logo.png'],
             address: {
               '@type': 'PostalAddress',
               addressLocality: project.location || 'جدة',
