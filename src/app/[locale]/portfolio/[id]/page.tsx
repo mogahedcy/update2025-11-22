@@ -168,26 +168,26 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const allVideos = project.mediaItems?.filter((item: any) => item.type === 'VIDEO') || [];
   
   // تحسين اختيار الصورة الرئيسية للمشاركة
-  // نفضل صورة حقيقية من المشروع على اللوغو، وإذا وجد فيديو نستخدم الصورة المصغرة له
-  let shareImage = 'https://www.aldeyarksa.tech/logo.png';
+  let shareImage = 'https://www.aldeyarksa.tech/images/slider1.webp';
   if (allImages.length > 0) {
     shareImage = getAbsoluteUrl(allImages[0].src);
   } else if (allVideos.length > 0) {
     const thumb = generateVideoThumbnail(allVideos[0].src);
     if (thumb) shareImage = thumb;
+    else if (allVideos[0].thumbnail) shareImage = getAbsoluteUrl(allVideos[0].thumbnail);
   }
   
   // تحسين العنوان ليكون أقل من 60 حرف وبصيغة جذابة لمحركات البحث
   const shortTitle = project.title.length > 45 
     ? project.title.substring(0, 42) + '...' 
     : project.title;
-  const seoTitle = `${shortTitle} | ${project.category} في ${project.location}`;
+  const seoTitle = `${shortTitle} | ديار جدة العالمية`;
   
-  // تحسين الوصف ليكون واضح ومباشر (150-160 حرف) مع كلمات دلالية قوية
+  // تحسين الوصف ليكون واضح ومباشر
   const cleanDescription = project.description.replace(/\s+/g, ' ').trim();
-  const seoDescription = cleanDescription.length > 145 
-    ? cleanDescription.substring(0, 142).trim() + '...'
-    : `${cleanDescription} - تنفيذ ديار جدة العالمية في ${project.location} بأعلى معايير الجودة والضمان 10 سنوات.`;
+  const seoDescription = cleanDescription.length > 155 
+    ? cleanDescription.substring(0, 152).trim() + '...'
+    : `${cleanDescription} - تنفيذ ديار جدة العالمية في ${project.location} بضمان 10 سنوات.`;
   
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
