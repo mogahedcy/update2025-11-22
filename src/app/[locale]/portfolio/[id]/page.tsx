@@ -187,7 +187,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const cleanDescription = project.description.replace(/\s+/g, ' ').trim();
   const seoDescription = cleanDescription.length > 145 
     ? cleanDescription.substring(0, 142).trim() + '...'
-    : `${cleanDescription} - تنفيذ ديار جدة العالمية في ${project.location} بأعلى معايير الجودة والضمان.`;
+    : `${cleanDescription} - تنفيذ ديار جدة العالمية في ${project.location} بأعلى معايير الجودة والضمان 10 سنوات.`;
   
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
@@ -198,12 +198,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     keywords: [
       project.category,
       project.title,
-      'مظلات جدة',
-      'برجولات مودرن',
-      'سواتر قماش',
-      'تنسيق حدائق جدة',
-      'شركة ديار جدة العالمية',
+      'مظلات وسواتر جدة',
+      'برجولات حدائق مودرن',
+      'تركيب سواتر قماش',
+      'أفضل شركة مظلات في جدة',
+      'ديار جدة العالمية',
       project.location,
+      'تصميم مظلات سيارات',
     ].join(', '),
     openGraph: {
       title: seoTitle,

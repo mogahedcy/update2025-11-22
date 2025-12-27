@@ -296,19 +296,23 @@ export function generateVideoObjectSchema(videos: Array<{
     "description": video.description,
     "contentUrl": video.contentUrl,
     "embedUrl": video.embedUrl || video.contentUrl,
-    "thumbnailUrl": video.thumbnailUrl || `${BASE_URL}/favicon.svg`,
+    "thumbnailUrl": video.thumbnailUrl || `${BASE_URL}/logo.png`,
     "uploadDate": video.uploadDate || new Date().toISOString(),
     "publisher": {
       "@type": "Organization",
       "name": "ديار جدة العالمية",
       "logo": {
         "@type": "ImageObject",
-        "url": `${BASE_URL}/favicon.svg`
+        "url": `${BASE_URL}/logo.png`
       }
     },
     ...(video.duration && { "duration": video.duration }),
     "inLanguage": "ar",
-    "regionsAllowed": "SA"
+    "regionsAllowed": "SA",
+    "potentialAction": {
+      "@type": "WatchAction",
+      "target": video.embedUrl || video.contentUrl
+    }
   }));
 }
 
