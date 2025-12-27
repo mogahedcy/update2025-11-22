@@ -51,10 +51,21 @@ Crawl-delay: 0.5
 User-agent: bingbot
 Allow: /
 Allow: /_next/static/
-Crawl-delay: 0.5
+Crawl-delay: 0.1
 Disallow: /dashboard/
 Disallow: /api/auth/
 Disallow: /login/
+
+# AppleBot - مهم لمستخدمي آيفون في السعودية
+User-agent: Applebot
+Allow: /
+Crawl-delay: 0.1
+
+# NaverBot & SeznamBot - لأرشفة IndexNow الشاملة
+User-agent: NaverBot
+Allow: /
+User-agent: SeznamBot
+Allow: /
 
 # Yandex Bot - مهم للأسواق الدولية
 User-agent: YandexBot

@@ -273,6 +273,60 @@ export async function GET() {
       }).join('\n  ')
     : '';
 
+  let dbProjects: any[] = [];
+  let dbFaqs: any[] = [];
+  
+  try {
+    const [articles, projects, faqs] = await Promise.all([
+      prisma.articles.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { id: true, slug: true, title: true, updatedAt: true, keywords: true },
+        orderBy: { publishedAt: 'desc' }
+      }),
+      prisma.projects.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { id: true, slug: true, title: true, updatedAt: true, category: true, location: true },
+        orderBy: { createdAt: 'desc' }
+      }),
+      prisma.faqs.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { id: true, slug: true, question: true, updatedAt: true },
+        orderBy: { order: 'asc' }
+      })
+    ]);
+    dbArticles = articles;
+    dbProjects = projects;
+    dbFaqs = faqs;
+  } catch (error) {
+    console.error('Error fetching data for sitemap:', error);
+  }
+
+  const projectsSitemap = dbProjects.length > 0
+    ? dbProjects.map((project) => {
+        const slug = project.slug || project.id;
+        const lastMod = project.updatedAt ? new Date(project.updatedAt).toISOString() : new Date().toISOString();
+        return `<url>
+    <loc>${baseUrl}/portfolio/${encodeURIComponent(slug)}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>`;
+      }).join('\n  ')
+    : '';
+
+  const faqsSitemap = dbFaqs.length > 0
+    ? dbFaqs.map((faq) => {
+        const slug = faq.slug || faq.id;
+        const lastMod = faq.updatedAt ? new Date(faq.updatedAt).toISOString() : new Date().toISOString();
+        return `<url>
+    <loc>${baseUrl}/faq/${encodeURIComponent(slug)}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`;
+      }).join('\n  ')
+    : '';
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
@@ -281,6 +335,8 @@ export async function GET() {
   ${arabicPages}
   ${englishPages}
   ${articlesSitemap}
+  ${projectsSitemap}
+  ${faqsSitemap}
 </urlset>`;
 
   return new Response(sitemap, {
