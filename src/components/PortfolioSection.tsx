@@ -18,7 +18,10 @@ const serviceCategories = [
   { id: 'هناجر', name: 'هناجر', icon: Home },
   { id: 'شبوك', name: 'شبوك', icon: Shield },
   { id: 'قراميد', name: 'قراميد', icon: Home },
-  { id: 'ساندوتش بانل', name: 'ساندوتش بانل', icon: Home }
+  { id: 'ساندوتش بانل', name: 'ساندوتش بانل', icon: Home },
+  { id: 'خيام', name: 'خيام', icon: Home },
+  { id: 'بيوت شعر', name: 'بيوت شعر', icon: Home },
+  { id: 'ترميم وتجديد', name: 'ترميم وتجديد', icon: Wrench }
 ];
 
 interface MediaItem {
