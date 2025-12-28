@@ -221,8 +221,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       siteName: 'ديار جدة العالمية',
       locale: 'ar_SA',
       type: 'article',
-      publishedTime: project.createdAt,
-      modifiedTime: project.updatedAt || project.createdAt,
+      publishedTime: project.createdAt.toISOString(),
+      modifiedTime: (project.updatedAt || project.createdAt).toISOString(),
       authors: ['ديار جدة العالمية'],
       section: project.category,
       tags: project.tags?.map((t: any) => t.name) || [],
@@ -261,7 +261,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
             url: getAbsoluteUrl(img.src),
             alt: img.alt || img.title || `${project.title} - صورة ${index + 1}`,
           }))
-        : [getAbsoluteUrl(mainImage)],
+        : [{ url: mainImage }],
     },
     alternates: {
       canonical: `https://www.aldeyarksa.tech/portfolio/${project.slug || id}`,
@@ -324,8 +324,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
     url: `/portfolio/${project.slug || id}`,
     category: project.category,
     location: project.location,
-    dateCreated: project.createdAt,
-    dateModified: project.updatedAt,
+    dateCreated: project.createdAt.toISOString(),
+    dateModified: project.updatedAt.toISOString(),
     images: images.map((item: any, index: number) => ({
       id: item.id || `img-${index + 1}`,
       url: getAbsoluteUrl(item.src),
@@ -364,8 +364,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
     url: `/portfolio/${project.slug || id}`,
     category: project.category,
     location: project.location,
-    dateCreated: project.createdAt,
-    dateModified: project.updatedAt,
+    dateCreated: project.createdAt.toISOString(),
+    dateModified: project.updatedAt.toISOString(),
     images: images.map((item: any, index: number) => ({
       url: getAbsoluteUrl(item.src),
       caption: item.title || item.description || `${project.title} - ${project.category} في ${project.location} - صورة ${index + 1} | ديار جدة العالمية`,
@@ -381,8 +381,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
     url: `/portfolio/${project.slug || id}`,
     category: project.category,
     location: project.location,
-    dateCreated: project.createdAt,
-    dateModified: project.updatedAt,
+    dateCreated: project.createdAt.toISOString(),
+    dateModified: project.updatedAt.toISOString(),
     images: images.map((item: any, index: number) => ({
       url: getAbsoluteUrl(item.src),
       caption: item.title || `${project.title} - صورة ${index + 1}`,
@@ -450,8 +450,8 @@ export default async function ProjectDetailsPage({ params }: Props) {
               })),
               category: project.category,
               location: project.location,
-              dateCreated: project.createdAt,
-              dateModified: project.updatedAt
+              dateCreated: project.createdAt.toISOString(),
+              dateModified: project.updatedAt.toISOString()
             })),
           }}
         />
@@ -464,7 +464,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
         projectUrl: `/portfolio/${project.slug || id}`,
         category: project.category,
         location: project.location,
-        dateCreated: project.createdAt,
+        dateCreated: project.createdAt.toISOString(),
         images: images.map((item: any, index: number) => ({
           url: getAbsoluteUrl(item.src),
           caption: item.title || `${project.title} - صورة ${index + 1}`,
