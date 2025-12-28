@@ -207,6 +207,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const pageUrl = `/portfolio/${project.slug || id}`;
   const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
 
+  // ✅ Fallback image for Twitter if all else fails
+  const mainImage = allImages.length > 0 ? getAbsoluteUrl(allImages[0].src) : 'https://www.aldeyarksa.tech/images/slider1.webp';
+
   return {
     title: seoTitle,
     description: seoDescription,
