@@ -370,6 +370,9 @@ export default function ProjectDetailsClient({ project, projectId }: Props) {
                                 title={currentMedia.title || `${project.title} - فيديو المشروع`}
                                 aria-label={currentMedia.description || `${project.title} - فيديو توضيحي`}
                                 crossOrigin="anonymous"
+                                itemProp="video"
+                                itemScope
+                                itemType="https://schema.org/VideoObject"
                                 onPlay={handleVideoPlay}
                                 onPause={handleVideoPause}
                                 onLoadStart={() => {

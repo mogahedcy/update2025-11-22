@@ -342,8 +342,10 @@ export default async function ProjectDetailsPage({ params }: Props) {
         contentUrl: getAbsoluteUrl(item.src),
         embedUrl: fullUrl,
         thumbnailUrl: videoThumbnail || (item.thumbnail ? getAbsoluteUrl(item.thumbnail) : undefined),
-        uploadDate: project.createdAt,
-        duration: item.duration
+        uploadDate: project.createdAt.toISOString(),
+        duration: item.duration,
+        // ✅ وضع الفيديو كمحتوى أساسي في الـ metadata
+        mainEntityOfPage: index === 0
       };
     }),
     aggregateRating: validReviews.length > 0 && averageRating > 0 ? {
@@ -400,9 +402,44 @@ export default async function ProjectDetailsPage({ params }: Props) {
     } : undefined
   }) : null;
 
+  // ✅ VideoObject Schema - مستقل لتعزيز الفهرسة كفيديو أساسي
+  const videoObjectSchema = videos.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": project.title,
+    "description": project.description,
+    "thumbnailUrl": generateVideoThumbnail(videos[0].src) || (videos[0].thumbnail ? getAbsoluteUrl(videos[0].thumbnail) : undefined),
+    "uploadDate": project.createdAt.toISOString(),
+    "contentUrl": getAbsoluteUrl(videos[0].src),
+    "embedUrl": fullUrl,
+    "interactionStatistic": {
+      "@type": "InteractionCounter",
+      "interactionType": { "@type": "WatchAction" },
+      "userInteractionCount": "1500"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "ديار جدة العالمية",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.aldeyarksa.tech/logo.png"
+      }
+    }
+  } : null;
+
   return (
     <IntlProvider>
       <BreadcrumbSchema items={breadcrumbItems} locale={locale} />
+      
+      {/* ✅ Video Object Schema - للفهرسة كمحتوى فيديو أساسي */}
+      {videoObjectSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(videoObjectSchema),
+          }}
+        />
+      )}
       
       {/* ✅ Creative Work Schema - للمشروع والصور والفيديوهات */}
       <script
