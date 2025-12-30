@@ -181,24 +181,14 @@ export async function POST(request: NextRequest) {
     if (process.env.N8N_WEBHOOK_URL) {
       try {
         const n8nData = {
-          projectId: project.id,
           title: project.title,
           description: project.description,
           category: project.category,
           location: project.location,
-          client: project.client,
-          slug: project.slug,
-          url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/portfolio/${project.slug}`,
-          tags: fullProject?.project_tags?.map(t => t.name) || [],
-          materials: fullProject?.project_materials?.map(m => m.name) || [],
-          mediaItems: fullProject?.media_items?.map(item => ({
-            type: item.type,
-            src: item.src,
-            title: item.title,
-            description: item.description,
-            alt: item.alt
-          })) || [],
-          createdAt: project.createdAt.toISOString()
+          projectLink: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/portfolio/${project.slug}`,
+          media: fullProject?.media_items?.map(item => ({
+            url: item.src
+          })) || []
         };
 
         fetch(process.env.N8N_WEBHOOK_URL, {
@@ -207,7 +197,7 @@ export async function POST(request: NextRequest) {
           body: JSON.stringify(n8nData)
         }).catch(err => console.error('❌ خطأ في إرسال البيانات إلى n8n:', err));
         
-        console.log('🚀 تم إرسال بيانات المشروع إلى n8n للنش الاجتماعي');
+        console.log('🚀 تم إرسال بيانات المشروع إلى n8n للنش الاجتماعي (الرابط الجديد)');
       } catch (n8nError) {
         console.error('⚠️ خطأ في تجهيز بيانات n8n:', n8nError);
       }
