@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, TrendingUp, Eye, Heart, MessageCircle, CheckCircle, Trash2, Star, Award, ThumbsUp, ThumbsDown, BarChart3 } from "lucide-react";
+import { Loader2, TrendingUp, Eye, Heart, MessageCircle, CheckCircle, Trash2, Star, Award, ThumbsUp, ThumbsDown, BarChart3, Wifi, Send } from "lucide-react";
 import DatabaseUsage from "@/components/dashboard/DatabaseUsage";
 
 interface TrendPoint { date: string; views: number; likes: number; comments: number }
@@ -32,6 +32,24 @@ export default function OverviewClient() {
   const [recentComments, setRecentComments] = useState<RecentComment[]>([]);
   const [reviewStats, setReviewStats] = useState<ReviewStats | null>(null);
   const [error, setError] = useState<string>("");
+  const [testingN8n, setTestingN8n] = useState(false);
+
+  const testN8nConnection = async () => {
+    setTestingN8n(true);
+    try {
+      const res = await fetch("/api/n8n/test", { method: "POST" });
+      const data = await res.json();
+      if (data.success) {
+        alert("✅ تم بنجاح: " + data.message);
+      } else {
+        alert("❌ فشل: " + data.message);
+      }
+    } catch (e) {
+      alert("❌ خطأ في الاتصال بالخادم");
+    } finally {
+      setTestingN8n(false);
+    }
+  };
 
   useEffect(() => {
     const load = async () => {
@@ -93,6 +111,26 @@ export default function OverviewClient() {
 
   return (
     <div className="space-y-8">
+      {/* N8N Test Connection Card */}
+      <Card className="bg-gradient-to-r from-indigo-50 to-blue-50 border-indigo-200">
+        <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <div className="space-y-1">
+            <CardTitle className="text-lg flex items-center gap-2 text-indigo-900">
+              <Wifi className="w-5 h-5" /> اختبار الاتصال مع n8n
+            </CardTitle>
+            <p className="text-xs text-indigo-700">تأكد من أن الرابط يعمل بشكل صحيح لاستقبال المشاريع الجديدة</p>
+          </div>
+          <Button 
+            onClick={testN8nConnection} 
+            disabled={testingN8n}
+            className="bg-indigo-600 hover:bg-indigo-700 text-white"
+          >
+            {testingN8n ? <Loader2 className="w-4 h-4 animate-spin ml-2" /> : <Send className="w-4 h-4 ml-2" />}
+            {testingN8n ? "جاري الاختبار..." : "ارسال بيانات تجريبية"}
+          </Button>
+        </CardHeader>
+      </Card>
+
       {/* Database Usage */}
       <DatabaseUsage />
 

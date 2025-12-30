@@ -185,10 +185,15 @@ export async function POST(request: NextRequest) {
           description: project.description,
           category: project.category,
           location: project.location,
-          projectLink: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/portfolio/${project.slug}`,
+          projectLink: `https://aldeyarksa.tech/portfolio/${project.slug}`,
           media: fullProject?.media_items?.map(item => ({
             url: item.src
-          })) || []
+          })) || [],
+          // ✅ إضافة بيانات إضافية للتأكد من وصول كل شيء
+          client: project.client,
+          completionDate: project.completionDate,
+          tags: fullProject?.project_tags?.map(t => t.name) || [],
+          materials: fullProject?.project_materials?.map(m => m.name) || []
         };
 
         fetch(process.env.N8N_WEBHOOK_URL, {
