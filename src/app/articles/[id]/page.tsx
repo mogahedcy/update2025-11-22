@@ -58,13 +58,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
     if (!article) {
       return {
-        title: 'المقالة غير موجودة | محترفين الديار العالمية',
+        title: 'المقالة غير موجودة | ديار جدة العالمية',
         description: 'المقالة المطلوبة غير متوفرة'
       };
     }
 
     const mainImage = article.mediaItems?.find((item: any) => item.type === 'IMAGE');
-    const seoTitle = `${article.title} | محترفين الديار العالمية`;
+    const seoTitle = `${article.title} | ديار جدة العالمية`;
     const seoDescription = article.excerpt || article.content.substring(0, 160);
 
     return {
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       description: seoDescription,
       keywords: [
         article.category,
-        'محترفين الديار',
+        'ديار جدة العالمية',
         'جدة',
         'السعودية',
         ...(article.tags || []).map((t: any) => t.name)
@@ -81,7 +81,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         title: seoTitle,
         description: seoDescription,
         url: generateCanonicalUrl(`/articles/${article.slug || article.id}`),
-        siteName: 'محترفين الديار العالمية',
+        siteName: 'ديار جدة العالمية',
         images: mainImage ? [
           {
             url: getAbsoluteUrl(mainImage.src),
@@ -108,7 +108,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   } catch (error) {
     console.error('خطأ في generateMetadata:', error);
     return {
-      title: 'محترفين الديار العالمية',
+      title: 'ديار جدة العالمية',
       description: 'مقالات متخصصة في المظلات والبرجولات'
     };
   }
@@ -130,7 +130,7 @@ export default async function ArticlePage({ params }: Props) {
   const articleUrl = generateCanonicalUrl(`/articles/${article.slug || article.id}`);
   const articleKeywords = [
     article.category,
-    'محترفين الديار',
+    'ديار جدة العالمية',
     'جدة',
     'السعودية',
     ...(article.tags || []).map((t: any) => t.name)
@@ -192,7 +192,7 @@ export default async function ArticlePage({ params }: Props) {
         headline={article.title}
         description={article.excerpt || article.content?.substring(0, 160) || ''}
         author={{
-          name: article.author || 'محترفين الديار العالمية',
+          name: article.author || 'ديار جدة العالمية',
           url: 'https://www.aldeyarksa.tech'
         }}
         datePublished={article.publishedAt}

@@ -115,7 +115,7 @@ export default function AuditPage() {
         {/* رأس الصفحة */}
         <div className="text-center space-y-4">
           <h1 className="text-3xl font-bold text-gray-900">تقرير فحص الموقع الشامل</h1>
-          <p className="text-gray-600">تحليل شامل لحالة موقع محترفين الديار العالمية</p>
+          <p className="text-gray-600">تحليل شامل لحالة موقع ديار جدة العالمية</p>
           
           <div className="flex justify-center gap-4">
             <Button 

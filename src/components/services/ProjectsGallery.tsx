@@ -102,7 +102,7 @@ export default function ProjectsGallery({ projects, categoryName }: ProjectsGall
                 alt: optimizedAlt,
                 title: project.title,
                 description: project.description || project.title,
-                keywords: [project.category || categoryName, project.location || 'جدة', 'محترفين الديار'],
+                keywords: [project.category || categoryName, project.location || 'جدة', 'ديار جدة العالمية'],
                 context: 'project'
               },
               `/portfolio/${project.slug || project.id}`

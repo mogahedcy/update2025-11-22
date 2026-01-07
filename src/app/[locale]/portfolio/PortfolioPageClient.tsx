@@ -216,7 +216,7 @@ export default function PortfolioPageClient() {
         >
           <motion.div 
             animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
             className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center"
           >
             <Sparkles className="w-8 h-8 text-white" />
@@ -249,14 +249,14 @@ export default function PortfolioPageClient() {
                 className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-lg"
               >
                 <Sparkles className="w-5 h-5" />
-                معرض أعمال محترفين الديار العالمية
+                معرض أعمال ديار جدة العالمية
                 <Target className="w-5 h-5" />
               </motion.div>
             </div>
             
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6">
               <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
-                معرض أعمال محترفين الديار العالمية
+                معرض أعمال ديار جدة العالمية
               </span>
               <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-800 mt-2">
                 إبداع وجودة في كل مشروع
@@ -474,7 +474,7 @@ export default function PortfolioPageClient() {
             >
               <motion.div 
                 animate={{ rotate: 360 }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                 className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center"
               >
                 <Loader2 className="w-8 h-8 text-white" />

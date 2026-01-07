@@ -26,8 +26,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.aldeyarksa.tech'),
   title: {
-    default: "محترفين الديار العالمية | أفضل مظلات وبرجولات جدة",
-    template: "%s | محترفين الديار العالمية"
+    default: "ديار جدة العالمية | أفضل مظلات وبرجولات جدة",
+    template: "%s | ديار جدة العالمية"
   },
   description: "الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر. خبرة 15 عاماً، ضمان 10 سنوات.",
   icons: {

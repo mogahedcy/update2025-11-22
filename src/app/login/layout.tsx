@@ -11,7 +11,7 @@ const notoSansArabic = Noto_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: 'تسجيل الدخول | محترفين الديار العالمية',
+  title: 'تسجيل الدخول | ديار جدة العالمية',
   robots: { index: false, follow: false },
 };
 

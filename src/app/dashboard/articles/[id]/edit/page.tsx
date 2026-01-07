@@ -74,7 +74,7 @@ export default function EditArticlePage() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [excerpt, setExcerpt] = useState('');
-  const [author, setAuthor] = useState('محترفين الديار العالمية');
+  const [author, setAuthor] = useState('ديار جدة العالمية');
   const [category, setCategory] = useState('');
   const [featured, setFeatured] = useState(false);
 
@@ -99,7 +99,7 @@ export default function EditArticlePage() {
         setTitle(article.title || '');
         setContent(article.content || '');
         setExcerpt(article.excerpt || '');
-        setAuthor(article.author || 'محترفين الديار العالمية');
+        setAuthor(article.author || 'ديار جدة العالمية');
         setCategory(article.category || '');
         setFeatured(article.featured || false);
         

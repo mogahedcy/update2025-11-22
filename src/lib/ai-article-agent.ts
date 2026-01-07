@@ -44,7 +44,7 @@ export class AIArticleAgent {
       wordCount = 1000,
       includeImages = true,
       imageCount = 3,
-      author = 'محترفين الديار العالمية',
+      author = 'ديار جدة العالمية',
       featured = false
     } = options;
 
@@ -143,7 +143,7 @@ export class AIArticleAgent {
 
   async generateAndPublishArticle(
     options: ArticleGenerationOptions,
-    shouldPublish: boolean = false
+    shouldPublish = false
   ): Promise<{ articleId: string; article: GeneratedArticle }> {
     const article = await this.generateArticle(options);
     
@@ -161,7 +161,7 @@ export class AIArticleAgent {
 
   async generateMultipleArticles(
     topics: Array<{ topic: string; keywords: string[]; category: string }>,
-    shouldPublish: boolean = false
+    shouldPublish = false
   ): Promise<Array<{ articleId: string; title: string; status: string }>> {
     console.log(`🚀 بدء توليد ${topics.length} مقالات...`);
     
@@ -204,7 +204,7 @@ export class AIArticleAgent {
   }
 
   private generateSlug(title: string): string {
-    let slug = title
+    const slug = title
       .trim()
       .replace(/\s+/g, '-')
       .replace(/[،؛؟!@#$%^&*()+=\[\]{};:"\\|<>\/]/g, '')

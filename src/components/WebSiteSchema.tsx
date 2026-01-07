@@ -12,11 +12,11 @@ export default function WebSiteSchema({ locale = 'ar' }: WebSiteSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": isArabic ? "محترفين الديار العالمية" : "Deyar Jeddah",
+    "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah",
     "alternateName": isArabic ? "الديار للمظلات" : "Aldeyar Shades",
     "url": "https://www.aldeyarksa.tech",
     "description": isArabic
-      ? "موقع شركة محترفين الديار العالمية المتخصصة في تركيب المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة"
+      ? "موقع شركة ديار جدة العالمية المتخصصة في تركيب المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة"
       : "Deyar Jeddah website specializing in shades, pergolas, fences, and landscaping in Jeddah",
     "inLanguage": [isArabic ? "ar-SA" : "en-US", isArabic ? "en-US" : "ar-SA"],
     "potentialAction": {
@@ -33,7 +33,7 @@ export default function WebSiteSchema({ locale = 'ar' }: WebSiteSchemaProps) {
     },
     "publisher": {
       "@type": "Organization",
-      "name": isArabic ? "محترفين الديار العالمية" : "Deyar Jeddah",
+      "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah",
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.aldeyarksa.tech/images/logo.png",
@@ -43,12 +43,12 @@ export default function WebSiteSchema({ locale = 'ar' }: WebSiteSchemaProps) {
     },
     "copyrightHolder": {
       "@type": "Organization",
-      "name": isArabic ? "محترفين الديار العالمية" : "Deyar Jeddah"
+      "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah"
     },
     "copyrightYear": 2010,
     "author": {
       "@type": "Organization",
-      "name": isArabic ? "محترفين الديار العالمية" : "Deyar Jeddah"
+      "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah"
     }
   };
 

@@ -21,7 +21,7 @@ export default function SchemaMarkup({ project }: SchemaMarkupProps) {
     "url": `https://www.aldeyarksa.tech/portfolio/${project.id}`,
     "creator": {
       "@type": "Organization",
-      "name": "ديار جدة",
+      "name": "ديار جدة العالمية",
       "url": "https://www.aldeyarksa.tech"
     },
     "dateCreated": project.createdAt,

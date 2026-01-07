@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 const BASE_URL = 'https://www.aldeyarksa.tech';
-const SITE_NAME = 'محترفين الديار العالمية';
+const SITE_NAME = 'ديار جدة العالمية';
 
 // دوال مساعدة للحصول على URL مطلق ونوع الملف
 export function getAbsoluteUrl(url: string): string {
@@ -152,6 +152,10 @@ export function generateServiceSchema(data: {
   priceRange?: string;
   image?: string;
   url?: string;
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+  };
 }) {
   return {
     "@context": "https://schema.org",
@@ -159,19 +163,9 @@ export function generateServiceSchema(data: {
     "name": data.name,
     "description": data.description,
     "provider": {
-      "@type": "LocalBusiness",
+      "@type": "Organization",
       "name": SITE_NAME,
-      "image": data.image || `${BASE_URL}/favicon.svg`,
-      "telephone": "+966553719009",
-      "email": "ksaaldeyar@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "شارع الأمير سلطان",
-        "addressLocality": "جدة",
-        "addressRegion": "منطقة مكة المكرمة",
-        "postalCode": "21423",
-        "addressCountry": "SA"
-      }
+      "url": BASE_URL
     },
     "areaServed": {
       "@type": "City",
@@ -182,6 +176,15 @@ export function generateServiceSchema(data: {
         "@type": "AggregateOffer",
         "priceCurrency": "SAR",
         "price": data.priceRange
+      }
+    }),
+    ...(data.aggregateRating && {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": data.aggregateRating.ratingValue.toString(),
+        "reviewCount": data.aggregateRating.reviewCount.toString(),
+        "bestRating": "5",
+        "worstRating": "1"
       }
     }),
     ...(data.url && { "url": generateCanonicalUrl(data.url) })
@@ -297,7 +300,7 @@ export function generateVideoObjectSchema(videos: Array<{
     "uploadDate": video.uploadDate || new Date().toISOString(),
     "publisher": {
       "@type": "Organization",
-      "name": "محترفين الديار العالمية",
+      "name": "ديار جدة العالمية",
       "logo": {
         "@type": "ImageObject",
         "url": `${BASE_URL}/favicon.svg`
@@ -393,12 +396,12 @@ export function generateCreativeWorkSchema(data: {
         "contentUrl": img.url,
         "license": `${BASE_URL}/terms`,
         "acquireLicensePage": `${BASE_URL}/contact`,
-        "creditText": "محترفين الديار العالمية - جدة، السعودية",
+        "creditText": "ديار جدة العالمية - جدة، السعودية",
         "creator": {
           "@type": "Organization",
           "name": SITE_NAME
         },
-        "copyrightNotice": "© محترفين الديار العالمية - جميع الحقوق محفوظة"
+        "copyrightNotice": "© ديار جدة العالمية - جميع الحقوق محفوظة"
       }))
     }),
     ...(data.videos && data.videos.length > 0 && {
@@ -517,8 +520,8 @@ export function generateImageGallerySchema(data: {
         ...(img.height && { "height": { "@type": "QuantitativeValue", "value": img.height, "unitCode": "E37" } }),
         "license": `${BASE_URL}/terms`,
         "acquireLicensePage": `${BASE_URL}/contact`,
-        "creditText": `محترفين الديار العالمية - ${data.location || 'جدة'}`,
-        "copyrightNotice": "© محترفين الديار العالمية",
+        "creditText": `ديار جدة العالمية - ${data.location || 'جدة'}`,
+        "copyrightNotice": "© ديار جدة العالمية",
         "creator": {
           "@type": "Organization",
           "name": SITE_NAME,
@@ -630,7 +633,7 @@ export function generateProjectSchema(data: {
       "caption": img.caption || `مشروع ${data.name} - ${data.category}`,
       "representativeOfPage": index === 0,
       "license": `${BASE_URL}/terms`,
-      "creditText": "محترفين الديار العالمية"
+      "creditText": "ديار جدة العالمية"
     })),
     ...(data.videos && data.videos.length > 0 && {
       "video": data.videos.map((video, index) => ({
@@ -788,7 +791,7 @@ export function generateLocalBusinessSchema(data?: {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "خدمات محترفين الديار العالمية",
+      "name": "خدمات ديار جدة العالمية",
       "itemListElement": [
         {
           "@type": "Offer",
@@ -881,7 +884,7 @@ export function generateOrganizationSchema(data?: {
     "@type": "Organization",
     "@id": `${BASE_URL}/#organization`,
     "name": data?.name || SITE_NAME,
-    "description": data?.description || "محترفين الديار العالمية - شركة رائدة في مجال تركيب المظلات والبرجولات والسواتر في جدة. نقدم خدمات متميزة بأعلى معايير الجودة.",
+    "description": data?.description || "ديار جدة العالمية - شركة رائدة في مجال تركيب المظلات والبرجولات والسواتر في جدة. نقدم خدمات متميزة بأعلى معايير الجودة.",
     "url": BASE_URL,
     "logo": {
       "@type": "ImageObject",
@@ -920,7 +923,7 @@ export function generateOrganizationSchema(data?: {
     ],
     "founder": {
       "@type": "Person",
-      "name": "محترفين الديار العالمية"
+      "name": "ديار جدة العالمية"
     },
     "foundingDate": "2010",
     "areaServed": {
@@ -933,4 +936,181 @@ export function generateOrganizationSchema(data?: {
       "https://twitter.com/aldeyarksa"
     ]
   };
+}
+
+/**
+ * إنشاء CollectionPage Schema لصفحات المشاريع التي تحتوي على عدة صور
+ * هذا يساعد Google على فهم أن الصفحة تحتوي على مجموعة صور ويمكن عرضها كـ Image Pack
+ */
+export function generateCollectionPageSchema(data: {
+  name: string;
+  description: string;
+  url: string;
+  images: Array<{
+    url: string;
+    caption?: string;
+    alt?: string;
+    width?: number;
+    height?: number;
+  }>;
+  category?: string;
+  location?: string;
+  dateCreated?: string;
+  dateModified?: string;
+}) {
+  const pageUrl = generateCanonicalUrl(data.url);
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": pageUrl,
+    "name": data.name,
+    "description": data.description,
+    "url": pageUrl,
+    "inLanguage": "ar",
+    "isPartOf": {
+      "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
+      "name": SITE_NAME,
+      "url": BASE_URL
+    },
+    "about": {
+      "@type": "Thing",
+      "name": data.category || data.name,
+      "description": data.description
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": data.images.length,
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "itemListElement": data.images.map((img, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `${pageUrl}#image-${index + 1}`,
+        "item": {
+          "@type": "ImageObject",
+          "@id": `${pageUrl}#image-${index + 1}`,
+          "url": img.url,
+          "contentUrl": img.url,
+          "name": img.caption || `${data.name} - صورة ${index + 1}`,
+          "description": img.alt || `${data.category || ''} في ${data.location || 'جدة'} - صورة ${index + 1}`,
+          "caption": img.caption || `${data.name} - صورة ${index + 1}`,
+          ...(img.width && { "width": img.width }),
+          ...(img.height && { "height": img.height }),
+          "representativeOfPage": index === 0,
+          "license": `${BASE_URL}/terms`,
+          "acquireLicensePage": `${BASE_URL}/contact`,
+          "creditText": `ديار جدة العالمية - ${data.location || 'جدة'}`,
+          "copyrightNotice": "© ديار جدة العالمية",
+          "creator": {
+            "@type": "Organization",
+            "name": SITE_NAME,
+            "url": BASE_URL
+          }
+        }
+      }))
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": BASE_URL
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "المشاريع",
+          "item": `${BASE_URL}/portfolio`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": data.name,
+          "item": pageUrl
+        }
+      ]
+    },
+    ...(data.dateCreated && { "dateCreated": data.dateCreated }),
+    ...(data.dateModified && { "dateModified": data.dateModified }),
+    "publisher": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "url": BASE_URL,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/favicon.svg`
+      }
+    }
+  };
+}
+
+/**
+ * إنشاء مصفوفة من ImageObject Schemas - كل صورة بشكل منفصل
+ * هذا يساعد Google Images على فهرسة كل صورة بشكل مستقل
+ */
+export function generateIndividualImageSchemas(data: {
+  projectName: string;
+  projectDescription: string;
+  projectUrl: string;
+  category?: string;
+  location?: string;
+  dateCreated?: string;
+  images: Array<{
+    url: string;
+    caption?: string;
+    alt?: string;
+    width?: number;
+    height?: number;
+  }>;
+}) {
+  const pageUrl = generateCanonicalUrl(data.projectUrl);
+  
+  return data.images.map((img, index) => ({
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    "@id": `${pageUrl}#standalone-image-${index + 1}`,
+    "url": img.url,
+    "contentUrl": img.url,
+    "name": img.caption || `${data.projectName} - صورة ${index + 1}`,
+    "description": img.alt || `${data.category || ''} في ${data.location || 'جدة'} - ${data.projectDescription.substring(0, 100)}`,
+    "caption": img.caption || `${data.projectName} - ${data.category || ''} في ${data.location || 'جدة'}`,
+    ...(img.width && { "width": img.width }),
+    ...(img.height && { "height": img.height }),
+    "representativeOfPage": index === 0,
+    "license": `${BASE_URL}/terms`,
+    "acquireLicensePage": `${BASE_URL}/contact`,
+    "creditText": `ديار جدة العالمية - ${data.location || 'جدة'}`,
+    "copyrightNotice": "© ديار جدة العالمية - جميع الحقوق محفوظة",
+    "creator": {
+      "@type": "Organization",
+      "name": SITE_NAME,
+      "url": BASE_URL
+    },
+    "copyrightHolder": {
+      "@type": "Organization",
+      "name": SITE_NAME
+    },
+    "uploadDate": data.dateCreated || new Date().toISOString(),
+    "isPartOf": {
+      "@type": "WebPage",
+      "@id": pageUrl,
+      "name": data.projectName,
+      "url": pageUrl
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": pageUrl
+    },
+    "associatedArticle": {
+      "@type": "CreativeWork",
+      "@id": pageUrl,
+      "name": data.projectName,
+      "url": pageUrl
+    },
+    "keywords": `${data.category || ''}, ${data.location || 'جدة'}, ${data.projectName}, ديار جدة العالمية`,
+    "inLanguage": "ar"
+  }));
 }

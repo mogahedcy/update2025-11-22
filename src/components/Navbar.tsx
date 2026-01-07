@@ -151,7 +151,7 @@ export default function Navbar() {
     }
   ];
 
-  const companyName = isRTL ? 'ديار جدة' : 'Deyar Jeddah';
+  const companyName = isRTL ? 'ديار جدة العالمية' : 'Deyar Jeddah';
   const companySubtitle = isRTL ? 'خبرة +15 عاماً في جدة والمملكة' : '15+ Years in Jeddah & KSA';
   const location = isRTL ? 'جدة، المملكة العربية السعودية' : 'Jeddah, Saudi Arabia';
 

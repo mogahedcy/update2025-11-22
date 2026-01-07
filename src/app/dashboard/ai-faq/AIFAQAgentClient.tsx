@@ -260,7 +260,7 @@ export default function AIFAQAgentClient({
                         </label>
                         <select
                           value={formData.count}
-                          onChange={(e) => setFormData({ ...formData, count: parseInt(e.target.value) })}
+                          onChange={(e) => setFormData({ ...formData, count: Number.parseInt(e.target.value) })}
                           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500"
                           disabled={loading}
                         >

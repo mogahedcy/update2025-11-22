@@ -67,8 +67,8 @@ export async function GET() {
           const imageUrl = media.src.startsWith('http') ? media.src : `${baseUrl}${media.src}`;
           return createImageTags({
             imageUrl,
-            caption: `${media.alt || media.title || article.title} - ${article.category} من محترفين الديار العالمية`,
-            title: `${article.title} - محترفين الديار العالمية جدة`,
+            caption: `${media.alt || media.title || article.title} - ${article.category} من ديار جدة العالمية`,
+            title: `${article.title} - ديار جدة العالمية جدة`,
             geoLocation: 'جدة، المملكة العربية السعودية',
             license: `${baseUrl}/terms`
           });
@@ -78,7 +78,7 @@ export async function GET() {
           return createVideoTags({
             thumbnailUrl,
             title: `${article.title} - فيديو ${article.category}`,
-            description: `${media.description || article.excerpt || article.content.substring(0, 200)} - محترفين الديار العالمية جدة`,
+            description: `${media.description || article.excerpt || article.content.substring(0, 200)} - ديار جدة العالمية جدة`,
             contentUrl: videoUrl,
             playerUrl: articleUrl,
             baseUrl
@@ -92,13 +92,13 @@ export async function GET() {
       const readTime = Math.ceil((article.content || '').length / 1000);
       
       const keywords = article.keywords ? article.keywords : 
-        `${article.category}, محترفين الديار العالمية, مقالات جدة`;
+        `${article.category}, ديار جدة العالمية, مقالات جدة`;
       
-      const seoTitle = article.metaTitle || `${article.title} | محترفين الديار العالمية`;
+      const seoTitle = article.metaTitle || `${article.title} | ديار جدة العالمية`;
       const seoDescription = article.metaDescription || article.excerpt || 
-        `${article.content.substring(0, 160)}... مقالة متخصصة في ${article.category} من محترفين الديار العالمية`;
+        `${article.content.substring(0, 160)}... مقالة متخصصة في ${article.category} من ديار جدة العالمية`;
 
-      const newsMarkup = `<news:news><news:publication><news:name>محترفين الديار العالمية</news:name><news:language>ar</news:language></news:publication><news:publication_date>${article.publishedAt?.toISOString() || article.createdAt.toISOString()}</news:publication_date><news:title><![CDATA[${seoTitle}]]></news:title><news:keywords><![CDATA[${keywords}]]></news:keywords></news:news>`;
+      const newsMarkup = `<news:news><news:publication><news:name>ديار جدة العالمية</news:name><news:language>ar</news:language></news:publication><news:publication_date>${article.publishedAt?.toISOString() || article.createdAt.toISOString()}</news:publication_date><news:title><![CDATA[${seoTitle}]]></news:title><news:keywords><![CDATA[${keywords}]]></news:keywords></news:news>`;
 
       return `<url><loc>${safeEncodeUrl(articleUrl)}</loc><lastmod>${article.updatedAt.toISOString()}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority><xhtml:link rel="canonical" href="${safeEncodeUrl(articleUrl)}" /><xhtml:link rel="alternate" hreflang="ar" href="${safeEncodeUrl(articleUrl)}" />${mediaContent}${newsMarkup}</url>`;
     })
@@ -107,8 +107,8 @@ export async function GET() {
   // إضافة صفحة المقالات الرئيسية
   const articlesIndexPage = `<url><loc>${safeEncodeUrl(`${baseUrl}/articles`)}</loc><lastmod>${new Date().toISOString()}</lastmod><changefreq>daily</changefreq><priority>0.9</priority><xhtml:link rel="canonical" href="${safeEncodeUrl(`${baseUrl}/articles`)}" /><xhtml:link rel="alternate" hreflang="ar" href="${safeEncodeUrl(`${baseUrl}/articles`)}" />${createImageTags({
     imageUrl: `${baseUrl}/uploads/mazallat-1.webp`,
-    caption: 'أرشيف مقالات محترفين الديار العالمية - مقالات متخصصة في المظلات والبرجولات',
-    title: 'أرشيف مقالات محترفين الديار العالمية',
+    caption: 'أرشيف مقالات ديار جدة العالمية - مقالات متخصصة في المظلات والبرجولات',
+    title: 'أرشيف مقالات ديار جدة العالمية',
     geoLocation: 'جدة، المملكة العربية السعودية'
   })}</url>`;
 

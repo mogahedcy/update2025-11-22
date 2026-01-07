@@ -255,7 +255,7 @@ export async function POST(request: NextRequest) {
         slug: finalSlug,
         metaTitle: metaTitle || title,
         metaDescription: metaDescription || description.substring(0, 160),
-        keywords: keywords || `${category}, ${location}, محترفين الديار`,
+        keywords: keywords || `${category}, ${location}, ديار جدة العالمية`,
         status,
         publishedAt: status === 'PUBLISHED' ? new Date() : null,
         updatedAt: new Date(),

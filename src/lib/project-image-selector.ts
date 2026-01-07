@@ -18,7 +18,7 @@ export class ProjectImageSelector {
     articleTitle: string,
     articleContent: string,
     keywords: string[],
-    imageCount: number = 3
+    imageCount = 3
   ): Promise<Array<{ src: string; alt: string; description: string; type: 'IMAGE' | 'VIDEO' }>> {
     try {
       console.log('🖼️ اختيار صور من معرض الأعمال...');
@@ -190,7 +190,7 @@ ${JSON.stringify(imagesList, null, 2)}
             src: image.src,
             alt: selection.altText || image.title || 'صورة من معرض الأعمال',
             description:
-              selection.description || image.description || 'صورة من مشاريع محترفين الديار',
+              selection.description || image.description || 'صورة من مشاريع ديار جدة العالمية',
             type: 'IMAGE' as const
           });
         }

@@ -83,8 +83,8 @@ export default function ProjectAddClient() {
       if (newTitle && newLocation) {
         setFormData(prev => ({
           ...prev,
-          metaTitle: `${newTitle} في ${newLocation} | محترفين الديار العالمية`,
-          keywords: `${formData.category}, ${newLocation}, جدة, محترفين الديار, ${newTitle}`
+          metaTitle: `${newTitle} في ${newLocation} | ديار جدة العالمية`,
+          keywords: `${formData.category}, ${newLocation}, جدة, ديار جدة العالمية, ${newTitle}`
         }));
       }
     }

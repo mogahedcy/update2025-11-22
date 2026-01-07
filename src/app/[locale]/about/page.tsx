@@ -26,15 +26,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: isArabic 
-      ? 'عن محترفين الديار العالمية | خبرة 15 عام'
+      ? 'عن ديار جدة العالمية | خبرة 15 عام'
       : 'About Aldeyar Professionals | 15 Years Experience',
     description: isArabic
-      ? 'تعرف على محترفين الديار العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً. فريق محترف، جودة عالية، وخدمة متميزة.'
+      ? 'تعرف على ديار جدة العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً. فريق محترف، جودة عالية، وخدمة متميزة.'
       : 'Learn about Aldeyar Global Professionals, leading in shades and fences services in Jeddah for 15 years. Professional team, high quality, and excellent service.',
     keywords: isArabic
-      ? 'محترفين الديار، عن الشركة، خبرة 15 عام، شركة مظلات جدة، تاريخ الشركة، قيم الشركة'
+      ? 'ديار جدة العالمية، عن الشركة، خبرة 15 عام، شركة مظلات جدة، تاريخ الشركة، قيم الشركة'
       : 'Aldeyar Professionals, About Company, 15 Years Experience, Jeddah Shades Company, Company History, Company Values',
-    authors: [{ name: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals' }],
+    authors: [{ name: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals' }],
     robots: 'index, follow',
     alternates: {
       canonical: locale === 'ar' ? '/about' : '/en/about',
@@ -46,13 +46,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: isArabic 
-        ? 'عن محترفين الديار | محترفين الديار العالمية'
+        ? 'عن ديار جدة العالمية | ديار جدة العالمية'
         : 'About Aldeyar | Aldeyar Global Professionals',
       description: isArabic
-        ? 'تعرف على محترفين الديار العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً.'
+        ? 'تعرف على ديار جدة العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً.'
         : 'Learn about Aldeyar Global Professionals, leading in shades and fences services in Jeddah for 15 years.',
       url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/about`,
-      siteName: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      siteName: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
       type: 'website',
       locale: isArabic ? 'ar_SA' : 'en_US',
       images: [
@@ -60,17 +60,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: 'https://www.aldeyarksa.tech/logo.png',
           width: 1200,
           height: 630,
-          alt: isArabic ? 'عن محترفين الديار العالمية' : 'About Aldeyar Global Professionals',
+          alt: isArabic ? 'عن ديار جدة العالمية' : 'About Aldeyar Global Professionals',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
       title: isArabic 
-        ? 'عن محترفين الديار | محترفين الديار العالمية'
+        ? 'عن ديار جدة العالمية | ديار جدة العالمية'
         : 'About Aldeyar | Aldeyar Global Professionals',
       description: isArabic
-        ? 'تعرف على محترفين الديار العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً.'
+        ? 'تعرف على ديار جدة العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً.'
         : 'Learn about Aldeyar Global Professionals, leading in shades and fences services in Jeddah for 15 years.',
       images: ['https://www.aldeyarksa.tech/logo.png'],
     },
@@ -176,7 +176,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+    "name": isArabic ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
     "description": isArabic 
       ? "شركة رائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً"
       : "A leading company in shades and fences services in Jeddah for 15 years",
@@ -201,7 +201,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   };
 
   const breadcrumbItems = [
-    { label: isArabic ? 'عن محترفين الديار' : 'About Aldeyar', href: `${locale === 'en' ? '/en' : ''}/about` }
+    { label: isArabic ? 'عن ديار جدة العالمية' : 'About Aldeyar', href: `${locale === 'en' ? '/en' : ''}/about` }
   ];
 
   return (
@@ -220,7 +220,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </Link>
               <span>/</span>
               <span className="text-primary font-medium">
-                {isArabic ? 'عن محترفين الديار' : 'About Aldeyar'}
+                {isArabic ? 'عن ديار جدة العالمية' : 'About Aldeyar'}
               </span>
             </nav>
 
@@ -228,14 +228,14 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                   {isArabic ? (
-                    <>نحن <span className="text-primary">محترفين الديار</span> - رائدون في التميز منذ 2009</>
+                    <>نحن <span className="text-primary">ديار جدة العالمية</span> - رائدون في التميز منذ 2009</>
                   ) : (
                     <>We are <span className="text-primary">Aldeyar Professionals</span> - Leaders in Excellence Since 2009</>
                   )}
                 </h1>
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                   {isArabic 
-                    ? 'محترفين الديار العالمية، شريكك الموثوق في تحويل الأحلام إلى واقع. نقدم خدمات شاملة ومتكاملة في جدة منذ أكثر من 15 عاماً، بخبرة واسعة وفريق محترف يضمن لك أعلى معايير الجودة والإتقان.'
+                    ? 'ديار جدة العالمية، شريكك الموثوق في تحويل الأحلام إلى واقع. نقدم خدمات شاملة ومتكاملة في جدة منذ أكثر من 15 عاماً، بخبرة واسعة وفريق محترف يضمن لك أعلى معايير الجودة والإتقان.'
                     : 'Aldeyar Global Professionals, your trusted partner in turning dreams into reality. We provide comprehensive and integrated services in Jeddah for over 15 years, with extensive experience and a professional team that ensures you the highest standards of quality and excellence.'}
                 </p>
                 <div className="flex flex-wrap gap-4">
@@ -358,7 +358,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 {isArabic 
-                  ? 'محطات مهمة في تاريخ محترفين الديار العالمية'
+                  ? 'محطات مهمة في تاريخ ديار جدة العالمية'
                   : 'Important milestones in the history of Aldeyar Global Professionals'}
               </p>
             </div>
@@ -387,7 +387,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <section className="py-20 bg-gradient-to-r from-primary to-accent text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              {isArabic ? 'اكتشف الفرق مع محترفين الديار' : 'Discover the Difference with Aldeyar'}
+              {isArabic ? 'اكتشف الفرق مع ديار جدة العالمية' : 'Discover the Difference with Aldeyar'}
             </h2>
             <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
               {isArabic 

@@ -22,28 +22,28 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isArabic = locale === 'ar';
   
   return {
-    title: isArabic ? 'معرض أعمالنا | محترفين الديار العالمية' : 'Our Portfolio | Aldeyar Global Professionals',
+    title: isArabic ? 'معرض أعمالنا | ديار جدة العالمية' : 'Our Portfolio | Aldeyar Global Professionals',
     description: isArabic 
       ? 'تصفح معرض أعمالنا المتميز في جدة. أكثر من 5000 مشروع ناجح في المظلات، البرجولات، السواتر، ساندوتش بانل، تنسيق الحدائق، والترميم. اكتشف جودة العمل والإبداع في التصميم.'
       : 'Browse our distinguished portfolio in Jeddah. Over 5000 successful projects in shades, pergolas, fences, sandwich panels, landscaping, and renovations. Discover quality work and creative design.',
     keywords: isArabic
-      ? 'معرض أعمال, مشاريع مظلات جدة, برجولات جدة, سواتر جدة, ساندوتش بانل, تنسيق حدائق, ترميم, محترفين الديار العالمية, مشاريع سابقة, تصاميم مظلات, تصاميم برجولات, أعمالنا السابقة, معرض صور, معرض فيديو, مشاريع منفذة, مظلات سيارات جدة, برجولات خشبية جدة, سواتر حديد جدة, أفضل مشاريع المظلات, تركيبات مظلات احترافية, أعمال البرجولات, تنفيذ مظلات, مشاريع مميزة, قبل وبعد, شهادات العملاء, تقييمات المشاريع, مشاريع الفلل, مشاريع الحدائق, أعمال حدائق منزلية, مظلات خارجية, برجولات فاخرة, معرض أعمال شامل, أمثلة المشاريع, نماذج أعمال, صور تنفيذ مظلات, فيديو تركيب برجولات, مشاريع ناجحة, أعمال عالية الجودة, تصاميم إبداعية, خبرة 15 عام, مشاريع جدة, مشاريع السعودية, أعمال متميزة, portfolio jeddah, شركة مظلات موثوقة'
+      ? 'معرض أعمال, مشاريع مظلات جدة, برجولات جدة, سواتر جدة, ساندوتش بانل, تنسيق حدائق, ترميم, ديار جدة العالمية, مشاريع سابقة, تصاميم مظلات, تصاميم برجولات, أعمالنا السابقة, معرض صور, معرض فيديو, مشاريع منفذة, مظلات سيارات جدة, برجولات خشبية جدة, سواتر حديد جدة, أفضل مشاريع المظلات, تركيبات مظلات احترافية, أعمال البرجولات, تنفيذ مظلات, مشاريع مميزة, قبل وبعد, شهادات العملاء, تقييمات المشاريع, مشاريع الفلل, مشاريع الحدائق, أعمال حدائق منزلية, مظلات خارجية, برجولات فاخرة, معرض أعمال شامل, أمثلة المشاريع, نماذج أعمال, صور تنفيذ مظلات, فيديو تركيب برجولات, مشاريع ناجحة, أعمال عالية الجودة, تصاميم إبداعية, خبرة 15 عام, مشاريع جدة, مشاريع السعودية, أعمال متميزة, portfolio jeddah, شركة مظلات موثوقة'
       : 'portfolio, jeddah shades projects, jeddah pergolas, jeddah fences, sandwich panel, landscaping, renovation, aldeyar global professionals, previous projects, shade designs, pergola designs, our previous work, photo gallery, video gallery, completed projects, car shades jeddah, wooden pergolas jeddah, metal fences jeddah, best shade projects, professional shade installations, pergola work, shade implementation, featured projects, before and after, customer testimonials, project ratings, villa projects, garden projects, home garden works, outdoor shades, luxury pergolas, comprehensive portfolio, project examples, work samples, shade installation photos, pergola installation video, successful projects, high quality work, creative designs, 15 years experience, jeddah projects, saudi projects, distinguished work, portfolio jeddah, reliable shade company',
-    authors: [{ name: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals' }],
-    creator: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
-    publisher: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+    authors: [{ name: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals' }],
+    creator: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
+    publisher: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
     robots: 'index, follow',
     openGraph: {
-      title: isArabic ? 'معرض أعمال محترفين الديار العالمية - مشاريع مميزة في جدة' : 'Aldeyar Global Portfolio - Featured Projects in Jeddah',
+      title: isArabic ? 'معرض أعمال ديار جدة العالمية - مشاريع مميزة في جدة' : 'Aldeyar Global Portfolio - Featured Projects in Jeddah',
       description: isArabic ? 'اكتشف أعمالنا المتميزة في المظلات والبرجولات والسواتر وجميع خدماتنا في جدة' : 'Discover our distinguished work in shades, pergolas, fences and all our services in Jeddah',
       url: `https://www.aldeyarksa.tech/${locale}/portfolio`,
-      siteName: isArabic ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals',
+      siteName: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
       images: [
         {
           url: 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp',
           width: 1200,
           height: 630,
-          alt: isArabic ? 'معرض أعمال محترفين الديار العالمية' : 'Aldeyar Global Professionals Portfolio'
+          alt: isArabic ? 'معرض أعمال ديار جدة العالمية' : 'Aldeyar Global Professionals Portfolio'
         }
       ],
       locale: isArabic ? 'ar_SA' : 'en_US',
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: {
       card: 'summary_large_image',
-      title: isArabic ? 'معرض أعمال محترفين الديار العالمية' : 'Aldeyar Global Professionals Portfolio',
+      title: isArabic ? 'معرض أعمال ديار جدة العالمية' : 'Aldeyar Global Professionals Portfolio',
       description: isArabic ? 'اكتشف مشاريعنا المتميزة في جدة' : 'Discover our featured projects in Jeddah',
       images: ['https://www.aldeyarksa.tech/uploads/mazallat-1.webp']
     },
@@ -70,12 +70,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const portfolioStructuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "معرض أعمال محترفين الديار العالمية",
+  "name": "معرض أعمال ديار جدة العالمية",
   "description": "مجموعة شاملة من مشاريعنا المتميزة في جدة",
   "url": "https://www.aldeyarksa.tech/portfolio",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "مشاريع محترفين الديار العالمية",
+    "name": "مشاريع ديار جدة العالمية",
     "description": "قائمة بأهم مشاريعنا في المظلات والبرجولات والسواتر",
     "numberOfItems": "5000+",
     "itemListElement": [
@@ -98,7 +98,7 @@ const portfolioStructuredData = {
   },
   "provider": {
     "@type": "Organization",
-    "name": "محترفين الديار العالمية",
+    "name": "ديار جدة العالمية",
     "url": "https://www.aldeyarksa.tech",
     "logo": "https://www.aldeyarksa.tech/logo.png"
   }
@@ -112,7 +112,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ loca
     <>
       <StructuredDataScript data={portfolioStructuredData} />
       <VideoObjectSchema 
-        name={locale === 'ar' ? "جولة في معرض أعمال محترفين الديار - مشاريع المظلات والبرجولات" : "Tour of Aldeyar Global Portfolio - Shades and Pergolas Projects"}
+        name={locale === 'ar' ? "جولة في معرض أعمال ديار جدة العالمية - مشاريع المظلات والبرجولات" : "Tour of Aldeyar Global Portfolio - Shades and Pergolas Projects"}
         description={locale === 'ar' ? "شاهد أفضل مشاريعنا المنجزة في جدة من مظلات سيارات وبرجولات وسواتر بجودة عالية" : "Watch our best completed projects in Jeddah from car shades, pergolas and fences in high quality"}
         thumbnailUrl="https://www.aldeyarksa.tech/uploads/mazallat-1.webp"
         uploadDate={new Date().toISOString()}

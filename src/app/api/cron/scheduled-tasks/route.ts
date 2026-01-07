@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { aiArticleAgent } from '@/lib/ai-article-agent';
 import { aiFAQAgent } from '@/lib/ai-faq-agent';
@@ -265,7 +265,7 @@ async function runSmartGeneration(niche: string, count: number, autoPublish: boo
             metaDescription: metaTags.metaDescription,
             keywords: idea.keywords.join(', '),
             category: idea.category,
-            author: 'محترفين الديار العالمية',
+            author: 'ديار جدة العالمية',
             status: autoPublish ? 'PUBLISHED' : 'DRAFT',
             featured: false,
             views: 0,

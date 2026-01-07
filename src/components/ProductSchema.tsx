@@ -36,7 +36,7 @@ export default function ProductSchema({
   currency = 'SAR',
   availability = 'https://schema.org/InStock',
   rating,
-  brand = 'محترفين الديار العالمية',
+  brand = 'ديار جدة العالمية',
   sku,
   category,
   location,

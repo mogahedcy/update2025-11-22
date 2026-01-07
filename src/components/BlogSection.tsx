@@ -57,7 +57,7 @@ export default function BlogSection() {
         
         if (data.success && data.articles) {
           setArticles(data.articles);
-          console.log('✅ تم جلب المقالات:', data.articles.length);
+          // Articles fetched successfully
         }
       } catch (error) {
         console.error('❌ خطأ في جلب المقالات:', error);
@@ -112,11 +112,11 @@ export default function BlogSection() {
             <BookOpen className="w-10 h-10" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-6">
-            مدونة محترفين الديار
+            مدونة ديار جدة العالمية
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             اكتشف أحدث المقالات والنصائح المتخصصة في مجال المظلات والبرجولات والساندوتش بانل.
-            خبراء محترفين الديار يشاركونكم المعرفة والتجارب لمساعدتكم في اتخاذ القرارات الصحيحة
+            خبراء ديار جدة العالمية يشاركونكم المعرفة والتجارب لمساعدتكم في اتخاذ القرارات الصحيحة
           </p>
         </div>
 
@@ -235,7 +235,7 @@ export default function BlogSection() {
                       <div className="flex items-center justify-between text-xs text-muted-foreground mb-4 border-t border-gray-100 pt-4">
                         <div className="flex items-center space-x-2 space-x-reverse">
                           <User className="w-4 h-4" />
-                          <span className="font-medium">{article.author || 'فريق محترفين الديار'}</span>
+                          <span className="font-medium">{article.author || 'فريق ديار جدة العالمية'}</span>
                         </div>
                         <div className="flex items-center space-x-4 space-x-reverse">
                           <div className="flex items-center space-x-1 space-x-reverse">
@@ -318,7 +318,7 @@ export default function BlogSection() {
 
                       {/* Article Meta */}
                       <div className="flex items-center justify-between text-xs text-muted-foreground mb-4 border-t border-gray-100 pt-3">
-                        <span className="font-medium">{article.author || 'فريق محترفين الديار'}</span>
+                        <span className="font-medium">{article.author || 'فريق ديار جدة العالمية'}</span>
                         <div className="flex items-center space-x-3 space-x-reverse">
                           <span>{article.readTime} دقائق</span>
                           <span className="text-green-600">• {article.views}</span>

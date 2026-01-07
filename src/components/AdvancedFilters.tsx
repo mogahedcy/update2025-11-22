@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import type { LucideIcon } from 'lucide-react';
 import {
   MapPin,
   Star,
@@ -28,10 +29,16 @@ interface FiltersState {
   priceRange: string;
 }
 
+interface CategoryItem {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+}
+
 interface AdvancedFiltersProps {
   filters: FiltersState;
   onFiltersChange: (filters: Partial<FiltersState>) => void;
-  categories?: { id: string; name: string; icon: any }[];
+  categories?: CategoryItem[];
 }
 
 const locations = [
@@ -100,7 +107,7 @@ export default function AdvancedFilters({ filters, onFiltersChange, categories =
   }: { 
     id: string; 
     title: string; 
-    icon: any; 
+    icon: LucideIcon; 
     children: React.ReactNode; 
   }) => (
     <div className="border-b border-gray-200 last:border-b-0">

@@ -16,7 +16,7 @@ interface EnhancedFAQSchemaProps {
 function stripHtmlAndCleanText(text: string): string {
   if (!text) return '';
   
-  let cleaned = text
+  const cleaned = text
     .replace(/<[^>]*>/g, '')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
@@ -83,7 +83,7 @@ export default function EnhancedFAQSchema({ faqs, baseUrl = 'https://www.aldeyar
     inLanguage: 'ar',
     isPartOf: {
       '@type': 'WebSite',
-      name: 'ديار جدة',
+      name: 'ديار جدة العالمية',
       url: baseUrl
     },
     breadcrumb: breadcrumbSchema

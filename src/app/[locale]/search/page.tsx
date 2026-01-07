@@ -156,7 +156,7 @@ function SearchContent() {
         title: r.title,
         excerpt: r.description,
         category: r.category || 'عام',
-        author: r.type === 'project' ? 'مشروع من معرض الأعمال' : r.type === 'faq' ? 'سؤال شائع' : 'محترفين الديار العالمية',
+        author: r.type === 'project' ? 'مشروع من معرض الأعمال' : r.type === 'faq' ? 'سؤال شائع' : 'ديار جدة العالمية',
         authorAvatar: 'https://ui-avatars.com/api/?name=محترفين+الديار&background=0f172a&color=fff',
         date: new Date().toLocaleDateString('ar-SA'),
         readTime: '3 دقائق',

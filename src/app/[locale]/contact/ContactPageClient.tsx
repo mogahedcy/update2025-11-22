@@ -99,7 +99,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
     "@type": "ContactPage",
     "mainEntity": {
       "@type": "LocalBusiness",
-      "name": isRTL ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+      "name": isRTL ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
       "telephone": "+966553719009",
       "email": "ksaaldeyar@gmail.com",
       "address": {
@@ -379,14 +379,14 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title={isRTL ? "موقع محترفين الديار العالمية في جدة" : "Aldeyar Global Professionals location in Jeddah"}
+                title={isRTL ? "موقع ديار جدة العالمية في جدة" : "Aldeyar Global Professionals location in Jeddah"}
                 className="grayscale-0 hover:grayscale-0 transition-all"
               />
               <div className={`absolute bottom-4 ${isRTL ? 'right-4' : 'left-4'} bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 max-w-xs`}>
                 <div className="flex items-start">
                   <MapPin className={`w-5 h-5 text-primary ${isRTL ? 'ml-2' : 'mr-2'} flex-shrink-0 mt-1`} />
                   <div>
-                    <h4 className="font-bold text-gray-900 dark:text-white">{isRTL ? 'محترفين الديار العالمية' : 'Aldeyar Global Professionals'}</h4>
+                    <h4 className="font-bold text-gray-900 dark:text-white">{isRTL ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals'}</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{t('locationValue')}</p>
                     <a 
                       href="https://maps.google.com/?q=21.485811,39.192505" 
