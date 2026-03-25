@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web", "bun", "bun-1.2", "postgresql-16"]
+modules = ["bun", "postgresql-16", "bun-1.3", "nodejs-20", "web"]
 run = "npm run dev"
 
 [nix]
@@ -26,157 +26,20 @@ localPort = 5000
 externalPort = 8099
 
 [workflows]
-runButton = "Project"
 
-[[workflows.workflow]]
-name = "Build and Start"
-author = 43497196
-mode = "sequential"
+  [[workflows.workflow]]
+  name = "Start application"
+  author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm install"
+  [workflows.workflow.metadata]
+  agentRequireRestartOnSave = false
+  outputType = "webview"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run build"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm start"
-
-[[workflows.workflow]]
-name = "Development Server"
-author = 43701834
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-
-[[workflows.workflow]]
-name = "Build for Production"
-author = 46946113
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm install"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run build"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm start"
-
-[[workflows.workflow]]
-name = "Development Server (Enhanced)"
-author = 46946113
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "node scripts/prepare-database.js"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-
-[[workflows.workflow]]
-name = "Development Server (Fixed)"
-author = 46946113
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npx prisma generate"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-
-[[workflows.workflow]]
-name = "Database Setup & Development"
-author = 46947920
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npx prisma generate"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npx prisma migrate dev --name init"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "node scripts/create-admin-account.js"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-
-[[workflows.workflow]]
-name = "Production Build & Deploy"
-author = 46947920
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npx prisma generate"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run build"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm start"
-
-[[workflows.workflow]]
-name = "Start Development Server"
-author = 46950257
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npx prisma generate"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-
-[[workflows.workflow]]
-name = "Simple Dev Server"
-author = 46950257
-mode = "sequential"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Website Server"
-
-[[workflows.workflow]]
-name = "Website Server"
-author = "agent"
-
-[workflows.workflow.metadata]
-outputType = "webview"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-waitForPort = 5000
+  [[workflows.workflow.tasks]]
+  task = "shell.exec"
+  args = "npm run dev"
+  waitForPort = 5000
+  
 
 [agent]
 expertMode = true
