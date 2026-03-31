@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'ديار جدة العالمية',
     images: [
       {
-        url: 'https://www.aldeyarksa.tech/logo.png',
+        url: 'https://www.deyarsu.com/logo.png',
         width: 1200,
         height: 630,
         alt: 'الأسئلة الشائعة - ديار جدة العالمية'
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'الأسئلة الشائعة | ديار جدة العالمية',
     description: 'إجابات شاملة على الأسئلة الشائعة حول خدماتنا',
-    images: ['https://www.aldeyarksa.tech/logo.png']
+    images: ['https://www.deyarsu.com/logo.png']
   },
   alternates: {
     canonical: '/faq'

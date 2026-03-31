@@ -711,7 +711,7 @@ export class SEODiagnostics {
   }
 
   private isInternalLink(url: string): boolean {
-    return url.startsWith('/') || url.includes('aldeyarksa.tech');
+    return url.startsWith('/') || url.includes('deyarsu.com');
   }
 
   private async checkInternalLinkExists(url: string): Promise<boolean> {

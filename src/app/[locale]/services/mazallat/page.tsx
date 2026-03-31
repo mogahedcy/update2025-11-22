@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'mazallat' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageUrl = '/services/mazallat';
   const canonicalPath = isArabic ? pageUrl : `/en${pageUrl}`;
   const pageImage = `${baseUrl}/uploads/mazallat-1.webp`;
@@ -236,7 +236,7 @@ export default async function MazallatPage({ params }: { params: Promise<{ local
   const isRTL = locale === 'ar';
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
   const localePath = locale === 'ar' ? '' : '/en';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageImage = `${baseUrl}/uploads/mazallat-1.webp`;
   
   const breadcrumbItems = [

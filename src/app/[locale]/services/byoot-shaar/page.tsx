@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'byootShaar' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageUrl = '/services/byoot-shaar';
   const canonicalPath = isArabic ? pageUrl : `/en${pageUrl}`;
   const pageImage = 'https://ext.same-assets.com/3073684241/1858852453.jpeg';
@@ -308,7 +308,7 @@ export default async function ByootShaarPage({ params }: { params: Promise<{ loc
   const isRTL = locale === 'ar';
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
   const localePath = locale === 'ar' ? '' : '/en';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageImage = 'https://ext.same-assets.com/3073684241/1858852453.jpeg';
   
   const breadcrumbItems = [

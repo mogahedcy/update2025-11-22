@@ -22,7 +22,7 @@ export default function ServiceReviewSchema({
   reviews,
   provider = {
     name: 'ديار جدة العالمية - Deyar Jeddah',
-    url: 'https://www.aldeyarksa.tech'
+    url: 'https://www.deyarsu.com'
   }
 }: ServiceReviewSchemaProps) {
   if (!reviews || reviews.length === 0) {

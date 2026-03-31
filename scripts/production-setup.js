@@ -33,7 +33,7 @@ async function setupProduction() {
     const adminData = {
       username: 'admin',
       password: 'aldeyar2024',
-      email: 'admin@aldeyarksa.tech',
+      email: 'admin@deyarsu.com',
       fullName: 'مدير النظام'
     };
 
@@ -81,7 +81,7 @@ async function setupProduction() {
     console.log(`👤 اسم المستخدم: ${adminData.username}`);
     console.log(`🔑 كلمة المرور: ${adminData.password}`);
     console.log(`📧 البريد الإلكتروني: ${adminData.email}`);
-    console.log('🔗 رابط لوحة التحكم: https://aldeyarksa.tech/login');
+    console.log('🔗 رابط لوحة التحكم: https://deyarsu.com/login');
 
   } catch (error) {
     console.error('❌ خطأ في الإعداد:', error.message);

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isArabic = locale === 'ar';
   
   return {
-    metadataBase: new URL('https://www.aldeyarksa.tech'),
+    metadataBase: new URL('https://www.deyarsu.com'),
     title: {
       default: isArabic 
         ? "ديار جدة العالمية | أفضل مظلات وبرجولات جدة - خبرة 15 عام"
@@ -53,13 +53,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isArabic
         ? "شركة متخصصة في المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة"
         : "Specialized company in shades, pergolas, fences, and landscaping in Jeddah",
-      url: "https://www.aldeyarksa.tech",
+      url: "https://www.deyarsu.com",
       siteName: isArabic ? "ديار جدة العالمية" : "Deyar Jeddah",
       locale: isArabic ? "ar_SA" : "en_US",
       type: "website",
       images: [
         {
-          url: "https://www.aldeyarksa.tech/images/slider1.webp",
+          url: "https://www.deyarsu.com/images/slider1.webp",
           width: 1200,
           height: 630,
           alt: isArabic ? "ديار جدة العالمية - مظلات وبرجولات جدة" : "Deyar Jeddah - Shades and Pergolas Jeddah",
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isArabic 
         ? "خدمات شاملة في المظلات والبرجولات والسواتر في جدة"
         : "Comprehensive services in shades, pergolas, and fences in Jeddah",
-      images: ["https://www.aldeyarksa.tech/images/slider1.webp"],
+      images: ["https://www.deyarsu.com/images/slider1.webp"],
     },
     icons: {
       icon: [

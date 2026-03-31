@@ -63,13 +63,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isArabic
         ? 'ديار جدة العالمية - تركيب مظلات سيارات، برجولات، سواتر في جدة. خبرة 15 عام، ضمان 10 سنوات'
         : 'Aldeyar Global Professionals - Installing car shades, pergolas, fences in Jeddah. 15 years experience',
-      url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}`,
+      url: `https://www.deyarsu.com${locale === 'en' ? '/en' : ''}`,
       siteName: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
       locale: isArabic ? 'ar_SA' : 'en_US',
       type: 'website',
       images: [
         {
-          url: 'https://www.aldeyarksa.tech/images/hero-bg.webp',
+          url: 'https://www.deyarsu.com/images/hero-bg.webp',
           width: 1200,
           height: 630,
           alt: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
@@ -84,7 +84,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isArabic
         ? 'تركيب مظلات سيارات، برجولات، سواتر في جدة'
         : 'Installing car shades, pergolas, fences in Jeddah',
-      images: ['https://www.aldeyarksa.tech/images/hero-bg.webp'],
+      images: ['https://www.deyarsu.com/images/hero-bg.webp'],
     },
   };
 }
@@ -102,7 +102,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <ReviewSchema 
         serviceName={isArabic ? "مظلات وبرجولات وسواتر جدة - ديار جدة العالمية" : "Shades, Pergolas and Fences Jeddah - Aldeyar Global"}
         itemType="LocalBusiness"
-        serviceUrl="https://www.aldeyarksa.tech"
+        serviceUrl="https://www.deyarsu.com"
         aggregateRating={{ ratingValue: 4.9, reviewCount: 287 }}
       />
       <SearchActionSchema />
@@ -151,7 +151,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "مظلات سيارات من خامات PVC عالمية، مقاومة للحرارة والأمطار، بضمان 10 سنوات"
           : "Car shades made of global PVC materials, heat and rain resistant, with 10 year warranty"}
-        image="https://www.aldeyarksa.tech/uploads/mazallat-1.webp"
+        image="https://www.deyarsu.com/uploads/mazallat-1.webp"
         price="2500.00"
         currency="SAR"
         rating={{ ratingValue: 4.9, reviewCount: 287 }}
@@ -166,7 +166,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "برجولات خشبية وحديدية للحدائق والاستراحات، تصاميم عصرية وكلاسيكية بضمان 10 سنوات"
           : "Wooden and iron pergolas for gardens and rest areas, modern and classic designs with 10 year warranty"}
-        image="https://www.aldeyarksa.tech/uploads/pergola-1.jpg"
+        image="https://www.deyarsu.com/uploads/pergola-1.jpg"
         price="3500.00"
         currency="SAR"
         rating={{ ratingValue: 4.8, reviewCount: 156 }}
@@ -181,7 +181,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "سواتر خصوصية بأنواع متعددة: حديد، قماش، خشبي، شرائح. حماية كاملة للخصوصية بضمان 15 سنة"
           : "Privacy fences in multiple types: iron, fabric, wooden, slats. Complete privacy protection with 15 year warranty"}
-        image="https://www.aldeyarksa.tech/uploads/sawater-1.webp"
+        image="https://www.deyarsu.com/uploads/sawater-1.webp"
         price="1800.00"
         currency="SAR"
         rating={{ ratingValue: 4.9, reviewCount: 198 }}
@@ -196,7 +196,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "ألواح ساندوتش بانل للعزل الحراري والصوتي، مثالية للمستودعات والهناجر بضمان 10 سنوات"
           : "Sandwich panels for thermal and acoustic insulation, ideal for warehouses and hangars with 10 year warranty"}
-        image="https://www.aldeyarksa.tech/uploads/sandwich-panel-1.jpg"
+        image="https://www.deyarsu.com/uploads/sandwich-panel-1.jpg"
         price="4500.00"
         currency="SAR"
         rating={{ ratingValue: 4.7, reviewCount: 89 }}
@@ -211,7 +211,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "خدمات تنسيق وتصميم الحدائق، زراعة النباتات، تركيب العشب الصناعي والطبيعي، شبكات الري"
           : "Landscaping and garden design services, planting, artificial and natural grass installation, irrigation systems"}
-        image="https://www.aldeyarksa.tech/uploads/landscaping-1.webp"
+        image="https://www.deyarsu.com/uploads/landscaping-1.webp"
         price="5000.00"
         currency="SAR"
         rating={{ ratingValue: 4.9, reviewCount: 134 }}
@@ -226,7 +226,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "بيوت شعر تراثية أصيلة بتصاميم سعودية عريقة، مصنوعة من أجود أنواع شعر الماعز"
           : "Authentic traditional hair houses with original Saudi designs, made from the finest goat hair"}
-        image="https://www.aldeyarksa.tech/uploads/byoot-shaar-1.webp"
+        image="https://www.deyarsu.com/uploads/byoot-shaar-1.webp"
         price="8000.00"
         currency="SAR"
         rating={{ ratingValue: 4.8, reviewCount: 67 }}
@@ -241,7 +241,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "خيام ملكية فاخرة للمناسبات والأفراح، تصاميم راقية ومساحات واسعة مقاومة للعوامل الجوية"
           : "Luxury royal tents for events and weddings, elegant designs and spacious weather-resistant areas"}
-        image="https://www.aldeyarksa.tech/uploads/khayyam-1.webp"
+        image="https://www.deyarsu.com/uploads/khayyam-1.webp"
         price="12000.00"
         currency="SAR"
         rating={{ ratingValue: 4.9, reviewCount: 45 }}
@@ -256,7 +256,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         description={isArabic 
           ? "خدمات ترميم وتجديد الملحقات والاستراحات والفلل، تحديث التصاميم وتحسين العزل"
           : "Renovation services for annexes, rest areas and villas, design updates and insulation improvement"}
-        image="https://www.aldeyarksa.tech/uploads/renovation-1.webp"
+        image="https://www.deyarsu.com/uploads/renovation-1.webp"
         price="15000.00"
         currency="SAR"
         rating={{ ratingValue: 4.7, reviewCount: 78 }}

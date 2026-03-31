@@ -30,7 +30,7 @@ function stripHtmlAndCleanText(text: string): string {
   return cleaned;
 }
 
-export default function EnhancedFAQSchema({ faqs, baseUrl = 'https://www.aldeyarksa.tech' }: EnhancedFAQSchemaProps) {
+export default function EnhancedFAQSchema({ faqs, baseUrl = 'https://www.deyarsu.com' }: EnhancedFAQSchemaProps) {
   if (!faqs || faqs.length === 0) return null;
 
   const validFaqs = faqs.filter(faq => 

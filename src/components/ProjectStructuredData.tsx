@@ -30,8 +30,8 @@ export default function ProjectStructuredData({ project }: ProjectStructuredData
     "creator": {
       "@type": "Organization",
       "name": "ديار جدة العالمية",
-      "url": "https://www.aldeyarksa.tech",
-      "logo": "https://www.aldeyarksa.tech/images/logo.png",
+      "url": "https://www.deyarsu.com",
+      "logo": "https://www.deyarsu.com/images/logo.png",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "جدة",

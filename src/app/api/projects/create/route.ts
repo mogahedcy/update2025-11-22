@@ -185,7 +185,7 @@ export async function POST(request: NextRequest) {
           description: project.description,
           category: project.category,
           location: project.location,
-          projectLink: `https://aldeyarksa.tech/portfolio/${project.slug}`,
+          projectLink: `https://deyarsu.com/portfolio/${project.slug}`,
           media: fullProject?.media_items?.map(item => ({
             url: item.src
           })) || [],

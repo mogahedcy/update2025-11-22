@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     locale: 'ar_SA',
     images: [
       {
-        url: 'https://www.aldeyarksa.tech/logo.png',
+        url: 'https://www.deyarsu.com/logo.png',
         width: 1200,
         height: 630,
         alt: 'شروط الخدمة - ديار جدة العالمية',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary',
     title: 'شروط الخدمة | ديار جدة العالمية',
     description: 'الشروط والأحكام التي تحكم استخدام خدماتنا',
-    images: ['https://www.aldeyarksa.tech/logo.png'],
+    images: ['https://www.deyarsu.com/logo.png'],
   }
 }
 

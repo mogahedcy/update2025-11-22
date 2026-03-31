@@ -39,11 +39,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: isArabic ? 'معرض أعمال ديار جدة العالمية - مشاريع مميزة في جدة' : 'Aldeyar Global Portfolio - Featured Projects in Jeddah',
       description: isArabic ? 'اكتشف أعمالنا المتميزة في المظلات والبرجولات والسواتر وجميع خدماتنا في جدة' : 'Discover our distinguished work in shades, pergolas, fences and all our services in Jeddah',
-      url: `https://www.aldeyarksa.tech/${locale}/portfolio`,
+      url: `https://www.deyarsu.com/${locale}/portfolio`,
       siteName: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
       images: [
         {
-          url: 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp',
+          url: 'https://www.deyarsu.com/uploads/mazallat-1.webp',
           width: 1200,
           height: 630,
           alt: isArabic ? 'معرض أعمال ديار جدة العالمية' : 'Aldeyar Global Professionals Portfolio'
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: 'summary_large_image',
       title: isArabic ? 'معرض أعمال ديار جدة العالمية' : 'Aldeyar Global Professionals Portfolio',
       description: isArabic ? 'اكتشف مشاريعنا المتميزة في جدة' : 'Discover our featured projects in Jeddah',
-      images: ['https://www.aldeyarksa.tech/uploads/mazallat-1.webp']
+      images: ['https://www.deyarsu.com/uploads/mazallat-1.webp']
     },
     alternates: {
       canonical: `/${locale}/portfolio`,
@@ -75,7 +75,7 @@ const portfolioStructuredData = {
   "@type": "CollectionPage",
   "name": "معرض أعمال ديار جدة العالمية",
   "description": "مجموعة شاملة من مشاريعنا المتميزة في جدة",
-  "url": "https://www.aldeyarksa.tech/portfolio",
+  "url": "https://www.deyarsu.com/portfolio",
   "mainEntity": {
     "@type": "ItemList",
     "name": "مشاريع ديار جدة العالمية",
@@ -102,8 +102,8 @@ const portfolioStructuredData = {
   "provider": {
     "@type": "Organization",
     "name": "ديار جدة العالمية",
-    "url": "https://www.aldeyarksa.tech",
-    "logo": "https://www.aldeyarksa.tech/logo.png"
+    "url": "https://www.deyarsu.com",
+    "logo": "https://www.deyarsu.com/logo.png"
   }
 };
 
@@ -117,7 +117,7 @@ export default async function PortfolioPage({ params }: { params: Promise<{ loca
       <VideoObjectSchema 
         name={locale === 'ar' ? "جولة في معرض أعمال ديار جدة العالمية - مشاريع المظلات والبرجولات" : "Tour of Aldeyar Global Portfolio - Shades and Pergolas Projects"}
         description={locale === 'ar' ? "شاهد أفضل مشاريعنا المنجزة في جدة من مظلات سيارات وبرجولات وسواتر بجودة عالية" : "Watch our best completed projects in Jeddah from car shades, pergolas and fences in high quality"}
-        thumbnailUrl="https://www.aldeyarksa.tech/uploads/mazallat-1.webp"
+        thumbnailUrl="https://www.deyarsu.com/uploads/mazallat-1.webp"
         uploadDate={new Date().toISOString()}
         duration="PT3M"
       />

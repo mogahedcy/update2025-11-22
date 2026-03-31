@@ -64,7 +64,7 @@ export default function ReviewSchema({
 
   const defaultProvider = {
     name: 'ديار جدة العالمية',
-    url: 'https://www.aldeyarksa.tech'
+    url: 'https://www.deyarsu.com'
   };
 
   const providerData = provider || defaultProvider;

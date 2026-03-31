@@ -8,7 +8,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
   const localBusinessData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://www.aldeyarksa.tech/#organization",
+    "@id": "https://www.deyarsu.com/#organization",
     "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah",
     "alternateName": isArabic 
       ? "ديار جدة العالمية | مظلات وبرجولات جدة"
@@ -16,17 +16,17 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
     "description": isArabic
       ? "شركة متخصصة في تركيب المظلات والبرجولات والسواتر والساندوتش بانل وتنسيق الحدائق في جدة مع خبرة 15 عاماً وضمان 10 سنوات"
       : "Specialized company in installing shades, pergolas, fences, sandwich panels, and landscaping in Jeddah with 15 years of experience and 10-year warranty",
-    "url": "https://www.aldeyarksa.tech",
+    "url": "https://www.deyarsu.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.aldeyarksa.tech/images/logo.png",
+      "url": "https://www.deyarsu.com/images/logo.png",
       "width": "250",
       "height": "250"
     },
     "image": [
-      "https://www.aldeyarksa.tech/images/slider1.webp",
-      "https://www.aldeyarksa.tech/images/slider2.webp",
-      "https://www.aldeyarksa.tech/images/slider3.webp"
+      "https://www.deyarsu.com/images/slider1.webp",
+      "https://www.deyarsu.com/images/slider2.webp",
+      "https://www.deyarsu.com/images/slider3.webp"
     ],
     "telephone": "+966553719009",
     "email": "ksaaldeyar@gmail.com",
@@ -112,7 +112,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
               ? "تركيب مظلات سيارات بتصاميم عصرية وخامات عالية الجودة"
               : "Installing car shades with modern designs and high-quality materials",
             "provider": {
-              "@id": "https://www.aldeyarksa.tech/#organization"
+              "@id": "https://www.deyarsu.com/#organization"
             }
           }
         },
@@ -125,7 +125,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
               ? "تركيب برجولات خشبية وحديدية للحدائق والاستراحات"
               : "Installing wooden and iron pergolas for gardens and rest areas",
             "provider": {
-              "@id": "https://www.aldeyarksa.tech/#organization"
+              "@id": "https://www.deyarsu.com/#organization"
             }
           }
         },
@@ -138,7 +138,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
               ? "تركيب سواتر للخصوصية والحماية بأنواع متعددة"
               : "Installing privacy fences for protection in various types",
             "provider": {
-              "@id": "https://www.aldeyarksa.tech/#organization"
+              "@id": "https://www.deyarsu.com/#organization"
             }
           }
         },
@@ -151,7 +151,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
               ? "تركيب ساندوتش بانل للعزل الحراري والصوتي"
               : "Installing sandwich panels for thermal and acoustic insulation",
             "provider": {
-              "@id": "https://www.aldeyarksa.tech/#organization"
+              "@id": "https://www.deyarsu.com/#organization"
             }
           }
         },
@@ -164,7 +164,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
               ? "تصميم وتنسيق الحدائق بأحدث الأساليب"
               : "Designing and landscaping gardens with the latest techniques",
             "provider": {
-              "@id": "https://www.aldeyarksa.tech/#organization"
+              "@id": "https://www.deyarsu.com/#organization"
             }
           }
         },
@@ -177,7 +177,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
               ? "تصنيع وتركيب بيوت شعر تراثية أصيلة"
               : "Manufacturing and installing authentic traditional hair houses",
             "provider": {
-              "@id": "https://www.aldeyarksa.tech/#organization"
+              "@id": "https://www.deyarsu.com/#organization"
             }
           }
         },
@@ -190,7 +190,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
               ? "تصنيع وتركيب خيام ملكية فاخرة للمناسبات"
               : "Manufacturing and installing luxury royal tents for events",
             "provider": {
-              "@id": "https://www.aldeyarksa.tech/#organization"
+              "@id": "https://www.deyarsu.com/#organization"
             }
           }
         },
@@ -203,7 +203,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
               ? "ترميم وتجديد الملحقات والاستراحات"
               : "Renovating and refurbishing annexes and rest areas",
             "provider": {
-              "@id": "https://www.aldeyarksa.tech/#organization"
+              "@id": "https://www.deyarsu.com/#organization"
             }
           }
         }

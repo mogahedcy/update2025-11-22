@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { safeEncodeUrl, createImageTags, createVideoTags } from '@/lib/sitemap-utils';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
 
   let articles: any[] = [];
 

@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'khayyam' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageUrl = '/services/khayyam';
   const canonicalPath = isArabic ? pageUrl : `/en${pageUrl}`;
   const pageImage = 'https://ext.same-assets.com/200922472/870035748.jpeg';
@@ -357,7 +357,7 @@ export default async function KhayyamPage({ params }: { params: Promise<{ locale
   const isRTL = locale === 'ar';
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
   const localePath = locale === 'ar' ? '' : '/en';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageImage = 'https://ext.same-assets.com/200922472/870035748.jpeg';
   
   const breadcrumbItems = [

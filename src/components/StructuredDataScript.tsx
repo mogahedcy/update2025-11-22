@@ -2,7 +2,7 @@
 type StructuredDataType = Record<string, unknown>;
 
 export default function StructuredDataScript({ data }: { data?: StructuredDataType | StructuredDataType[] }) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
 
   const organizationData = {
     "@context": "https://schema.org",

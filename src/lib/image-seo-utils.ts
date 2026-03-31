@@ -127,22 +127,22 @@ export function generateImageObjectSchema(
     "author": {
       "@type": "Organization",
       "name": "ديار جدة العالمية",
-      "url": "https://www.aldeyarksa.tech"
+      "url": "https://www.deyarsu.com"
     },
     "publisher": {
       "@type": "Organization",
       "name": "ديار جدة العالمية",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.aldeyarksa.tech/favicon.svg"
+        "url": "https://www.deyarsu.com/favicon.svg"
       }
     },
     "copyrightHolder": {
       "@type": "Organization",
       "name": "ديار جدة العالمية"
     },
-    "license": "https://www.aldeyarksa.tech/terms",
-    "acquireLicensePage": "https://www.aldeyarksa.tech/contact",
+    "license": "https://www.deyarsu.com/terms",
+    "acquireLicensePage": "https://www.deyarsu.com/contact",
     "creditText": "ديار جدة العالمية - جدة، السعودية",
     "creator": {
       "@type": "Organization",
@@ -165,7 +165,7 @@ export function generateImageSitemapEntry(
   pageUrl: string,
   location = 'جدة، السعودية'
 ) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
   const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`;
   const fullPageUrl = pageUrl.startsWith('http') ? pageUrl : `${baseUrl}${pageUrl}`;
 

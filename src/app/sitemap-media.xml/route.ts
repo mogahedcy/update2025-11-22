@@ -13,7 +13,7 @@ interface MediaEntry {
 }
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
   
   const mediaEntries: MediaEntry[] = [];
 

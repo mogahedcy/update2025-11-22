@@ -14,7 +14,7 @@
   },
   "regions": ["iad1"],
   "env": {
-    "NEXT_PUBLIC_BASE_URL": "https://www.aldeyarksa.tech"
+    "NEXT_PUBLIC_BASE_URL": "https://www.deyarsu.com"
   },
   "headers": [
     {

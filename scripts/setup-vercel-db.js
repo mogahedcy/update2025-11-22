@@ -27,7 +27,7 @@ async function setupVercelDatabase() {
     const adminData = {
       username: 'admin',
       password: 'aldeyar2024',
-      email: 'admin@aldeyarksa.tech',
+      email: 'admin@deyarsu.com',
       fullName: 'مدير النظام'
     };
     
@@ -64,7 +64,7 @@ async function setupVercelDatabase() {
     console.log('📋 بيانات تسجيل الدخول:');
     console.log('👤 اسم المستخدم: admin');
     console.log('🔑 كلمة المرور: aldeyar2024');
-    console.log('📧 البريد الإلكتروني: admin@aldeyarksa.tech');
+    console.log('📧 البريد الإلكتروني: admin@deyarsu.com');
     console.log('');
     console.log('🔗 رابط لوحة التحكم: https://YOUR-DOMAIN.vercel.app/login');
     

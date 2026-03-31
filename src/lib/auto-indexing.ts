@@ -2,7 +2,7 @@
  * نظام الفهرسة التلقائية - يرسل التحديثات إلى محركات البحث تلقائياً
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'aldeyarksa-indexnow-key-2024';
 
 export interface IndexingResult {

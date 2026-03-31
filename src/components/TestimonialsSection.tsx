@@ -65,7 +65,7 @@ export default function TestimonialsSection() {
       <ReviewSchema
         serviceName={serviceName}
         itemType="LocalBusiness"
-        serviceUrl="https://www.aldeyarksa.tech"
+        serviceUrl="https://www.deyarsu.com"
         aggregateRating={{
           ratingValue: 4.9,
           reviewCount: testimonials.length

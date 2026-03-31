@@ -187,7 +187,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   
   //Fallback أخير في حال عدم وجود أي وسائط (نادر جداً)
   if (!shareImage) {
-    shareImage = 'https://www.aldeyarksa.tech/images/slider1.webp';
+    shareImage = 'https://www.deyarsu.com/images/slider1.webp';
   }
   
   // تحسين العنوان والكلمات الدلالية بناءً على البيانات التي أدخلها المستخدم في لوحة التحكم
@@ -205,10 +205,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     `${project.description.substring(0, 150)}... تنفيذ احترافي في ${project.location} بضمان 10 سنوات.`;
   
   const pageUrl = `/portfolio/${project.slug || id}`;
-  const fullUrl = `https://www.aldeyarksa.tech${pageUrl}`;
+  const fullUrl = `https://www.deyarsu.com${pageUrl}`;
 
   // ✅ Fallback image for Twitter if all else fails
-  const mainImage = allImages.length > 0 ? getAbsoluteUrl(allImages[0].src) : 'https://www.aldeyarksa.tech/images/slider1.webp';
+  const mainImage = allImages.length > 0 ? getAbsoluteUrl(allImages[0].src) : 'https://www.deyarsu.com/images/slider1.webp';
 
   return {
     title: seoTitle,
@@ -264,11 +264,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         : [{ url: mainImage }],
     },
     alternates: {
-      canonical: `https://www.aldeyarksa.tech/portfolio/${project.slug || id}`,
+      canonical: `https://www.deyarsu.com/portfolio/${project.slug || id}`,
       languages: {
         'ar-SA': fullUrl,
-        'en-US': `https://www.aldeyarksa.tech/en/portfolio/${project.slug || id}`,
-        'x-default': `https://www.aldeyarksa.tech/portfolio/${project.slug || id}`
+        'en-US': `https://www.deyarsu.com/en/portfolio/${project.slug || id}`,
+        'x-default': `https://www.deyarsu.com/portfolio/${project.slug || id}`
       }
     },
     robots: generateRobotsMetadata()
@@ -422,7 +422,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
       "name": "ديار جدة العالمية",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.aldeyarksa.tech/logo.png"
+        "url": "https://www.deyarsu.com/logo.png"
       }
     }
   } : null;
@@ -528,7 +528,7 @@ export default async function ProjectDetailsPage({ params }: Props) {
             '@type': 'LocalBusiness',
             name: 'ديار جدة العالمية',
             description: `${project.category} في ${project.location} - تنفيذ ديار جدة العالمية بجودة عالية وضمان 10 سنوات`,
-            image: images.length > 0 ? images.map((img: any) => getAbsoluteUrl(img.src)) : ['https://www.aldeyarksa.tech/logo.png'],
+            image: images.length > 0 ? images.map((img: any) => getAbsoluteUrl(img.src)) : ['https://www.deyarsu.com/logo.png'],
             address: {
               '@type': 'PostalAddress',
               addressLocality: project.location || 'جدة',

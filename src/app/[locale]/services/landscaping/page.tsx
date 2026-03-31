@@ -43,10 +43,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'landscaping' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageUrl = '/services/landscaping';
   const canonicalPath = isArabic ? pageUrl : `/en${pageUrl}`;
-  const pageImage = 'https://www.aldeyarksa.tech/uploads/landscaping-1.webp';
+  const pageImage = 'https://www.deyarsu.com/uploads/landscaping-1.webp';
   
   return {
     title: t('pageTitle'),
@@ -104,8 +104,8 @@ export default async function LandscapingPage({ params }: { params: Promise<{ lo
   const isArabic = locale === 'ar';
   const ArrowIcon = isArabic ? ArrowLeft : ArrowRight;
   const localePath = locale === 'ar' ? '' : '/en';
-  const baseUrl = 'https://www.aldeyarksa.tech';
-  const pageImage = 'https://www.aldeyarksa.tech/uploads/landscaping-1.webp';
+  const baseUrl = 'https://www.deyarsu.com';
+  const pageImage = 'https://www.deyarsu.com/uploads/landscaping-1.webp';
   
   const breadcrumbItems = [
     { label: t('breadcrumb.services'), href: `${localePath}/#services` },

@@ -24,7 +24,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.aldeyarksa.tech'),
+  metadataBase: new URL('https://www.deyarsu.com'),
   title: {
     default: "ديار جدة العالمية | أفضل مظلات وبرجولات جدة",
     template: "%s | ديار جدة العالمية"

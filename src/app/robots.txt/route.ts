@@ -126,16 +126,16 @@ User-agent: Bytespider
 Disallow: /
 
 # خرائط المواقع المتعددة والمحدثة - محسنة لـ SEO
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-index.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-projects.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-articles.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-images.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-media.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-index.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-projects.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-articles.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-images.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-media.xml
 
 # معلومات إضافية للمطورين ومحركات البحث
 # Contact: ksaaldeyar@gmail.com
-# Website: https://www.aldeyarksa.tech
+# Website: https://www.deyarsu.com
 # Company: ديار جدة العالمية
 # Location: جدة، المملكة العربية السعودية
 # Services: مظلات، برجولات، سواتر، تنسيق حدائق`;

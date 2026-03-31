@@ -18,8 +18,8 @@ export async function POST(request: NextRequest) {
       description: "هذا اختبار للتحقق من صحة الربط بين الموقع و n8n",
       category: "اختبار",
       location: "جدة",
-      projectLink: "https://aldeyarksa.tech",
-      media: [{ url: "https://www.aldeyarksa.tech/logo.png" }],
+      projectLink: "https://deyarsu.com",
+      media: [{ url: "https://www.deyarsu.com/logo.png" }],
       isTest: true,
       timestamp: new Date().toISOString()
     };

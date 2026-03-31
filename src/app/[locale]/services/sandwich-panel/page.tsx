@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'sandwichPanel' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageUrl = '/services/sandwich-panel';
   const canonicalPath = isArabic ? pageUrl : `/en${pageUrl}`;
   const pageImage = 'https://ext.same-assets.com/3073684241/sandwich-panel-hero.jpeg';
@@ -99,7 +99,7 @@ export default async function SandwichPanelPage({ params }: { params: Promise<{ 
   const isArabic = locale === 'ar';
   const ArrowIcon = isArabic ? ArrowLeft : ArrowRight;
   const localePath = locale === 'ar' ? '' : '/en';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageImage = 'https://ext.same-assets.com/3073684241/sandwich-panel-hero.jpeg';
   
   const breadcrumbItems = [

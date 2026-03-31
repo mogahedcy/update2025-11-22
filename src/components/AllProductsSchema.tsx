@@ -8,7 +8,7 @@ interface AllProductsSchemaProps {
 
 export default function AllProductsSchema({ locale = 'ar' }: AllProductsSchemaProps) {
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const brand = isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah Global';
 
   // جميع منتجات/خدمات الموقع

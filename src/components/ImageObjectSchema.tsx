@@ -46,8 +46,8 @@ export default function ImageObjectSchema({
       "name": "ديار جدة العالمية"
     },
     "creditText": "ديار جدة العالمية - جدة",
-    "acquireLicensePage": "https://www.aldeyarksa.tech/contact",
-    "license": "https://www.aldeyarksa.tech/terms",
+    "acquireLicensePage": "https://www.deyarsu.com/contact",
+    "license": "https://www.deyarsu.com/terms",
     "inLanguage": "ar"
   };
 

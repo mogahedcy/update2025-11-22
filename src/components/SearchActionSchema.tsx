@@ -5,7 +5,7 @@ interface SearchActionSchemaProps {
   baseUrl?: string;
 }
 
-export default function SearchActionSchema({ baseUrl = 'https://www.aldeyarksa.tech' }: SearchActionSchemaProps) {
+export default function SearchActionSchema({ baseUrl = 'https://www.deyarsu.com' }: SearchActionSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",

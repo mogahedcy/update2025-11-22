@@ -35,7 +35,7 @@ export default function VideoObjectSchema({
       "name": "ديار جدة العالمية",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.aldeyarksa.tech/logo.png"
+        "url": "https://www.deyarsu.com/logo.png"
       }
     }
   };

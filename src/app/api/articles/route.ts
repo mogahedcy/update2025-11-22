@@ -341,7 +341,7 @@ function generateSlug(title: string, id?: string): string {
 }
 
 async function notifyGoogleNewContent(slug: string): Promise<void> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
   const url = `${baseUrl}/articles/${slug}`;
 
   try {

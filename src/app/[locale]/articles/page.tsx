@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isArabic
         ? 'اكتشف مقالاتنا المتخصصة في المظلات والبرجولات والسواتر وتنسيق الحدائق'
         : 'Discover our specialized articles on shades, pergolas, fences, and landscaping',
-      url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/articles`,
+      url: `https://www.deyarsu.com${locale === 'en' ? '/en' : ''}/articles`,
       siteName: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       images: [
         {
-          url: 'https://www.aldeyarksa.tech/uploads/mazallat-1.webp',
+          url: 'https://www.deyarsu.com/uploads/mazallat-1.webp',
           width: 1200,
           height: 630,
           alt: isArabic ? 'أرشيف مقالات ديار جدة العالمية' : 'Deyar Jeddah Articles Archive'
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isArabic
         ? 'اكتشف مقالاتنا المتخصصة في المظلات والبرجولات'
         : 'Discover our specialized articles on shades and pergolas',
-      images: ['https://www.aldeyarksa.tech/uploads/mazallat-1.webp']
+      images: ['https://www.deyarsu.com/uploads/mazallat-1.webp']
     },
     alternates: {
       canonical: locale === 'ar' ? '/articles' : '/en/articles',
@@ -78,13 +78,13 @@ export default async function ArticlesPage({ params }: { params: Promise<{ local
     description: isArabic
       ? 'مقالات متخصصة في المظلات والبرجولات والسواتر وتنسيق الحدائق'
       : 'Specialized articles on shades, pergolas, fences, and landscaping',
-    url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/articles`,
+    url: `https://www.deyarsu.com${locale === 'en' ? '/en' : ''}/articles`,
     publisher: {
       '@type': 'Organization',
       name: isArabic ? 'ديار جدة العالمية' : 'Deyar Jeddah',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.aldeyarksa.tech/logo.svg'
+        url: 'https://www.deyarsu.com/logo.svg'
       }
     }
   };

@@ -193,7 +193,7 @@ export default async function ArticlePage({ params }: Props) {
         description={article.excerpt || article.content?.substring(0, 160) || ''}
         author={{
           name: article.author || 'ديار جدة العالمية',
-          url: 'https://www.aldeyarksa.tech'
+          url: 'https://www.deyarsu.com'
         }}
         datePublished={article.publishedAt}
         dateModified={article.updatedAt || article.publishedAt}

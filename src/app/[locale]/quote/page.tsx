@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'quote' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const canonicalPath = isArabic ? '/quote' : '/en/quote';
   
   return {
@@ -86,7 +86,7 @@ export default async function QuotePage({ params }: { params: Promise<{ locale: 
   const t = await getTranslations({ locale, namespace: 'quote' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   
   const services = [
     { id: 'mazallat', name: t('services.mazallat.name'), price: t('services.mazallat.price') },

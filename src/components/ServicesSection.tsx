@@ -83,7 +83,7 @@ export default function ServicesSection() {
     "provider": {
       "@type": "Organization",
       "name": isRTL ? "ديار جدة العالمية" : "Deyar Jeddah",
-      "url": "https://www.aldeyarksa.tech"
+      "url": "https://www.deyarsu.com"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -101,7 +101,7 @@ export default function ServicesSection() {
               "name": service.title,
               "description": service.description,
               "serviceType": service.title,
-              "url": `https://www.aldeyarksa.tech${service.href}`
+              "url": `https://www.deyarsu.com${service.href}`
             },
             "price": numericPrice,
             "priceCurrency": "SAR",

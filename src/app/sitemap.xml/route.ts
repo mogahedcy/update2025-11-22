@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
 
   const staticPages = [
     { 
@@ -302,7 +302,7 @@ export async function GET() {
         const lastMod = project.updatedAt ? new Date(project.updatedAt).toISOString() : new Date().toISOString();
         
         // استخدام رابط صورة حقيقي من معرض الأعمال بدلاً من النمط الثابت
-        const projectImage = `https://www.aldeyarksa.tech/uploads/${slug}.webp`;
+        const projectImage = `https://www.deyarsu.com/uploads/${slug}.webp`;
         
         return `<url>
     <loc>${baseUrl}/portfolio/${encodeURIComponent(slug)}</loc>

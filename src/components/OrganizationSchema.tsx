@@ -14,14 +14,14 @@ export default function OrganizationSchema({ locale = 'ar' }: OrganizationSchema
     "@type": "LocalBusiness",
     "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah Professionals",
     "alternateName": isArabic ? "الديار للمظلات والسواتر" : "Aldeyar Shades and Fences",
-    "url": "https://www.aldeyarksa.tech",
+    "url": "https://www.deyarsu.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.aldeyarksa.tech/images/logo.png",
+      "url": "https://www.deyarsu.com/images/logo.png",
       "width": 1024,
       "height": 1024
     },
-    "image": "https://www.aldeyarksa.tech/images/hero-bg.webp",
+    "image": "https://www.deyarsu.com/images/hero-bg.webp",
     "description": isArabic 
       ? "شركة ديار جدة العالمية - رائدة في تركيب المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة. خبرة 15 عاماً، ضمان 10 سنوات، تركيب احترافي."
       : "Deyar Jeddah Professionals - Leading company for installing shades, pergolas, fences, and landscaping in Jeddah. 15 years experience, 10 year warranty, professional installation.",
@@ -68,7 +68,7 @@ export default function OrganizationSchema({ locale = 'ar' }: OrganizationSchema
         "availableLanguage": ["ar", "en"]
       }
     ],
-    "email": "info@aldeyarksa.tech",
+    "email": "info@deyarsu.com",
     "telephone": "+966553719009",
     "priceRange": "$$",
     "openingHoursSpecification": [

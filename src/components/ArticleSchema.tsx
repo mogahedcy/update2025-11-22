@@ -36,8 +36,8 @@ export default function ArticleSchema({
 }: ArticleSchemaProps) {
   const defaultPublisher = {
     name: 'ديار جدة العالمية',
-    logo: 'https://www.aldeyarksa.tech/favicon.svg',
-    url: 'https://www.aldeyarksa.tech'
+    logo: 'https://www.deyarsu.com/favicon.svg',
+    url: 'https://www.deyarsu.com'
   };
 
   const publisherData = publisher || defaultPublisher;

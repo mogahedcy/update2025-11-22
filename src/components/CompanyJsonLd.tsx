@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 export default function CompanyJsonLd() {
   useEffect(() => {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
 
     const localBusinessSchema = {
       '@context': 'https://schema.org',

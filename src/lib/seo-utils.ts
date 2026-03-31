@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-const BASE_URL = 'https://www.aldeyarksa.tech';
+const BASE_URL = 'https://www.deyarsu.com';
 const SITE_NAME = 'ديار جدة العالمية';
 
 // دوال مساعدة للحصول على URL مطلق ونوع الملف
@@ -288,7 +288,7 @@ export function generateVideoObjectSchema(videos: Array<{
   duration?: string;
   embedUrl?: string;
 }>) {
-  const BASE_URL = 'https://www.aldeyarksa.tech';
+  const BASE_URL = 'https://www.deyarsu.com';
   
   return videos.map((video) => ({
     "@type": "VideoObject",

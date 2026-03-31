@@ -109,7 +109,7 @@ export async function notifyURLDeleted(url: string): Promise<UnifiedIndexingResu
  * Ping sitemap لمحركات البحث التقليدية
  */
 async function pingSitemap(): Promise<{ success: boolean; message: string }> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
   const sitemapUrl = `${baseUrl}/sitemap.xml`;
 
   const searchEngines = [

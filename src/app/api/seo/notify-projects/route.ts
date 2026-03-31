@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       if (replitDomain) {
         baseUrl = `https://${replitDomain}`;
       } else {
-        baseUrl = 'https://www.aldeyarksa.tech';
+        baseUrl = 'https://www.deyarsu.com';
       }
     }
     

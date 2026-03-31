@@ -51,13 +51,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isArabic
         ? 'تعرف على ديار جدة العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً.'
         : 'Learn about Aldeyar Global Professionals, leading in shades and fences services in Jeddah for 15 years.',
-      url: `https://www.aldeyarksa.tech${locale === 'en' ? '/en' : ''}/about`,
+      url: `https://www.deyarsu.com${locale === 'en' ? '/en' : ''}/about`,
       siteName: isArabic ? 'ديار جدة العالمية' : 'Aldeyar Global Professionals',
       type: 'website',
       locale: isArabic ? 'ar_SA' : 'en_US',
       images: [
         {
-          url: 'https://www.aldeyarksa.tech/logo.png',
+          url: 'https://www.deyarsu.com/logo.png',
           width: 1200,
           height: 630,
           alt: isArabic ? 'عن ديار جدة العالمية' : 'About Aldeyar Global Professionals',
@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isArabic
         ? 'تعرف على ديار جدة العالمية، الرائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً.'
         : 'Learn about Aldeyar Global Professionals, leading in shades and fences services in Jeddah for 15 years.',
-      images: ['https://www.aldeyarksa.tech/logo.png'],
+      images: ['https://www.deyarsu.com/logo.png'],
     },
   };
 }
@@ -180,8 +180,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     "description": isArabic 
       ? "شركة رائدة في خدمات المظلات والسواتر في جدة منذ 15 عاماً"
       : "A leading company in shades and fences services in Jeddah for 15 years",
-    "url": "https://www.aldeyarksa.tech",
-    "logo": "https://www.aldeyarksa.tech/logo.png",
+    "url": "https://www.deyarsu.com",
+    "logo": "https://www.deyarsu.com/logo.png",
     "foundingDate": "2009",
     "founder": isArabic ? "المهندس أحمد السعيد" : "Eng. Ahmed Al-Saeed",
     "address": {

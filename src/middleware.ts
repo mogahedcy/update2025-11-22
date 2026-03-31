@@ -27,8 +27,8 @@ export function middleware(request: NextRequest) {
   }
 
   // ✅ Enforce www canonical domain (only in production)
-  if (hostname === 'aldeyarksa.tech' && process.env.NODE_ENV === 'production') {
-    url.host = 'www.aldeyarksa.tech';
+  if (hostname === 'deyarsu.com' && process.env.NODE_ENV === 'production') {
+    url.host = 'www.deyarsu.com';
     return NextResponse.redirect(url, 301);
   }
 

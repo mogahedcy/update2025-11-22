@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'sawater' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageUrl = '/services/sawater';
   const canonicalPath = isArabic ? pageUrl : `/en${pageUrl}`;
   const pageImage = `${baseUrl}/uploads/sawater-1.webp`;
@@ -235,7 +235,7 @@ export default async function SawaterPage({ params }: { params: Promise<{ locale
   const isRTL = locale === 'ar';
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
   const localePath = locale === 'ar' ? '' : '/en';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageImage = `${baseUrl}/uploads/sawater-1.webp`;
   
   const breadcrumbItems = [

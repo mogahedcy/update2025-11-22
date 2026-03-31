@@ -87,8 +87,8 @@ const nextConfig = {
   allowedDevOrigins: process.env.NEXT_PUBLIC_ALLOWED_DEV_ORIGINS 
     ? process.env.NEXT_PUBLIC_ALLOWED_DEV_ORIGINS.split(',')
     : [
-        'aldeyarksa.tech',
-        'www.aldeyarksa.tech',
+        'deyarsu.com',
+        'www.deyarsu.com',
         '*.vercel.app',
         '*.replit.dev',
         '*.spock.replit.dev',
@@ -211,10 +211,10 @@ const nextConfig = {
         has: [
           {
             type: 'host',
-            value: 'aldeyarksa.tech',
+            value: 'deyarsu.com',
           },
         ],
-        destination: 'https://www.aldeyarksa.tech/:path*',
+        destination: 'https://www.deyarsu.com/:path*',
         permanent: true,
       },
     ];

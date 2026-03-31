@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: 'renovation' });
   
   const isArabic = locale === 'ar';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageUrl = '/services/renovation';
   const canonicalPath = isArabic ? pageUrl : `/en${pageUrl}`;
   const pageImage = 'https://ext.same-assets.com/3073684241/renovation-hero.jpeg';
@@ -98,7 +98,7 @@ export default async function RenovationPage({ params }: { params: Promise<{ loc
   const isArabic = locale === 'ar';
   const ArrowIcon = isArabic ? ArrowLeft : ArrowRight;
   const localePath = locale === 'ar' ? '' : '/en';
-  const baseUrl = 'https://www.aldeyarksa.tech';
+  const baseUrl = 'https://www.deyarsu.com';
   const pageImage = 'https://ext.same-assets.com/3073684241/renovation-hero.jpeg';
   
   const breadcrumbItems = [

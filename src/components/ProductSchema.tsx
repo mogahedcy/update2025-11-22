@@ -31,7 +31,7 @@ interface ProductSchemaProps {
 export default function ProductSchema({ 
   name, 
   description, 
-  image = 'https://www.aldeyarksa.tech/images/hero-bg.webp',
+  image = 'https://www.deyarsu.com/images/hero-bg.webp',
   price,
   currency = 'SAR',
   availability = 'https://schema.org/InStock',
@@ -57,7 +57,7 @@ export default function ProductSchema({
     ...(category && { "category": category }),
     "offers": {
       "@type": "Offer",
-      "url": "https://www.aldeyarksa.tech",
+      "url": "https://www.deyarsu.com",
       "priceCurrency": currency,
       "price": price,
       "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],

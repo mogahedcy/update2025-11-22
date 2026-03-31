@@ -9,7 +9,7 @@ interface BreadcrumbSchemaProps {
 
 export default function BreadcrumbSchema({ 
   items, 
-  baseUrl = 'https://www.aldeyarksa.tech',
+  baseUrl = 'https://www.deyarsu.com',
   homeName,
   locale = 'ar'
 }: BreadcrumbSchemaProps) {
