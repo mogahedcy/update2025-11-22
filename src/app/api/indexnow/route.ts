@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'urls مطلوب كمصفوفة' }, { status: 400 });
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
     const key = process.env.INDEXNOW_KEY || 'aldeyarksa-indexnow-key-2024';
     const keyLocation = `${baseUrl}/${key}.txt`;
 

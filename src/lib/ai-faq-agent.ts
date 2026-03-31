@@ -124,7 +124,7 @@ export class AIFAQAgent {
     }
   }
 
-  async saveFAQs(faqs: GeneratedFAQ[], shouldPublish: boolean = false): Promise<FAQGenerationResult> {
+  async saveFAQs(faqs: GeneratedFAQ[], shouldPublish = false): Promise<FAQGenerationResult> {
     console.log(`📝 جاري حفظ ${faqs.length} سؤال...`);
 
     const results: FAQGenerationResult = {
@@ -201,8 +201,8 @@ export class AIFAQAgent {
 
   async generateSmartFAQs(
     niche: string,
-    count: number = 5,
-    shouldPublish: boolean = false
+    count = 5,
+    shouldPublish = false
   ): Promise<FAQGenerationResult> {
     console.log(`🧠 التوليد الذكي للأسئلة عن: ${niche}`);
 
@@ -257,7 +257,7 @@ export class AIFAQAgent {
   }
 
   private generateSlug(text: string): string {
-    let slug = text
+    const slug = text
       .trim()
       .toLowerCase()
       .replace(/\s+/g, '-')

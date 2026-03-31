@@ -224,7 +224,7 @@ export default function AIArticleAgentClient({ recentArticles }: { recentArticle
                         </label>
                         <select
                           value={formData.imageCount}
-                          onChange={(e) => setFormData({ ...formData, imageCount: parseInt(e.target.value) })}
+                          onChange={(e) => setFormData({ ...formData, imageCount: Number.parseInt(e.target.value) })}
                           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                           disabled={loading}
                         >
@@ -247,7 +247,7 @@ export default function AIArticleAgentClient({ recentArticles }: { recentArticle
                         max="2000"
                         step="100"
                         value={formData.wordCount}
-                        onChange={(e) => setFormData({ ...formData, wordCount: parseInt(e.target.value) })}
+                        onChange={(e) => setFormData({ ...formData, wordCount: Number.parseInt(e.target.value) })}
                         className="w-full accent-emerald-600"
                         disabled={loading}
                       />

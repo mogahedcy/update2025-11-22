@@ -14,7 +14,7 @@ export class ImageSelector {
     topic: string,
     content: string,
     keywords: string[],
-    imageCount: number = 3
+    imageCount = 3
   ): Promise<ImageSuggestion[]> {
     try {
       const prompt = `أنت خبير في اختيار الصور المناسبة للمقالات والمحتوى.
@@ -65,8 +65,8 @@ export class ImageSelector {
     title: string,
     content: string,
     keywords: string[],
-    imageCount: number = 3,
-    useProjectImages: boolean = true
+    imageCount = 3,
+    useProjectImages = true
   ): Promise<Array<{ src: string; alt: string; description: string; type: 'IMAGE' | 'VIDEO' }>> {
     
     // أولاً: محاولة استخدام الصور من معرض الأعمال (الخيار المفضل)

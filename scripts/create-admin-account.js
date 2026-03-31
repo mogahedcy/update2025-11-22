@@ -12,7 +12,7 @@ async function createAdminAccount() {
     const adminData = {
       username: 'admin',
       password: 'admin123',
-      email: 'admin@aldeyarksa.tech',
+      email: 'admin@deyarsu.com',
       fullName: 'مدير النظام',
       role: 'ADMIN'
     };

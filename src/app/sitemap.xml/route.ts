@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
 
   const staticPages = [
     { 
@@ -10,8 +10,8 @@ export async function GET() {
       priority: '1.0', 
       changefreq: 'daily',
       keywords: {
-        ar: 'مظلات جدة، سواتر، برجولات، تنسيق حدائق، محترفين الديار العالمية',
-        en: 'Jeddah shades, fences, pergolas, landscaping, Aldeyar Global Professionals'
+        ar: 'مظلات جدة، سواتر، برجولات، تنسيق حدائق، ديار جدة العالمية',
+        en: 'Jeddah shades, fences, pergolas, landscaping, Deyar Jeddah'
       },
       hasEnglish: true
     },
@@ -20,8 +20,8 @@ export async function GET() {
       priority: '0.8', 
       changefreq: 'monthly',
       keywords: {
-        ar: 'محترفين الديار العالمية، شركة مظلات جدة، عن الشركة',
-        en: 'Aldeyar Global Professionals, Jeddah shades company, about us'
+        ar: 'ديار جدة العالمية، شركة مظلات جدة، عن الشركة',
+        en: 'Deyar Jeddah, Jeddah shades company, about us'
       },
       hasEnglish: true
     },
@@ -234,11 +234,6 @@ export async function GET() {
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>${hreflangTags}
-    <image:image>
-      <image:loc>${baseUrl}/images/logo.png</image:loc>
-      <image:caption><![CDATA[${page.keywords[locale]}]]></image:caption>
-      <image:title><![CDATA[محترفين الديار العالمية - ${page.keywords[locale]}]]></image:title>
-    </image:image>
   </url>`;
   };
 
@@ -262,13 +257,77 @@ export async function GET() {
     <priority>0.8</priority>
     <news:news>
       <news:publication>
-        <news:name>محترفين الديار العالمية</news:name>
+        <news:name>ديار جدة العالمية</news:name>
         <news:language>ar</news:language>
       </news:publication>
       <news:publication_date>${lastModified}</news:publication_date>
       <news:title><![CDATA[${article.title}]]></news:title>
       <news:keywords><![CDATA[${keywords}]]></news:keywords>
     </news:news>
+  </url>`;
+      }).join('\n  ')
+    : '';
+
+  let dbProjects: any[] = [];
+  let dbFaqs: any[] = [];
+  
+  try {
+    const [articles, projects, faqs] = await Promise.all([
+      prisma.articles.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { id: true, slug: true, title: true, updatedAt: true, keywords: true },
+        orderBy: { publishedAt: 'desc' }
+      }),
+      prisma.projects.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { id: true, slug: true, title: true, updatedAt: true, category: true, location: true },
+        orderBy: { createdAt: 'desc' }
+      }),
+      prisma.faqs.findMany({
+        where: { status: 'PUBLISHED' },
+        select: { id: true, slug: true, question: true, updatedAt: true },
+        orderBy: { order: 'asc' }
+      })
+    ]);
+    dbArticles = articles;
+    dbProjects = projects;
+    dbFaqs = faqs;
+  } catch (error) {
+    console.error('Error fetching data for sitemap:', error);
+  }
+
+  const projectsSitemap = dbProjects.length > 0
+    ? dbProjects.map((project) => {
+        const slug = project.slug || project.id;
+        const lastMod = project.updatedAt ? new Date(project.updatedAt).toISOString() : new Date().toISOString();
+        
+        // استخدام رابط صورة حقيقي من معرض الأعمال بدلاً من النمط الثابت
+        const projectImage = `https://www.deyarsu.com/uploads/${slug}.webp`;
+        
+        return `<url>
+    <loc>${baseUrl}/portfolio/${encodeURIComponent(slug)}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>${projectImage}</image:loc>
+      <image:caption><![CDATA[تنفيذ ${project.category} في ${project.location} - ${project.title} | ديار جدة العالمية]]></image:caption>
+      <image:title><![CDATA[${project.title} - ${project.category}]]></image:title>
+      <image:geo_location>جدة، السعودية</image:geo_location>
+    </image:image>
+  </url>`;
+      }).join('\n  ')
+    : '';
+
+  const faqsSitemap = dbFaqs.length > 0
+    ? dbFaqs.map((faq) => {
+        const slug = faq.slug || faq.id;
+        const lastMod = faq.updatedAt ? new Date(faq.updatedAt).toISOString() : new Date().toISOString();
+        return `<url>
+    <loc>${baseUrl}/faq/${encodeURIComponent(slug)}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>`;
       }).join('\n  ')
     : '';
@@ -281,6 +340,8 @@ export async function GET() {
   ${arabicPages}
   ${englishPages}
   ${articlesSitemap}
+  ${projectsSitemap}
+  ${faqsSitemap}
 </urlset>`;
 
   return new Response(sitemap, {

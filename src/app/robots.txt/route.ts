@@ -51,10 +51,21 @@ Crawl-delay: 0.5
 User-agent: bingbot
 Allow: /
 Allow: /_next/static/
-Crawl-delay: 0.5
+Crawl-delay: 0.1
 Disallow: /dashboard/
 Disallow: /api/auth/
 Disallow: /login/
+
+# AppleBot - مهم لمستخدمي آيفون في السعودية
+User-agent: Applebot
+Allow: /
+Crawl-delay: 0.1
+
+# NaverBot & SeznamBot - لأرشفة IndexNow الشاملة
+User-agent: NaverBot
+Allow: /
+User-agent: SeznamBot
+Allow: /
 
 # Yandex Bot - مهم للأسواق الدولية
 User-agent: YandexBot
@@ -115,16 +126,17 @@ User-agent: Bytespider
 Disallow: /
 
 # خرائط المواقع المتعددة والمحدثة - محسنة لـ SEO
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-index.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-projects.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-articles.xml
-Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap-images.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-index.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-projects.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-articles.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-images.xml
+Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-media.xml
 
 # معلومات إضافية للمطورين ومحركات البحث
 # Contact: ksaaldeyar@gmail.com
-# Website: https://www.aldeyarksa.tech
-# Company: محترفين الديار العالمية
+# Website: https://www.deyarsu.com
+# Company: ديار جدة العالمية
 # Location: جدة، المملكة العربية السعودية
 # Services: مظلات، برجولات، سواتر، تنسيق حدائق`;
 

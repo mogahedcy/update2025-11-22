@@ -37,7 +37,7 @@ export default function StickyWhatsApp() {
                   <MessageCircle className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <p className="font-bold text-sm text-gray-900">محترفين الديار</p>
+                  <p className="font-bold text-sm text-gray-900">ديار جدة العالمية</p>
                   <p className="text-xs text-green-600">متصل الآن</p>
                 </div>
               </div>

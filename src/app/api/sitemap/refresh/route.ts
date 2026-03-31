@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 
 const SEARCH_ENGINES = [
   {
@@ -20,7 +20,7 @@ async function notifySearchEngine(engineUrl: string, sitemapUrl: string, engineN
     const response = await fetch(`${engineUrl}${encodeURIComponent(sitemapUrl)}`, {
       method: 'GET',
       headers: {
-        'User-Agent': 'AlDeyar-SEO-Bot/1.0 (+https://www.aldeyarksa.tech)',
+        'User-Agent': 'AlDeyar-SEO-Bot/1.0 (+https://www.deyarsu.com)',
       },
       signal: AbortSignal.timeout(10000), // 10 second timeout
     });
@@ -42,7 +42,7 @@ async function notifySearchEngine(engineUrl: string, sitemapUrl: string, engineN
 }
 
 export async function POST(request: NextRequest) {
-  const sitemapUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'}/sitemap.xml`;
+  const sitemapUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap.xml`;
   
   try {
     const results = await Promise.allSettled(

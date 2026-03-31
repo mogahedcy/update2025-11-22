@@ -36,29 +36,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!faq) {
     return {
-      title: 'سؤال غير موجود | محترفين الديار العالمية',
+      title: 'سؤال غير موجود | ديار جدة العالمية',
       description: 'السؤال المطلوب غير موجود'
     };
   }
 
-  const title = faq.metaTitle || `${faq.question} | الأسئلة الشائعة - محترفين الديار العالمية`;
+  const title = faq.metaTitle || `${faq.question} | الأسئلة الشائعة - ديار جدة العالمية`;
   const description = faq.metaDescription || faq.answer.substring(0, 160);
 
   return {
     title,
     description,
-    keywords: faq.keywords || `أسئلة شائعة، ${faq.category}، محترفين الديار العالمية`,
-    authors: [{ name: 'محترفين الديار العالمية' }],
+    keywords: faq.keywords || `أسئلة شائعة، ${faq.category}، ديار جدة العالمية`,
+    authors: [{ name: 'ديار جدة العالمية' }],
     openGraph: {
       title,
       description,
       url: generateCanonicalUrl(`/faq/${slug}`),
-      siteName: 'محترفين الديار العالمية',
+      siteName: 'ديار جدة العالمية',
       locale: 'ar_SA',
       type: 'article',
       images: [
         {
-          url: 'https://www.aldeyarksa.tech/logo.png',
+          url: 'https://www.deyarsu.com/logo.png',
           width: 1200,
           height: 630,
           alt: faq.question
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://www.aldeyarksa.tech/logo.png']
+      images: ['https://www.deyarsu.com/logo.png']
     },
     alternates: {
       canonical: generateCanonicalUrl(`/faq/${slug}`)
@@ -120,19 +120,19 @@ export default async function FAQDetailPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'الرئيسية',
-        item: 'https://www.aldeyarksa.tech'
+        item: 'https://www.deyarsu.com'
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'الأسئلة الشائعة',
-        item: 'https://www.aldeyarksa.tech/faq'
+        item: 'https://www.deyarsu.com/faq'
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: faq.question,
-        item: `https://www.aldeyarksa.tech/faq/${slug}`
+        item: `https://www.deyarsu.com/faq/${slug}`
       }
     ]
   };

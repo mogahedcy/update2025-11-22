@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { verifyToken } from '@/lib/jwt';
 import { cookies } from 'next/headers';
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       if (replitDomain) {
         baseUrl = `https://${replitDomain}`;
       } else {
-        baseUrl = 'https://www.aldeyarksa.tech';
+        baseUrl = 'https://www.deyarsu.com';
       }
     }
     

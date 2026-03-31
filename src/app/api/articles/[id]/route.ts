@@ -161,7 +161,7 @@ export async function PUT(
         title,
         content,
         excerpt: excerpt || content.substring(0, 200),
-        author: author || 'محترفين الديار العالمية',
+        author: author || 'ديار جدة العالمية',
         category: normalizedCategory,
         featured: featured || false,
         updatedAt: new Date(),

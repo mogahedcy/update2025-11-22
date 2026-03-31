@@ -32,7 +32,7 @@ export default function HomePageBreadcrumb({ locale = 'ar' }: HomePageBreadcrumb
       </nav>
       <BreadcrumbSchema 
         items={[]}
-        baseUrl="https://www.aldeyarksa.tech"
+        baseUrl="https://www.deyarsu.com"
         homeName={homeText}
       />
     </>

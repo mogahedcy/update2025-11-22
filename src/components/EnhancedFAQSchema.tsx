@@ -16,7 +16,7 @@ interface EnhancedFAQSchemaProps {
 function stripHtmlAndCleanText(text: string): string {
   if (!text) return '';
   
-  let cleaned = text
+  const cleaned = text
     .replace(/<[^>]*>/g, '')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
@@ -30,7 +30,7 @@ function stripHtmlAndCleanText(text: string): string {
   return cleaned;
 }
 
-export default function EnhancedFAQSchema({ faqs, baseUrl = 'https://www.aldeyarksa.tech' }: EnhancedFAQSchemaProps) {
+export default function EnhancedFAQSchema({ faqs, baseUrl = 'https://www.deyarsu.com' }: EnhancedFAQSchemaProps) {
   if (!faqs || faqs.length === 0) return null;
 
   const validFaqs = faqs.filter(faq => 
@@ -83,7 +83,7 @@ export default function EnhancedFAQSchema({ faqs, baseUrl = 'https://www.aldeyar
     inLanguage: 'ar',
     isPartOf: {
       '@type': 'WebSite',
-      name: 'محترفين الديار العالمية',
+      name: 'ديار جدة العالمية',
       url: baseUrl
     },
     breadcrumb: breadcrumbSchema

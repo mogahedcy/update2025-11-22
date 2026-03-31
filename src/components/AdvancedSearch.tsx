@@ -24,6 +24,7 @@ interface Article {
   rating: number;
   commentsCount: number;
   keywords: string[];
+  searchScore?: number;
 }
 
 interface AdvancedSearchProps {
@@ -48,7 +49,7 @@ const categories = [
 
 const authors = [
   'الكل',
-  'فريق محترفين الديار العالمية',
+  'فريق ديار جدة العالمية',
   'المهندس أحمد الديار',
   'أستاذ التراث عبدالله',
   'أخصائي التنسيق فيصل',

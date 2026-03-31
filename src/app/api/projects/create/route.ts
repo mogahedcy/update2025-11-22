@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { prisma } from '@/lib/prisma';
-import { generateSlug } from '@/lib/utils';
+import { generateArabicSlug } from '@/lib/arabic-slug';
 import { randomUUID } from 'crypto';
 import { normalizeCategoryName } from '@/lib/categoryNormalizer';
 import { checkAdminAuth } from '@/lib/auth';
@@ -47,8 +47,8 @@ export async function POST(request: NextRequest) {
       console.log(`✅ تم تحويل الفئة: "${data.category}" → "${normalizedCategory}"`);
     }
 
-    // إنشاء slug فريد للمشروع
-    const baseSlug = generateSlug(data.title);
+    // إنشاء slug فريد للمشروع باستخدام الأحرف العربية
+    const baseSlug = generateArabicSlug(data.title, normalizedCategory);
     let slug = baseSlug;
     let counter = 1;
     
@@ -71,9 +71,9 @@ export async function POST(request: NextRequest) {
         projectDuration: data.projectDuration || null,
         projectCost: data.projectCost || null,
         slug: slug,
-        metaTitle: data.metaTitle || `${data.title} في ${data.location} | محترفين الديار العالمية`,
+        metaTitle: data.metaTitle || `${data.title} في ${data.location} | ديار جدة العالمية`,
         metaDescription: data.metaDescription || `${data.description.substring(0, 150)}...`,
-        keywords: data.keywords || `${data.category}, ${data.location}, جدة, محترفين الديار`,
+        keywords: data.keywords || `${data.category}, ${data.location}, جدة, ديار جدة العالمية`,
         status: 'PUBLISHED',
         publishedAt: new Date(),
         updatedAt: new Date()
@@ -175,6 +175,37 @@ export async function POST(request: NextRequest) {
       });
     } catch (notificationError) {
       console.error('خطأ في إشعار محركات البحث:', notificationError);
+    }
+
+    // ✅ إرسال البيانات إلى n8n لنشرها في وسائل التواصل الاجتماعي
+    if (process.env.N8N_WEBHOOK_URL) {
+      try {
+        const n8nData = {
+          title: project.title,
+          description: project.description,
+          category: project.category,
+          location: project.location,
+          projectLink: `https://deyarsu.com/portfolio/${project.slug}`,
+          media: fullProject?.media_items?.map(item => ({
+            url: item.src
+          })) || [],
+          // ✅ إضافة بيانات إضافية للتأكد من وصول كل شيء
+          client: project.client,
+          completionDate: project.completionDate,
+          tags: fullProject?.project_tags?.map(t => t.name) || [],
+          materials: fullProject?.project_materials?.map(m => m.name) || []
+        };
+
+        fetch(process.env.N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(n8nData)
+        }).catch(err => console.error('❌ خطأ في إرسال البيانات إلى n8n:', err));
+        
+        console.log('🚀 تم إرسال بيانات المشروع إلى n8n للنش الاجتماعي (الرابط الجديد)');
+      } catch (n8nError) {
+        console.error('⚠️ خطأ في تجهيز بيانات n8n:', n8nError);
+      }
     }
 
     return NextResponse.json({

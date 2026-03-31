@@ -72,7 +72,7 @@ export default function AddArticlePage() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [excerpt, setExcerpt] = useState('');
-  const [author, setAuthor] = useState('محترفين الديار العالمية');
+  const [author, setAuthor] = useState('ديار جدة العالمية');
   const [category, setCategory] = useState('');
   const [featured, setFeatured] = useState(false);
 

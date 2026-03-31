@@ -11,7 +11,7 @@
  */
 
 const BING_API_KEY = process.env.BING_WEBMASTER_API_KEY;
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
 
 export interface BingSubmissionResult {
   success: boolean;

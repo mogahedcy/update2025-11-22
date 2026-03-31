@@ -3,20 +3,20 @@ export async function GET(request: Request) {
   const checkUrls = searchParams.get('urls')?.split(',') || [];
 
   const defaultUrls = [
-    'https://www.aldeyarksa.tech/',
-    'https://www.aldeyarksa.tech/services/mazallat/',
-    'https://www.aldeyarksa.tech/services/pergolas/',
-    'https://www.aldeyarksa.tech/services/sawater/',
-    'https://www.aldeyarksa.tech/services/sandwich-panel/',
-    'https://www.aldeyarksa.tech/services/landscaping/',
-    'https://www.aldeyarksa.tech/services/renovation/',
-    'https://www.aldeyarksa.tech/services/byoot-shaar/',
-    'https://www.aldeyarksa.tech/services/khayyam/',
-    'https://www.aldeyarksa.tech/portfolio/',
-    'https://www.aldeyarksa.tech/articles/',
-    'https://www.aldeyarksa.tech/about/',
-    'https://www.aldeyarksa.tech/contact/',
-    'https://www.aldeyarksa.tech/quote/'
+    'https://www.deyarsu.com/',
+    'https://www.deyarsu.com/services/mazallat/',
+    'https://www.deyarsu.com/services/pergolas/',
+    'https://www.deyarsu.com/services/sawater/',
+    'https://www.deyarsu.com/services/sandwich-panel/',
+    'https://www.deyarsu.com/services/landscaping/',
+    'https://www.deyarsu.com/services/renovation/',
+    'https://www.deyarsu.com/services/byoot-shaar/',
+    'https://www.deyarsu.com/services/khayyam/',
+    'https://www.deyarsu.com/portfolio/',
+    'https://www.deyarsu.com/articles/',
+    'https://www.deyarsu.com/about/',
+    'https://www.deyarsu.com/contact/',
+    'https://www.deyarsu.com/quote/'
   ];
 
   const urlsToCheck = checkUrls.length > 0 ? checkUrls : defaultUrls;

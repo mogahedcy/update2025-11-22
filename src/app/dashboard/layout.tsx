@@ -15,7 +15,7 @@ const notoSansArabic = Noto_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: 'لوحة التحكم | محترفين الديار العالمية',
+  title: 'لوحة التحكم | ديار جدة العالمية',
   robots: { index: false, follow: false },
 }
 

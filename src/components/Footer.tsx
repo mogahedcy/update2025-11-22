@@ -411,8 +411,8 @@ export default function Footer() {
                 {t('termsOfService')}
               </Link>
               <span className="text-gray-600">•</span>
-              <Link href="https://www.aldeyarksa.tech" className="text-accent hover:text-white transition-colors font-medium">
-                www.aldeyarksa.tech
+              <Link href="https://www.deyarsu.com" className="text-accent hover:text-white transition-colors font-medium">
+                www.deyarsu.com
               </Link>
             </div>
           </div>

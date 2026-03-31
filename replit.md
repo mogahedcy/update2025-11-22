@@ -1,6 +1,6 @@
 # Overview
 
-This Next.js web application is for "محترفين الديار العالمية" (Aldeyar Global Professionals), a Saudi Arabian construction company. It provides a comprehensive business website with advanced portfolio management, automatic watermarking, AI-powered competitor analysis, and robust content management. The project aims to enhance the company's online presence, streamline content updates, improve SEO, and boost user engagement, positioning it as a leading online platform in the Saudi Arabian construction sector.
+This Next.js web application is for "ديار جدة" (Deyar Jeddah), a Saudi Arabian construction company. It provides a comprehensive business website with advanced portfolio management, automatic watermarking, AI-powered competitor analysis, and robust content management. The project aims to enhance the company's online presence, streamline content updates, improve SEO, and boost user engagement, positioning it as a leading online platform in the Saudi Arabian construction sector.
 
 # User Preferences
 

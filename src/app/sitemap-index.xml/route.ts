@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
   const currentDate = new Date().toISOString();
 
   const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
@@ -24,6 +24,10 @@ export async function GET() {
   </sitemap>
   <sitemap>
     <loc>${baseUrl}/sitemap-images.xml</loc>
+    <lastmod>${currentDate}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemap-media.xml</loc>
     <lastmod>${currentDate}</lastmod>
   </sitemap>
 </sitemapindex>`;

@@ -236,13 +236,13 @@ export async function POST(request: NextRequest) {
         title,
         content,
         excerpt: excerpt || content.substring(0, 200),
-        author: author || 'محترفين الديار العالمية',
+        author: author || 'ديار جدة العالمية',
         category: normalizedCategory,
         featured: featured || false,
         slug: finalSlug,
         metaTitle: metaTitle || title,
         metaDescription: metaDescription || (excerpt || content).substring(0, 160),
-        keywords: keywords || `${category}, محترفين الديار, مقالات`,
+        keywords: keywords || `${category}, ديار جدة العالمية, مقالات`,
         status,
         publishedAt: status === 'PUBLISHED' ? new Date() : null,
         updatedAt: new Date(),
@@ -341,7 +341,7 @@ function generateSlug(title: string, id?: string): string {
 }
 
 async function notifyGoogleNewContent(slug: string): Promise<void> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com';
   const url = `${baseUrl}/articles/${slug}`;
 
   try {

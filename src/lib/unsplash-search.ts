@@ -139,7 +139,7 @@ export class UnsplashSearch {
   /**
    * الحصول على صورة واحدة مباشرة (بدون تحميل)
    */
-  getDirectImageUrl(query: string, width: number = 1600, height: number = 900): string {
+  getDirectImageUrl(query: string, width = 1600, height = 900): string {
     return `${this.sourceUrl}/${width}x${height}/?${encodeURIComponent(query)}`;
   }
 }

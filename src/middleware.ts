@@ -5,18 +5,12 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 
-const localizedPages = ['/', '/about', '/contact', '/services/mazallat'];
-
-const nonLocalizedPages = ['/portfolio', '/search', '/terms', '/quote', '/services/renovation', '/services/sawater', '/services/pergolas', '/services/landscaping', '/services/sandwich-panel', '/services/hangars'];
-
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const hostname = request.headers.get('host') || '';
   const pathname = url.pathname;
   
-  const isArticleDetailPage = /^\/articles\/[^\/]+$/.test(pathname);
-  const isNonLocalizedPage = nonLocalizedPages.some(page => pathname === page || pathname.startsWith(page + '/'));
-  
+  // ✅ Skip static assets, API, and dynamic articles
   if (
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
@@ -25,52 +19,27 @@ export function middleware(request: NextRequest) {
     pathname.includes('.') ||
     pathname.startsWith('/dashboard') ||
     pathname.startsWith('/login') ||
-    isArticleDetailPage ||
-    isNonLocalizedPage
+    /^\/articles\/[^\/]+$/.test(pathname)
   ) {
-    const response = NextResponse.next({
-      request: {
-        headers: request.headers,
-      },
+    return NextResponse.next({
+      request: { headers: request.headers },
     });
-    
-    response.headers.set('X-Content-Type-Options', 'nosniff');
-    response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
-    
-    return response;
   }
-  
-  if (hostname === 'aldeyarksa.tech' && process.env.NODE_ENV === 'production') {
-    url.host = 'www.aldeyarksa.tech';
+
+  // ✅ Enforce www canonical domain (only in production)
+  if (hostname === 'deyarsu.com' && process.env.NODE_ENV === 'production') {
+    url.host = 'www.deyarsu.com';
     return NextResponse.redirect(url, 301);
   }
 
-  const cleanPath = pathname.replace(/^\/(ar|en)/, '') || '/';
-  const isLocalizedPage = localizedPages.some(page => 
-    cleanPath === page || cleanPath.startsWith(page + '/')
-  );
-
-  if (!isLocalizedPage && !pathname.startsWith('/ar') && !pathname.startsWith('/en')) {
-    const response = NextResponse.next({
-      request: {
-        headers: request.headers,
-      },
-    });
-    
-    response.headers.set('X-Content-Type-Options', 'nosniff');
-    response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
-    
-    return response;
-  }
-
+  // ✅ Apply next-intl middleware for all other routes
+  // This handles locale detection and routing
   const response = intlMiddleware(request);
   
+  // Set security headers
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
   
-  const locale = pathname.startsWith('/en') ? 'en' : 'ar';
-  response.headers.set('Link', `<https://www.aldeyarksa.tech${cleanPath}>; rel="canonical", <https://www.aldeyarksa.tech/ar${cleanPath}>; rel="alternate"; hreflang="ar", <https://www.aldeyarksa.tech/en${cleanPath}>; rel="alternate"; hreflang="en", <https://www.aldeyarksa.tech${cleanPath}>; rel="alternate"; hreflang="x-default"`);
-
   return response;
 }
 

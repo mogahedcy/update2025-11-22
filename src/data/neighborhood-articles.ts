@@ -30,7 +30,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'احصل على أفضل مظلات سيارات في حي النزهة جدة. تركيب احترافي، أسعار تنافسية، ضمان 10 سنوات. مظلات PVC وحديد وقماش بأعلى جودة.',
     keywords: 'مظلات سيارات حي النزهة، مظلات النزهة جدة، تركيب مظلات حي النزهة، أسعار مظلات النزهة، شركة مظلات النزهة',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: true,
@@ -419,7 +419,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
         </div>
 
         <p class="text-sm text-gray-500 text-center mt-8">
-          آخر تحديث: 26 أكتوبر 2024 | المصدر: فريق محترفين الديار العالمية - خبراء المظلات في جدة
+          آخر تحديث: 26 أكتوبر 2024 | المصدر: فريق ديار جدة العالمية - خبراء المظلات في جدة
         </p>
       </div>
     `
@@ -435,7 +435,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'شركة مظلات سيارات في حي الفيصلية جدة. نوفر جميع أنواع المظلات PVC وحديد بأفضل الأسعار. ضمان 10 سنوات. اتصل الآن.',
     keywords: 'مظلات سيارات الفيصلية، مظلات حي الفيصلية جدة، تركيب مظلات الفيصلية، أسعار مظلات الفيصلية',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: true,
@@ -456,7 +456,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'مظلات سيارات في حي الروضة جدة. تركيب احترافي، مواد عالية الجودة، ضمان 10 سنوات. خدمة 24/7. اتصل الآن.',
     keywords: 'مظلات سيارات الروضة، مظلات حي الروضة جدة، تركيب مظلات الروضة، شركة مظلات الروضة',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: false,
@@ -477,7 +477,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'مظلات سيارات حي البساتين جدة. أسعار تنافسية تبدأ من 170 ريال/م². جودة عالية وضمان شامل. اتصل للحصول على عرض مجاني.',
     keywords: 'مظلات سيارات البساتين، مظلات حي البساتين، تركيب مظلات البساتين جدة، أسعار مظلات البساتين',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: false,
@@ -498,7 +498,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'شركة مظلات سيارات حي المحمدية جدة. تركيب سريع، خامات ممتازة، ضمان شامل. اتصل الآن للحصول على عرض سعر مجاني.',
     keywords: 'مظلات سيارات المحمدية، مظلات حي المحمدية جدة، تركيب مظلات المحمدية، أسعار مظلات المحمدية',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: false,
@@ -519,7 +519,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'مظلات سيارات حي الحمراء جدة. خبرة 15 سنة، ضمان 10 سنوات، أسعار من 170 ريال/م². اتصل الآن!',
     keywords: 'مظلات سيارات الحمراء، مظلات حي الحمراء جدة، تركيب مظلات الحمراء، شركة مظلات الحمراء',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: false,
@@ -540,7 +540,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'مظلات سيارات حي الزهراء جدة. تركيب احترافي، تصاميم متنوعة، ضمان شامل 10 سنوات. خدمة 24/7.',
     keywords: 'مظلات سيارات الزهراء، مظلات حي الزهراء جدة، تركيب مظلات الزهراء، أسعار مظلات الزهراء',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: false,
@@ -561,7 +561,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'مظلات سيارات حي السلامة جدة. تركيب سريع، مواد ممتازة، ضمان 10 سنوات. عروض خاصة لسكان الحي.',
     keywords: 'مظلات سيارات السلامة، مظلات حي السلامة جدة، تركيب مظلات السلامة، شركة مظلات السلامة',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: false,
@@ -582,7 +582,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'مظلات سيارات حي أبحر جدة. خامات مقاومة للرطوبة والملوحة، ضمان ممتد، أسعار مناسبة. اتصل الآن.',
     keywords: 'مظلات سيارات أبحر، مظلات حي أبحر جدة، مظلات ساحلية، تركيب مظلات أبحر',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: false,
@@ -603,7 +603,7 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     metaDescription: 'مظلات سيارات حي الشاطئ جدة. تصاميم فاخرة مقاومة للمناخ الساحلي. جودة استثنائية وضمان 12 سنة.',
     keywords: 'مظلات سيارات الشاطئ، مظلات حي الشاطئ جدة، مظلات فلل بحرية، تركيب مظلات الشاطئ',
     image: '/uploads/mazallat-1.webp',
-    author: 'فريق محترفين الديار العالمية',
+    author: 'فريق ديار جدة العالمية',
     publishedDate: '2024-10-26',
     lastModified: '2024-10-26',
     featured: false,
@@ -611,6 +611,6 @@ export const neighborhoodArticles: NeighborhoodArticle[] = [
     rating: 5.0,
     readTime: '9 دقائق',
     category: 'أحياء جدة',
-    content: `<div class="prose prose-lg max-w-none"><h2>مظلات سيارات الشاطئ - فخامة وحماية</h2><p>حي الشاطئ من أرقى الأحياء الساحلية في جدة، يضم فلل فاخرة ومنتجعات راقية. نقدم مظلات سيارات تجمع بين الفخامة والحماية الكاملة من العوامل الساحلية.</p><h3>تصاميم حصرية للفلل البحرية</h3><div class="grid md:grid-cols-2 gap-6"><div class="bg-white border-2 border-blue-200 rounded-lg p-6 hover:shadow-xl transition"><h4 class="text-xl font-bold mb-3 text-blue-900">التصميم البحري المعاصر</h4><p class="text-gray-700 mb-4">تصميم منحني يحاكي الأمواج، مثالي للفلل الحديثة على الكورنيش</p><ul class="text-sm space-y-1"><li>✓ ألوان بحرية (أزرق، فيروزي، أبيض)</li><li>✓ هيكل ألومنيوم مقاوم للملوحة</li><li>✓ تصريف مياه متقدم</li></ul><p class="text-2xl font-bold text-blue-700 mt-4">320-420 ريال/م²</p></div><div class="bg-white border-2 border-purple-200 rounded-lg p-6 hover:shadow-xl transition"><h4 class="text-xl font-bold mb-3 text-purple-900">التصميم الكلاسيكي الفاخر</h4><p class="text-gray-700 mb-4">برجولات خشبية معالجة بأحدث التقنيات للمناخ الساحلي</p><ul class="text-sm space-y-1"><li>✓ خشب تيك معالج ضد الرطوبة</li><li>✓ أعمدة حديد مجلفن مخفية</li><li>✓ إضاءة LED مدمجة</li></ul><p class="text-2xl font-bold text-purple-700 mt-4">380-520 ريال/م²</p></div></div><h3>التقنيات المتقدمة</h3><div class="bg-gradient-to-r from-cyan-50 to-blue-50 p-6 rounded-xl"><h4 class="font-bold text-xl mb-4">نظام الحماية الثلاثي</h4><ol class="space-y-3"><li><strong>الطبقة الأولى:</strong> معالجة كيميائية للحديد ضد الصدأ</li><li><strong>الطبقة الثانية:</strong> جلفنة بالغمس الساخن (100 ميكرون)</li><li><strong>الطبقة الثالثة:</strong> طلاء إيبوكسي مزدوج بتقنية البودرة الكهروستاتيكية</li></ol><p class="mt-4 font-bold text-blue-700">نتيجة: حماية تدوم 20+ سنة في البيئة الساحلية</p></div><h3>خدمات VIP للشاطئ</h3><ul><li><strong>استشارة معمارية:</strong> مهندس معماري متخصص لتصميم يتناسب مع فيلتك</li><li><strong>نمذجة ثلاثية الأبعاد:</strong> شاهد مظلتك قبل التنفيذ</li><li><strong>تنسيق مع المقاول:</strong> العمل المنسق مع مقاول الفيلا</li><li><strong>صيانة شاملة:</strong> برنامج صيانة سنوي متكامل</li><li><strong>ضمان ممتد:</strong> 15 سنة على المشاريع الفاخرة</li></ul><h3>حزم الخدمات الفاخرة</h3><table class="w-full border text-sm"><thead><tr class="bg-gradient-to-r from-blue-100 to-purple-100"><th>الحزمة</th><th>المساحة</th><th>المميزات</th><th>السعر</th></tr></thead><tbody><tr><td class="font-bold">بلاتينيوم</td><td>30-50 م²</td><td>تصميم فردي + إضاءة ذكية + تصريف متقدم</td><td>15,000 - 24,000 ريال</td></tr><tr><td class="font-bold">دايموند</td><td>50-80 م²</td><td>كل ما سبق + نظام ري للنباتات + كاميرات</td><td>24,000 - 38,000 ريال</td></tr><tr><td class="font-bold">إمبريال</td><td>80+ م²</td><td>كل ما سبق + أتمتة كاملة + صيانة مجانية 3 سنوات</td><td>38,000+ ريال</td></tr></tbody></table><h3>قصة نجاح</h3><div class="bg-gray-50 p-6 border-r-4 border-gold rounded-lg"><h4 class="font-bold text-lg mb-3">فيلا فاخرة - كورنيش الشاطئ</h4><blockquote class="italic mb-4">"تعاملنا مع عدة شركات سابقاً، لكن محترفين الديار تميزوا بفهمهم لاحتياجات الفلل البحرية. التصميم رائع والتنفيذ احترافي. بعد سنتين لا يوجد أي آثار صدأ!"</blockquote><p class="text-sm"><strong>- المهندس عبدالله السعيدي، مالك الفيلا</strong></p><ul class="mt-4 text-sm space-y-1"><li>المساحة: 65 متر مربع</li><li>النوع: ألومنيوم + خشب تيك</li><li>المدة: 9 أيام</li><li>التكلفة: 28,500 ريال</li><li>التقييم: ⭐⭐⭐⭐⭐</li></ul></div><h3>لماذا نحن الخيار الأول للفلل الفاخرة؟</h3><div class="grid md:grid-cols-3 gap-4"><div class="text-center p-4 bg-blue-50 rounded"><div class="text-4xl font-bold text-blue-600 mb-2">50+</div><div class="text-sm">فيلا فاخرة</div></div><div class="text-center p-4 bg-green-50 rounded"><div class="text-4xl font-bold text-green-600 mb-2">100%</div><div class="text-sm">رضا العملاء</div></div><div class="text-center p-4 bg-purple-50 rounded"><div class="text-4xl font-bold text-purple-600 mb-2">15 سنة</div><div class="text-sm">ضمان ممتد</div></div></div></div>`
+    content: `<div class="prose prose-lg max-w-none"><h2>مظلات سيارات الشاطئ - فخامة وحماية</h2><p>حي الشاطئ من أرقى الأحياء الساحلية في جدة، يضم فلل فاخرة ومنتجعات راقية. نقدم مظلات سيارات تجمع بين الفخامة والحماية الكاملة من العوامل الساحلية.</p><h3>تصاميم حصرية للفلل البحرية</h3><div class="grid md:grid-cols-2 gap-6"><div class="bg-white border-2 border-blue-200 rounded-lg p-6 hover:shadow-xl transition"><h4 class="text-xl font-bold mb-3 text-blue-900">التصميم البحري المعاصر</h4><p class="text-gray-700 mb-4">تصميم منحني يحاكي الأمواج، مثالي للفلل الحديثة على الكورنيش</p><ul class="text-sm space-y-1"><li>✓ ألوان بحرية (أزرق، فيروزي، أبيض)</li><li>✓ هيكل ألومنيوم مقاوم للملوحة</li><li>✓ تصريف مياه متقدم</li></ul><p class="text-2xl font-bold text-blue-700 mt-4">320-420 ريال/م²</p></div><div class="bg-white border-2 border-purple-200 rounded-lg p-6 hover:shadow-xl transition"><h4 class="text-xl font-bold mb-3 text-purple-900">التصميم الكلاسيكي الفاخر</h4><p class="text-gray-700 mb-4">برجولات خشبية معالجة بأحدث التقنيات للمناخ الساحلي</p><ul class="text-sm space-y-1"><li>✓ خشب تيك معالج ضد الرطوبة</li><li>✓ أعمدة حديد مجلفن مخفية</li><li>✓ إضاءة LED مدمجة</li></ul><p class="text-2xl font-bold text-purple-700 mt-4">380-520 ريال/م²</p></div></div><h3>التقنيات المتقدمة</h3><div class="bg-gradient-to-r from-cyan-50 to-blue-50 p-6 rounded-xl"><h4 class="font-bold text-xl mb-4">نظام الحماية الثلاثي</h4><ol class="space-y-3"><li><strong>الطبقة الأولى:</strong> معالجة كيميائية للحديد ضد الصدأ</li><li><strong>الطبقة الثانية:</strong> جلفنة بالغمس الساخن (100 ميكرون)</li><li><strong>الطبقة الثالثة:</strong> طلاء إيبوكسي مزدوج بتقنية البودرة الكهروستاتيكية</li></ol><p class="mt-4 font-bold text-blue-700">نتيجة: حماية تدوم 20+ سنة في البيئة الساحلية</p></div><h3>خدمات VIP للشاطئ</h3><ul><li><strong>استشارة معمارية:</strong> مهندس معماري متخصص لتصميم يتناسب مع فيلتك</li><li><strong>نمذجة ثلاثية الأبعاد:</strong> شاهد مظلتك قبل التنفيذ</li><li><strong>تنسيق مع المقاول:</strong> العمل المنسق مع مقاول الفيلا</li><li><strong>صيانة شاملة:</strong> برنامج صيانة سنوي متكامل</li><li><strong>ضمان ممتد:</strong> 15 سنة على المشاريع الفاخرة</li></ul><h3>حزم الخدمات الفاخرة</h3><table class="w-full border text-sm"><thead><tr class="bg-gradient-to-r from-blue-100 to-purple-100"><th>الحزمة</th><th>المساحة</th><th>المميزات</th><th>السعر</th></tr></thead><tbody><tr><td class="font-bold">بلاتينيوم</td><td>30-50 م²</td><td>تصميم فردي + إضاءة ذكية + تصريف متقدم</td><td>15,000 - 24,000 ريال</td></tr><tr><td class="font-bold">دايموند</td><td>50-80 م²</td><td>كل ما سبق + نظام ري للنباتات + كاميرات</td><td>24,000 - 38,000 ريال</td></tr><tr><td class="font-bold">إمبريال</td><td>80+ م²</td><td>كل ما سبق + أتمتة كاملة + صيانة مجانية 3 سنوات</td><td>38,000+ ريال</td></tr></tbody></table><h3>قصة نجاح</h3><div class="bg-gray-50 p-6 border-r-4 border-gold rounded-lg"><h4 class="font-bold text-lg mb-3">فيلا فاخرة - كورنيش الشاطئ</h4><blockquote class="italic mb-4">"تعاملنا مع عدة شركات سابقاً، لكن ديار جدة العالمية تميزوا بفهمهم لاحتياجات الفلل البحرية. التصميم رائع والتنفيذ احترافي. بعد سنتين لا يوجد أي آثار صدأ!"</blockquote><p class="text-sm"><strong>- المهندس عبدالله السعيدي، مالك الفيلا</strong></p><ul class="mt-4 text-sm space-y-1"><li>المساحة: 65 متر مربع</li><li>النوع: ألومنيوم + خشب تيك</li><li>المدة: 9 أيام</li><li>التكلفة: 28,500 ريال</li><li>التقييم: ⭐⭐⭐⭐⭐</li></ul></div><h3>لماذا نحن الخيار الأول للفلل الفاخرة؟</h3><div class="grid md:grid-cols-3 gap-4"><div class="text-center p-4 bg-blue-50 rounded"><div class="text-4xl font-bold text-blue-600 mb-2">50+</div><div class="text-sm">فيلا فاخرة</div></div><div class="text-center p-4 bg-green-50 rounded"><div class="text-4xl font-bold text-green-600 mb-2">100%</div><div class="text-sm">رضا العملاء</div></div><div class="text-center p-4 bg-purple-50 rounded"><div class="text-4xl font-bold text-purple-600 mb-2">15 سنة</div><div class="text-sm">ضمان ممتد</div></div></div></div>`
   }
 ];

@@ -20,7 +20,7 @@ export default function HowToSchema({
   description, 
   totalTime = 'P2D',
   steps,
-  image = 'https://www.aldeyarksa.tech/images/hero-bg.webp'
+  image = 'https://www.deyarsu.com/images/hero-bg.webp'
 }: HowToSchemaProps) {
   const schema = {
     "@context": "https://schema.org",

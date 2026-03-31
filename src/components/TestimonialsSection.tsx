@@ -57,15 +57,15 @@ export default function TestimonialsSection() {
   }));
 
   const serviceName = isRTL 
-    ? "خدمات محترفين الديار العالمية - مظلات وبرجولات جدة"
-    : "Aldeyar Global Professionals Services - Shades and Pergolas Jeddah";
+    ? "خدمات ديار جدة العالمية - مظلات وبرجولات جدة"
+    : "Deyar Jeddah Professionals Services - Shades and Pergolas Jeddah";
 
   return (
     <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-accent/5" dir={isRTL ? 'rtl' : 'ltr'}>
       <ReviewSchema
         serviceName={serviceName}
         itemType="LocalBusiness"
-        serviceUrl="https://www.aldeyarksa.tech"
+        serviceUrl="https://www.deyarsu.com"
         aggregateRating={{
           ratingValue: 4.9,
           reviewCount: testimonials.length

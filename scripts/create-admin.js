@@ -8,7 +8,7 @@ async function createAdmin() {
   try {
     const username = 'admin';
     const password = 'aldeyar2024';
-    const email = 'admin@aldeyarksa.tech';
+    const email = 'admin@deyarsu.com';
 
     // تشفير كلمة المرور
     const hashedPassword = await bcrypt.hash(password, 12);

@@ -11,6 +11,7 @@ import LocalBusinessSchema from "@/components/LocalBusinessSchema";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import BottomNavigation from "@/components/BottomNavigation";
 import FloatingCallButton from "@/components/FloatingCallButton";
+import CacheClearNotification from "@/components/CacheClearNotification";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -22,20 +23,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isArabic = locale === 'ar';
   
   return {
-    metadataBase: new URL('https://www.aldeyarksa.tech'),
+    metadataBase: new URL('https://www.deyarsu.com'),
     title: {
       default: isArabic 
-        ? "محترفين الديار العالمية | أفضل مظلات وبرجولات جدة - خبرة 15 عام"
-        : "Aldeyar Global Professionals | Best Shades & Pergolas in Jeddah - 15 Years Experience",
-      template: isArabic ? "%s | محترفين الديار العالمية" : "%s | Aldeyar Global Professionals"
+        ? "ديار جدة العالمية | أفضل مظلات وبرجولات جدة - خبرة 15 عام"
+        : "Deyar Jeddah | Best Shades & Pergolas in Jeddah - 15 Years Experience",
+      template: isArabic ? "%s | ديار جدة العالمية" : "%s | Deyar Jeddah"
     },
     description: isArabic
       ? "الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر. خبرة 15 عاماً، ضمان 10 سنوات، تركيب احترافي، أسعار منافسة."
       : "The leading company in Jeddah for installing shades, pergolas, and fences. 15 years of experience, 10-year warranty, professional installation, competitive prices.",
     keywords: isArabic
-      ? "مظلات سيارات جدة، برجولات خشبية جدة، سواتر خصوصية جدة، محترفين الديار العالمية"
-      : "car shades jeddah, wooden pergolas jeddah, privacy fences jeddah, aldeyar global professionals",
-    authors: [{ name: isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals" }],
+      ? "مظلات سيارات جدة، تركيب مظلات وسواتر، أفضل شركة برجولات، سواتر شينكو، تنسيق حدائق مودرن، أسعار المظلات 2024، شركة ديار جدة، حداد مظلات جدة، مظلات لكسان، بيوت شعر ملكي"
+      : "Jeddah car shades, shade and fence installation, best pergola company, modern landscaping, shade prices 2024, Deyar Jeddah company",
+    authors: [{ name: isArabic ? "ديار جدة العالمية" : "Deyar Jeddah" }],
     robots: "index, follow",
     alternates: {
       canonical: locale === 'ar' ? '/' : '/en',
@@ -47,38 +48,36 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: isArabic 
-        ? "محترفين الديار العالمية - خدمات شاملة في جدة"
-        : "Aldeyar Global Professionals - Comprehensive Services in Jeddah",
+        ? "ديار جدة العالمية - خدمات شاملة في جدة"
+        : "Deyar Jeddah - Comprehensive Services in Jeddah",
       description: isArabic
         ? "شركة متخصصة في المظلات، البرجولات، السواتر، وتنسيق الحدائق في جدة"
         : "Specialized company in shades, pergolas, fences, and landscaping in Jeddah",
-      url: "https://www.aldeyarksa.tech",
-      siteName: isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+      url: "https://www.deyarsu.com",
+      siteName: isArabic ? "ديار جدة العالمية" : "Deyar Jeddah",
       locale: isArabic ? "ar_SA" : "en_US",
       type: "website",
       images: [
         {
-          url: "https://www.aldeyarksa.tech/images/slider1.webp",
+          url: "https://www.deyarsu.com/images/slider1.webp",
           width: 1200,
           height: 630,
-          alt: isArabic ? "محترفين الديار العالمية - مظلات وبرجولات جدة" : "Aldeyar Global - Shades and Pergolas Jeddah",
+          alt: isArabic ? "ديار جدة العالمية - مظلات وبرجولات جدة" : "Deyar Jeddah - Shades and Pergolas Jeddah",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: isArabic ? "محترفين الديار العالمية" : "Aldeyar Global Professionals",
+      title: isArabic ? "ديار جدة العالمية" : "Deyar Jeddah",
       description: isArabic 
         ? "خدمات شاملة في المظلات والبرجولات والسواتر في جدة"
         : "Comprehensive services in shades, pergolas, and fences in Jeddah",
-      images: ["https://www.aldeyarksa.tech/images/slider1.webp"],
+      images: ["https://www.deyarsu.com/images/slider1.webp"],
     },
     icons: {
       icon: [
-        { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
         { url: "/favicon.svg", type: "image/svg+xml" },
-        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
+        { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
       ],
       shortcut: "/favicon.ico",
       apple: "/apple-touch-icon.png",
@@ -99,7 +98,7 @@ const faqPageSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "ما هي الخدمات التي تقدمها شركة محترفين الديار؟",
+      "name": "ما هي الخدمات التي تقدمها شركة ديار جدة العالمية؟",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "نقدم 8 خدمات متخصصة شاملة: مظلات سيارات، برجولات حدائق، سواتر خصوصية، ساندوتش بانل، ترميم ملحقات، تنسيق حدائق، بيوت شعر تراثية، وخيام ملكية."
@@ -148,6 +147,7 @@ export default async function LocaleLayout({
       <ServiceWorkerRegister />
       <WebVitals />
       {children}
+      <CacheClearNotification locale={locale} />
       <WhatsAppWidget />
       <FloatingCallButton />
       <BottomNavigation />

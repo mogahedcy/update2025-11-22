@@ -1,4 +1,4 @@
-const VERSION = '2024-11-14-v2';
+const VERSION = '2024-12-07-v1';
 const CACHE_NAME = `aldeyar-${VERSION}`;
 const STATIC_CACHE = `aldeyar-static-${VERSION}`;
 const DYNAMIC_CACHE = `aldeyar-dynamic-${VERSION}`;
@@ -12,6 +12,14 @@ const STATIC_ASSETS = [
 
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif', '.svg'];
 
+// Listen for SKIP_WAITING message
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    console.log('📨 Received SKIP_WAITING message - activating new version...');
+    self.skipWaiting();
+  }
+});
+
 self.addEventListener('install', (event) => {
   console.log('⚙️ Service Worker installing...');
   event.waitUntil(
@@ -20,7 +28,7 @@ self.addEventListener('install', (event) => {
       return cache.addAll(STATIC_ASSETS);
     })
   );
-  self.skipWaiting();
+  // Don't auto skip waiting - let the user decide via notification
 });
 
 self.addEventListener('activate', (event) => {

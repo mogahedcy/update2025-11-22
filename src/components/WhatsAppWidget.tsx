@@ -40,7 +40,7 @@ export default function WhatsAppWidget() {
                   <MessageCircle className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900">محترفين الديار</h3>
+                  <h3 className="font-bold text-gray-900">ديار جدة العالمية</h3>
                   <p className="text-sm text-gray-600">متصل الآن</p>
                 </div>
               </div>

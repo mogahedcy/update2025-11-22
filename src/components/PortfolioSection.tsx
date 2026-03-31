@@ -18,7 +18,10 @@ const serviceCategories = [
   { id: 'هناجر', name: 'هناجر', icon: Home },
   { id: 'شبوك', name: 'شبوك', icon: Shield },
   { id: 'قراميد', name: 'قراميد', icon: Home },
-  { id: 'ساندوتش بانل', name: 'ساندوتش بانل', icon: Home }
+  { id: 'ساندوتش بانل', name: 'ساندوتش بانل', icon: Home },
+  { id: 'خيام', name: 'خيام', icon: Home },
+  { id: 'بيوت شعر', name: 'بيوت شعر', icon: Home },
+  { id: 'ترميم وتجديد', name: 'ترميم وتجديد', icon: Wrench }
 ];
 
 interface MediaItem {
@@ -79,7 +82,7 @@ export default function PortfolioSection() {
             .slice(0, 8); // أخذ أحدث 8 مشاريع فقط
 
           setProjects(latestProjects);
-          console.log('✅ تم جلب أحدث المشاريع:', latestProjects.length);
+          // Debug logging removed for production
         } else {
           // الطريقة البديلة إذا فشلت الطريقة الأولى
           const projectPromises = serviceCategories.map(async (category) => {
@@ -134,7 +137,7 @@ export default function PortfolioSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-            أحدث أعمال محترفين الديار في جدة
+            أحدث أعمال ديار جدة العالمية في جدة
           </h2>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed">
             استكشف أحدث مشاريعنا المتميزة في جدة والمناطق المحيطة. نعرض لك أحدث عمل في كل خدمة من خدماتنا المتخصصة
@@ -267,7 +270,7 @@ export default function PortfolioSection() {
                                 videoElement.style.display = 'none';
                               }}
                               onLoadedData={(e) => {
-                                console.log('تم تحميل الفيديو بنجاح:', project.title);
+                                // Video loaded successfully
                                 const video = e.target as HTMLVideoElement;
                                 // تشغيل فوري متعدد المحاولات
                                 const attemptPlay = () => {
@@ -440,7 +443,7 @@ export default function PortfolioSection() {
             هل لديك مشروع مماثل؟
           </h3>
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            محترفين الديار جاهزون لتنفيذ مشروعك بنفس مستوى الجودة والاحترافية.
+            ديار جدة العالمية جاهزون لتنفيذ مشروعك بنفس مستوى الجودة والاحترافية.
             نقدم استشارة مجانية شاملة وعرض سعر مخصص يناسب احتياجاتك ومتطلبات مشروعك
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

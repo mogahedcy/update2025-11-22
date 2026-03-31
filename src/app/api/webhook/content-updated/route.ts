@@ -1,5 +1,5 @@
 
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || 'default-webhook-secret';
 
@@ -93,7 +93,7 @@ export async function GET() {
         type: 'project',
         action: 'created',
         id: '123',
-        url: 'https://www.aldeyarksa.tech/portfolio/123',
+        url: 'https://www.deyarsu.com/portfolio/123',
         timestamp: new Date().toISOString()
       }
     },

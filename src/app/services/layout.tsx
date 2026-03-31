@@ -23,7 +23,7 @@ const notoSansArabic = Noto_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.aldeyarksa.tech'),
+  metadataBase: new URL('https://www.deyarsu.com'),
 };
 
 export default async function ServicesLayout({
@@ -55,8 +55,8 @@ export default async function ServicesLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         
-        <link rel="preconnect" href={process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'} />
-        <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_BASE_URL || 'https://www.aldeyarksa.tech'} />
+        <link rel="preconnect" href={process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'} />
+        <link rel="dns-prefetch" href={process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'} />
         
         <LocalBusinessSchema />
       </head>

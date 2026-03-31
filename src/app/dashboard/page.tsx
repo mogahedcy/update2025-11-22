@@ -7,7 +7,7 @@ import SEONotificationSection from './SEONotificationSection';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'لوحة التحكم | محترفين الديار العالمية',
+  title: 'لوحة التحكم | ديار جدة العالمية',
   description: 'لوحة تحكم إدارة شاملة ومتطورة للمشاريع والمحتوى',
   robots: 'noindex, nofollow',
 };
@@ -88,7 +88,7 @@ export default async function DashboardPage() {
                     {getGreeting()}، {admin.fullName || admin.username}!
                   </h1>
                   <p className="text-xl text-gray-600">
-                    مرحباً بك في مركز إدارة محترفين الديار العالمية المتطور
+                    مرحباً بك في مركز إدارة ديار جدة العالمية المتطور
                   </p>
                 </div>
               </div>
@@ -201,7 +201,7 @@ export default async function DashboardPage() {
               <a
                 href="/portfolio"
                 target="_blank"
-                className="group relative overflow-hidden rounded-xl border border-gray-200 p-6 hover:border-purple-300 hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-purple-50 to-purple-100/50 hover:from-purple-100 hover:to-purple-200/50"
+                className="group relative overflow-hidden rounded-xl border border-gray-200 p-6 hover:border-purple-300 hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-purple-50 to-purple-100/50 hover:from-purple-100 hover:to-purple-200/50" rel="noreferrer"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -328,6 +328,29 @@ export default async function DashboardPage() {
                 </div>
                 <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </a>
+
+              <a
+                href="/api/indexnow/media"
+                target="_blank"
+                className="group relative overflow-hidden rounded-xl border border-gray-200 p-6 hover:border-cyan-300 hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-cyan-50 to-cyan-100/50 hover:from-cyan-100 hover:to-cyan-200/50" rel="noreferrer"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-lg text-gray-900 group-hover:text-cyan-700 transition-colors">أرشفة الوسائط</h3>
+                    <p className="text-sm text-gray-600 mt-1">إرسال الصور والفيديوهات لمحركات البحث</p>
+                  </div>
+                </div>
+                <div className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <svg className="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </div>

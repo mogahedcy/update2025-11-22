@@ -56,23 +56,23 @@ export default function ManualIndexingTestPage() {
   const [testMode, setTestMode] = useState<'quick' | 'detailed'>('detailed');
 
   const defaultPages = [
-    { url: 'https://www.aldeyarksa.tech/', priority: 'high', category: 'الرئيسية' },
-    { url: 'https://www.aldeyarksa.tech/services/mazallat/', priority: 'high', category: 'خدمات' },
-    { url: 'https://www.aldeyarksa.tech/services/pergolas/', priority: 'high', category: 'خدمات' },
-    { url: 'https://www.aldeyarksa.tech/services/sawater/', priority: 'high', category: 'خدمات' },
-    { url: 'https://www.aldeyarksa.tech/services/sandwich-panel/', priority: 'medium', category: 'خدمات' },
-    { url: 'https://www.aldeyarksa.tech/services/landscaping/', priority: 'high', category: 'خدمات' },
-    { url: 'https://www.aldeyarksa.tech/services/renovation/', priority: 'medium', category: 'خدمات' },
-    { url: 'https://www.aldeyarksa.tech/services/byoot-shaar/', priority: 'medium', category: 'خدمات' },
-    { url: 'https://www.aldeyarksa.tech/services/khayyam/', priority: 'low', category: 'خدمات' },
-    { url: 'https://www.aldeyarksa.tech/portfolio/', priority: 'high', category: 'أعمال' },
-    { url: 'https://www.aldeyarksa.tech/articles/', priority: 'high', category: 'محتوى' },
-    { url: 'https://www.aldeyarksa.tech/about/', priority: 'medium', category: 'معلومات' },
-    { url: 'https://www.aldeyarksa.tech/contact/', priority: 'medium', category: 'اتصال' },
-    { url: 'https://www.aldeyarksa.tech/quote/', priority: 'high', category: 'طلبات' },
-    { url: 'https://www.aldeyarksa.tech/faq/', priority: 'low', category: 'مساعدة' },
-    { url: 'https://www.aldeyarksa.tech/privacy/', priority: 'low', category: 'قانونية' },
-    { url: 'https://www.aldeyarksa.tech/terms/', priority: 'low', category: 'قانونية' }
+    { url: 'https://www.deyarsu.com/', priority: 'high', category: 'الرئيسية' },
+    { url: 'https://www.deyarsu.com/services/mazallat/', priority: 'high', category: 'خدمات' },
+    { url: 'https://www.deyarsu.com/services/pergolas/', priority: 'high', category: 'خدمات' },
+    { url: 'https://www.deyarsu.com/services/sawater/', priority: 'high', category: 'خدمات' },
+    { url: 'https://www.deyarsu.com/services/sandwich-panel/', priority: 'medium', category: 'خدمات' },
+    { url: 'https://www.deyarsu.com/services/landscaping/', priority: 'high', category: 'خدمات' },
+    { url: 'https://www.deyarsu.com/services/renovation/', priority: 'medium', category: 'خدمات' },
+    { url: 'https://www.deyarsu.com/services/byoot-shaar/', priority: 'medium', category: 'خدمات' },
+    { url: 'https://www.deyarsu.com/services/khayyam/', priority: 'low', category: 'خدمات' },
+    { url: 'https://www.deyarsu.com/portfolio/', priority: 'high', category: 'أعمال' },
+    { url: 'https://www.deyarsu.com/articles/', priority: 'high', category: 'محتوى' },
+    { url: 'https://www.deyarsu.com/about/', priority: 'medium', category: 'معلومات' },
+    { url: 'https://www.deyarsu.com/contact/', priority: 'medium', category: 'اتصال' },
+    { url: 'https://www.deyarsu.com/quote/', priority: 'high', category: 'طلبات' },
+    { url: 'https://www.deyarsu.com/faq/', priority: 'low', category: 'مساعدة' },
+    { url: 'https://www.deyarsu.com/privacy/', priority: 'low', category: 'قانونية' },
+    { url: 'https://www.deyarsu.com/terms/', priority: 'low', category: 'قانونية' }
   ];
 
   const searchEngines = {
@@ -280,7 +280,7 @@ export default function ManualIndexingTestPage() {
             <Textarea
               value={customUrls}
               onChange={(e) => setCustomUrls(e.target.value)}
-              placeholder="https://www.aldeyarksa.tech/custom-page/&#10;https://www.aldeyarksa.tech/another-page/"
+              placeholder="https://www.deyarsu.com/custom-page/&#10;https://www.deyarsu.com/another-page/"
               className="min-h-[100px]"
             />
             <p className="text-sm text-gray-500 mt-1">

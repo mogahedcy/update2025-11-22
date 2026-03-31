@@ -149,7 +149,7 @@ export default function ArticlesPageClient({ locale = 'ar' }: { locale?: string 
             أرشيف المقالات
           </h1>
           <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed opacity-90">
-            اكتشف أحدث المقالات والنصائح المتخصصة من خبراء محترفين الديار العالمية
+            اكتشف أحدث المقالات والنصائح المتخصصة من خبراء ديار جدة العالمية
           </p>
         </div>
       </section>
