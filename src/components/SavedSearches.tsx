@@ -104,7 +104,14 @@ export default function SavedSearches() {
     saveTOLocalStorage(updated);
 
     // تطبيق المعايير على URL
-    const params = new URLSearchParams(search.filters);
+    const params = new URLSearchParams(
+      Object.entries(search.filters).reduce<Record<string, string>>((acc, [key, value]) => {
+        if (typeof value === 'string') {
+          acc[key] = value;
+        }
+        return acc;
+      }, {})
+    );
     const currentPath = window.location.pathname.endsWith('/search')
       ? window.location.pathname
       : '/search';
