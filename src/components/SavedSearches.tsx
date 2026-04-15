@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -30,6 +31,7 @@ interface SavedSearch {
 }
 
 export default function SavedSearches() {
+  const router = useRouter();
   const [savedSearches, setSavedSearches] = useState<SavedSearch[]>([]);
   const [showSaved, setShowSaved] = useState(false);
   const [showSaveForm, setShowSaveForm] = useState(false);
@@ -99,7 +101,7 @@ export default function SavedSearches() {
     // تطبيق المعايير على URL
     const params = new URLSearchParams(search.filters);
     const currentPath = window.location.pathname;
-    window.location.assign(`${currentPath}?${params.toString()}`);
+    router.push(`${currentPath}?${params.toString()}`);
   };
 
   // حذف بحث محفوظ
