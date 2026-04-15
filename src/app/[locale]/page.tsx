@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   return {
     title: isArabic 
-      ? 'مظلات وسواتر جدة | ديار جدة العالمية - ضمان 10 سنوات'
+      ? 'ديار جدة العالمية | مظلات وسواتر وبرجولات جدة'
       : 'Shades and Fences Jeddah | Aldeyar Professionals - 10 Year Warranty',
     description: isArabic
       ? 'شركة ديار جدة العالمية - تركيب مظلات سيارات، برجولات، سواتر، ساندوتش بانل، تنسيق حدائق، بيوت شعر بجدة. خبرة 15 عام، ضمان 10 سنوات.'
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: isArabic 
-        ? 'مظلات وسواتر جدة | ديار جدة العالمية - ضمان 10 سنوات'
+        ? 'ديار جدة العالمية | مظلات وسواتر وبرجولات جدة'
         : 'Shades and Fences Jeddah | Aldeyar Professionals',
       description: isArabic
         ? 'ديار جدة العالمية - تركيب مظلات سيارات، برجولات، سواتر في جدة. خبرة 15 عام، ضمان 10 سنوات'
@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     twitter: {
       card: 'summary_large_image',
       title: isArabic 
-        ? 'مظلات وسواتر جدة | ديار جدة العالمية'
+        ? 'ديار جدة العالمية | مظلات وسواتر وبرجولات جدة'
         : 'Shades and Fences Jeddah | Aldeyar',
       description: isArabic
         ? 'تركيب مظلات سيارات، برجولات، سواتر في جدة'
