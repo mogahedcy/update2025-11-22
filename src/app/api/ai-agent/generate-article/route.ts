@@ -60,7 +60,8 @@ export async function POST(request: NextRequest) {
         excerpt: result.article.excerpt,
         status: result.article.status,
         category: result.article.category,
-        mediaCount: result.article.mediaItems.length
+        mediaCount: result.article.mediaItems.length,
+        quality: result.article.quality
       }
     });
   } catch (error: any) {

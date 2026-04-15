@@ -5,6 +5,16 @@ import { randomUUID } from 'crypto';
 import { normalizeCategoryName } from '@/lib/categoryNormalizer';
 import { checkAdminAuth } from '@/lib/auth';
 import { revalidatePath, revalidateTag } from 'next/cache';
+import {
+  buildSeoFields,
+  computeReadyScore,
+  createDeterministicSlug,
+  getClientIp,
+  normalizeLongText,
+  normalizeStatus,
+  normalizeTags,
+  normalizeText
+} from '@/lib/content-quality';
 
 // GET - جلب المشاريع مع إحصائيات التفاعل
 export async function GET(request: NextRequest) {
@@ -204,7 +214,7 @@ export async function POST(request: NextRequest) {
 
     const data = await request.json();
     const headersList = await headers();
-    const ip = headersList.get('x-forwarded-for') || 'unknown';
+    const ip = getClientIp(headersList);
 
     const {
       title,
@@ -225,13 +235,30 @@ export async function POST(request: NextRequest) {
       status = 'PUBLISHED'
     } = data;
 
+    const normalizedTitle = normalizeText(title, 180);
+    const normalizedDescription = normalizeLongText(description, 12000);
+    const normalizedLocation = normalizeText(location, 180);
+    const normalizedClient = normalizeText(client, 120) || null;
+    const normalizedStatus = normalizeStatus(status, 'DRAFT');
+    const normalizedTagNames = normalizeTags(tags);
+    const normalizedMaterialNames = normalizeTags(materials);
+
     // التحقق من صحة البيانات
-    if (!title || !description || !category || !location) {
+    if (!normalizedTitle || !normalizedDescription || !category || !normalizedLocation) {
       return NextResponse.json(
-        { error: 'البيانات الأساسية مطلوبة' },
+        { error: 'البيانات الأساسية مطلوبة (العنوان، الوصف، التصنيف، الموقع).' },
         { status: 400 }
       );
     }
+
+    const categoryValidation = normalizeCategoryName(category);
+    if (!categoryValidation.isValid || !categoryValidation.normalizedCategory) {
+      return NextResponse.json(
+        { error: `الفئة "${category}" غير صالحة. الرجاء اختيار فئة صحيحة.` },
+        { status: 400 }
+      );
+    }
+    const normalizedCategory = categoryValidation.normalizedCategory;
 
     // التحقق من الوسائط المرفوعة
     if (mediaItems && Array.isArray(mediaItems)) {
@@ -273,12 +300,26 @@ export async function POST(request: NextRequest) {
     }
 
     // إنشاء slug فريد
-    const slug = generateSlug(title);
+    const slug = createDeterministicSlug(normalizedTitle, 'project');
     const existingSlug = await prisma.projects.findUnique({
       where: { slug }
     });
 
     const finalSlug = existingSlug ? `${slug}-${Date.now()}` : slug;
+
+    const seo = buildSeoFields({
+      title: metaTitle || normalizedTitle,
+      description: normalizedDescription,
+      keywords,
+      fallbackKeywords: [normalizedCategory, normalizedLocation, 'ديار جدة العالمية']
+    });
+    const readyScore = computeReadyScore({
+      title: normalizedTitle,
+      body: normalizedDescription,
+      metaTitle: seo.metaTitle,
+      metaDescription: seo.metaDescription,
+      keywords: seo.keywords
+    });
 
     // حساب عدد الصور والفيديوهات
     const imageCount = mediaItems?.filter((item: any) => item.type === 'IMAGE').length || 0;
@@ -293,15 +334,15 @@ export async function POST(request: NextRequest) {
         
         englishMetadata = await translateProjectToEnglish(
           {
-            title,
-            description,
-            category,
-            location,
+            title: normalizedTitle,
+            description: normalizedDescription,
+            category: normalizedCategory,
+            location: normalizedLocation,
             metaTitle,
             metaDescription,
             keywords: keywords?.split(',').map((k: string) => k.trim()),
-            tags: tags?.map((t: any) => t.name || t),
-            materials: materials?.map((m: any) => m.name || m)
+            tags: normalizedTagNames,
+            materials: normalizedMaterialNames
           },
           imageCount,
           videoCount
@@ -319,21 +360,21 @@ export async function POST(request: NextRequest) {
     const project = await prisma.projects.create({
       data: {
         id: randomUUID(),
-        title,
-        description,
-        category,
-        location,
+        title: normalizedTitle,
+        description: normalizedDescription,
+        category: normalizedCategory,
+        location: normalizedLocation,
         completionDate: completionDate ? new Date(completionDate) : new Date(),
-        client: client || null,
+        client: normalizedClient,
         featured: featured || false,
         projectDuration: projectDuration || '',
         projectCost: projectCost || '',
         slug: finalSlug,
-        metaTitle: metaTitle || title,
-        metaDescription: metaDescription || description.substring(0, 160),
-        keywords: keywords || `${category}, ${location}, ديار جدة العالمية`,
-        status,
-        publishedAt: status === 'PUBLISHED' ? new Date() : null,
+        metaTitle: seo.metaTitle || metaTitle || normalizedTitle,
+        metaDescription: seo.metaDescription || metaDescription || normalizedDescription.substring(0, 160),
+        keywords: seo.keywords || `${normalizedCategory}, ${normalizedLocation}, ديار جدة العالمية`,
+        status: normalizedStatus,
+        publishedAt: normalizedStatus === 'PUBLISHED' ? new Date() : null,
         updatedAt: new Date(),
         // حفظ البيانات المترجمة في حقل JSON (إذا كانت متوفرة)
         ...(englishMetadata && {
@@ -351,7 +392,7 @@ export async function POST(request: NextRequest) {
         media_items: {
           create: mediaItems?.map((item: any, index: number) => {
             // تحسين وصف الصور والفيديوهات باستخدام الترجمة
-            let enhancedAlt = item.alt || title;
+            let enhancedAlt = item.alt || normalizedTitle;
             let enhancedDescription = item.description || '';
             
             if (englishMetadata) {
@@ -389,10 +430,18 @@ export async function POST(request: NextRequest) {
               order: index
             };
           }) || []
+        },
+        project_tags: {
+          create: normalizedTagNames.map((name: string) => ({ name }))
+        },
+        project_materials: {
+          create: normalizedMaterialNames.map((name: string) => ({ name }))
         }
       },
       include: {
         media_items: true,
+        project_tags: true,
+        project_materials: true,
         _count: {
           select: {
             comments: true,
@@ -456,7 +505,10 @@ export async function POST(request: NextRequest) {
       mediaItems: project.media_items,
       views: 1,
       likes: 0,
-      commentsCount: 0
+      commentsCount: 0,
+      quality: readyScore,
+      tags: normalizedTagNames,
+      materials: normalizedMaterialNames
     };
     return NextResponse.json({ success: true, project: formatted, message: 'تم إضافة المشروع بنجاح' });
 

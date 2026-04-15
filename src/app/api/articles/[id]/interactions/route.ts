@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { headers } from 'next/headers';
 import { randomUUID } from 'crypto';
+import { getClientIp } from '@/lib/content-quality';
 
 export async function GET(
   request: NextRequest,
@@ -11,7 +12,7 @@ export async function GET(
     const resolvedParams = await params;
     const articleId = resolvedParams.id;
     const headersList = await headers();
-    const ip = headersList.get('x-forwarded-for') || 'unknown';
+    const ip = getClientIp(headersList);
 
     const article = await prisma.articles.findUnique({
       where: { id: articleId },
@@ -63,7 +64,7 @@ export async function POST(
     const articleId = resolvedParams.id;
     const data = await request.json();
     const headersList = await headers();
-    const ip = headersList.get('x-forwarded-for') || headersList.get('x-real-ip') || 'unknown';
+    const ip = getClientIp(headersList);
     const userAgent = headersList.get('user-agent') || 'unknown';
     const referrer = headersList.get('referer') || 'direct';
 

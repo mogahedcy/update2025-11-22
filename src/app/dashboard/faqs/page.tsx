@@ -43,6 +43,8 @@ export default function FAQsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [sortBy, setSortBy] = useState('order');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingFaq, setEditingFaq] = useState<FAQ | null>(null);
   const [formData, setFormData] = useState({
@@ -83,9 +85,13 @@ export default function FAQsPage() {
       
       if (data.success) {
         setFaqs(data.faqs || []);
+        setError('');
+      } else {
+        setError(data.error || 'تعذر جلب الأسئلة الشائعة');
       }
     } catch (error) {
       console.error('Error fetching FAQs:', error);
+      setError('حدث خطأ أثناء جلب الأسئلة الشائعة');
     } finally {
       setLoading(false);
     }
@@ -107,20 +113,26 @@ export default function FAQsPage() {
       const data = await response.json();
       
       if (data.success) {
+        setError('');
+        setSuccess(editingFaq ? 'تم تحديث السؤال بنجاح' : 'تم إضافة السؤال بنجاح');
+        setTimeout(() => setSuccess(''), 2500);
         setShowAddModal(false);
         setEditingFaq(null);
         setFormData({
           question: '',
           answer: '',
-          category: 'مظلات',
+          category: 'مظلات سيارات',
           order: 0,
           featured: false,
           status: 'PUBLISHED'
         });
         fetchFAQs();
+      } else {
+        setError(data.error || 'تعذر حفظ السؤال');
       }
     } catch (error) {
       console.error('Error saving FAQ:', error);
+      setError('حدث خطأ أثناء حفظ السؤال');
     }
   };
 
@@ -131,12 +143,19 @@ export default function FAQsPage() {
       const response = await fetch(`/api/faqs/${id}`, {
         method: 'DELETE'
       });
+      const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && data.success) {
+        setError('');
+        setSuccess('تم حذف السؤال بنجاح');
+        setTimeout(() => setSuccess(''), 2500);
         fetchFAQs();
+      } else {
+        setError(data.error || 'تعذر حذف السؤال');
       }
     } catch (error) {
       console.error('Error deleting FAQ:', error);
+      setError('حدث خطأ أثناء حذف السؤال');
     }
   };
 
@@ -191,7 +210,7 @@ export default function FAQsPage() {
                   setFormData({
                     question: '',
                     answer: '',
-                    category: 'مظلات',
+                    category: 'مظلات سيارات',
                     order: 0,
                     featured: false,
                     status: 'PUBLISHED'
@@ -206,6 +225,17 @@ export default function FAQsPage() {
                 <span className="sm:hidden">جديد</span>
               </Button>
             </div>
+
+            {error ? (
+              <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+                {error}
+              </div>
+            ) : null}
+            {success ? (
+              <div className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+                {success}
+              </div>
+            ) : null}
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 lg:gap-4 mt-4 md:mt-6">

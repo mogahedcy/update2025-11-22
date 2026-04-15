@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { headers } from 'next/headers';
+import { getClientIp } from '@/lib/content-quality';
 
 interface InteractionParams {
   params: { id: string };
@@ -16,7 +17,7 @@ export async function POST(
     const { id: projectId } = resolvedParams;
     const { type, action } = await request.json();
     const headersList = await headers();
-    const ip = headersList.get('x-forwarded-for') || headersList.get('x-real-ip') || 'unknown';
+    const ip = getClientIp(headersList);
     const userAgent = headersList.get('user-agent') || 'unknown';
     const referrer = headersList.get('referer') || 'direct';
 
@@ -174,7 +175,7 @@ export async function GET(
     const resolvedParams = await params;
     const { id: projectId } = resolvedParams;
     const headersList = await headers();
-    const ip = headersList.get('x-forwarded-for') || headersList.get('x-real-ip') || 'unknown';
+    const ip = getClientIp(headersList);
 
     // التحقق من وجود المشروع
     const project = await prisma.projects.findUnique({

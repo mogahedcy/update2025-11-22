@@ -1,6 +1,7 @@
 import ai, { GROQ_MODEL } from './groq-client';
 import { prisma } from './prisma';
 import { randomUUID } from 'crypto';
+import { computeReadyScore, createDeterministicSlug, normalizeTags, normalizeText } from './content-quality';
 
 export interface FAQGenerationOptions {
   topic: string;
@@ -21,6 +22,7 @@ export interface GeneratedFAQ {
   slug: string;
   status: 'DRAFT' | 'PUBLISHED';
   featured: boolean;
+  quality: { score: number; ready: boolean };
 }
 
 export interface FAQGenerationResult {
@@ -108,15 +110,22 @@ export class AIFAQAgent {
 
       return result.faqs.map((faq: any) => ({
         id: randomUUID(),
-        question: faq.question,
-        answer: faq.answer,
+        question: normalizeText(faq.question, 220),
+        answer: String(faq.answer || '').trim(),
         category: category,
-        keywords: faq.keywords || keywords,
-        metaTitle: faq.metaTitle || faq.question.substring(0, 60),
-        metaDescription: faq.metaDescription || faq.answer.substring(0, 160),
-        slug: this.generateSlug(faq.slug || faq.question),
+        keywords: normalizeTags(faq.keywords || keywords),
+        metaTitle: faq.metaTitle || String(faq.question || '').substring(0, 60),
+        metaDescription: faq.metaDescription || String(faq.answer || '').substring(0, 160),
+        slug: createDeterministicSlug(faq.slug || faq.question, 'faq'),
         status: 'DRAFT' as const,
-        featured: false
+        featured: false,
+        quality: computeReadyScore({
+          title: faq.question,
+          body: faq.answer,
+          metaTitle: faq.metaTitle,
+          metaDescription: faq.metaDescription,
+          keywords: faq.keywords || keywords
+        })
       }));
     } catch (error) {
       console.error('❌ خطأ في توليد الأسئلة:', error);
@@ -149,7 +158,7 @@ export class AIFAQAgent {
 
         if (existingFaq) {
           console.log(`⚠️ سؤال موجود مسبقاً: ${faq.question.substring(0, 50)}...`);
-          faq.slug = `${faq.slug}-${Date.now()}`;
+            faq.slug = `${faq.slug}-${Date.now()}`;
         }
 
         const savedFaq = await prisma.faqs.create({
@@ -256,18 +265,6 @@ export class AIFAQAgent {
     }
   }
 
-  private generateSlug(text: string): string {
-    const slug = text
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[،؛؟!@#$%^&*()+=\[\]{};:"\\|<>\/]/g, '')
-      .replace(/-+/g, '-')
-      .replace(/^-+|-+$/g, '')
-      .substring(0, 100);
-
-    return slug || `faq-${Date.now()}`;
-  }
 }
 
 export const aiFAQAgent = new AIFAQAgent();

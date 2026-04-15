@@ -3,6 +3,14 @@ import { prisma } from '@/lib/prisma';
 import { verifyToken } from '@/lib/jwt';
 import { cookies } from 'next/headers';
 import { normalizeCategoryName } from '@/lib/categoryNormalizer';
+import {
+  buildSeoFields,
+  createDeterministicSlug,
+  normalizeLongText,
+  normalizeStatus,
+  normalizeTags,
+  normalizeText
+} from '@/lib/content-quality';
 
 async function checkAuth() {
   try {
@@ -67,6 +75,22 @@ export async function PATCH(
     const { id } = await params;
     const body = await request.json();
 
+    if (body.question !== undefined) {
+      body.question = normalizeText(body.question, 220);
+    }
+    if (body.answer !== undefined) {
+      body.answer = normalizeLongText(body.answer, 8000);
+    }
+    if (body.status !== undefined) {
+      body.status = normalizeStatus(body.status, 'DRAFT');
+    }
+    if (body.keywords !== undefined) {
+      const normalizedKeywords = normalizeTags(
+        typeof body.keywords === 'string' ? body.keywords.split(',') : body.keywords
+      );
+      body.keywords = normalizedKeywords.join(', ');
+    }
+
     if (body.category) {
       const categoryValidation = normalizeCategoryName(body.category);
       if (!categoryValidation.isValid || !categoryValidation.normalizedCategory) {
@@ -86,6 +110,21 @@ export async function PATCH(
       }
 
       body.category = normalizedCategory;
+    }
+
+    if (body.question && body.slug === undefined) {
+      body.slug = createDeterministicSlug(body.question, 'faq');
+    }
+
+    if (body.question || body.answer || body.metaTitle || body.metaDescription || body.keywords) {
+      const seo = buildSeoFields({
+        title: body.metaTitle || body.question,
+        description: body.answer,
+        keywords: body.keywords
+      });
+      body.metaTitle = body.metaTitle || seo.metaTitle;
+      body.metaDescription = body.metaDescription || seo.metaDescription;
+      body.keywords = body.keywords || seo.keywords;
     }
 
     const faq = await prisma.faqs.update({

@@ -47,12 +47,6 @@ export async function GET(
       return NextResponse.json({ error: 'المقالة غير موجودة' }, { status: 404 });
     }
 
-    // زيادة عدد المشاهدات باستخدام معرف المقالة الحقيقي
-    await prisma.articles.update({
-      where: { id: article.id },
-      data: { views: { increment: 1 } }
-    });
-
     console.log('📖 تم جلب المقالة:', article.title);
 
     return NextResponse.json({
@@ -60,7 +54,7 @@ export async function GET(
       mediaItems: (article as any).article_media_items,
       tags: (article as any).article_tags || [],
       comments: (article as any).article_comments || [],
-      views: (article.views || 0) + 1,
+      views: article.views || 0,
       likes: (article._count as any)?.article_likes || 0,
       commentsCount: (article._count as any)?.article_comments || 0,
       rating: article.rating || 0,

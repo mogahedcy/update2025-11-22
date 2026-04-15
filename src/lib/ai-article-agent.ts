@@ -2,6 +2,7 @@ import { seoAgent } from './seo-agent';
 import { imageSelector } from './image-selector';
 import { prisma } from './prisma';
 import { randomUUID } from 'crypto';
+import { computeReadyScore, createDeterministicSlug, normalizeTags } from './content-quality';
 
 export interface ArticleGenerationOptions {
   topic: string;
@@ -33,6 +34,7 @@ export interface GeneratedArticle {
     description: string;
   }>;
   tags: string[];
+  quality: { score: number; ready: boolean };
 }
 
 export class AIArticleAgent {
@@ -94,14 +96,21 @@ export class AIArticleAgent {
       featured: featured,
       status: 'DRAFT',
       mediaItems: mediaItems,
-      tags: generatedContent.tags
+      tags: normalizeTags(generatedContent.tags),
+      quality: computeReadyScore({
+        title: generatedContent.title,
+        body: generatedContent.content,
+        metaTitle: contentAnalysis.meta_title_suggestion,
+        metaDescription: contentAnalysis.meta_description_suggestion,
+        keywords
+      })
     };
   }
 
   async publishArticle(article: GeneratedArticle): Promise<string> {
     console.log('📝 جاري نشر المقال...');
 
-    const slug = this.generateSlug(article.title);
+    const slug = createDeterministicSlug(article.title, 'article');
 
     const createdArticle = await prisma.articles.create({
       data: {
@@ -203,16 +212,6 @@ export class AIArticleAgent {
     return results;
   }
 
-  private generateSlug(title: string): string {
-    const slug = title
-      .trim()
-      .replace(/\s+/g, '-')
-      .replace(/[،؛؟!@#$%^&*()+=\[\]{};:"\\|<>\/]/g, '')
-      .replace(/-+/g, '-')
-      .replace(/^-+|-+$/g, '');
-
-    return slug || `article-${Date.now()}`;
-  }
 }
 
 export const aiArticleAgent = new AIArticleAgent();

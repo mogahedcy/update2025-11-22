@@ -3,6 +3,14 @@ import { prisma } from '@/lib/prisma';
 import { verifyToken } from '@/lib/jwt';
 import { cookies } from 'next/headers';
 import { normalizeCategoryName } from '@/lib/categoryNormalizer';
+import {
+  buildSeoFields,
+  createDeterministicSlug,
+  normalizeLongText,
+  normalizeStatus,
+  normalizeTags,
+  normalizeText
+} from '@/lib/content-quality';
 
 async function checkAuth() {
   try {
@@ -93,9 +101,16 @@ export async function POST(request: NextRequest) {
       relatedQuestions
     } = body;
 
-    if (!question || !answer || !category) {
+    const normalizedQuestion = normalizeText(question, 220);
+    const normalizedAnswer = normalizeLongText(answer, 8000);
+    const normalizedStatus = normalizeStatus(status, 'DRAFT');
+    const normalizedKeywords = normalizeTags(
+      typeof keywords === 'string' ? keywords.split(',') : keywords
+    );
+
+    if (!normalizedQuestion || !normalizedAnswer || !category) {
       return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
+        { success: false, error: 'الحقول الأساسية مطلوبة (السؤال، الإجابة، التصنيف).' },
         { status: 400 }
       );
     }
@@ -117,18 +132,39 @@ export async function POST(request: NextRequest) {
       console.log(`✅ تم تحويل الفئة: "${category}" → "${normalizedCategory}"`);
     }
 
+    const finalSlugBase = createDeterministicSlug(slug || normalizedQuestion, 'faq');
+    const existingFaq = await prisma.faqs.findFirst({
+      where: {
+        OR: [{ question: normalizedQuestion }, { slug: finalSlugBase }]
+      },
+      select: { id: true }
+    });
+    if (existingFaq) {
+      return NextResponse.json(
+        { success: false, error: 'يوجد سؤال مشابه بالفعل، يرجى تعديل الصياغة.' },
+        { status: 409 }
+      );
+    }
+
+    const seo = buildSeoFields({
+      title: metaTitle || normalizedQuestion,
+      description: normalizedAnswer,
+      keywords: normalizedKeywords,
+      fallbackKeywords: [normalizedCategory, 'الأسئلة الشائعة', 'ديار جدة العالمية']
+    });
+
     const faq = await prisma.faqs.create({
       data: {
-        question,
-        answer,
+        question: normalizedQuestion,
+        answer: normalizedAnswer,
         category: normalizedCategory,
         order: order || 0,
         featured: featured || false,
-        status: status || 'PUBLISHED',
-        slug: slug || null,
-        metaTitle: metaTitle || null,
-        metaDescription: metaDescription || null,
-        keywords: keywords || null,
+        status: normalizedStatus,
+        slug: finalSlugBase,
+        metaTitle: seo.metaTitle || metaTitle || normalizedQuestion,
+        metaDescription: seo.metaDescription || metaDescription || normalizedAnswer.substring(0, 160),
+        keywords: seo.keywords || null,
         relatedQuestions: relatedQuestions || null
       }
     });

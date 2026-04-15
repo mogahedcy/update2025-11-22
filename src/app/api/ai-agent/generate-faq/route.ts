@@ -48,7 +48,8 @@ export async function POST(request: NextRequest) {
         id: faq.id,
         question: faq.question,
         category: faq.category,
-        status: faq.status
+        status: faq.status,
+        quality: faq.quality
       })),
       stats: result.stats
     });

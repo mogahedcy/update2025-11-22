@@ -4,6 +4,16 @@ import { headers } from 'next/headers';
 import { randomUUID } from 'crypto';
 import { normalizeArticleCategoryName } from '@/lib/categoryNormalizer';
 import { checkAdminAuth } from '@/lib/auth';
+import {
+  buildSeoFields,
+  computeReadyScore,
+  createDeterministicSlug,
+  getClientIp,
+  normalizeLongText,
+  normalizeStatus,
+  normalizeTags,
+  normalizeText
+} from '@/lib/content-quality';
 
 // GET - جلب المقالات مع إحصائيات التفاعل
 export async function GET(request: NextRequest) {
@@ -182,7 +192,7 @@ export async function POST(request: NextRequest) {
 
     const data = await request.json();
     const headersList = await headers();
-    const ip = headersList.get('x-forwarded-for') || 'unknown';
+    const ip = getClientIp(headersList);
 
     const {
       title,
@@ -199,10 +209,17 @@ export async function POST(request: NextRequest) {
       status = 'PUBLISHED'
     } = data;
 
+    const normalizedTitle = normalizeText(title, 180);
+    const normalizedContent = normalizeLongText(content, 15000);
+    const normalizedExcerpt = normalizeLongText(excerpt, 300);
+    const normalizedAuthor = normalizeText(author, 100) || 'ديار جدة العالمية';
+    const normalizedStatus = normalizeStatus(status, 'DRAFT');
+    const normalizedTagNames = normalizeTags(tags);
+
     // التحقق من صحة البيانات
-    if (!title || !content || !category) {
+    if (!normalizedTitle || !normalizedContent || !category) {
       return NextResponse.json(
-        { error: 'البيانات الأساسية مطلوبة' },
+        { error: 'البيانات الأساسية مطلوبة (العنوان، المحتوى، التصنيف).' },
         { status: 400 }
       );
     }
@@ -223,28 +240,45 @@ export async function POST(request: NextRequest) {
     }
 
     // إنشاء slug فريد
-    const slug = generateSlug(title);
-    const existingSlug = await prisma.articles.findUnique({
-      where: { slug }
+    const slugBase = createDeterministicSlug(normalizedTitle, 'article');
+    const existingByTitleOrSlug = await prisma.articles.findFirst({
+      where: {
+        OR: [{ slug: slugBase }, { title: normalizedTitle }]
+      },
+      select: { id: true, slug: true, title: true }
     });
+    const finalSlug = existingByTitleOrSlug ? `${slugBase}-${Date.now()}` : slugBase;
 
-    const finalSlug = existingSlug ? `${slug}-${Date.now()}` : slug;
+    const seo = buildSeoFields({
+      title: metaTitle || normalizedTitle,
+      description: normalizedContent,
+      excerpt: normalizedExcerpt || normalizedContent,
+      keywords,
+      fallbackKeywords: [category, 'ديار جدة العالمية', 'مقالات']
+    });
+    const readyScore = computeReadyScore({
+      title: normalizedTitle,
+      body: normalizedContent,
+      metaTitle: seo.metaTitle,
+      metaDescription: seo.metaDescription,
+      keywords: seo.keywords
+    });
 
     const article = await prisma.articles.create({
       data: {
         id: randomUUID(),
-        title,
-        content,
-        excerpt: excerpt || content.substring(0, 200),
-        author: author || 'ديار جدة العالمية',
+        title: normalizedTitle,
+        content: normalizedContent,
+        excerpt: normalizedExcerpt || normalizedContent.substring(0, 200),
+        author: normalizedAuthor,
         category: normalizedCategory,
         featured: featured || false,
         slug: finalSlug,
-        metaTitle: metaTitle || title,
-        metaDescription: metaDescription || (excerpt || content).substring(0, 160),
-        keywords: keywords || `${category}, ديار جدة العالمية, مقالات`,
-        status,
-        publishedAt: status === 'PUBLISHED' ? new Date() : null,
+        metaTitle: seo.metaTitle || metaTitle || normalizedTitle,
+        metaDescription: seo.metaDescription || metaDescription || (normalizedExcerpt || normalizedContent).substring(0, 160),
+        keywords: seo.keywords || `${normalizedCategory}, ديار جدة العالمية, مقالات`,
+        status: normalizedStatus,
+        publishedAt: normalizedStatus === 'PUBLISHED' ? new Date() : null,
         updatedAt: new Date(),
         article_media_items: {
           create: mediaItems?.map((item: any, index: number) => ({
@@ -263,8 +297,8 @@ export async function POST(request: NextRequest) {
           })) || []
         },
         article_tags: {
-          create: tags?.map((tag: string | { name: string }) => ({
-            name: typeof tag === 'string' ? tag : tag.name
+          create: normalizedTagNames.map((tag: string) => ({
+            name: tag
           })) || []
         }
       },
@@ -313,7 +347,8 @@ export async function POST(request: NextRequest) {
       tags: article.article_tags,
       views: 1,
       likes: 0,
-      commentsCount: 0
+      commentsCount: 0,
+      quality: readyScore
     };
     return NextResponse.json({ success: true, article: formatted, message: 'تم إضافة المقالة بنجاح' });
 

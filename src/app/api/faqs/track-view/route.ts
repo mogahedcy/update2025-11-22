@@ -13,6 +13,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const cookieKey = `faq-view-${faqId}`;
+    const alreadyTracked = request.cookies.get(cookieKey)?.value === '1';
+    if (alreadyTracked) {
+      return NextResponse.json({
+        success: true,
+        message: 'View already tracked recently',
+        deduplicated: true
+      });
+    }
+
     await prisma.faqs.update({
       where: { id: faqId },
       data: {
@@ -22,10 +32,18 @@ export async function POST(request: NextRequest) {
       }
     });
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
-      message: 'View tracked successfully'
+      message: 'View tracked successfully',
+      deduplicated: false
     });
+    response.cookies.set(cookieKey, '1', {
+      httpOnly: true,
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24,
+      path: '/'
+    });
+    return response;
   } catch (error: any) {
     console.error('Error tracking FAQ view:', error);
     return NextResponse.json(

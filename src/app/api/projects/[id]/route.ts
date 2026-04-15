@@ -32,12 +32,6 @@ export async function GET(
       return NextResponse.json({ error: 'المشروع غير موجود' }, { status: 404 });
     }
 
-    // زيادة عدد المشاهدات باستخدام معرف المشروع الحقيقي
-    await prisma.projects.update({
-      where: { id: project.id },
-      data: { views: { increment: 1 } }
-    });
-
     console.log('📖 تم جلب المشروع:', project.title);
 
     return NextResponse.json({
@@ -45,7 +39,7 @@ export async function GET(
       mediaItems: (project as any).media_items,
       tags: (project as any).project_tags || [],
       materials: (project as any).project_materials || [],
-      views: (project.views || 0) + 1,
+      views: project.views || 0,
       likes: (project._count as any)?.project_likes || 0,
       rating: project.rating || 0
     });
@@ -120,9 +114,9 @@ export async function PUT(
     const existingProject = await prisma.projects.findUnique({
       where: { id: projectId },
       include: {
-        mediaItems: true,
-        tags: true,
-        materials: true
+        media_items: true,
+        project_tags: true,
+        project_materials: true
       }
     });
 
