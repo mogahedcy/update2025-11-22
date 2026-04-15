@@ -37,7 +37,7 @@ interface SavedSearch {
 }
 
 export default function SavedSearches() {
-  const [savedSearches, setSavedSearches] = useState<Array<{ id: string; name: string; query: string; date: string }>>([]);
+  const [savedSearches, setSavedSearches] = useState<SavedSearch[]>([]);
   const [showSaved, setShowSaved] = useState(false);
   const [showSaveForm, setShowSaveForm] = useState(false);
   const [searchName, setSearchName] = useState('');
@@ -66,7 +66,7 @@ export default function SavedSearches() {
   };
 
   // حفظ بحث جديد
-  const saveCurrentSearch = (searchData: { query: string; filters?: Record<string, unknown> }) => {
+  const saveCurrentSearch = () => {
     if (!searchName.trim()) return;
 
     const currentUrl = new URL(window.location.href);
@@ -105,7 +105,10 @@ export default function SavedSearches() {
 
     // تطبيق المعايير على URL
     const params = new URLSearchParams(search.filters);
-    window.location.href = `/search?${params.toString()}`;
+    const currentPath = window.location.pathname.endsWith('/search')
+      ? window.location.pathname
+      : '/search';
+    window.location.assign(`${currentPath}?${params.toString()}`);
   };
 
   // حذف بحث محفوظ
@@ -132,11 +135,6 @@ export default function SavedSearches() {
     if (filters.featured === 'true') active.push('مميز');
     if (filters.hasVideo === 'true') active.push('فيديو');
     return active;
-  };
-
-  const executeSearch = (searchData: { query: string; filters?: Record<string, unknown> }) => {
-    // Implement your search execution logic here
-    console.log('Executing search with data:', searchData);
   };
 
   return (
@@ -190,10 +188,10 @@ export default function SavedSearches() {
                     placeholder="اسم البحث..."
                     value={searchName}
                     onChange={(e) => setSearchName(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && saveCurrentSearch({ query: searchName })}
+                    onKeyDown={(e) => e.key === 'Enter' && saveCurrentSearch()}
                     className="text-sm"
                   />
-                  <Button size="sm" onClick={() => saveCurrentSearch({ query: searchName })} disabled={!searchName.trim()}>
+                  <Button size="sm" onClick={saveCurrentSearch} disabled={!searchName.trim()}>
                     <Save className="w-4 h-4" />
                   </Button>
                 </div>

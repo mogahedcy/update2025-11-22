@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
-import NavbarArabic from '@/components/NavbarArabic';
+import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SearchResults from '@/components/SearchResults';
 import AdvancedFilters from '@/components/AdvancedFilters';
@@ -12,10 +12,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Search as SearchIcon, X, Filter, ChevronDown } from 'lucide-react';
-import IntlProvider from '@/components/IntlProvider';
-import WhatsAppWidget from '@/components/WhatsAppWidget';
-import FloatingCallButton from '@/components/FloatingCallButton';
-import BottomNavigation from '@/components/BottomNavigation';
 
 interface ApiResult {
   id: string;
@@ -104,6 +100,10 @@ function SearchContent() {
     }
   }, [query, type, sortBy, filters.category, filters.location, filters.minRating, filters.featured, filters.dateRange, filters.hasVideo, filters.priceRange]);
 
+  useEffect(() => {
+    setSearchText(query);
+  }, [query]);
+
   const updateUrl = (params: Record<string, string | undefined>) => {
     const sp = new URLSearchParams(searchParams?.toString() || '');
     Object.entries(params).forEach(([k, v]) => {
@@ -130,13 +130,29 @@ function SearchContent() {
         let dateFrom = '';
         switch(currentFilters.dateRange) {
           case 'week':
+          case 'last-7-days':
             dateFrom = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
             break;
           case 'month':
+          case 'last-30-days':
             dateFrom = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
             break;
+          case 'last-3-months':
+            dateFrom = new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000).toISOString();
+            break;
+          case 'last-6-months':
+            dateFrom = new Date(now.getTime() - 180 * 24 * 60 * 60 * 1000).toISOString();
+            break;
+          case 'last-year':
           case 'year':
             dateFrom = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000).toISOString();
+            break;
+          case '2024':
+          case '2023':
+          case '2022':
+          case '2021':
+            dateFrom = new Date(`${currentFilters.dateRange}-01-01T00:00:00.000Z`).toISOString();
+            queryParams.set('dateTo', new Date(`${currentFilters.dateRange}-12-31T23:59:59.999Z`).toISOString());
             break;
         }
         if (dateFrom) queryParams.set('dateFrom', dateFrom);
@@ -196,7 +212,7 @@ function SearchContent() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <NavbarArabic />
+      <Navbar />
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-6">
@@ -217,7 +233,7 @@ function SearchContent() {
             </div>
             <div className="flex items-center gap-2">
               <Button type="submit">بحث</Button>
-              <div className="hidden md:flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <Button variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }}>
                   الكل
                   {facets.types.articles + facets.types.projects + facets.types.faqs > 0 && (
@@ -237,9 +253,20 @@ function SearchContent() {
                   {facets.types.faqs > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.faqs}</Badge>}
                 </Button>
               </div>
-              <div className="relative">
-                <Button variant="outline" type="button" className="flex items-center gap-2"><Filter className="w-4 h-4" />فرز <ChevronDown className="w-4 h-4" /></Button>
-                <div className="absolute mt-2 bg-white border rounded-lg shadow-lg hidden"></div>
+              <div className="relative min-w-40">
+                <Filter className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as 'relevance' | 'date' | 'name' | 'views' | 'rating')}
+                  className="h-10 w-full rounded-md border border-input bg-background pl-9 pr-10 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <option value="relevance">الأكثر صلة</option>
+                  <option value="date">الأحدث</option>
+                  <option value="name">الاسم</option>
+                  <option value="views">الأكثر مشاهدة</option>
+                  <option value="rating">الأعلى تقييماً</option>
+                </select>
+                <ChevronDown className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
               </div>
             </div>
           </form>
@@ -289,20 +316,15 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
-    <IntlProvider>
-      <Suspense fallback={
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">جاري تحميل نتائج البحث...</p>
-          </div>
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري تحميل نتائج البحث...</p>
         </div>
-      }>
-        <SearchContent />
-      </Suspense>
-      <WhatsAppWidget />
-      <FloatingCallButton />
-      <BottomNavigation />
-    </IntlProvider>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }
