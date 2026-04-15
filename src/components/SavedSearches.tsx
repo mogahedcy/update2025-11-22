@@ -146,7 +146,7 @@ export default function SavedSearches() {
       </Button>
 
       {showSaved && (
-        <Card className="absolute top-full left-0 mt-2 w-80 z-50 shadow-lg">
+        <Card className="absolute top-full left-0 sm:left-auto sm:right-0 mt-2 w-[min(20rem,calc(100vw-2rem))] z-50 shadow-lg">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">البحثات المحفوظة</CardTitle>
@@ -274,7 +274,7 @@ export default function SavedSearches() {
                         </div>
                       </div>
 
-                      <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                       <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                         <Button
                           variant="ghost"
                           size="sm"

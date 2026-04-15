@@ -167,11 +167,11 @@ export default function AdvancedFilters({ filters, onFiltersChange, categories =
         )}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-4">
         {/* فلتر الفئات */}
         <Card>
           <FilterSection id="category" title="الفئة" icon={Filter}>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {(categories && categories.length > 0 ? categories : []).map((category) => {
                 const categoryId = typeof category === 'string' ? category : category.id;
                 const categoryName = typeof category === 'string' ? category : category.name;
@@ -235,7 +235,7 @@ export default function AdvancedFilters({ filters, onFiltersChange, categories =
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   التقييم الأدنى
                 </label>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {[1, 2, 3, 4, 5].map((rating) => (
                     <Button
                       key={rating}
@@ -255,7 +255,7 @@ export default function AdvancedFilters({ filters, onFiltersChange, categories =
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   المشاريع المميزة
                 </label>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <Button
                     variant={filters.featured === null ? 'default' : 'outline'}
                     size="sm"
@@ -286,7 +286,7 @@ export default function AdvancedFilters({ filters, onFiltersChange, categories =
         {/* فلتر التاريخ */}
         <Card>
           <FilterSection id="date" title="تاريخ الإنجاز" icon={Calendar}>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {dateRanges.map((range) => (
                 <Button
                   key={range.value}
@@ -310,7 +310,7 @@ export default function AdvancedFilters({ filters, onFiltersChange, categories =
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   وجود فيديو
                 </label>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <Button
                     variant={filters.hasVideo === null ? 'default' : 'outline'}
                     size="sm"

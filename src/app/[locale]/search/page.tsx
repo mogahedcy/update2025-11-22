@@ -232,7 +232,7 @@ function SearchContent() {
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-6">
-          <form onSubmit={onSubmit} className="flex flex-col md:flex-row gap-3 md:items-center">
+          <form onSubmit={onSubmit} className="flex flex-col gap-3 md:flex-row md:items-center">
             <div className="flex-1 relative">
               <SearchIcon className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <Input
@@ -247,9 +247,9 @@ function SearchContent() {
                 </button>
               )}
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full md:w-auto">
               <Button type="submit">بحث</Button>
-              <div className="flex items-center gap-2 flex-wrap" role="radiogroup" aria-label="تصفية نوع النتائج">
+              <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto pb-1 max-w-full" role="radiogroup" aria-label="تصفية نوع النتائج">
                 <Button role="radio" aria-label="الكل" tabIndex={type === 'all' ? 0 : -1} aria-checked={type === 'all' ? 'true' : 'false'} variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'all')}>
                   الكل
                   {facets.types.articles + facets.types.projects + facets.types.faqs > 0 && (
@@ -269,7 +269,7 @@ function SearchContent() {
                   {facets.types.faqs > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.faqs}</Badge>}
                 </Button>
               </div>
-              <div className="relative min-w-40">
+              <div className="relative min-w-40 w-full sm:w-auto">
                 <Filter className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
                 <select
                   aria-label="ترتيب النتائج"
@@ -294,8 +294,8 @@ function SearchContent() {
           </form>
         </div>
 
-        <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">نتائج البحث{query && ` عن "${query}"`}</h1>
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 break-words">نتائج البحث{query && ` عن "${query}"`}</h1>
           <p className="text-gray-600">{results.length} نتيجة</p>
         </div>
 

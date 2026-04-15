@@ -78,8 +78,8 @@ export default function SearchResults({ articles, isLoading, searchQuery, viewTy
   return (
     <div className="space-y-8">
       {/* Results Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-primary">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <h2 className="text-xl sm:text-2xl font-bold text-primary">
           نتائج البحث ({articles.length} عنصر)
         </h2>
       </div>
@@ -143,16 +143,16 @@ export default function SearchResults({ articles, isLoading, searchQuery, viewTy
                 </p>
 
                 {/* Author & Date */}
-                <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                  <div className="flex items-center">
+                <div className="flex items-center justify-between gap-2 text-xs text-gray-500 mb-4">
+                  <div className="flex items-center min-w-0">
                     <img
                       src={article.authorAvatar}
                       alt={article.author}
                       className="w-6 h-6 rounded-full ml-2"
                     />
-                    <span>{article.author}</span>
+                    <span className="truncate">{article.author}</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center shrink-0">
                     <Clock className="w-3 h-3 ml-1" />
                     {article.readTime}
                   </div>
