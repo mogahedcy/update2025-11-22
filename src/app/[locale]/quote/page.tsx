@@ -144,7 +144,7 @@ export default async function QuotePage({ params }: { params: Promise<{ locale: 
       "@type": "LocalBusiness",
       "name": isArabic ? "ديار جدة العالمية" : "Deyar Jeddah Global",
       "telephone": "+966553719009",
-      "email": "ksaaldeyar@gmail.com",
+      "email": "info@deyarsu.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": isArabic ? "جدة" : "Jeddah",

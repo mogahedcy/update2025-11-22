@@ -687,7 +687,7 @@ export default async function ByootShaarPage({ params }: { params: Promise<{ loc
                   {t('cta.callButton')}
                 </Button>
               </Link>
-              <Link href="mailto:ksaaldeyar@gmail.com">
+              <Link href="mailto:info@deyarsu.com">
                 <Button size="lg" variant="outline" className="text-lg px-8 py-4 bg-white/10 border-white/30 text-white hover:bg-white/20">
                   <Mail className="w-5 h-5 mr-2" />
                   {t('cta.emailButton')}

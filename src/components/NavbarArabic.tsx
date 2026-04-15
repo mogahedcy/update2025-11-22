@@ -156,11 +156,11 @@ export default function NavbarArabic() {
                 <span dir="ltr">+966 55 371 9009</span>
               </a>
               <a 
-                href="mailto:ksaaldeyar@gmail.com" 
+                href="mailto:info@deyarsu.com" 
                 className="flex items-center hover:text-accent transition-colors"
               >
                 <Mail className="w-4 h-4 ml-2" />
-                ksaaldeyar@gmail.com
+                info@deyarsu.com
               </a>
               <span className="flex items-center">
                 <MapPin className="w-4 h-4 ml-2" />
