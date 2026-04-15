@@ -145,7 +145,7 @@ export default function Footer() {
 
   const achievements = [
     { icon: Users, number: '5000+', label: t('stats.clients'), color: 'text-blue-400' },
-    { icon: Building, number: '10000+', label: t('stats.projects'), color: 'text-green-400' },
+    { icon: Building, number: '5000+', label: t('stats.projects'), color: 'text-green-400' },
     { icon: Award, number: '15', label: t('stats.experience'), color: 'text-yellow-400' },
     { icon: Star, number: '4.9', label: t('stats.rating'), color: 'text-purple-400' }
   ];
