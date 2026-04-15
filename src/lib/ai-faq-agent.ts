@@ -158,7 +158,7 @@ export class AIFAQAgent {
 
         if (existingFaq) {
           console.log(`⚠️ سؤال موجود مسبقاً: ${faq.question.substring(0, 50)}...`);
-            faq.slug = `${faq.slug}-${Date.now()}`;
+          faq.slug = `${faq.slug}-${Date.now()}`;
         }
 
         const savedFaq = await prisma.faqs.create({

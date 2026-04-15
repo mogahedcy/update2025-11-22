@@ -132,10 +132,10 @@ export async function POST(request: NextRequest) {
       console.log(`✅ تم تحويل الفئة: "${category}" → "${normalizedCategory}"`);
     }
 
-    const finalSlugBase = createDeterministicSlug(slug || normalizedQuestion, 'faq');
+    const finalSlug = createDeterministicSlug(slug || normalizedQuestion, 'faq');
     const existingFaq = await prisma.faqs.findFirst({
       where: {
-        OR: [{ question: normalizedQuestion }, { slug: finalSlugBase }]
+        OR: [{ question: normalizedQuestion }, { slug: finalSlug }]
       },
       select: { id: true }
     });
@@ -161,7 +161,7 @@ export async function POST(request: NextRequest) {
         order: order || 0,
         featured: featured || false,
         status: normalizedStatus,
-        slug: finalSlugBase,
+        slug: finalSlug,
         metaTitle: seo.metaTitle || metaTitle || normalizedQuestion,
         metaDescription: seo.metaDescription || metaDescription || normalizedAnswer.substring(0, 160),
         keywords: seo.keywords || null,

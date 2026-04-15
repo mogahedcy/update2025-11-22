@@ -241,13 +241,36 @@ export async function POST(request: NextRequest) {
 
     // إنشاء slug فريد
     const slugBase = createDeterministicSlug(normalizedTitle, 'article');
-    const existingByTitleOrSlug = await prisma.articles.findFirst({
-      where: {
-        OR: [{ slug: slugBase }, { title: normalizedTitle }]
-      },
-      select: { id: true, slug: true, title: true }
+    const existingByTitle = await prisma.articles.findFirst({
+      where: { title: normalizedTitle },
+      select: { id: true }
     });
-    const finalSlug = existingByTitleOrSlug ? `${slugBase}-${Date.now()}` : slugBase;
+    if (existingByTitle) {
+      return NextResponse.json(
+        { error: 'يوجد مقال بعنوان مشابه بالفعل، يرجى تعديل العنوان.' },
+        { status: 409 }
+      );
+    }
+
+    let finalSlug = slugBase;
+    let slugAvailable = false;
+    for (let attempt = 0; attempt < 5; attempt++) {
+      const slugExists = await prisma.articles.findUnique({
+        where: { slug: finalSlug },
+        select: { id: true }
+      });
+      if (!slugExists) {
+        slugAvailable = true;
+        break;
+      }
+      finalSlug = `${slugBase}-${randomUUID().replace(/-/g, '').slice(0, 12)}`;
+    }
+    if (!slugAvailable) {
+      return NextResponse.json(
+        { error: 'تعذر إنشاء رابط فريد للمقالة، يرجى المحاولة مرة أخرى.' },
+        { status: 500 }
+      );
+    }
 
     const seo = buildSeoFields({
       title: metaTitle || normalizedTitle,
@@ -299,7 +322,7 @@ export async function POST(request: NextRequest) {
         article_tags: {
           create: normalizedTagNames.map((tag: string) => ({
             name: tag
-          })) || []
+          }))
         }
       },
       include: {

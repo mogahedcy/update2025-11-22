@@ -1,6 +1,8 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+const ONE_DAY_SECONDS = 60 * 60 * 24;
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -40,7 +42,7 @@ export async function POST(request: NextRequest) {
     response.cookies.set(cookieKey, '1', {
       httpOnly: true,
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24,
+      maxAge: ONE_DAY_SECONDS,
       path: '/'
     });
     return response;

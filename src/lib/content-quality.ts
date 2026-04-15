@@ -44,9 +44,10 @@ export function normalizeStatus(value: unknown, fallback: ContentStatus = 'DRAFT
 }
 
 export function createDeterministicSlug(input: string, fallbackPrefix: string): string {
+  // نطاقات العربية: Arabic (0600–06FF) + Arabic Supplement (0750–077F) + Arabic Extended-A (08A0–08FF)
   const base = input
     .normalize('NFKD')
-    .replace(/[^\u0600-\u06FF\w\s-]/g, '')
+    .replace(/[^\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\w\s-]/g, '')
     .trim()
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
@@ -54,7 +55,7 @@ export function createDeterministicSlug(input: string, fallbackPrefix: string): 
     .toLowerCase();
 
   if (base) return base.slice(0, 120);
-  const hash = createHash('sha1').update(`${fallbackPrefix}-${Date.now()}`).digest('hex').slice(0, 8);
+  const hash = createHash('sha256').update(`${fallbackPrefix}-${input}`).digest('hex').slice(0, 16);
   return `${fallbackPrefix}-${hash}`;
 }
 
@@ -83,7 +84,7 @@ export function buildSeoFields(input: {
 }
 
 export function contentSignature(input: string): string {
-  return createHash('sha1')
+  return createHash('sha256')
     .update(
       input
         .toLowerCase()
@@ -129,6 +130,5 @@ export function computeReadyScore(input: {
 export function getClientIp(headers: Headers): string {
   const forwarded = headers.get('x-forwarded-for');
   const realIp = headers.get('x-real-ip');
-  const candidate = forwarded?.split(',')[0]?.trim() || realIp?.trim() || 'unknown';
-  return candidate || 'unknown';
+  return forwarded?.split(',')[0]?.trim() || realIp?.trim() || 'unknown';
 }

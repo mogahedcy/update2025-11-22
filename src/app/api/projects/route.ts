@@ -301,11 +301,36 @@ export async function POST(request: NextRequest) {
 
     // إنشاء slug فريد
     const slug = createDeterministicSlug(normalizedTitle, 'project');
-    const existingSlug = await prisma.projects.findUnique({
-      where: { slug }
+    const existingByTitle = await prisma.projects.findFirst({
+      where: { title: normalizedTitle },
+      select: { id: true }
     });
+    if (existingByTitle) {
+      return NextResponse.json(
+        { error: 'يوجد مشروع بعنوان مشابه بالفعل، يرجى تعديل العنوان.' },
+        { status: 409 }
+      );
+    }
 
-    const finalSlug = existingSlug ? `${slug}-${Date.now()}` : slug;
+    let finalSlug = slug;
+    let slugAvailable = false;
+    for (let attempt = 0; attempt < 5; attempt++) {
+      const existingSlug = await prisma.projects.findUnique({
+        where: { slug: finalSlug },
+        select: { id: true }
+      });
+      if (!existingSlug) {
+        slugAvailable = true;
+        break;
+      }
+      finalSlug = `${slug}-${randomUUID().replace(/-/g, '').slice(0, 12)}`;
+    }
+    if (!slugAvailable) {
+      return NextResponse.json(
+        { error: 'تعذر إنشاء رابط فريد للمشروع، يرجى المحاولة مرة أخرى.' },
+        { status: 500 }
+      );
+    }
 
     const seo = buildSeoFields({
       title: metaTitle || normalizedTitle,
@@ -431,12 +456,16 @@ export async function POST(request: NextRequest) {
             };
           }) || []
         },
-        project_tags: {
-          create: normalizedTagNames.map((name: string) => ({ name }))
-        },
-        project_materials: {
-          create: normalizedMaterialNames.map((name: string) => ({ name }))
-        }
+        ...(normalizedTagNames.length > 0 && {
+          project_tags: {
+            create: normalizedTagNames.map((name: string) => ({ name }))
+          }
+        }),
+        ...(normalizedMaterialNames.length > 0 && {
+          project_materials: {
+            create: normalizedMaterialNames.map((name: string) => ({ name }))
+          }
+        })
       },
       include: {
         media_items: true,
