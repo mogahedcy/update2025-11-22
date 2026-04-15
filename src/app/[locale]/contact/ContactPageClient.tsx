@@ -54,8 +54,8 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
       icon: Mail,
       title: t('emailTitle'),
       description: t('emailDesc'),
-      value: 'ksaaldeyar@gmail.com',
-      action: 'mailto:ksaaldeyar@gmail.com',
+      value: 'info@deyarsu.com',
+      action: 'mailto:info@deyarsu.com',
       buttonText: t('sendEmail')
     },
     {
@@ -101,7 +101,7 @@ export default function ContactPageClient({ locale }: ContactPageClientProps) {
       "@type": "LocalBusiness",
       "name": isRTL ? "ديار جدة العالمية" : "Aldeyar Global Professionals",
       "telephone": "+966553719009",
-      "email": "ksaaldeyar@gmail.com",
+      "email": "info@deyarsu.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": isRTL ? "جدة" : "Jeddah",

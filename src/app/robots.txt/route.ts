@@ -134,7 +134,7 @@ Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitema
 Sitemap: ${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.deyarsu.com'}/sitemap-media.xml
 
 # معلومات إضافية للمطورين ومحركات البحث
-# Contact: ksaaldeyar@gmail.com
+# Contact: info@deyarsu.com
 # Website: https://www.deyarsu.com
 # Company: ديار جدة العالمية
 # Location: جدة، المملكة العربية السعودية

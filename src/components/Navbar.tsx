@@ -169,8 +169,8 @@ export default function Navbar() {
               </div>
               <div className={`flex items-center ${isRTL ? 'space-x-2 space-x-reverse' : 'space-x-2'}`}>
                 <Mail className="w-4 h-4" />
-                <Link href="mailto:ksaaldeyar@gmail.com" className="hover:text-white/80 transition-colors text-sm">
-                  ksaaldeyar@gmail.com
+                <Link href="mailto:info@deyarsu.com" className="hover:text-white/80 transition-colors text-sm">
+                  info@deyarsu.com
                 </Link>
               </div>
               <div className={`flex items-center ${isRTL ? 'space-x-2 space-x-reverse' : 'space-x-2'}`}>

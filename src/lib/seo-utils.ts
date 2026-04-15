@@ -795,7 +795,7 @@ export function generateLocalBusinessSchema(data?: {
     "image": data?.image || `${BASE_URL}/favicon.svg`,
     "url": BASE_URL,
     "telephone": "+966553719009",
-    "email": "ksaaldeyar@gmail.com",
+    "email": "info@deyarsu.com",
     "priceRange": data?.priceRange || "$$",
     "address": {
       "@type": "PostalAddress",
@@ -939,7 +939,7 @@ export function generateOrganizationSchema(data?: {
     },
     "image": data?.logo || `${BASE_URL}/favicon.svg`,
     "telephone": "+966553719009",
-    "email": "ksaaldeyar@gmail.com",
+    "email": "info@deyarsu.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "شارع الأمير سلطان",
@@ -953,7 +953,7 @@ export function generateOrganizationSchema(data?: {
         "@type": "ContactPoint",
         "telephone": "+966553719009",
         "contactType": "customer service",
-        "email": "ksaaldeyar@gmail.com",
+        "email": "info@deyarsu.com",
         "areaServed": "SA",
         "availableLanguage": ["Arabic", "English"]
       },
@@ -961,7 +961,7 @@ export function generateOrganizationSchema(data?: {
         "@type": "ContactPoint",
         "telephone": "+966553719009",
         "contactType": "sales",
-        "email": "ksaaldeyar@gmail.com",
+        "email": "info@deyarsu.com",
         "areaServed": "SA",
         "availableLanguage": "Arabic"
       }

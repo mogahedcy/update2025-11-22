@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
-import NavbarArabic from '@/components/NavbarArabic';
+import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SearchResults from '@/components/SearchResults';
 import AdvancedFilters from '@/components/AdvancedFilters';
@@ -12,10 +12,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Search as SearchIcon, X, Filter, ChevronDown } from 'lucide-react';
-import IntlProvider from '@/components/IntlProvider';
-import WhatsAppWidget from '@/components/WhatsAppWidget';
-import FloatingCallButton from '@/components/FloatingCallButton';
-import BottomNavigation from '@/components/BottomNavigation';
 
 interface ApiResult {
   id: string;
@@ -61,6 +57,15 @@ interface FiltersState {
   priceRange: string;
 }
 
+const SORT_VALUES = ['relevance', 'date', 'name', 'views', 'rating'] as const;
+type SortOption = typeof SORT_VALUES[number];
+const SEARCH_TYPE_VALUES = ['all', 'projects', 'articles', 'faqs'] as const;
+type SearchType = typeof SEARCH_TYPE_VALUES[number];
+
+function isSortOption(value: string): value is SortOption {
+  return (SORT_VALUES as readonly string[]).includes(value);
+}
+
 function SearchContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -70,8 +75,8 @@ function SearchContent() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
-  const [sortBy, setSortBy] = useState<'relevance' | 'date' | 'name' | 'views' | 'rating'>('relevance');
-  const [type, setType] = useState<'all' | 'projects' | 'articles' | 'faqs'>(
+  const [sortBy, setSortBy] = useState<SortOption>('relevance');
+  const [type, setType] = useState<SearchType>(
     (searchParams?.get('type') as any) || 'all'
   );
   const [searchText, setSearchText] = useState(searchParams?.get('q') || '');
@@ -130,13 +135,29 @@ function SearchContent() {
         let dateFrom = '';
         switch(currentFilters.dateRange) {
           case 'week':
+          case 'last-7-days':
             dateFrom = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
             break;
           case 'month':
+          case 'last-30-days':
             dateFrom = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
             break;
+          case 'last-3-months':
+            dateFrom = new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000).toISOString();
+            break;
+          case 'last-6-months':
+            dateFrom = new Date(now.getTime() - 180 * 24 * 60 * 60 * 1000).toISOString();
+            break;
+          case 'last-year':
           case 'year':
             dateFrom = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000).toISOString();
+            break;
+          case '2024':
+          case '2023':
+          case '2022':
+          case '2021':
+            dateFrom = new Date(`${currentFilters.dateRange}-01-01T00:00:00.000Z`).toISOString();
+            queryParams.set('dateTo', new Date(`${currentFilters.dateRange}-12-31T23:59:59.999Z`).toISOString());
             break;
         }
         if (dateFrom) queryParams.set('dateFrom', dateFrom);
@@ -188,6 +209,17 @@ function SearchContent() {
     updateUrl({ q: searchText || undefined, type });
   };
 
+  const handleTypeKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, currentType: SearchType) => {
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+    event.preventDefault();
+    const currentIndex = SEARCH_TYPE_VALUES.indexOf(currentType);
+    const direction = event.key === 'ArrowRight' ? 1 : -1;
+    const nextIndex = (currentIndex + direction + SEARCH_TYPE_VALUES.length) % SEARCH_TYPE_VALUES.length;
+    const nextType = SEARCH_TYPE_VALUES[nextIndex];
+    setType(nextType);
+    updateUrl({ type: nextType });
+  };
+
   const handleFiltersChange = (partial: Partial<FiltersState>) => {
     const next = { ...filters, ...partial };
     setFilters(next);
@@ -196,11 +228,11 @@ function SearchContent() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <NavbarArabic />
+      <Navbar />
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-6">
-          <form onSubmit={onSubmit} className="flex flex-col md:flex-row gap-3 md:items-center">
+          <form onSubmit={onSubmit} className="flex flex-col gap-3 md:flex-row md:items-center">
             <div className="flex-1 relative">
               <SearchIcon className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <Input
@@ -215,38 +247,55 @@ function SearchContent() {
                 </button>
               )}
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 w-full md:w-auto">
               <Button type="submit">بحث</Button>
-              <div className="hidden md:flex items-center gap-2">
-                <Button variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }}>
+              <div className="flex items-center gap-2 flex-nowrap sm:flex-wrap overflow-x-auto pb-1 max-w-full" role="radiogroup" aria-label="تصفية نوع النتائج">
+                <Button role="radio" aria-label="الكل" tabIndex={type === 'all' ? 0 : -1} aria-checked={type === 'all' ? 'true' : 'false'} variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'all')}>
                   الكل
                   {facets.types.articles + facets.types.projects + facets.types.faqs > 0 && (
                     <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.articles + facets.types.projects + facets.types.faqs}</Badge>
                   )}
                 </Button>
-                <Button variant={type === 'projects' ? 'default' : 'outline'} type="button" onClick={() => { setType('projects'); updateUrl({ type: 'projects' }); }}>
+                <Button role="radio" aria-label="معرض الأعمال" tabIndex={type === 'projects' ? 0 : -1} aria-checked={type === 'projects' ? 'true' : 'false'} variant={type === 'projects' ? 'default' : 'outline'} type="button" onClick={() => { setType('projects'); updateUrl({ type: 'projects' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'projects')}>
                   معرض الأعمال
                   {facets.types.projects > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.projects}</Badge>}
                 </Button>
-                <Button variant={type === 'articles' ? 'default' : 'outline'} type="button" onClick={() => { setType('articles'); updateUrl({ type: 'articles' }); }}>
+                <Button role="radio" aria-label="المقالات" tabIndex={type === 'articles' ? 0 : -1} aria-checked={type === 'articles' ? 'true' : 'false'} variant={type === 'articles' ? 'default' : 'outline'} type="button" onClick={() => { setType('articles'); updateUrl({ type: 'articles' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'articles')}>
                   المقالات
                   {facets.types.articles > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.articles}</Badge>}
                 </Button>
-                <Button variant={type === 'faqs' ? 'default' : 'outline'} type="button" onClick={() => { setType('faqs'); updateUrl({ type: 'faqs' }); }}>
+                <Button role="radio" aria-label="الأسئلة الشائعة" tabIndex={type === 'faqs' ? 0 : -1} aria-checked={type === 'faqs' ? 'true' : 'false'} variant={type === 'faqs' ? 'default' : 'outline'} type="button" onClick={() => { setType('faqs'); updateUrl({ type: 'faqs' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'faqs')}>
                   الأسئلة الشائعة
                   {facets.types.faqs > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.faqs}</Badge>}
                 </Button>
               </div>
-              <div className="relative">
-                <Button variant="outline" type="button" className="flex items-center gap-2"><Filter className="w-4 h-4" />فرز <ChevronDown className="w-4 h-4" /></Button>
-                <div className="absolute mt-2 bg-white border rounded-lg shadow-lg hidden"></div>
+              <div className="relative min-w-40 w-full sm:w-auto">
+                <Filter className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+                <select
+                  aria-label="ترتيب النتائج"
+                  value={sortBy}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (isSortOption(value)) {
+                      setSortBy(value);
+                    }
+                  }}
+                  className="h-10 w-full rounded-md border border-input bg-background pl-9 pr-10 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <option value="relevance">الأكثر صلة</option>
+                  <option value="date">الأحدث</option>
+                  <option value="name">الاسم</option>
+                  <option value="views">الأكثر مشاهدة</option>
+                  <option value="rating">الأعلى تقييماً</option>
+                </select>
+                <ChevronDown className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
               </div>
             </div>
           </form>
         </div>
 
-        <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">نتائج البحث{query && ` عن "${query}"`}</h1>
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 break-words">نتائج البحث{query && ` عن "${query}"`}</h1>
           <p className="text-gray-600">{results.length} نتيجة</p>
         </div>
 
@@ -289,20 +338,15 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
-    <IntlProvider>
-      <Suspense fallback={
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">جاري تحميل نتائج البحث...</p>
-          </div>
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">جاري تحميل نتائج البحث...</p>
         </div>
-      }>
-        <SearchContent />
-      </Suspense>
-      <WhatsAppWidget />
-      <FloatingCallButton />
-      <BottomNavigation />
-    </IntlProvider>
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }

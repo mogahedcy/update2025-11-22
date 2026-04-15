@@ -29,7 +29,7 @@ export default function LocalBusinessSchema({ locale = 'ar' }: LocalBusinessSche
       "https://www.deyarsu.com/images/slider3.webp"
     ],
     "telephone": "+966553719009",
-    "email": "ksaaldeyar@gmail.com",
+    "email": "info@deyarsu.com",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": isArabic ? "جدة" : "Jeddah",

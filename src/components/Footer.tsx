@@ -7,6 +7,7 @@ import {
   Mail,
   Clock,
   Instagram,
+  Twitter,
   MessageCircle,
   Star,
   Award,
@@ -94,22 +95,22 @@ const socialLinks = [
     bgColor: 'bg-pink-500'
   },
   {
-    name: 'WhatsApp',
-    href: 'https://wa.me/966553719009',
-    icon: MessageCircle,
-    color: 'hover:bg-green-600',
-    bgColor: 'bg-green-500'
+    name: 'Twitter / X',
+    href: 'https://x.com/jedahdeyar',
+    icon: Twitter,
+    color: 'hover:bg-slate-900',
+    bgColor: 'bg-slate-800'
   },
   {
-    name: 'TikTok',
-    href: 'https://vm.tiktok.com/ZShKSH6o9/',
+    name: 'Snapchat',
+    href: 'https://www.snapchat.com/add/abdulkader9696',
     icon: ({ className }: { className: string }) => (
       <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-        <path d="M19.321 5.562a5.124 5.124 0 0 1-.443-.258 6.228 6.228 0 0 1-1.137-.966c-.849-.849-1.349-2.021-1.349-3.338h-2.888v13.422c0 1.798-1.462 3.26-3.26 3.26s-3.26-1.462-3.26-3.26 1.462-3.26 3.26-3.26c.337 0 .662.051.967.147V8.421a6.14 6.14 0 0 0-.967-.078c-3.393 0-6.148 2.755-6.148 6.148s2.755 6.148 6.148 6.148 6.148-2.755 6.148-6.148V9.562a9.007 9.007 0 0 0 5.204 1.634V8.308a6.191 6.191 0 0 1-2.275-.746z"/>
+        <path d="M12.1 2.6c2.2 0 3.9 1.7 3.9 3.8 0 .5-.1 1-.3 1.5 1 .6 2.2 1 3.4 1.2.3.1.5.4.4.7-.1.4-.7 1-1.8 1.4-.2.1-.4.2-.6.2.1.4.2.8.2 1.2 0 2.9-2.4 5.2-5.3 5.2-2.9 0-5.3-2.3-5.3-5.2 0-.4.1-.8.2-1.2-.2-.1-.4-.1-.6-.2-1.1-.4-1.7-1-1.8-1.4-.1-.3.1-.6.4-.7 1.2-.3 2.4-.7 3.4-1.2-.2-.5-.3-1-.3-1.5 0-2.1 1.7-3.8 3.9-3.8zm0 1.5c-1.4 0-2.5 1-2.5 2.3 0 .5.2 1 .5 1.5.2.2.2.5.1.7-.1.2-.2.3-.4.4-.8.5-1.9.9-2.9 1.2.3.2.6.4 1 .5.4.2.8.3 1.1.4.2.1.4.2.5.4.1.2.1.4 0 .6-.2.4-.3.8-.3 1.2 0 2.1 1.7 3.7 3.9 3.7s3.9-1.7 3.9-3.7c0-.4-.1-.8-.3-1.2-.1-.2-.1-.4 0-.6.1-.2.3-.3.5-.4.3-.1.7-.2 1.1-.4.4-.2.7-.3 1-.5-1-.3-2.1-.7-2.9-1.2-.2-.1-.4-.2-.4-.4-.1-.2 0-.5.1-.7.3-.4.5-.9.5-1.5 0-1.3-1.1-2.3-2.5-2.3z"/>
       </svg>
     ),
-    color: 'hover:bg-gray-800',
-    bgColor: 'bg-gray-700'
+    color: 'hover:bg-yellow-500 hover:text-black',
+    bgColor: 'bg-yellow-400'
   }
 ];
 
@@ -145,7 +146,7 @@ export default function Footer() {
 
   const achievements = [
     { icon: Users, number: '5000+', label: t('stats.clients'), color: 'text-blue-400' },
-    { icon: Building, number: '10000+', label: t('stats.projects'), color: 'text-green-400' },
+    { icon: Building, number: '5000+', label: t('stats.projects'), color: 'text-green-400' },
     { icon: Award, number: '15', label: t('stats.experience'), color: 'text-yellow-400' },
     { icon: Star, number: '4.9', label: t('stats.rating'), color: 'text-purple-400' }
   ];
@@ -220,7 +221,7 @@ export default function Footer() {
                   </div>
                   <div className={`flex items-center ${isRTL ? 'space-x-2 space-x-reverse' : 'space-x-2'} bg-white/10 rounded-full px-4 py-2`}>
                     <Mail className="w-4 h-4 text-accent" />
-                    <Link href="mailto:ksaaldeyar@gmail.com" className="text-white hover:text-accent transition-colors font-medium">
+                    <Link href="mailto:info@deyarsu.com" className="text-white hover:text-accent transition-colors font-medium">
                       {t('emailContact')}
                     </Link>
                   </div>
@@ -352,8 +353,8 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-400 mb-1">{t('emailContact')}</p>
-                  <Link href="mailto:ksaaldeyar@gmail.com" className="text-white hover:text-accent transition-colors font-medium">
-                    ksaaldeyar@gmail.com
+                  <Link href="mailto:info@deyarsu.com" className="text-white hover:text-accent transition-colors font-medium">
+                    info@deyarsu.com
                   </Link>
                 </div>
               </div>
@@ -382,7 +383,6 @@ export default function Footer() {
         </div>
 
         <div className="sr-only">
-          <h2>{t('seo.title')}</h2>
           <p>{t('seo.description')}</p>
         </div>
       </div>

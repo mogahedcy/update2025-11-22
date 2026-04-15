@@ -16,7 +16,7 @@ export default function CompanyJsonLd() {
         'الشركة الرائدة في جدة لتركيب المظلات والبرجولات والسواتر وتنسيق الحدائق. خبرة 15 عاماً وضمان شامل على جميع الأعمال.',
       url: baseUrl,
       telephone: ['+966553719009'],
-      email: 'ksaaldeyar@gmail.com',
+      email: 'info@deyarsu.com',
       logo: `${baseUrl}/favicon.svg`,
       image: [`${baseUrl}/favicon.svg`],
       address: {

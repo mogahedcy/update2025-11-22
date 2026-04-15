@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,14 +18,7 @@ import {
   Save
 } from 'lucide-react';
 
-interface SearchFilters {
-  q?: string;
-  category?: string;
-  location?: string;
-  featured?: string;
-  hasVideo?: string;
-  [key: string]: string | undefined;
-}
+type SearchFilters = Partial<Record<string, string>>;
 
 interface SavedSearch {
   id: string;
@@ -37,7 +31,8 @@ interface SavedSearch {
 }
 
 export default function SavedSearches() {
-  const [savedSearches, setSavedSearches] = useState<Array<{ id: string; name: string; query: string; date: string }>>([]);
+  const router = useRouter();
+  const [savedSearches, setSavedSearches] = useState<SavedSearch[]>([]);
   const [showSaved, setShowSaved] = useState(false);
   const [showSaveForm, setShowSaveForm] = useState(false);
   const [searchName, setSearchName] = useState('');
@@ -66,7 +61,7 @@ export default function SavedSearches() {
   };
 
   // حفظ بحث جديد
-  const saveCurrentSearch = (searchData: { query: string; filters?: Record<string, unknown> }) => {
+  const saveCurrentSearch = () => {
     if (!searchName.trim()) return;
 
     const currentUrl = new URL(window.location.href);
@@ -105,7 +100,8 @@ export default function SavedSearches() {
 
     // تطبيق المعايير على URL
     const params = new URLSearchParams(search.filters);
-    window.location.href = `/search?${params.toString()}`;
+    const currentPath = window.location.pathname;
+    router.push(`${currentPath}?${params.toString()}`);
   };
 
   // حذف بحث محفوظ
@@ -134,11 +130,6 @@ export default function SavedSearches() {
     return active;
   };
 
-  const executeSearch = (searchData: { query: string; filters?: Record<string, unknown> }) => {
-    // Implement your search execution logic here
-    console.log('Executing search with data:', searchData);
-  };
-
   return (
     <div className="relative">
       <Button
@@ -157,7 +148,7 @@ export default function SavedSearches() {
       </Button>
 
       {showSaved && (
-        <Card className="absolute top-full left-0 mt-2 w-80 z-50 shadow-lg">
+        <Card className="absolute top-full left-0 sm:right-0 mt-2 w-[min(20rem,calc(100vw-2rem))] z-50 shadow-lg">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">البحثات المحفوظة</CardTitle>
@@ -190,10 +181,15 @@ export default function SavedSearches() {
                     placeholder="اسم البحث..."
                     value={searchName}
                     onChange={(e) => setSearchName(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && saveCurrentSearch({ query: searchName })}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        saveCurrentSearch();
+                      }
+                    }}
                     className="text-sm"
                   />
-                  <Button size="sm" onClick={() => saveCurrentSearch({ query: searchName })} disabled={!searchName.trim()}>
+                  <Button size="sm" onClick={saveCurrentSearch} disabled={!searchName.trim()}>
                     <Save className="w-4 h-4" />
                   </Button>
                 </div>
@@ -280,7 +276,7 @@ export default function SavedSearches() {
                         </div>
                       </div>
 
-                      <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                         <Button
                           variant="ghost"
                           size="sm"
