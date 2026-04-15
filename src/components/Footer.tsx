@@ -383,7 +383,6 @@ export default function Footer() {
         </div>
 
         <div className="sr-only">
-          <h2>{t('seo.title')}</h2>
           <p>{t('seo.description')}</p>
         </div>
       </div>
