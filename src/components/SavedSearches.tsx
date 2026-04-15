@@ -17,14 +17,7 @@ import {
   Save
 } from 'lucide-react';
 
-interface SearchFilters {
-  q?: string;
-  category?: string;
-  location?: string;
-  featured?: string;
-  hasVideo?: string;
-  [key: string]: string | undefined;
-}
+type SearchFilters = Record<string, string>;
 
 interface SavedSearch {
   id: string;
@@ -104,16 +97,7 @@ export default function SavedSearches() {
     saveTOLocalStorage(updated);
 
     // تطبيق المعايير على URL
-    const params = new URLSearchParams(
-      Object.entries(search.filters).reduce<Record<string, string>>((acc, [key, value]) => {
-        if (typeof value === 'string') {
-          acc[key] = value;
-        } else if (value !== undefined) {
-          console.warn(`Skipping non-string saved filter value for "${key}"`);
-        }
-        return acc;
-      }, {})
-    );
+    const params = new URLSearchParams(search.filters);
     const currentPath = window.location.pathname;
     window.location.assign(`${currentPath}?${params.toString()}`);
   };
