@@ -59,6 +59,8 @@ interface FiltersState {
 
 const SORT_OPTIONS = ['relevance', 'date', 'name', 'views', 'rating'] as const;
 type SortOption = typeof SORT_OPTIONS[number];
+const TYPE_OPTIONS = ['all', 'projects', 'articles', 'faqs'] as const;
+type SearchType = typeof TYPE_OPTIONS[number];
 
 function isSortOption(value: string): value is SortOption {
   return (SORT_OPTIONS as readonly string[]).includes(value);
@@ -74,7 +76,7 @@ function SearchContent() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>('relevance');
-  const [type, setType] = useState<'all' | 'projects' | 'articles' | 'faqs'>(
+  const [type, setType] = useState<SearchType>(
     (searchParams?.get('type') as any) || 'all'
   );
   const [searchText, setSearchText] = useState(searchParams?.get('q') || '');
@@ -207,6 +209,17 @@ function SearchContent() {
     updateUrl({ q: searchText || undefined, type });
   };
 
+  const handleTypeKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, currentType: SearchType) => {
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+    event.preventDefault();
+    const currentIndex = TYPE_OPTIONS.indexOf(currentType);
+    const direction = event.key === 'ArrowRight' ? 1 : -1;
+    const nextIndex = (currentIndex + direction + TYPE_OPTIONS.length) % TYPE_OPTIONS.length;
+    const nextType = TYPE_OPTIONS[nextIndex];
+    setType(nextType);
+    updateUrl({ type: nextType });
+  };
+
   const handleFiltersChange = (partial: Partial<FiltersState>) => {
     const next = { ...filters, ...partial };
     setFilters(next);
@@ -237,21 +250,21 @@ function SearchContent() {
             <div className="flex items-center gap-2">
               <Button type="submit">بحث</Button>
               <div className="flex items-center gap-2 flex-wrap" role="radiogroup" aria-label="تصفية نوع النتائج">
-                <Button role="radio" tabIndex={type === 'all' ? 0 : -1} aria-checked={type === 'all' ? 'true' : 'false'} variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }}>
+                <Button role="radio" tabIndex={type === 'all' ? 0 : -1} aria-checked={type === 'all' ? 'true' : 'false'} variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'all')}>
                   الكل
                   {facets.types.articles + facets.types.projects + facets.types.faqs > 0 && (
                     <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.articles + facets.types.projects + facets.types.faqs}</Badge>
                   )}
                 </Button>
-                <Button role="radio" tabIndex={type === 'projects' ? 0 : -1} aria-checked={type === 'projects' ? 'true' : 'false'} variant={type === 'projects' ? 'default' : 'outline'} type="button" onClick={() => { setType('projects'); updateUrl({ type: 'projects' }); }}>
+                <Button role="radio" tabIndex={type === 'projects' ? 0 : -1} aria-checked={type === 'projects' ? 'true' : 'false'} variant={type === 'projects' ? 'default' : 'outline'} type="button" onClick={() => { setType('projects'); updateUrl({ type: 'projects' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'projects')}>
                   معرض الأعمال
                   {facets.types.projects > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.projects}</Badge>}
                 </Button>
-                <Button role="radio" tabIndex={type === 'articles' ? 0 : -1} aria-checked={type === 'articles' ? 'true' : 'false'} variant={type === 'articles' ? 'default' : 'outline'} type="button" onClick={() => { setType('articles'); updateUrl({ type: 'articles' }); }}>
+                <Button role="radio" tabIndex={type === 'articles' ? 0 : -1} aria-checked={type === 'articles' ? 'true' : 'false'} variant={type === 'articles' ? 'default' : 'outline'} type="button" onClick={() => { setType('articles'); updateUrl({ type: 'articles' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'articles')}>
                   المقالات
                   {facets.types.articles > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.articles}</Badge>}
                 </Button>
-                <Button role="radio" tabIndex={type === 'faqs' ? 0 : -1} aria-checked={type === 'faqs' ? 'true' : 'false'} variant={type === 'faqs' ? 'default' : 'outline'} type="button" onClick={() => { setType('faqs'); updateUrl({ type: 'faqs' }); }}>
+                <Button role="radio" tabIndex={type === 'faqs' ? 0 : -1} aria-checked={type === 'faqs' ? 'true' : 'false'} variant={type === 'faqs' ? 'default' : 'outline'} type="button" onClick={() => { setType('faqs'); updateUrl({ type: 'faqs' }); }} onKeyDown={(event) => handleTypeKeyDown(event, 'faqs')}>
                   الأسئلة الشائعة
                   {facets.types.faqs > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.faqs}</Badge>}
                 </Button>
