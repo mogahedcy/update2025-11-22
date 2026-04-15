@@ -195,7 +195,12 @@ export default function SavedSearches() {
                     placeholder="اسم البحث..."
                     value={searchName}
                     onChange={(e) => setSearchName(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && saveCurrentSearch()}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        saveCurrentSearch();
+                      }
+                    }}
                     className="text-sm"
                   />
                   <Button size="sm" onClick={saveCurrentSearch} disabled={!searchName.trim()}>

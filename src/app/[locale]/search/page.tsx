@@ -57,6 +57,13 @@ interface FiltersState {
   priceRange: string;
 }
 
+const SORT_OPTIONS = ['relevance', 'date', 'name', 'views', 'rating'] as const;
+type SortOption = typeof SORT_OPTIONS[number];
+
+function isSortOption(value: string): value is SortOption {
+  return (SORT_OPTIONS as readonly string[]).includes(value);
+}
+
 function SearchContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -66,7 +73,7 @@ function SearchContent() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
-  const [sortBy, setSortBy] = useState<'relevance' | 'date' | 'name' | 'views' | 'rating'>('relevance');
+  const [sortBy, setSortBy] = useState<SortOption>('relevance');
   const [type, setType] = useState<'all' | 'projects' | 'articles' | 'faqs'>(
     (searchParams?.get('type') as any) || 'all'
   );
@@ -233,7 +240,7 @@ function SearchContent() {
             </div>
             <div className="flex items-center gap-2">
               <Button type="submit">بحث</Button>
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center gap-2 flex-wrap" role="group" aria-label="تصفية نوع النتائج">
                 <Button variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }}>
                   الكل
                   {facets.types.articles + facets.types.projects + facets.types.faqs > 0 && (
@@ -257,7 +264,12 @@ function SearchContent() {
                 <Filter className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
                 <select
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as 'relevance' | 'date' | 'name' | 'views' | 'rating')}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (isSortOption(value)) {
+                      setSortBy(value);
+                    }
+                  }}
                   className="h-10 w-full rounded-md border border-input bg-background pl-9 pr-10 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <option value="relevance">الأكثر صلة</option>
