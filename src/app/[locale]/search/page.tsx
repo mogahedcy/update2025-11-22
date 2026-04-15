@@ -295,7 +295,7 @@ function SearchContent() {
         </div>
 
         <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 break-words">نتائج البحث{query && ` عن "${query}"`}</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 break-normal [overflow-wrap:anywhere]">نتائج البحث{query && ` عن "${query}"`}</h1>
           <p className="text-gray-600">{results.length} نتيجة</p>
         </div>
 

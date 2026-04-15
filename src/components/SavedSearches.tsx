@@ -17,7 +17,7 @@ import {
   Save
 } from 'lucide-react';
 
-type SearchFilters = Record<string, string>;
+type SearchFilters = Partial<Record<string, string>>;
 
 interface SavedSearch {
   id: string;

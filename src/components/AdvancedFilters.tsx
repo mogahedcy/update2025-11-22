@@ -32,7 +32,7 @@ interface FiltersState {
 interface CategoryItem {
   id: string;
   name: string;
-  icon?: string;
+  icon?: React.ReactNode;
 }
 
 interface AdvancedFiltersProps {
