@@ -9,9 +9,15 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const hostname = request.headers.get('host') || '';
   const pathname = url.pathname;
+  const isStandaloneRootPage =
+    pathname === '/terms' ||
+    pathname === '/privacy' ||
+    pathname === '/faq' ||
+    pathname.startsWith('/faq/');
   
   // ✅ Skip static assets, API, and dynamic articles
   if (
+    isStandaloneRootPage ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
     pathname.startsWith('/images') ||
