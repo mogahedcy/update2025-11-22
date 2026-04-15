@@ -237,21 +237,21 @@ function SearchContent() {
             <div className="flex items-center gap-2">
               <Button type="submit">بحث</Button>
               <div className="flex items-center gap-2 flex-wrap" role="radiogroup" aria-label="تصفية نوع النتائج">
-                <Button role="radio" aria-checked={type === 'all'} variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }}>
+                <Button role="radio" aria-checked={type === 'all' ? 'true' : 'false'} variant={type === 'all' ? 'default' : 'outline'} type="button" onClick={() => { setType('all'); updateUrl({ type: 'all' }); }}>
                   الكل
                   {facets.types.articles + facets.types.projects + facets.types.faqs > 0 && (
                     <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.articles + facets.types.projects + facets.types.faqs}</Badge>
                   )}
                 </Button>
-                <Button role="radio" aria-checked={type === 'projects'} variant={type === 'projects' ? 'default' : 'outline'} type="button" onClick={() => { setType('projects'); updateUrl({ type: 'projects' }); }}>
+                <Button role="radio" aria-checked={type === 'projects' ? 'true' : 'false'} variant={type === 'projects' ? 'default' : 'outline'} type="button" onClick={() => { setType('projects'); updateUrl({ type: 'projects' }); }}>
                   معرض الأعمال
                   {facets.types.projects > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.projects}</Badge>}
                 </Button>
-                <Button role="radio" aria-checked={type === 'articles'} variant={type === 'articles' ? 'default' : 'outline'} type="button" onClick={() => { setType('articles'); updateUrl({ type: 'articles' }); }}>
+                <Button role="radio" aria-checked={type === 'articles' ? 'true' : 'false'} variant={type === 'articles' ? 'default' : 'outline'} type="button" onClick={() => { setType('articles'); updateUrl({ type: 'articles' }); }}>
                   المقالات
                   {facets.types.articles > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.articles}</Badge>}
                 </Button>
-                <Button role="radio" aria-checked={type === 'faqs'} variant={type === 'faqs' ? 'default' : 'outline'} type="button" onClick={() => { setType('faqs'); updateUrl({ type: 'faqs' }); }}>
+                <Button role="radio" aria-checked={type === 'faqs' ? 'true' : 'false'} variant={type === 'faqs' ? 'default' : 'outline'} type="button" onClick={() => { setType('faqs'); updateUrl({ type: 'faqs' }); }}>
                   الأسئلة الشائعة
                   {facets.types.faqs > 0 && <Badge variant="secondary" className="mr-1 bg-white/20">{facets.types.faqs}</Badge>}
                 </Button>

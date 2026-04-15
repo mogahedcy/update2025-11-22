@@ -108,6 +108,8 @@ export default function SavedSearches() {
       Object.entries(search.filters).reduce<Record<string, string>>((acc, [key, value]) => {
         if (typeof value === 'string') {
           acc[key] = value;
+        } else if (value !== undefined) {
+          console.warn(`Skipping non-string saved filter value for "${key}"`);
         }
         return acc;
       }, {})
