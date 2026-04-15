@@ -146,7 +146,7 @@ export default function SavedSearches() {
       </Button>
 
       {showSaved && (
-        <Card className="absolute top-full left-0 sm:left-auto sm:right-0 mt-2 w-[min(20rem,calc(100vw-2rem))] z-50 shadow-lg">
+        <Card className="absolute top-full left-0 sm:right-0 mt-2 w-[min(20rem,calc(100vw-2rem))] z-50 shadow-lg">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">البحثات المحفوظة</CardTitle>
