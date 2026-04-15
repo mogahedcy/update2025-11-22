@@ -114,9 +114,7 @@ export default function SavedSearches() {
         return acc;
       }, {})
     );
-    const currentPath = window.location.pathname.endsWith('/search')
-      ? window.location.pathname
-      : '/search';
+    const currentPath = window.location.pathname;
     window.location.assign(`${currentPath}?${params.toString()}`);
   };
 

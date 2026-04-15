@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const hostname = request.headers.get('host') || '';
   const pathname = url.pathname;
-  const isStandaloneRootPage =
+  const shouldBypassIntlMiddleware =
     pathname === '/terms' ||
     pathname === '/privacy' ||
     pathname === '/faq' ||
@@ -17,7 +17,7 @@ export function middleware(request: NextRequest) {
   
   // ✅ Skip static assets, API, and dynamic articles
   if (
-    isStandaloneRootPage ||
+    shouldBypassIntlMiddleware ||
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
     pathname.startsWith('/images') ||
